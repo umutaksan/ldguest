@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Platform, ScrollView, TextInput } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Play, Database, CircleAlert as AlertCircle } from 'lucide-react-native';
+import { Play, Database, CircleAlert as AlertCircle, Code } from 'lucide-react-native';
 import { supabase } from '@/lib/supabase';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -13,9 +13,24 @@ const MonacoEditor = Platform.select({
   default: () => null,
 })();
 
+const exampleQueries = [
+  {
+    name: 'Select All Properties',
+    query: 'SELECT * FROM properties LIMIT 10;'
+  },
+  {
+    name: 'Count Properties by Location',
+    query: 'SELECT location, COUNT(*) as count FROM properties GROUP BY location ORDER BY count DESC;'
+  },
+  {
+    name: 'Recent Bookings',
+    query: 'SELECT * FROM bookings ORDER BY created_at DESC LIMIT 5;'
+  }
+];
+
 export default function SQLEditorScreen() {
   const insets = useSafeAreaInsets();
-  const [query, setQuery] = useState('SELECT * FROM your_table LIMIT 10;');
+  const [query, setQuery] = useState('SELECT * FROM properties LIMIT 10;');
   const [results, setResults] = useState<any[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,30 +59,38 @@ export default function SQLEditorScreen() {
 
   const renderResults = () => {
     if (!results || results.length === 0) {
-      return null;
+      return (
+        <View style={styles.noResults}>
+          <Text style={styles.noResultsText}>No results found</Text>
+        </View>
+      );
     }
 
     const columns = Object.keys(results[0]);
 
     return (
-      <View style={styles.resultsContainer}>
-        <View style={styles.tableHeader}>
-          {columns.map((column) => (
-            <Text key={column} style={styles.headerCell}>
-              {column}
-            </Text>
-          ))}
-        </View>
-        {results.map((row, index) => (
-          <View key={index} style={styles.tableRow}>
+      <ScrollView horizontal style={styles.tableScrollView}>
+        <View style={styles.resultsContainer}>
+          <View style={styles.tableHeader}>
             {columns.map((column) => (
-              <Text key={column} style={styles.cell}>
-                {row[column]?.toString() || 'null'}
+              <Text key={column} style={styles.headerCell}>
+                {column}
               </Text>
             ))}
           </View>
-        ))}
-      </View>
+          <ScrollView style={styles.tableBody}>
+            {results.map((row, index) => (
+              <View key={index} style={styles.tableRow}>
+                {columns.map((column) => (
+                  <Text key={column} style={styles.cell}>
+                    {row[column]?.toString() || 'null'}
+                  </Text>
+                ))}
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      </ScrollView>
     );
   };
 
@@ -75,71 +98,95 @@ export default function SQLEditorScreen() {
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="SQL Editor" />
 
-      <Animated.View 
-        entering={FadeIn.duration(500)}
+      <ScrollView 
         style={styles.content}
+        showsVerticalScrollIndicator={false}
       >
-        <View style={styles.editorContainer}>
-          {Platform.OS === 'web' && MonacoEditor ? (
-            <MonacoEditor
-              height="200px"
-              defaultLanguage="sql"
-              theme="vs-dark"
-              value={query}
-              onChange={(value) => setQuery(value || '')}
-              options={{
-                minimap: { enabled: false },
-                scrollBeyondLastLine: false,
-                fontSize: 14,
-                lineNumbers: 'on',
-              }}
-            />
-          ) : (
-            <TextInput
-              style={styles.textEditor}
-              value={query}
-              onChangeText={setQuery}
-              multiline
-              placeholder="Enter your SQL query here..."
-              placeholderTextColor={theme.colors.textTertiary}
-            />
+        <Animated.View entering={FadeIn.duration(500)}>
+          <View style={styles.examplesContainer}>
+            <View style={styles.examplesHeader}>
+              <Code size={20} color={theme.colors.primary} />
+              <Text style={styles.examplesTitle}>Example Queries</Text>
+            </View>
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+              style={styles.examplesList}
+            >
+              {exampleQueries.map((example, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.exampleButton}
+                  onPress={() => setQuery(example.query)}
+                >
+                  <Text style={styles.exampleButtonText}>{example.name}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+
+          <View style={styles.editorContainer}>
+            {Platform.OS === 'web' && MonacoEditor ? (
+              <MonacoEditor
+                height="200px"
+                defaultLanguage="sql"
+                theme="vs-dark"
+                value={query}
+                onChange={(value) => setQuery(value || '')}
+                options={{
+                  minimap: { enabled: false },
+                  scrollBeyondLastLine: false,
+                  fontSize: 14,
+                  lineNumbers: 'on',
+                }}
+              />
+            ) : (
+              <TextInput
+                style={styles.textEditor}
+                value={query}
+                onChangeText={setQuery}
+                multiline
+                placeholder="Enter your SQL query here..."
+                placeholderTextColor={theme.colors.textTertiary}
+              />
+            )}
+
+            <TouchableOpacity
+              style={[
+                styles.executeButton,
+                isLoading && styles.executeButtonDisabled
+              ]}
+              onPress={executeQuery}
+              disabled={isLoading}
+            >
+              <Play size={20} color={theme.colors.white} />
+              <Text style={styles.executeButtonText}>
+                {isLoading ? 'Executing...' : 'Execute Query'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          {error && (
+            <View style={styles.errorContainer}>
+              <AlertCircle size={20} color={theme.colors.error} />
+              <Text style={styles.errorText}>{error}</Text>
+            </View>
           )}
 
-          <TouchableOpacity
-            style={[
-              styles.executeButton,
-              isLoading && styles.executeButtonDisabled
-            ]}
-            onPress={executeQuery}
-            disabled={isLoading}
-          >
-            <Play size={20} color={theme.colors.white} />
-            <Text style={styles.executeButtonText}>
-              {isLoading ? 'Executing...' : 'Execute Query'}
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        {error && (
-          <View style={styles.errorContainer}>
-            <AlertCircle size={20} color={theme.colors.error} />
-            <Text style={styles.errorText}>{error}</Text>
-          </View>
-        )}
-
-        {results && (
-          <View style={styles.resultsWrapper}>
-            <View style={styles.resultsHeader}>
-              <Database size={20} color={theme.colors.primary} />
-              <Text style={styles.resultsTitle}>Query Results</Text>
-              <Text style={styles.resultsCount}>
-                {results.length} row{results.length !== 1 ? 's' : ''}
-              </Text>
+          {results && (
+            <View style={styles.resultsWrapper}>
+              <View style={styles.resultsHeader}>
+                <Database size={20} color={theme.colors.primary} />
+                <Text style={styles.resultsTitle}>Query Results</Text>
+                <Text style={styles.resultsCount}>
+                  {results.length} row{results.length !== 1 ? 's' : ''}
+                </Text>
+              </View>
+              {renderResults()}
             </View>
-            {renderResults()}
-          </View>
-        )}
-      </Animated.View>
+          )}
+        </Animated.View>
+      </ScrollView>
     </View>
   );
 }
@@ -152,6 +199,33 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: theme.spacing.m,
+  },
+  examplesContainer: {
+    marginBottom: theme.spacing.m,
+  },
+  examplesHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.s,
+  },
+  examplesTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+    marginLeft: theme.spacing.s,
+  },
+  examplesList: {
+    flexDirection: 'row',
+  },
+  exampleButton: {
+    backgroundColor: theme.colors.primaryLight,
+    paddingHorizontal: theme.spacing.m,
+    paddingVertical: theme.spacing.s,
+    borderRadius: theme.borderRadius.m,
+    marginRight: theme.spacing.s,
+  },
+  exampleButtonText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.primary,
   },
   editorContainer: {
     backgroundColor: theme.colors.card,
@@ -173,8 +247,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: theme.colors.primary,
     padding: theme.spacing.m,
-    borderBottomLeftRadius: theme.borderRadius.m,
-    borderBottomRightRadius: theme.borderRadius.m,
   },
   executeButtonDisabled: {
     opacity: 0.7,
@@ -216,6 +288,9 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     marginLeft: theme.spacing.s,
   },
+  tableScrollView: {
+    flexGrow: 0,
+  },
   resultsContainer: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
@@ -230,8 +305,11 @@ const styles = StyleSheet.create({
   headerCell: {
     ...theme.typography.bodyMedium,
     color: theme.colors.primary,
-    flex: 1,
+    minWidth: 150,
     padding: theme.spacing.s,
+  },
+  tableBody: {
+    maxHeight: 300,
   },
   tableRow: {
     flexDirection: 'row',
@@ -240,7 +318,15 @@ const styles = StyleSheet.create({
   },
   cell: {
     ...theme.typography.body,
-    flex: 1,
+    minWidth: 150,
     padding: theme.spacing.s,
+  },
+  noResults: {
+    padding: theme.spacing.m,
+    alignItems: 'center',
+  },
+  noResultsText: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
   },
 });
