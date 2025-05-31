@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "bolt-expo-nativewind",
-    "slug": "bolt-expo-nativewind",
+    "name": "L&D Guest Marbella",
+    "slug": "ld-guest-marbella",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=512",
-    "scheme": "myapp",
+    "icon": "./assets/images/icon.png",
+    "scheme": "ldguest",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -14,7 +14,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=32",
+      "favicon": "./assets/images/favicon.png",
       "build": {
         "babel": {
           "include": [
