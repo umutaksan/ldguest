@@ -14,7 +14,15 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=32"
+      "favicon": "https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=32",
+      "build": {
+        "babel": {
+          "include": [
+            "@expo/vector-icons",
+            "expo-router"
+          ]
+        }
+      }
     },
     "plugins": [
       "expo-router",
