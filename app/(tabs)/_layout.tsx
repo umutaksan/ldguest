@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Chrome as Home, MapPin, Book, Info, Phone, Car, Map } from 'lucide-react-native';
+import { Chrome as Home, MapPin, Book, Info, Phone, Car, Map, Database } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
 
@@ -73,6 +73,13 @@ export default function TabLayout() {
         options={{
           title: 'Contact',
           tabBarIcon: ({ color, size }) => <Phone size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="sql-editor"
+        options={{
+          title: 'SQL Editor',
+          tabBarIcon: ({ color, size }) => <Database size={size} color={color} />,
         }}
       />
     </Tabs>
