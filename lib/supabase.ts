@@ -1,6 +1,5 @@
 import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
-import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 
 // Define a web-specific storage adapter using localStorage
@@ -31,17 +30,23 @@ const webStorageAdapter = {
 };
 
 // Define the native storage adapter using SecureStore
-const nativeStorageAdapter = {
-  getItem: (key: string) => {
-    return SecureStore.getItemAsync(key);
+const nativeStorageAdapter = Platform.select({
+  native: {
+    getItem: async (key: string) => {
+      const SecureStore = await import('expo-secure-store');
+      return SecureStore.getItemAsync(key);
+    },
+    setItem: async (key: string, value: string) => {
+      const SecureStore = await import('expo-secure-store');
+      return SecureStore.setItemAsync(key, value);
+    },
+    removeItem: async (key: string) => {
+      const SecureStore = await import('expo-secure-store');
+      return SecureStore.deleteItemAsync(key);
+    },
   },
-  setItem: (key: string, value: string) => {
-    return SecureStore.setItemAsync(key, value);
-  },
-  removeItem: (key: string) => {
-    return SecureStore.deleteItemAsync(key);
-  },
-};
+  default: webStorageAdapter,
+});
 
 // Choose the appropriate storage adapter based on platform
 const storageAdapter = Platform.OS === 'web' ? webStorageAdapter : nativeStorageAdapter;
