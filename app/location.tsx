@@ -11,7 +11,7 @@ export default function LocationScreen() {
   
   const handleOpenMaps = () => {
     // Get the current route to determine which location to open
-    const currentPath = window.location.pathname;
+    const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
     let mapsUrl = '';
 
     if (currentPath.includes('aloha-pueblo')) {
@@ -60,7 +60,7 @@ export default function LocationScreen() {
   ];
 
   // Get the current route to determine which property details to show
-  const currentPath = window.location.pathname;
+  const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
   let propertyDetails = {
     name: '1+1 Jardines Tropicales Puerto Banús',
     location: 'Nueva Andalucía',

@@ -5,7 +5,7 @@ import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { SplashScreen } from 'expo-router';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 
 // Prevent splash screen from auto-hiding
@@ -42,6 +42,13 @@ export default function RootLayout() {
     <>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="aloha-pueblo/(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="old-town/(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="seaview-fontanilla/(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="properties/jardines-tropicales" options={{ headerShown: false }} />
+        <Stack.Screen name="properties/aloha-pueblo" options={{ headerShown: false }} />
+        <Stack.Screen name="properties/old-town" options={{ headerShown: false }} />
+        <Stack.Screen name="properties/seaview-fontanilla" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
       </Stack>
       <StatusBar style="auto" />

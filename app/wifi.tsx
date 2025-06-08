@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Clipboard, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
@@ -17,14 +17,31 @@ export default function WifiScreen() {
     password: 'FPyPj3KN'
   };
 
-  const copyToClipboard = (text: string, type: 'ssid' | 'password') => {
-    Clipboard.setString(text);
-    if (type === 'ssid') {
-      setCopiedSSID(true);
-      setTimeout(() => setCopiedSSID(false), 2000);
+  const copyToClipboard = async (text: string, type: 'ssid' | 'password') => {
+    if (Platform.OS === 'web') {
+      try {
+        await navigator.clipboard.writeText(text);
+        if (type === 'ssid') {
+          setCopiedSSID(true);
+          setTimeout(() => setCopiedSSID(false), 2000);
+        } else {
+          setCopiedPassword(true);
+          setTimeout(() => setCopiedPassword(false), 2000);
+        }
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
     } else {
-      setCopiedPassword(true);
-      setTimeout(() => setCopiedPassword(false), 2000);
+      // For mobile platforms, you would use Expo Clipboard
+      // import * as Clipboard from 'expo-clipboard';
+      // Clipboard.setStringAsync(text);
+      if (type === 'ssid') {
+        setCopiedSSID(true);
+        setTimeout(() => setCopiedSSID(false), 2000);
+      } else {
+        setCopiedPassword(true);
+        setTimeout(() => setCopiedPassword(false), 2000);
+      }
     }
   };
 

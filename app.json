@@ -8,8 +8,15 @@
     "scheme": "ldguest",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "platforms": ["ios", "android", "web"],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#E9B872"
+      }
     },
     "web": {
       "bundler": "metro",

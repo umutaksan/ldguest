@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, Dimensions, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Dimensions, TouchableOpacity, Linking, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ChevronLeft, Chrome as Home, Share, Heart } from 'lucide-react-native';
@@ -24,10 +24,23 @@ export function PropertyHero({ title, subtitle, imageUrl, showBackButton = false
 
   const handleShare = async () => {
     try {
-      await Share.share({
-        message: `Check out this property: ${title}`,
-        url: window.location.href,
-      });
+      if (Platform.OS === 'web') {
+        if (navigator.share) {
+          await navigator.share({
+            title: title,
+            text: `Check out this property: ${title}`,
+            url: window.location.href,
+          });
+        } else {
+          // Fallback for browsers that don't support Web Share API
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Link copied to clipboard!');
+        }
+      } else {
+        // For mobile platforms, you would use Expo Sharing
+        // import * as Sharing from 'expo-sharing';
+        // await Sharing.shareAsync(window.location.href);
+      }
     } catch (error) {
       console.error('Error sharing:', error);
     }
