@@ -17,7 +17,8 @@
         "babel": {
           "include": [
             "@expo/vector-icons",
-            "expo-router"
+            "expo-router",
+            "react-native-web"
           ]
         }
       }
