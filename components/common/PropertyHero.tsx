@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ChevronLeft, Chrome as Home, Share, Heart } from 'lucide-react-native';
-import { useRouter } from 'expo-router';
+import { ChevronLeft, Chrome as Home, Share, Heart, Building2 } from 'lucide-react-native';
+import { useRouter, usePathname } from 'expo-router';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -12,14 +12,26 @@ type PropertyHeroProps = {
   subtitle?: string;
   imageUrl: string;
   showBackButton?: boolean;
+  showPropertySwitcher?: boolean;
 };
 
-export function PropertyHero({ title, subtitle, imageUrl, showBackButton = false }: PropertyHeroProps) {
+export function PropertyHero({ 
+  title, 
+  subtitle, 
+  imageUrl, 
+  showBackButton = false, 
+  showPropertySwitcher = true 
+}: PropertyHeroProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const insets = useSafeAreaInsets();
   
   const handleHomePress = () => {
     router.replace('/');
+  };
+
+  const handlePropertySwitcher = () => {
+    router.push('/');
   };
 
   const handleShare = async () => {
@@ -85,13 +97,23 @@ export function PropertyHero({ title, subtitle, imageUrl, showBackButton = false
           style={[styles.gradient, { paddingTop: insets.top + theme.spacing.s }]}
         >
           <View style={styles.header}>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={handleHomePress}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
-              <ChevronLeft size={24} color={theme.colors.white} />
-            </TouchableOpacity>
+            {showPropertySwitcher ? (
+              <TouchableOpacity
+                style={styles.iconButton}
+                onPress={handlePropertySwitcher}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                <Building2 size={24} color={theme.colors.white} />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.iconButton}
+                onPress={handleHomePress}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                <ChevronLeft size={24} color={theme.colors.white} />
+              </TouchableOpacity>
+            )}
             <View style={styles.headerButtons}>
               <TouchableOpacity
                 style={styles.iconButton}
