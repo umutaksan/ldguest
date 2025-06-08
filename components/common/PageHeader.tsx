@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, Platform } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
-import { ChevronLeft } from 'lucide-react-native';
+import { Home } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -26,22 +26,12 @@ export function PageHeader({
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
 
-  const handleBack = () => {
+  const handlePropertySwitch = () => {
     if (onBackPress) {
       onBackPress();
     } else {
-      // Get the current property route based on the pathname
-      let propertyHomeRoute = '/(tabs)';
-      
-      if (pathname.includes('aloha-pueblo')) {
-        propertyHomeRoute = '/aloha-pueblo/(tabs)';
-      } else if (pathname.includes('old-town')) {
-        propertyHomeRoute = '/old-town/(tabs)';
-      } else if (pathname.includes('seaview-fontanilla')) {
-        propertyHomeRoute = '/seaview-fontanilla/(tabs)';
-      }
-      
-      router.replace(propertyHomeRoute);
+      // Navigate to property selection page
+      router.replace('/');
     }
   };
 
@@ -50,11 +40,11 @@ export function PageHeader({
       <View style={styles.content}>
         {showBackButton && (
           <TouchableOpacity
-            style={styles.backButton}
-            onPress={handleBack}
+            style={styles.propertyButton}
+            onPress={handlePropertySwitch}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <ChevronLeft size={24} color={theme.colors.text} />
+            <Home size={24} color={theme.colors.text} />
           </TouchableOpacity>
         )}
         <View style={styles.titleContainer}>
@@ -81,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
   },
-  backButton: {
+  propertyButton: {
     marginRight: theme.spacing.s,
     // Web-specific styles
     ...(theme.layout.isWeb && {
