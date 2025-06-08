@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Platform, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { theme } from '@/constants/theme';
@@ -10,6 +11,7 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   
   const handleViewMoreProperties = () => {
     Linking.openURL('https://www.ldguest.com/ldhome');
@@ -27,6 +29,10 @@ export default function HomeScreen() {
     Linking.openURL('https://www.guidemarbella.com/jardinestropicales');
   };
 
+  const handleSelectProperty = () => {
+    router.push('/');
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView 
@@ -41,6 +47,15 @@ export default function HomeScreen() {
           subtitle="Thank you for your reservation!"
           imageUrl="https://a0.muscache.com/im/pictures/miso/Hosting-1316607383752040451/original/4009975e-0d1a-450c-9458-88acab09ef65.png?im_w=1440&im_format=avif"
         />
+
+        <TouchableOpacity 
+          style={styles.propertySelector}
+          onPress={handleSelectProperty}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.propertySelectorText}>Switch Property</Text>
+          <Text style={styles.propertySelectorSubtext}>Tap to select a different property</Text>
+        </TouchableOpacity>
 
         <Animated.View 
           entering={FadeIn.duration(500)}
@@ -208,6 +223,24 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
+  },
+  propertySelector: {
+    margin: theme.spacing.m,
+    padding: theme.spacing.m,
+    backgroundColor: theme.colors.primaryLight,
+    borderRadius: theme.borderRadius.m,
+    alignItems: 'center',
+    ...theme.shadows.small,
+  },
+  propertySelectorText: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.xs,
+  },
+  propertySelectorSubtext: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.primary,
+    opacity: 0.8,
   },
   quickAccess: {
     padding: theme.spacing.m,
