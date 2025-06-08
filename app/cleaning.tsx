@@ -22,11 +22,11 @@ export default function CleaningScreen() {
       mapUrl: 'https://www.google.com/maps/dir//Calle+Azahar+Nueva+Andaluc%C3%ADa+29660+Marbella+M%C3%A1laga/@36.4885948,-4.9624318,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0xd7329ec41f44309:0xba0923f1a5a71398',
       wifiName: 'OLIN_36407',
       wifiPassword: 'FPyPj3KN',
-      keyboxCode: '030924# (Watch the location video)',
+      keyboxCode: '0309024# (Watch the location video)',
       keyboxVideo: 'https://youtube.com/shorts/XNzqKrwDKf8',
       apartmentDoor: 'Open with black bar',
       doorCode: '5555515# or Lock Card',
-      cabinetCode: 'To open the lock, enter 1234 and turn the knob to the left. To lock it again, simply turn the knob to the right.'
+      cabinetCode: 'To open the lock, enter 12345 and turn the knob to the left. To lock it again, simply turn the knob to the right.'
     },
     {
       id: 2,
