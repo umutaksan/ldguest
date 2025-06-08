@@ -66,20 +66,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="car-rental"
-        options={{
-          title: 'Car Rental',
-          tabBarIcon: ({ color, size }) => <Car size={size} color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="nearby-cities"
-        options={{
-          title: 'Cities',
-          tabBarIcon: ({ color, size }) => <Map size={size} color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name="info"
         options={{
           title: 'Info',

@@ -42,6 +42,7 @@ export default function RootLayout() {
     <>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="jardines-tropicales/(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="aloha-pueblo/(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="old-town/(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="seaview-fontanilla/(tabs)" options={{ headerShown: false }} />
