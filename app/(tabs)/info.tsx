@@ -1,110 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { usePathname } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
 export default function InfoScreen() {
   const insets = useSafeAreaInsets();
-  const pathname = usePathname();
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-  
-  // Get property-specific information
-  const getPropertyInfo = () => {
-    if (pathname.includes('aloha-pueblo')) {
-      return {
-        title: 'Aloha Pueblo Information',
-        amenities: [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Full kitchen', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: 'Smart TV', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 6, title: 'Private terrace', icon: <Safe size={24} color={theme.colors.primary} /> },
-        ],
-        faqs: [
-          { id: 1, question: 'Is there parking available?', answer: 'Yes, there is free parking available.' },
-          { id: 2, question: 'How many people can stay?', answer: 'The townhouse can accommodate up to 3 people.' },
-          { id: 3, question: 'Is there a terrace?', answer: 'Yes, there is a private terrace.' },
-          { id: 4, question: 'Are pets allowed?', answer: 'Yes, pets are allowed. Please inform us in advance.' },
-          { id: 5, question: 'Is the area safe?', answer: 'Yes, Aloha is a very safe and quiet residential area.' },
-        ]
-      };
-    } else if (pathname.includes('old-town')) {
-      return {
-        title: 'Old Town Information',
-        amenities: [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Full kitchen', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 6, title: 'Historic location', icon: <Safe size={24} color={theme.colors.primary} /> },
-        ],
-        faqs: [
-          { id: 1, question: 'How many people can stay?', answer: 'The apartment can accommodate up to 6 people with 3 bedrooms.' },
-          { id: 2, question: 'Is it in the historic center?', answer: 'Yes, you are right in the heart of Marbella Old Town.' },
-          { id: 3, question: 'Are there restaurants nearby?', answer: 'Yes, you are surrounded by excellent restaurants and tapas bars.' },
-          { id: 4, question: 'Is parking available?', answer: 'Public parking is available nearby. We can provide recommendations.' },
-          { id: 5, question: 'How far is the beach?', answer: 'The beach is just a 7-minute walk away.' },
-        ]
-      };
-    } else if (pathname.includes('seaview-fontanilla')) {
-      return {
-        title: 'Seaview Fontanilla Information',
-        amenities: [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Sea view', icon: <Safe size={24} color={theme.colors.primary} /> },
-          { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 6, title: 'Beach access', icon: <Safe size={24} color={theme.colors.primary} /> },
-        ],
-        faqs: [
-          { id: 1, question: 'Does it have sea views?', answer: 'Yes, the apartment has beautiful sea views from the living room and bedroom.' },
-          { id: 2, question: 'How many people can stay?', answer: 'The apartment can accommodate up to 4 people with 2 bedrooms.' },
-          { id: 3, question: 'How close is the beach?', answer: 'Playa de Fontanilla is just 50 meters away - less than 1 minute walk!' },
-          { id: 4, question: 'Is there a balcony?', answer: 'Yes, there is a balcony with sea views.' },
-          { id: 5, question: 'Are there restaurants nearby?', answer: 'Yes, there are many beachfront restaurants and the Marbella center is very close.' },
-        ]
-      };
-    } else {
-      // Default to Jardines Tropicales
-      return {
-        title: 'Jardines Tropicales Information',
-        amenities: [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-          { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
-          { id: 6, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-          { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
-        ],
-        faqs: [
-          { id: 1, question: 'Does the apartment have a balcony?', answer: 'No, this apartment does not have a balcony.' },
-          { id: 2, question: 'Is there a pool?', answer: 'Yes, the building has a swimming pool for residents.' },
-          { id: 3, question: 'Are pets allowed?', answer: 'Yes, pets are allowed. Please inform us in advance.' },
-          { id: 4, question: 'Is check-in and check-out flexible?', answer: 'Check-in is flexible after 3:00 PM. Check-out is strict and must be completed by 10:00 AM.' },
-          { id: 5, question: 'How many people can stay in the apartment?', answer: 'The apartment can accommodate up to 3 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room' },
-          { id: 6, question: 'Is there a discount for long-term stays?', answer: 'Yes, discounts are available for long-term stays.' },
-          { id: 7, question: 'Is the area safe at night?', answer: 'Yes, the area is very safe, even late at night.' },
-          { id: 8, question: 'How far is public transport?', answer: 'Public transport is within walking distance.' },
-          { id: 9, question: 'How can I get to the apartment from the airport?', answer: 'You can take a bus, Uber, or taxi to get to the apartment.' },
-          { id: 10, question: 'Are laundry and cleaning supplies provided?', answer: 'Yes, the apartment comes with all necessary laundry and cleaning supplies.' },
-          { id: 11, question: 'What is the size of the apartment?', answer: 'The apartment is 45 m².' },
-          { id: 12, question: 'What is the heating and cooling system like?', answer: 'The apartment is equipped with air conditioning and ceiling fans. Heating is provided through the air conditioning system.' }
-        ]
-      };
-    }
-  };
-
-  const propertyInfo = getPropertyInfo();
   
   const rules = [
     { 
@@ -157,88 +61,160 @@ export default function InfoScreen() {
     }
   ];
   
+  const amenities = [
+    { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
+    { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
+    { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
+    { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
+    { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
+    { id: 6, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
+    { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
+    { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
+  ];
+  
+  const faqs = [
+    { 
+      id: 1, 
+      question: 'Does the apartment have a balcony?', 
+      answer: 'No, this apartment does not have a balcony.'
+    },
+    { 
+      id: 2, 
+      question: 'Is there a pool?', 
+      answer: 'Yes, the building has a swimming pool for residents.'
+    },
+    { 
+      id: 3, 
+      question: 'Are pets allowed?', 
+      answer: 'Yes, pets are allowed. Please inform us in advance.'
+    },
+    { 
+      id: 4, 
+      question: 'Is check-in and check-out flexible?', 
+      answer: 'Check-in is flexible after 3:00 PM. Check-out is strict and must be completed by 10:00 AM.'
+    },
+    { 
+      id: 5, 
+      question: 'How many people can stay in the apartment?', 
+      answer: 'The apartment can accommodate up to 3 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room'
+    },
+    { 
+      id: 6, 
+      question: 'Is there a discount for long-term stays?', 
+      answer: 'Yes, discounts are available for long-term stays.'
+    },
+    { 
+      id: 7, 
+      question: 'Is the area safe at night?', 
+      answer: 'Yes, the area is very safe, even late at night.'
+    },
+    { 
+      id: 8, 
+      question: 'How far is public transport?', 
+      answer: 'Public transport is within walking distance.'
+    },
+    { 
+      id: 9, 
+      question: 'How can I get to the apartment from the airport?', 
+      answer: 'You can take a bus, Uber, or taxi to get to the apartment.'
+    },
+    { 
+      id: 10, 
+      question: 'Are laundry and cleaning supplies provided?', 
+      answer: 'Yes, the apartment comes with all necessary laundry and cleaning supplies.'
+    },
+    { 
+      id: 11, 
+      question: 'What is the size of the apartment?', 
+      answer: 'The apartment is 45 m².'
+    },
+    { 
+      id: 12, 
+      question: 'What is the heating and cooling system like?', 
+      answer: 'The apartment is equipped with air conditioning and ceiling fans. Heating is provided through the air conditioning system.'
+    }
+  ];
+  
   const toggleFaq = (id: number) => {
     setExpandedFaq(expandedFaq === id ? null : id);
   };
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title={propertyInfo.title} showBackButton={false} />
+      <PageHeader title="Property Information" showBackButton={false} />
 
-      <ResponsiveContainer>
-        <ScrollView 
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.content}
-        >
-          <Text style={styles.sectionTitle}>House Rules</Text>
-          
-          {rules.map((rule, index) => (
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.content}
+      >
+        <Text style={styles.sectionTitle}>House Rules</Text>
+        
+        {rules.map((rule, index) => (
+          <Animated.View 
+            key={rule.id}
+            entering={FadeIn.delay(index * 100)}
+            style={styles.ruleCard}
+          >
+            <View style={styles.ruleIconContainer}>
+              {rule.icon}
+            </View>
+            <View style={styles.ruleContent}>
+              <Text style={styles.ruleTitle}>{rule.title}</Text>
+              <Text style={styles.ruleDescription}>{rule.description}</Text>
+            </View>
+          </Animated.View>
+        ))}
+
+        <View style={styles.divider} />
+        
+        <Text style={styles.sectionTitle}>Amenities</Text>
+        
+        <View style={styles.amenitiesContainer}>
+          {amenities.map((amenity, index) => (
             <Animated.View 
-              key={rule.id}
+              key={amenity.id}
               entering={FadeIn.delay(index * 100)}
-              style={styles.ruleCard}
+              style={styles.amenityItem}
             >
-              <View style={styles.ruleIconContainer}>
-                {rule.icon}
+              <View style={styles.amenityIcon}>
+                {amenity.icon}
               </View>
-              <View style={styles.ruleContent}>
-                <Text style={styles.ruleTitle}>{rule.title}</Text>
-                <Text style={styles.ruleDescription}>{rule.description}</Text>
-              </View>
+              <Text style={styles.amenityTitle}>{amenity.title}</Text>
             </Animated.View>
           ))}
-
-          <View style={styles.divider} />
-          
-          <Text style={styles.sectionTitle}>Amenities</Text>
-          
-          <View style={styles.amenitiesContainer}>
-            {propertyInfo.amenities.map((amenity, index) => (
-              <Animated.View 
-                key={amenity.id}
-                entering={FadeIn.delay(index * 100)}
-                style={styles.amenityItem}
-              >
-                <View style={styles.amenityIcon}>
-                  {amenity.icon}
-                </View>
-                <Text style={styles.amenityTitle}>{amenity.title}</Text>
-              </Animated.View>
-            ))}
-          </View>
-          
-          <View style={styles.divider} />
-          
-          <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
-          
-          {propertyInfo.faqs.map((faq, index) => (
-            <Animated.View 
-              key={faq.id}
-              entering={FadeInDown.delay(index * 100)}
-              style={styles.faqContainer}
+        </View>
+        
+        <View style={styles.divider} />
+        
+        <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
+        
+        {faqs.map((faq, index) => (
+          <Animated.View 
+            key={faq.id}
+            entering={FadeInDown.delay(index * 100)}
+            style={styles.faqContainer}
+          >
+            <TouchableOpacity
+              style={styles.faqQuestion}
+              onPress={() => toggleFaq(faq.id)}
+              activeOpacity={0.8}
             >
-              <TouchableOpacity
-                style={styles.faqQuestion}
-                onPress={() => toggleFaq(faq.id)}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.faqQuestionText}>{faq.question}</Text>
-                {expandedFaq === faq.id ? (
-                  <ChevronUp size={20} color={theme.colors.text} />
-                ) : (
-                  <ChevronDown size={20} color={theme.colors.text} />
-                )}
-              </TouchableOpacity>
-              
-              {expandedFaq === faq.id && (
-                <View style={styles.faqAnswer}>
-                  <Text style={styles.faqAnswerText}>{faq.answer}</Text>
-                </View>
+              <Text style={styles.faqQuestionText}>{faq.question}</Text>
+              {expandedFaq === faq.id ? (
+                <ChevronUp size={20} color={theme.colors.text} />
+              ) : (
+                <ChevronDown size={20} color={theme.colors.text} />
               )}
-            </Animated.View>
-          ))}
-        </ScrollView>
-      </ResponsiveContainer>
+            </TouchableOpacity>
+            
+            {expandedFaq === faq.id && (
+              <View style={styles.faqAnswer}>
+                <Text style={styles.faqAnswerText}>{faq.answer}</Text>
+              </View>
+            )}
+          </Animated.View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -294,7 +270,7 @@ const styles = StyleSheet.create({
     marginHorizontal: -theme.spacing.s,
   },
   amenityItem: {
-    width: theme.layout.isWeb ? (theme.layout.isDesktop ? '25%' : '33.33%') : '33.33%',
+    width: '33.33%',
     alignItems: 'center',
     padding: theme.spacing.s,
     marginBottom: theme.spacing.m,
@@ -325,11 +301,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: theme.spacing.m,
-    // Web-specific styles
-    ...(theme.layout.isWeb && {
-      cursor: 'pointer',
-      transition: 'all 0.2s ease-in-out',
-    }),
   },
   faqQuestionText: {
     ...theme.typography.bodyMedium,
