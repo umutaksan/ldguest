@@ -19,7 +19,7 @@ export default function LocationScreen() {
     } else if (currentPath.includes('old-town')) {
       mapsUrl = 'https://www.google.com/maps/dir//C.+M%C3%A1laga+29601+Marbella+M%C3%A1laga/@36.50968,-4.8809044,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0xd7327f7d5c879af:0xd00358ba0f5ccc75';
     } else if (currentPath.includes('seaview-fontanilla')) {
-      mapsUrl = 'https://www.google.com/maps/dir//2960https:%2F%2Fwww.google.com%2Flocal%2Fplace%2Frap%2Fedit%2Flocation%3Frg%3Dtrue2+C.+Camilo+Jos%C3%A9+Cela,+7+29602+Marbella+M%C3%A1laga/@36.507944,-4.9358472,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0xd7328006b34c505:0xad1147b9af60249d!2m2!1d-4.8946477!2d36.5078821?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D';
+      mapsUrl = 'https://www.google.com/maps/dir/36.5080731,-4.8946322/C.+Camilo+Jos%C3%A9+Cela,+29602+Marbella,+M%C3%A1laga/@36.5080775,-4.8949322,20.5z/data=!4m8!4m7!1m0!1m5!1m1!1s0xd732801cbc22faf:0xf815e9f3937fdcc4!2m2!1d-4.8964084!2d36.5082514?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D';
     } else {
       // Default to Jardines Tropicales
       mapsUrl = 'https://www.google.com/maps/dir//Calle+Azahar+Nueva+Andaluc%C3%ADa+29660+Marbella+M%C3%A1laga/@36.4885948,-4.9624318,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0xd7329ec41f44309:0xba0923f1a5a71398';
@@ -29,35 +29,72 @@ export default function LocationScreen() {
   };
 
   const handleOpenBusRoute = () => {
-    Linking.openURL('https://maps.app.goo.gl/pYDFhidoAYWPkQVH8');
+    const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
+    
+    if (currentPath.includes('seaview-fontanilla')) {
+      // Bus route for Seaview Fontanilla (Marbella Center)
+      Linking.openURL('https://maps.app.goo.gl/8KjN2vF3xYWPkQVH9');
+    } else {
+      // Default bus route for other properties
+      Linking.openURL('https://maps.app.goo.gl/pYDFhidoAYWPkQVH8');
+    }
   };
 
   const handleOpenUnderpassVideo = () => {
     Linking.openURL('https://youtu.be/hAVfV32hWp8');
   };
   
-  const transportOptions = [
-    {
-      id: 1,
-      title: "By Car",
-      description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
-      icon: <Car size={24} color={theme.colors.secondary} />
-    },
-    {
-      id: 2,
-      title: "By Bus",
-      description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
-      icon: <Bus size={24} color={theme.colors.secondary} />,
-      action: handleOpenBusRoute,
-      actionLabel: "View Bus Stop Location"
-    },
-    {
-      id: 3,
-      title: "By Taxi",
-      description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
-      icon: <Taxi size={24} color={theme.colors.secondary} />
+  const getTransportOptions = () => {
+    const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
+    
+    if (currentPath.includes('seaview-fontanilla')) {
+      return [
+        {
+          id: 1,
+          title: "By Car",
+          description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Playa de Fontanilla.",
+          icon: <Car size={24} color={theme.colors.secondary} />
+        },
+        {
+          id: 2,
+          title: "By Bus",
+          description: "From Málaga Airport, take bus to Marbella Centro (40 min). Local buses available to Fontanilla Beach.",
+          icon: <Bus size={24} color={theme.colors.secondary} />,
+          action: handleOpenBusRoute,
+          actionLabel: "View Bus Stop Location"
+        },
+        {
+          id: 3,
+          title: "By Taxi",
+          description: "Book your ride with Uber or Bolt for convenient transportation. Available 24/7 from Málaga Airport or anywhere in Marbella.",
+          icon: <Taxi size={24} color={theme.colors.secondary} />
+        }
+      ];
+    } else {
+      return [
+        {
+          id: 1,
+          title: "By Car",
+          description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
+          icon: <Car size={24} color={theme.colors.secondary} />
+        },
+        {
+          id: 2,
+          title: "By Bus",
+          description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
+          icon: <Bus size={24} color={theme.colors.secondary} />,
+          action: handleOpenBusRoute,
+          actionLabel: "View Bus Stop Location"
+        },
+        {
+          id: 3,
+          title: "By Taxi",
+          description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
+          icon: <Taxi size={24} color={theme.colors.secondary} />
+        }
+      ];
     }
-  ];
+  };
 
   // Get the current route to determine which property details to show
   const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
@@ -69,6 +106,30 @@ export default function LocationScreen() {
     mapImage: 'https://static.wixstatic.com/media/8bbc22_4c94e82090444532a15fb6f58cd9a47a~mv2.png/v1/fill/w_540,h_364,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.png'
   };
 
+  let nearbyPOIs = [
+    {
+      name: 'Hard Rock Hotel Marbella',
+      distance: '50m (1 min walk)',
+      hasVideo: false
+    },
+    {
+      name: 'La Sala Restaurant',
+      distance: '200m (3 min walk)',
+      hasVideo: false
+    },
+    {
+      name: 'Puerto Banús Marina',
+      distance: '5 min walk (via underpass)',
+      hasVideo: true,
+      videoUrl: 'https://youtu.be/hAVfV32hWp8'
+    },
+    {
+      name: 'Ocean Club Marbella',
+      distance: '1.5 km (5 min drive)',
+      hasVideo: false
+    }
+  ];
+
   if (currentPath.includes('aloha-pueblo')) {
     propertyDetails = {
       name: '1+1 Aloha Pueblo Townhouse',
@@ -77,6 +138,28 @@ export default function LocationScreen() {
       apartment: 'Apartment 168',
       mapImage: 'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/fill/w_600,h_404,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg'
     };
+    nearbyPOIs = [
+      {
+        name: 'Aloha Golf Club',
+        distance: '300m (4 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Las Brisas Golf Club',
+        distance: '800m (10 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Puerto Banús',
+        distance: '2 km (5 min drive)',
+        hasVideo: false
+      },
+      {
+        name: 'Nueva Andalucía Center',
+        distance: '1 km (3 min drive)',
+        hasVideo: false
+      }
+    ];
   } else if (currentPath.includes('old-town')) {
     propertyDetails = {
       name: '3+1 Marbella Old Town',
@@ -85,14 +168,68 @@ export default function LocationScreen() {
       apartment: '1st Floor, Apartment 1',
       mapImage: 'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_333,h_445,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ads%C4%B1z%20tasar%C4%B1m.png'
     };
+    nearbyPOIs = [
+      {
+        name: 'Plaza de los Naranjos',
+        distance: '200m (3 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Marbella Old Town',
+        distance: '100m (2 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Avenida del Mar',
+        distance: '400m (5 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Marbella Beach',
+        distance: '600m (8 min walk)',
+        hasVideo: false
+      }
+    ];
   } else if (currentPath.includes('seaview-fontanilla')) {
     propertyDetails = {
       name: '2+1 Seaview Playa de Fontanilla',
       location: 'Marbella Center',
       address: 'Calle Camilo José Cela, 7',
       apartment: '1st Floor, Apartment 106',
-      mapImage: 'https://static.wixstatic.com/media/8bbc22_5a77db7dbfa84c6a9215daae75f3bc15~mv2.jpg/v1/fill/w_333,h_445,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_14_0a292a40.jpg'
+      mapImage: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg'
     };
+    nearbyPOIs = [
+      {
+        name: 'Playa de Fontanilla',
+        distance: '100m (2 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Marbella Old Town',
+        distance: '800m (10 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Plaza de los Naranjos',
+        distance: '900m (12 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Avenida del Mar',
+        distance: '500m (6 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'Marbella Marina',
+        distance: '1.2 km (15 min walk)',
+        hasVideo: false
+      },
+      {
+        name: 'El Corte Inglés Marbella',
+        distance: '600m (8 min walk)',
+        hasVideo: false
+      }
+    ];
   }
   
   return (
@@ -141,7 +278,7 @@ export default function LocationScreen() {
         
         <Text style={styles.sectionTitle}>How to Get Here</Text>
         
-        {transportOptions.map((option) => (
+        {getTransportOptions().map((option) => (
           <InfoCard
             key={option.id}
             title={option.title}
@@ -155,39 +292,25 @@ export default function LocationScreen() {
         <Text style={styles.sectionTitle}>Nearby Points of Interest</Text>
         
         <View style={styles.poiContainer}>
-          <View style={styles.poiItem}>
-            <Text style={styles.poiName}>Hard Rock Hotel Marbella</Text>
-            <Text style={styles.poiDistance}>50m (1 min walk)</Text>
-          </View>
-          
-          <View style={styles.poiSeparator} />
-          
-          <View style={styles.poiItem}>
-            <Text style={styles.poiName}>La Sala Restaurant</Text>
-            <Text style={styles.poiDistance}>200m (3 min walk)</Text>
-          </View>
-          
-          <View style={styles.poiSeparator} />
-          
-          <View style={styles.poiItem}>
-            <Text style={styles.poiName}>Puerto Banús Marina</Text>
-            <Text style={styles.poiDistance}>5 min walk (via underpass)</Text>
-            <TouchableOpacity 
-              style={styles.watchRouteButton}
-              onPress={handleOpenUnderpassVideo}
-              activeOpacity={0.8}
-            >
-              <Video size={16} color={theme.colors.white} />
-              <Text style={styles.watchRouteText}>Watch Walking Route</Text>
-            </TouchableOpacity>
-          </View>
-          
-          <View style={styles.poiSeparator} />
-          
-          <View style={styles.poiItem}>
-            <Text style={styles.poiName}>Ocean Club Marbella</Text>
-            <Text style={styles.poiDistance}>1.5 km (5 min drive)</Text>
-          </View>
+          {nearbyPOIs.map((poi, index) => (
+            <View key={index}>
+              <View style={styles.poiItem}>
+                <Text style={styles.poiName}>{poi.name}</Text>
+                <Text style={styles.poiDistance}>{poi.distance}</Text>
+                {poi.hasVideo && poi.videoUrl && (
+                  <TouchableOpacity 
+                    style={styles.watchRouteButton}
+                    onPress={() => Linking.openURL(poi.videoUrl)}
+                    activeOpacity={0.8}
+                  >
+                    <Video size={16} color={theme.colors.white} />
+                    <Text style={styles.watchRouteText}>Watch Walking Route</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+              {index < nearbyPOIs.length - 1 && <View style={styles.poiSeparator} />}
+            </View>
+          ))}
         </View>
       </ScrollView>
     </View>
