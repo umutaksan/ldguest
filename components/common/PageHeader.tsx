@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, Platform } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
 import { ChevronLeft } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
@@ -30,8 +30,18 @@ export function PageHeader({
     if (onBackPress) {
       onBackPress();
     } else {
-      // Navigate to property selection page
-      router.replace('/');
+      // Get the current property route based on the pathname
+      let propertyHomeRoute = '/(tabs)';
+      
+      if (pathname.includes('aloha-pueblo')) {
+        propertyHomeRoute = '/aloha-pueblo/(tabs)';
+      } else if (pathname.includes('old-town')) {
+        propertyHomeRoute = '/old-town/(tabs)';
+      } else if (pathname.includes('seaview-fontanilla')) {
+        propertyHomeRoute = '/seaview-fontanilla/(tabs)';
+      }
+      
+      router.replace(propertyHomeRoute);
     }
   };
 
@@ -73,6 +83,11 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginRight: theme.spacing.s,
+    // Web-specific styles
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease-in-out',
+    }),
   },
   titleContainer: {
     flex: 1,
