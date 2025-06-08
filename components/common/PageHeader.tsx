@@ -33,6 +33,7 @@ export function PageHeader({
       // Determine the correct property route based on the pathname
       let propertyRoute = '/(tabs)'; // Default to Jardines Tropicales
       
+      // Check for specific property paths in order of specificity
       if (pathname.includes('seaview-fontanilla')) {
         propertyRoute = '/seaview-fontanilla/(tabs)';
       } else if (pathname.includes('aloha-pueblo')) {
@@ -40,6 +41,9 @@ export function PageHeader({
       } else if (pathname.includes('old-town')) {
         propertyRoute = '/old-town/(tabs)';
       }
+      
+      console.log('Current pathname:', pathname);
+      console.log('Navigating to:', propertyRoute);
       
       router.replace(propertyRoute);
     }
