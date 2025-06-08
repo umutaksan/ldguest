@@ -1,9 +1,10 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Platform, TouchableOpacity, Text, Linking, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
+import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
 import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -48,169 +49,171 @@ export default function HomeScreen() {
           imageUrl="https://a0.muscache.com/im/pictures/miso/Hosting-1316607383752040451/original/4009975e-0d1a-450c-9458-88acab09ef65.png?im_w=1440&im_format=avif"
         />
 
-        <TouchableOpacity 
-          style={styles.propertySelector}
-          onPress={handleSelectProperty}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.propertySelectorText}>Switch Property</Text>
-          <Text style={styles.propertySelectorSubtext}>Tap to select a different property</Text>
-        </TouchableOpacity>
-
-        <Animated.View 
-          entering={FadeIn.duration(500)}
-          style={styles.noticeContainer}
-        >
-          <Text style={styles.noticeTitle}>🚧 Under Construction</Text>
-          <Text style={styles.noticeText}>
-            Our new guide system is currently under development. In the meantime, you can access our previous guide here:
-          </Text>
+        <ResponsiveContainer>
           <TouchableOpacity 
-            style={styles.oldGuideButton}
-            onPress={handleOldGuide}
+            style={styles.propertySelector}
+            onPress={handleSelectProperty}
+            activeOpacity={0.8}
           >
-            <Text style={styles.oldGuideButtonText}>Open Previous Guide</Text>
-            <ExternalLink size={16} color={theme.colors.white} />
+            <Text style={styles.propertySelectorText}>Switch Property</Text>
+            <Text style={styles.propertySelectorSubtext}>Tap to select a different property</Text>
           </TouchableOpacity>
-        </Animated.View>
-        
-        <View style={styles.quickAccess}>
-          <View style={styles.row}>
-            <SectionCard
-              title="The Location"
-              icon={<MapPin size={28} color={theme.colors.secondary} />}
-              route="/location"
-              delay={1}
-            />
-            <SectionCard
-              title="Home Entry"
-              icon={<HomeIcon size={28} color={theme.colors.secondary} />}
-              route="/entry"
-              delay={2}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="WiFi"
-              icon={<Wifi size={28} color={theme.colors.secondary} />}
-              route="/wifi"
-              delay={3}
-            />
-            <SectionCard
-              title="House Videos"
-              icon={<Video size={28} color={theme.colors.secondary} />}
-              route="/videos"
-              delay={4}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Property Rules"
-              icon={<Book size={28} color={theme.colors.secondary} />}
-              route="/rules"
-              delay={5}
-            />
-            <SectionCard
-              title="Places to Eat"
-              icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
-              route="/dining"
-              delay={6}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Places to Visit"
-              icon={<Landmark size={28} color={theme.colors.secondary} />}
-              route="/attractions"
-              delay={7}
-            />
-            <SectionCard
-              title="Luggage Storage"
-              icon={<Briefcase size={28} color={theme.colors.secondary} />}
-              route="/luggage"
-              delay={8}
-            />
-          </View>
 
-          <View style={styles.row}>
-            <SectionCard
-              title="Car Rental"
-              icon={<Car size={28} color={theme.colors.secondary} />}
-              route="/car-rental"
-              delay={9}
-            />
-            <SectionCard
-              title="Parking"
-              icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
-              route="/parking"
-              delay={10}
-            />
-          </View>
-        </View>
-
-        <TouchableOpacity 
-          style={styles.promoContainer}
-          onPress={handleViewMoreProperties}
-          activeOpacity={0.8}
-        >
-          <Image
-            source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
-            style={styles.promoImage}
-            resizeMode="cover"
-          />
-          <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.8)']}
-            style={styles.promoOverlay}
+          <Animated.View 
+            entering={FadeIn.duration(500)}
+            style={styles.noticeContainer}
           >
-            <View style={styles.promoContent}>
-              <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
-              <Text style={styles.promoDescription}>
-                Explore our collection of beautiful properties across Marbella's most desirable locations
-              </Text>
-              <View style={styles.promoButton}>
-                <Text style={styles.promoButtonText}>View Properties</Text>
-                <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
-              </View>
+            <Text style={styles.noticeTitle}>🚧 Under Construction</Text>
+            <Text style={styles.noticeText}>
+              Our new guide system is currently under development. In the meantime, you can access our previous guide here:
+            </Text>
+            <TouchableOpacity 
+              style={styles.oldGuideButton}
+              onPress={handleOldGuide}
+            >
+              <Text style={styles.oldGuideButtonText}>Open Previous Guide</Text>
+              <ExternalLink size={16} color={theme.colors.white} />
+            </TouchableOpacity>
+          </Animated.View>
+          
+          <View style={styles.quickAccess}>
+            <View style={styles.row}>
+              <SectionCard
+                title="The Location"
+                icon={<MapPin size={28} color={theme.colors.secondary} />}
+                route="/location"
+                delay={1}
+              />
+              <SectionCard
+                title="Home Entry"
+                icon={<HomeIcon size={28} color={theme.colors.secondary} />}
+                route="/entry"
+                delay={2}
+              />
             </View>
-          </LinearGradient>
-        </TouchableOpacity>
-
-        <View style={styles.ratingContainer}>
-          <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
-          <Text style={styles.ratingDescription}>
-            We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
-          </Text>
-          <View style={styles.ratingButtons}>
-            <TouchableOpacity 
-              style={[styles.ratingButton, styles.airbnbButton]}
-              onPress={handleAirbnbReview}
-              activeOpacity={0.8}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                style={styles.platformLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
-            </TouchableOpacity>
             
-            <TouchableOpacity 
-              style={[styles.ratingButton, styles.bookingButton]}
-              onPress={handleBookingReview}
-              activeOpacity={0.8}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
-                style={styles.platformLogo}
-                resizeMode="contain"
+            <View style={styles.row}>
+              <SectionCard
+                title="WiFi"
+                icon={<Wifi size={28} color={theme.colors.secondary} />}
+                route="/wifi"
+                delay={3}
               />
-              <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>Review on Booking</Text>
-            </TouchableOpacity>
+              <SectionCard
+                title="House Videos"
+                icon={<Video size={28} color={theme.colors.secondary} />}
+                route="/videos"
+                delay={4}
+              />
+            </View>
+            
+            <View style={styles.row}>
+              <SectionCard
+                title="Property Rules"
+                icon={<Book size={28} color={theme.colors.secondary} />}
+                route="/rules"
+                delay={5}
+              />
+              <SectionCard
+                title="Places to Eat"
+                icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
+                route="/dining"
+                delay={6}
+              />
+            </View>
+            
+            <View style={styles.row}>
+              <SectionCard
+                title="Places to Visit"
+                icon={<Landmark size={28} color={theme.colors.secondary} />}
+                route="/attractions"
+                delay={7}
+              />
+              <SectionCard
+                title="Luggage Storage"
+                icon={<Briefcase size={28} color={theme.colors.secondary} />}
+                route="/luggage"
+                delay={8}
+              />
+            </View>
+
+            <View style={styles.row}>
+              <SectionCard
+                title="Car Rental"
+                icon={<Car size={28} color={theme.colors.secondary} />}
+                route="/car-rental"
+                delay={9}
+              />
+              <SectionCard
+                title="Parking"
+                icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
+                route="/parking"
+                delay={10}
+              />
+            </View>
           </View>
-        </View>
+
+          <TouchableOpacity 
+            style={styles.promoContainer}
+            onPress={handleViewMoreProperties}
+            activeOpacity={0.8}
+          >
+            <Image
+              source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
+              style={styles.promoImage}
+              resizeMode="cover"
+            />
+            <LinearGradient
+              colors={['transparent', 'rgba(0,0,0,0.8)']}
+              style={styles.promoOverlay}
+            >
+              <View style={styles.promoContent}>
+                <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
+                <Text style={styles.promoDescription}>
+                  Explore our collection of beautiful properties across Marbella's most desirable locations
+                </Text>
+                <View style={styles.promoButton}>
+                  <Text style={styles.promoButtonText}>View Properties</Text>
+                  <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+                </View>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <View style={styles.ratingContainer}>
+            <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
+            <Text style={styles.ratingDescription}>
+              We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
+            </Text>
+            <View style={styles.ratingButtons}>
+              <TouchableOpacity 
+                style={[styles.ratingButton, styles.airbnbButton]}
+                onPress={handleAirbnbReview}
+                activeOpacity={0.8}
+              >
+                <Image 
+                  source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
+                  style={styles.platformLogo}
+                  resizeMode="contain"
+                />
+                <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={[styles.ratingButton, styles.bookingButton]}
+                onPress={handleBookingReview}
+                activeOpacity={0.8}
+              >
+                <Image 
+                  source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
+                  style={styles.platformLogo}
+                  resizeMode="contain"
+                />
+                <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>Review on Booking</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ResponsiveContainer>
       </ScrollView>
     </View>
   );
@@ -225,7 +228,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   propertySelector: {
-    margin: theme.spacing.m,
+    marginTop: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
     padding: theme.spacing.m,
     backgroundColor: theme.colors.primaryLight,
     borderRadius: theme.borderRadius.m,
@@ -246,14 +250,16 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
   },
   row: {
-    flexDirection: 'row',
+    flexDirection: theme.layout.isWeb && theme.layout.isDesktop ? 'row' : 'row',
     width: '100%',
+    gap: theme.layout.isWeb ? theme.spacing.s : 0,
   },
   promoContainer: {
-    margin: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    height: 200,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
     ...theme.shadows.medium,
   },
   promoImage: {
@@ -297,7 +303,8 @@ const styles = StyleSheet.create({
     marginLeft: theme.spacing.xs,
   },
   ratingContainer: {
-    margin: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
     padding: theme.spacing.l,
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
@@ -348,7 +355,8 @@ const styles = StyleSheet.create({
     height: 24,
   },
   noticeContainer: {
-    margin: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginTop: theme.spacing.m,
     padding: theme.spacing.m,
     backgroundColor: theme.colors.warning + '10',
     borderRadius: theme.borderRadius.m,

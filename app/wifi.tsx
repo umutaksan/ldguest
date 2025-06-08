@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
+import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { Wifi, Copy, Check } from 'lucide-react-native';
 import { useState } from 'react';
 import Animated, { FadeIn } from 'react-native-reanimated';
@@ -30,6 +31,21 @@ export default function WifiScreen() {
         }
       } catch (err) {
         console.error('Failed to copy text: ', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        if (type === 'ssid') {
+          setCopiedSSID(true);
+          setTimeout(() => setCopiedSSID(false), 2000);
+        } else {
+          setCopiedPassword(true);
+          setTimeout(() => setCopiedPassword(false), 2000);
+        }
       }
     } else {
       // For mobile platforms, you would use Expo Clipboard
@@ -49,67 +65,69 @@ export default function WifiScreen() {
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="WiFi Details" />
 
-      <Animated.View 
-        entering={FadeIn.duration(500)}
-        style={styles.content}
-      >
-        <View style={styles.iconContainer}>
-          <Wifi size={48} color={theme.colors.primary} />
-        </View>
+      <ResponsiveContainer>
+        <Animated.View 
+          entering={FadeIn.duration(500)}
+          style={styles.content}
+        >
+          <View style={styles.iconContainer}>
+            <Wifi size={theme.layout.isWeb ? 56 : 48} color={theme.colors.primary} />
+          </View>
 
-        <Text style={styles.title}>Connect to WiFi</Text>
-        <Text style={styles.description}>
-          Use these credentials to connect to the WiFi network in the apartment.
-        </Text>
+          <Text style={styles.title}>Connect to WiFi</Text>
+          <Text style={styles.description}>
+            Use these credentials to connect to the WiFi network in the apartment.
+          </Text>
 
-        <View style={styles.detailsContainer}>
-          <View style={styles.detailCard}>
-            <Text style={styles.label}>Network Name (SSID)</Text>
-            <View style={styles.valueContainer}>
-              <Text style={styles.value}>{wifiDetails.ssid}</Text>
-              <TouchableOpacity
-                style={styles.copyButton}
-                onPress={() => copyToClipboard(wifiDetails.ssid, 'ssid')}
-              >
-                {copiedSSID ? (
-                  <Check size={20} color={theme.colors.success} />
-                ) : (
-                  <Copy size={20} color={theme.colors.primary} />
-                )}
-              </TouchableOpacity>
+          <View style={styles.detailsContainer}>
+            <View style={styles.detailCard}>
+              <Text style={styles.label}>Network Name (SSID)</Text>
+              <View style={styles.valueContainer}>
+                <Text style={styles.value}>{wifiDetails.ssid}</Text>
+                <TouchableOpacity
+                  style={styles.copyButton}
+                  onPress={() => copyToClipboard(wifiDetails.ssid, 'ssid')}
+                >
+                  {copiedSSID ? (
+                    <Check size={20} color={theme.colors.success} />
+                  ) : (
+                    <Copy size={20} color={theme.colors.primary} />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View style={styles.detailCard}>
+              <Text style={styles.label}>Password</Text>
+              <View style={styles.valueContainer}>
+                <Text style={styles.value}>{wifiDetails.password}</Text>
+                <TouchableOpacity
+                  style={styles.copyButton}
+                  onPress={() => copyToClipboard(wifiDetails.password, 'password')}
+                >
+                  {copiedPassword ? (
+                    <Check size={20} color={theme.colors.success} />
+                  ) : (
+                    <Copy size={20} color={theme.colors.primary} />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
 
-          <View style={styles.detailCard}>
-            <Text style={styles.label}>Password</Text>
-            <View style={styles.valueContainer}>
-              <Text style={styles.value}>{wifiDetails.password}</Text>
-              <TouchableOpacity
-                style={styles.copyButton}
-                onPress={() => copyToClipboard(wifiDetails.password, 'password')}
-              >
-                {copiedPassword ? (
-                  <Check size={20} color={theme.colors.success} />
-                ) : (
-                  <Copy size={20} color={theme.colors.primary} />
-                )}
-              </TouchableOpacity>
-            </View>
+          <View style={styles.tipsContainer}>
+            <Text style={styles.tipsTitle}>Connection Tips</Text>
+            <Text style={styles.tipText}>• Make sure WiFi is enabled on your device</Text>
+            <Text style={styles.tipText}>• Select the network name shown above</Text>
+            <Text style={styles.tipText}>• Enter the password exactly as shown</Text>
+            <Text style={styles.tipText}>• If you can't connect, try forgetting the network first</Text>
           </View>
-        </View>
 
-        <View style={styles.tipsContainer}>
-          <Text style={styles.tipsTitle}>Connection Tips</Text>
-          <Text style={styles.tipText}>• Make sure WiFi is enabled on your device</Text>
-          <Text style={styles.tipText}>• Select the network name shown above</Text>
-          <Text style={styles.tipText}>• Enter the password exactly as shown</Text>
-          <Text style={styles.tipText}>• If you can't connect, try forgetting the network first</Text>
-        </View>
-
-        <Text style={styles.supportText}>
-          Having trouble connecting? Contact our support team for assistance.
-        </Text>
-      </Animated.View>
+          <Text style={styles.supportText}>
+            Having trouble connecting? Contact our support team for assistance.
+          </Text>
+        </Animated.View>
+      </ResponsiveContainer>
     </View>
   );
 }
@@ -125,9 +143,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconContainer: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
+    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 112 : 96) : 96,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 112 : 96) : 96,
+    borderRadius: theme.layout.isWeb ? (theme.layout.isDesktop ? 56 : 48) : 48,
     backgroundColor: theme.colors.primaryLight,
     justifyContent: 'center',
     alignItems: 'center',
@@ -144,11 +162,11 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     textAlign: 'center',
     marginBottom: theme.spacing.xl,
-    maxWidth: 300,
+    maxWidth: theme.layout.isWeb ? 400 : 300,
   },
   detailsContainer: {
     width: '100%',
-    maxWidth: 400,
+    maxWidth: theme.layout.isWeb ? 500 : 400,
     marginBottom: theme.spacing.xl,
   },
   detailCard: {
@@ -172,6 +190,7 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
     flex: 1,
+    fontSize: theme.layout.isWeb ? 18 : 16,
   },
   copyButton: {
     width: 40,
@@ -181,10 +200,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: theme.spacing.s,
+    // Web-specific styles
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease-in-out',
+    }),
   },
   tipsContainer: {
     width: '100%',
-    maxWidth: 400,
+    maxWidth: theme.layout.isWeb ? 500 : 400,
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
@@ -204,6 +228,6 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.textTertiary,
     textAlign: 'center',
-    maxWidth: 300,
+    maxWidth: theme.layout.isWeb ? 400 : 300,
   },
 });

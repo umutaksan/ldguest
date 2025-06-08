@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'rea
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
+import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { MapPin } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
@@ -42,63 +43,86 @@ export default function PropertiesScreen() {
     }
   ];
 
+  const cardHeight = theme.layout.isWeb 
+    ? (theme.layout.isDesktop ? 280 : 240) 
+    : 200;
+
+  const gridColumns = theme.layout.isWeb && theme.layout.isDesktop ? 2 : 1;
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Animated.View 
-        entering={FadeIn.duration(500)}
-        style={styles.header}
-      >
-        <Image 
-          source={{ uri: 'https://ldguest.com/wp-content/uploads/2024/11/1-e1730659164604.png?w=145&h=62' }}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-        <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
-        <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
-      </Animated.View>
-
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
-      >
-        {properties.map((property, index) => (
-          <Animated.View 
-            key={property.id}
-            entering={FadeIn.delay(index * 200)}
-          >
-            <TouchableOpacity
-              style={styles.propertyCard}
-              onPress={() => router.push(property.route)}
-              activeOpacity={0.9}
-            >
-              <Image 
-                source={{ uri: property.image }}
-                style={styles.propertyImage}
-                resizeMode="cover"
-              />
-              <LinearGradient
-                colors={['transparent', 'rgba(0,0,0,0.8)']}
-                style={styles.overlay}
-              >
-                <View style={styles.propertyInfo}>
-                  <Text style={styles.propertyName}>{property.name}</Text>
-                  <View style={styles.locationContainer}>
-                    <MapPin size={16} color={theme.colors.white} />
-                    <Text style={styles.locationText}>{property.location}</Text>
-                  </View>
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>
-          </Animated.View>
-        ))}
-
-        <TouchableOpacity
-          style={styles.cleaningButton}
-          onPress={() => router.push('/cleaning')}
+      <ResponsiveContainer>
+        <Animated.View 
+          entering={FadeIn.duration(500)}
+          style={styles.header}
         >
-          <Text style={styles.cleaningButtonText}>Cleaning Staff Access</Text>
-        </TouchableOpacity>
-      </ScrollView>
+          <Image 
+            source={{ uri: 'https://ldguest.com/wp-content/uploads/2024/11/1-e1730659164604.png?w=145&h=62' }}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+          <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
+          <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
+        </Animated.View>
+
+        <ScrollView 
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.content}
+        >
+          <View style={[
+            styles.propertiesGrid,
+            { 
+              flexDirection: gridColumns === 2 ? 'row' : 'column',
+              flexWrap: gridColumns === 2 ? 'wrap' : 'nowrap',
+            }
+          ]}>
+            {properties.map((property, index) => (
+              <Animated.View 
+                key={property.id}
+                entering={FadeIn.delay(index * 200)}
+                style={[
+                  styles.propertyCardContainer,
+                  {
+                    width: gridColumns === 2 ? '48%' : '100%',
+                    marginRight: gridColumns === 2 && index % 2 === 0 ? '4%' : 0,
+                  }
+                ]}
+              >
+                <TouchableOpacity
+                  style={[styles.propertyCard, { height: cardHeight }]}
+                  onPress={() => router.push(property.route)}
+                  activeOpacity={0.9}
+                >
+                  <Image 
+                    source={{ uri: property.image }}
+                    style={styles.propertyImage}
+                    resizeMode="cover"
+                  />
+                  <LinearGradient
+                    colors={['transparent', 'rgba(0,0,0,0.8)']}
+                    style={styles.overlay}
+                  >
+                    <View style={styles.propertyInfo}>
+                      <Text style={styles.propertyName}>{property.name}</Text>
+                      <View style={styles.locationContainer}>
+                        <MapPin size={16} color={theme.colors.white} />
+                        <Text style={styles.locationText}>{property.location}</Text>
+                      </View>
+                    </View>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </Animated.View>
+            ))}
+          </View>
+
+          <TouchableOpacity
+            style={styles.cleaningButton}
+            onPress={() => router.push('/cleaning')}
+          >
+            <Text style={styles.cleaningButtonText}>Cleaning Staff Access</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </ResponsiveContainer>
     </View>
   );
 }
@@ -114,10 +138,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.card,
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
+    marginBottom: theme.spacing.m,
   },
   logo: {
-    width: 145,
-    height: 62,
+    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 180 : 145) : 145,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 76 : 62) : 62,
     marginBottom: theme.spacing.m,
   },
   welcomeText: {
@@ -130,17 +155,27 @@ const styles = StyleSheet.create({
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     textAlign: 'center',
+    maxWidth: theme.layout.isWeb ? 500 : 300,
   },
   content: {
     padding: theme.spacing.m,
   },
+  propertiesGrid: {
+    justifyContent: 'space-between',
+  },
+  propertyCardContainer: {
+    marginBottom: theme.spacing.m,
+  },
   propertyCard: {
-    height: 200,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.spacing.m,
     backgroundColor: theme.colors.card,
     ...theme.shadows.medium,
+    // Web-specific styles
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.3s ease-in-out',
+    }),
   },
   propertyImage: {
     width: '100%',
@@ -160,6 +195,7 @@ const styles = StyleSheet.create({
     ...theme.typography.subheading,
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 22 : 20) : 20,
   },
   locationContainer: {
     flexDirection: 'row',
@@ -176,6 +212,11 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     alignItems: 'center',
     marginTop: theme.spacing.m,
+    // Web-specific styles
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease-in-out',
+    }),
   },
   cleaningButtonText: {
     ...theme.typography.bodySmall,

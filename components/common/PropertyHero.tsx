@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, Dimensions, TouchableOpacity, Linking, Platform } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ChevronLeft, Chrome as Home, Share, Heart } from 'lucide-react-native';
@@ -49,11 +49,15 @@ export function PropertyHero({ title, subtitle, imageUrl, showBackButton = false
   const handleInstagramPress = () => {
     Linking.openURL('https://www.instagram.com/ldguestmarbella');
   };
+
+  const heroHeight = theme.layout.isWeb 
+    ? (theme.layout.isDesktop ? 400 : theme.layout.isTablet ? 350 : 300) 
+    : 300;
   
   return (
     <Animated.View 
       entering={FadeIn.duration(500)}
-      style={styles.container}
+      style={[styles.container, { height: heroHeight }]}
     >
       <ImageBackground
         source={{ uri: imageUrl }}
@@ -107,12 +111,9 @@ export function PropertyHero({ title, subtitle, imageUrl, showBackButton = false
   );
 }
 
-const { width } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 300,
   },
   imageBackground: {
     flex: 1,
@@ -140,9 +141,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: theme.spacing.s,
+    // Web-specific styles
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease-in-out',
+    }),
   },
   textContainer: {
     width: '100%',
+    maxWidth: theme.layout.maxWidth,
+    alignSelf: 'center',
+    paddingHorizontal: theme.layout.containerPadding,
   },
   title: {
     ...theme.typography.heading,
@@ -151,6 +160,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
     marginBottom: theme.spacing.xs,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 32 : 28) : 28,
   },
   subtitle: {
     ...theme.typography.bodyMedium,

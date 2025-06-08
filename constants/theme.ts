@@ -1,3 +1,21 @@
+import { Platform, Dimensions } from 'react-native';
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
+// Responsive breakpoints
+const breakpoints = {
+  mobile: 480,
+  tablet: 768,
+  desktop: 1024,
+  largeDesktop: 1440,
+};
+
+// Check if current screen is mobile, tablet, or desktop
+const isMobile = screenWidth < breakpoints.mobile;
+const isTablet = screenWidth >= breakpoints.mobile && screenWidth < breakpoints.desktop;
+const isDesktop = screenWidth >= breakpoints.desktop;
+const isWeb = Platform.OS === 'web';
+
 const palette = {
   primary: '#E9B872', // Warm sand
   primaryDark: '#D09B52',
@@ -17,6 +35,89 @@ const palette = {
   lightGray: '#CCCCCC',
   extraLightGray: '#F5F5F5',
   white: '#FFFFFF',
+};
+
+// Responsive spacing based on screen size
+const getResponsiveSpacing = () => {
+  if (isWeb && isDesktop) {
+    return {
+      xxs: 4,
+      xs: 8,
+      s: 12,
+      m: 20,
+      l: 32,
+      xl: 48,
+      xxl: 64,
+    };
+  } else if (isWeb && isTablet) {
+    return {
+      xxs: 3,
+      xs: 6,
+      s: 10,
+      m: 18,
+      l: 28,
+      xl: 40,
+      xxl: 56,
+    };
+  } else {
+    return {
+      xxs: 2,
+      xs: 4,
+      s: 8,
+      m: 16,
+      l: 24,
+      xl: 32,
+      xxl: 48,
+    };
+  }
+};
+
+// Responsive typography
+const getResponsiveTypography = () => {
+  const baseSize = isWeb && isDesktop ? 1.1 : isWeb && isTablet ? 1.05 : 1;
+  
+  return {
+    heading: {
+      fontFamily: 'PlayfairDisplay_700Bold',
+      fontSize: Math.round(28 * baseSize),
+      lineHeight: Math.round(34 * baseSize),
+    },
+    subheading: {
+      fontFamily: 'Inter_700Bold',
+      fontSize: Math.round(20 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
+    },
+    body: {
+      fontFamily: 'Inter_400Regular',
+      fontSize: Math.round(16 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
+    },
+    bodyMedium: {
+      fontFamily: 'Inter_500Medium',
+      fontSize: Math.round(16 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
+    },
+    bodySmall: {
+      fontFamily: 'Inter_400Regular',
+      fontSize: Math.round(14 * baseSize),
+      lineHeight: Math.round(20 * baseSize),
+    },
+    caption: {
+      fontFamily: 'Inter_400Regular',
+      fontSize: Math.round(12 * baseSize),
+      lineHeight: Math.round(16 * baseSize),
+    },
+    button: {
+      fontFamily: 'Inter_600SemiBold',
+      fontSize: Math.round(16 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
+    },
+    buttonTextMedium: {
+      fontFamily: 'Inter_500Medium',
+      fontSize: Math.round(14 * baseSize),
+      lineHeight: Math.round(20 * baseSize),
+    }
+  };
 };
 
 export const theme = {
@@ -45,15 +146,7 @@ export const theme = {
     iconInactive: palette.lightGray,
     transparent: 'transparent',
   },
-  spacing: {
-    xxs: 2,
-    xs: 4,
-    s: 8,
-    m: 16,
-    l: 24,
-    xl: 32,
-    xxl: 48,
-  },
+  spacing: getResponsiveSpacing(),
   borderRadius: {
     s: 4,
     m: 8,
@@ -61,48 +154,7 @@ export const theme = {
     xl: 24,
     round: 9999,
   },
-  typography: {
-    heading: {
-      fontFamily: 'PlayfairDisplay_700Bold',
-      fontSize: 28,
-      lineHeight: 34,
-    },
-    subheading: {
-      fontFamily: 'Inter_700Bold',
-      fontSize: 20,
-      lineHeight: 24,
-    },
-    body: {
-      fontFamily: 'Inter_400Regular',
-      fontSize: 16,
-      lineHeight: 24,
-    },
-    bodyMedium: {
-      fontFamily: 'Inter_500Medium',
-      fontSize: 16,
-      lineHeight: 24,
-    },
-    bodySmall: {
-      fontFamily: 'Inter_400Regular',
-      fontSize: 14,
-      lineHeight: 20,
-    },
-    caption: {
-      fontFamily: 'Inter_400Regular',
-      fontSize: 12,
-      lineHeight: 16,
-    },
-    button: {
-      fontFamily: 'Inter_600SemiBold',
-      fontSize: 16,
-      lineHeight: 24,
-    },
-    buttonTextMedium: {
-      fontFamily: 'Inter_500Medium',
-      fontSize: 14,
-      lineHeight: 20,
-    }
-  },
+  typography: getResponsiveTypography(),
   shadows: {
     small: {
       shadowColor: palette.black,
@@ -125,5 +177,16 @@ export const theme = {
       shadowRadius: 16,
       elevation: 8,
     },
+  },
+  // Responsive utilities
+  layout: {
+    isWeb,
+    isMobile,
+    isTablet,
+    isDesktop,
+    screenWidth,
+    screenHeight,
+    maxWidth: isWeb ? (isDesktop ? 1200 : isTablet ? 768 : 480) : screenWidth,
+    containerPadding: isWeb ? (isDesktop ? 40 : isTablet ? 24 : 16) : 16,
   },
 };
