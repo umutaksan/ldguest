@@ -25,10 +25,6 @@ export default function OldTownHomeScreen() {
     Linking.openURL('https://www.booking.com/reviews');
   };
 
-  const handleOldGuide = () => {
-    Linking.openURL('https://www.guidemarbella.com/oldtown');
-  };
-
   const handleSelectProperty = () => {
     router.push('/');
   };
@@ -56,23 +52,6 @@ export default function OldTownHomeScreen() {
           <Text style={styles.propertySelectorText}>Switch Property</Text>
           <Text style={styles.propertySelectorSubtext}>Tap to select a different property</Text>
         </TouchableOpacity>
-
-        <Animated.View 
-          entering={FadeIn.duration(500)}
-          style={styles.noticeContainer}
-        >
-          <Text style={styles.noticeTitle}>🚧 Under Construction</Text>
-          <Text style={styles.noticeText}>
-            Our new guide system is currently under development. In the meantime, you can access our previous guide here:
-          </Text>
-          <TouchableOpacity 
-            style={styles.oldGuideButton}
-            onPress={handleOldGuide}
-          >
-            <Text style={styles.oldGuideButtonText}>Open Previous Guide</Text>
-            <ExternalLink size={16} color={theme.colors.white} />
-          </TouchableOpacity>
-        </Animated.View>
         
         <View style={styles.quickAccess}>
           <View style={styles.row}>
@@ -346,38 +325,5 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24,
     height: 24,
-  },
-  noticeContainer: {
-    margin: theme.spacing.m,
-    padding: theme.spacing.m,
-    backgroundColor: theme.colors.warning + '10',
-    borderRadius: theme.borderRadius.m,
-    borderWidth: 1,
-    borderColor: theme.colors.warning + '30',
-  },
-  noticeTitle: {
-    ...theme.typography.subheading,
-    color: theme.colors.warning,
-    marginBottom: theme.spacing.s,
-    textAlign: 'center',
-  },
-  noticeText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    textAlign: 'center',
-    marginBottom: theme.spacing.m,
-  },
-  oldGuideButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.colors.warning,
-    padding: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
-    gap: theme.spacing.s,
-  },
-  oldGuideButtonText: {
-    ...theme.typography.button,
-    color: theme.colors.white,
   },
 });
