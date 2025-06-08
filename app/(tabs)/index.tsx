@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
@@ -12,7 +11,6 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
-  const router = useRouter();
   
   const handleViewMoreProperties = () => {
     Linking.openURL('https://www.ldguest.com/ldhome');
@@ -24,10 +22,6 @@ export default function HomeScreen() {
 
   const handleBookingReview = () => {
     Linking.openURL('https://www.booking.com/reviews');
-  };
-
-  const handleSelectProperty = () => {
-    router.push('/');
   };
 
   return (
@@ -46,15 +40,6 @@ export default function HomeScreen() {
         />
 
         <ResponsiveContainer>
-          <TouchableOpacity 
-            style={styles.propertySelector}
-            onPress={handleSelectProperty}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.propertySelectorText}>Switch Property</Text>
-            <Text style={styles.propertySelectorSubtext}>Tap to select a different property</Text>
-          </TouchableOpacity>
-          
           <View style={styles.quickAccess}>
             <View style={styles.row}>
               <SectionCard
@@ -205,25 +190,6 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-  },
-  propertySelector: {
-    marginTop: theme.spacing.m,
-    marginHorizontal: theme.spacing.m,
-    padding: theme.spacing.m,
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.borderRadius.m,
-    alignItems: 'center',
-    ...theme.shadows.small,
-  },
-  propertySelectorText: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.xs,
-  },
-  propertySelectorSubtext: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.primary,
-    opacity: 0.8,
   },
   quickAccess: {
     padding: theme.spacing.m,
