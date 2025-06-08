@@ -25,12 +25,18 @@ export function PropertyHero({ title, subtitle, imageUrl, showBackButton = false
   const handleShare = async () => {
     try {
       if (Platform.OS === 'web') {
-        if (navigator.share) {
-          await navigator.share({
-            title: title,
-            text: `Check out this property: ${title}`,
-            url: window.location.href,
-          });
+        const shareData = {
+          title: title,
+          text: `Check out this property: ${title}`,
+          url: window.location.href,
+        };
+
+        // Check if Web Share API is available and can share this data
+        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+          await navigator.share(shareData);
+        } else if (navigator.share && !navigator.canShare) {
+          // Fallback for browsers that have share but not canShare
+          await navigator.share(shareData);
         } else {
           // Fallback for browsers that don't support Web Share API
           await navigator.clipboard.writeText(window.location.href);
@@ -43,6 +49,15 @@ export function PropertyHero({ title, subtitle, imageUrl, showBackButton = false
       }
     } catch (error) {
       console.error('Error sharing:', error);
+      // Fallback to clipboard if sharing fails
+      try {
+        if (Platform.OS === 'web' && navigator.clipboard) {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Link copied to clipboard!');
+        }
+      } catch (clipboardError) {
+        console.error('Error copying to clipboard:', clipboardError);
+      }
     }
   };
   
