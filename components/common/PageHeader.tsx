@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, Platform } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
-import { ChevronLeft } from 'lucide-react-native';
+import { Building2 } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -26,20 +26,12 @@ export function PageHeader({
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
 
-  const handleBack = () => {
+  const handlePropertySwitch = () => {
     if (onBackPress) {
       onBackPress();
     } else {
-      // Get the current property route based on the pathname
-      let propertyRoute = '/(tabs)';
-      if (pathname.includes('aloha-pueblo')) {
-        propertyRoute = '/aloha-pueblo/(tabs)';
-      } else if (pathname.includes('old-town')) {
-        propertyRoute = '/old-town/(tabs)';
-      } else if (pathname.includes('seaview-fontanilla')) {
-        propertyRoute = '/seaview-fontanilla/(tabs)';
-      }
-      router.replace(propertyRoute);
+      // Navigate to property selection page
+      router.replace('/');
     }
   };
 
@@ -49,10 +41,10 @@ export function PageHeader({
         {showBackButton && (
           <TouchableOpacity
             style={styles.backButton}
-            onPress={handleBack}
+            onPress={handlePropertySwitch}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <ChevronLeft size={24} color={theme.colors.text} />
+            <Building2 size={24} color={theme.colors.text} />
           </TouchableOpacity>
         )}
         <View style={styles.titleContainer}>
