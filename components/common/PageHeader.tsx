@@ -32,6 +32,7 @@ export function PageHeader({
     } else {
       // Get the current property route based on the pathname
       let propertyRoute = '/(tabs)';
+      
       if (pathname.includes('aloha-pueblo')) {
         propertyRoute = '/aloha-pueblo/(tabs)';
       } else if (pathname.includes('old-town')) {
@@ -39,6 +40,7 @@ export function PageHeader({
       } else if (pathname.includes('seaview-fontanilla')) {
         propertyRoute = '/seaview-fontanilla/(tabs)';
       }
+      
       router.replace(propertyRoute);
     }
   };
