@@ -31,26 +31,27 @@ export function PageHeader({
       onBackPress();
     } else {
       // Determine the correct property route based on the pathname
-      let propertyRoute = '/(tabs)'; // Default to Jardines Tropicales
+      let propertyRoute = '/';
       
-      console.log('Current pathname:', pathname);
-      
-      // Check for specific property paths in order of specificity
       if (pathname.includes('/seaview-fontanilla/')) {
         propertyRoute = '/seaview-fontanilla/(tabs)';
       } else if (pathname.includes('/aloha-pueblo/')) {
         propertyRoute = '/aloha-pueblo/(tabs)';
       } else if (pathname.includes('/old-town/')) {
         propertyRoute = '/old-town/(tabs)';
+      } else if (pathname.includes('/jardines-tropicales/')) {
+        propertyRoute = '/jardines-tropicales/(tabs)';
       } else if (pathname.includes('seaview-fontanilla')) {
         propertyRoute = '/seaview-fontanilla/(tabs)';
       } else if (pathname.includes('aloha-pueblo')) {
         propertyRoute = '/aloha-pueblo/(tabs)';
       } else if (pathname.includes('old-town')) {
         propertyRoute = '/old-town/(tabs)';
+      } else if (pathname.includes('jardines-tropicales')) {
+        propertyRoute = '/jardines-tropicales/(tabs)';
+      } else {
+        propertyRoute = '/(tabs)';
       }
-      
-      console.log('Navigating to:', propertyRoute);
       
       router.replace(propertyRoute);
     }

@@ -12,73 +12,66 @@ export default function SeaviewDiningScreen() {
   const restaurants = [
     {
       id: 1,
-      name: 'Restaurante Skina',
-      description: 'Michelin-starred restaurant offering innovative Andalusian cuisine in the heart of Marbella Old Town.',
-      distance: '800m',
-      category: 'Fine Dining',
+      name: 'Bungalow Café',
+      description: 'Popular beachfront café offering breakfast, lunch, and cocktails with direct beach access and stunning sea views.',
+      distance: '50 meters',
+      category: 'Beachfront',
     },
     {
       id: 2,
-      name: 'El Patio de Mariscal',
-      description: 'Traditional Spanish restaurant with excellent seafood and paella, located near the beach.',
-      distance: '300m',
-      category: 'Spanish',
+      name: 'Soleo Marbella Beach Club',
+      description: 'Chic beach club with Mediterranean cuisine, cocktails, and sun loungers with sea views.',
+      distance: '100 meters',
+      category: 'Beachfront',
     },
     {
       id: 3,
-      name: 'Zozoi Restaurant',
-      description: 'Modern Mediterranean cuisine with a beautiful terrace overlooking the sea.',
-      distance: '200m',
-      category: 'Mediterranean',
+      name: 'La Fonty',
+      description: 'Authentic beach chiringuito serving fresh seafood and traditional Spanish dishes.',
+      distance: '150 meters',
+      category: 'Beachfront',
     },
     {
       id: 4,
-      name: 'Restaurante Marbella Club',
-      description: 'Elegant beachfront dining with international cuisine and stunning sea views.',
-      distance: '1.2km',
-      category: 'International',
+      name: 'Restaurante Buenaventura',
+      description: 'Mediterranean cuisine in an elegant setting near Plaza del Mar.',
+      distance: '300 meters',
+      category: 'City Center',
     },
     {
       id: 5,
-      name: 'La Meridiana',
-      description: 'Upscale Italian restaurant known for its fresh pasta and romantic atmosphere.',
-      distance: '600m',
-      category: 'Italian',
+      name: 'Yanx Marbella',
+      description: 'American style restaurant serving burgers, salads, and international cuisine.',
+      distance: '350 meters',
+      category: 'City Center',
     },
     {
       id: 6,
-      name: 'Casanis Bistrot',
-      description: 'French bistro offering classic dishes and an extensive wine selection.',
-      distance: '700m',
-      category: 'French',
+      name: 'Döner Kebab Marbella',
+      description: 'Turkish restaurant offering kebabs and Middle Eastern dishes.',
+      distance: '250 meters',
+      category: 'City Center',
     },
     {
       id: 7,
-      name: 'Trocadero Arena',
-      description: 'Beachfront restaurant and beach club with fresh seafood and cocktails.',
-      distance: '400m',
-      category: 'Seafood',
+      name: 'Lekune',
+      description: 'Popular restaurant known for its excellent meat dishes and wine selection.',
+      distance: '400 meters',
+      category: 'Lekune Area',
     },
     {
       id: 8,
-      name: 'Restaurante Santiago',
-      description: 'Traditional Andalusian restaurant famous for its grilled fish and local specialties.',
-      distance: '500m',
-      category: 'Andalusian',
+      name: 'El Rincón de la Sala',
+      description: 'Spanish restaurant with traditional tapas and local dishes.',
+      distance: '450 meters',
+      category: 'Lekune Area',
     },
     {
       id: 9,
-      name: 'Messina',
-      description: 'Contemporary restaurant with creative cuisine and beautiful presentation.',
-      distance: '900m',
-      category: 'Contemporary',
-    },
-    {
-      id: 10,
-      name: 'Bibo Marbella',
-      description: 'Trendy restaurant by Dani García offering modern Andalusian tapas.',
-      distance: '1km',
-      category: 'Modern Tapas',
+      name: 'Rachel\'s Eco Love',
+      description: 'Healthy café serving organic and vegetarian options.',
+      distance: '350 meters',
+      category: 'Lekune Area',
     },
   ];
 
@@ -96,7 +89,7 @@ export default function SeaviewDiningScreen() {
         contentContainerStyle={styles.content}
       >
         <Text style={styles.description}>
-          Discover the best dining options around your Seaview apartment. From Michelin-starred restaurants to local tapas bars, Marbella offers exceptional culinary experiences just steps from your door.
+          Discover the best dining options around your Seaview apartment. From beachfront restaurants to local favorites, enjoy exceptional culinary experiences just steps from your door.
         </Text>
 
         {restaurants.map((restaurant, index) => (

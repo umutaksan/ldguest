@@ -51,32 +51,32 @@ export default function SeaviewLocationScreen() {
   const nearbyPOIs = [
     {
       name: 'Playa de Fontanilla',
-      distance: '100m (2 min walk)',
+      distance: '50 meters (1 min walk)',
       hasVideo: false
     },
     {
-      name: 'Marbella Old Town',
-      distance: '800m (10 min walk)',
+      name: 'Paseo Marítimo',
+      distance: '100 meters (2 min walk)',
       hasVideo: false
     },
     {
-      name: 'Plaza de los Naranjos',
-      distance: '900m (12 min walk)',
+      name: 'Plaza del Mar',
+      distance: '300 meters (4 min walk)',
       hasVideo: false
     },
     {
       name: 'Avenida del Mar',
-      distance: '500m (6 min walk)',
+      distance: '400 meters (5 min walk)',
       hasVideo: false
     },
     {
-      name: 'Marbella Marina',
-      distance: '1.2 km (15 min walk)',
+      name: 'Marbella Old Town',
+      distance: '700 meters (9 min walk)',
       hasVideo: false
     },
     {
-      name: 'El Corte Inglés Marbella',
-      distance: '600m (8 min walk)',
+      name: 'Puerto Deportivo Marbella',
+      distance: '800 meters (10 min walk)',
       hasVideo: false
     }
   ];
