@@ -31,28 +31,15 @@ export function PageHeader({
       onBackPress();
     } else {
       // Determine the correct property route based on the pathname
-      let propertyRoute = '/jardines-tropicales/(tabs)'; // Default to Jardines Tropicales
+      let propertyRoute = '/(tabs)'; // Default to Jardines Tropicales
       
-      if (pathname.includes('aloha-pueblo')) {
+      // Check for specific property paths in order of specificity
+      if (pathname.includes('seaview-fontanilla')) {
+        propertyRoute = '/seaview-fontanilla/(tabs)';
+      } else if (pathname.includes('aloha-pueblo')) {
         propertyRoute = '/aloha-pueblo/(tabs)';
       } else if (pathname.includes('old-town')) {
         propertyRoute = '/old-town/(tabs)';
-      } else if (pathname.includes('seaview-fontanilla')) {
-        propertyRoute = '/seaview-fontanilla/(tabs)';
-      } else if (pathname.includes('jardines-tropicales')) {
-        propertyRoute = '/jardines-tropicales/(tabs)';
-      } else if (pathname.startsWith('/location') || 
-                pathname.startsWith('/entry') || 
-                pathname.startsWith('/wifi') || 
-                pathname.startsWith('/videos') || 
-                pathname.startsWith('/rules') || 
-                pathname.startsWith('/dining') || 
-                pathname.startsWith('/attractions') || 
-                pathname.startsWith('/luggage') || 
-                pathname.startsWith('/car-rental') || 
-                pathname.startsWith('/parking')) {
-        // For standalone pages, default to Jardines Tropicales
-        propertyRoute = '/jardines-tropicales/(tabs)';
       }
       
       console.log('Current pathname:', pathname);

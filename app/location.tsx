@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { usePathname } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { InfoCard } from '@/components/common/InfoCard';
@@ -9,17 +8,17 @@ import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi, Video } from 'lucid
 
 export default function LocationScreen() {
   const insets = useSafeAreaInsets();
-  const pathname = usePathname();
   
   const handleOpenMaps = () => {
     // Get the current route to determine which location to open
+    const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
     let mapsUrl = '';
 
-    if (pathname.includes('aloha-pueblo')) {
+    if (currentPath.includes('aloha-pueblo')) {
       mapsUrl = 'https://www.google.com/maps/dir//C.+del+Agua+Nueva+Andaluc%C3%ADa+29660+Marbella+M%C3%A1laga/@36.5112442,-4.9699271,16z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0xd72d61c9a5e5fdb:0xe743d3bce1ff1538!2m2!1d-4.9647772!2d36.5112357?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D';
-    } else if (pathname.includes('old-town')) {
+    } else if (currentPath.includes('old-town')) {
       mapsUrl = 'https://www.google.com/maps/dir//C.+M%C3%A1laga+29601+Marbella+M%C3%A1laga/@36.50968,-4.8809044,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0xd7327f7d5c879af:0xd00358ba0f5ccc75';
-    } else if (pathname.includes('seaview-fontanilla')) {
+    } else if (currentPath.includes('seaview-fontanilla')) {
       mapsUrl = 'https://www.google.com/maps/dir/36.5080731,-4.8946322/C.+Camilo+Jos%C3%A9+Cela,+29602+Marbella,+M%C3%A1laga/@36.5080775,-4.8949322,20.5z/data=!4m8!4m7!1m0!1m5!1m1!1s0xd732801cbc22faf:0xf815e9f3937fdcc4!2m2!1d-4.8964084!2d36.5082514?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D';
     } else {
       // Default to Jardines Tropicales
@@ -30,7 +29,9 @@ export default function LocationScreen() {
   };
 
   const handleOpenBusRoute = () => {
-    if (pathname.includes('seaview-fontanilla')) {
+    const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
+    
+    if (currentPath.includes('seaview-fontanilla')) {
       // Bus route for Seaview Fontanilla (Marbella Center)
       Linking.openURL('https://maps.app.goo.gl/8KjN2vF3xYWPkQVH9');
     } else {
@@ -44,7 +45,9 @@ export default function LocationScreen() {
   };
   
   const getTransportOptions = () => {
-    if (pathname.includes('seaview-fontanilla')) {
+    const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
+    
+    if (currentPath.includes('seaview-fontanilla')) {
       return [
         {
           id: 1,
@@ -64,52 +67,6 @@ export default function LocationScreen() {
           id: 3,
           title: "By Taxi",
           description: "Book your ride with Uber or Bolt for convenient transportation. Available 24/7 from Málaga Airport or anywhere in Marbella.",
-          icon: <Taxi size={24} color={theme.colors.secondary} />
-        }
-      ];
-    } else if (pathname.includes('old-town')) {
-      return [
-        {
-          id: 1,
-          title: "By Car",
-          description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town).",
-          icon: <Car size={24} color={theme.colors.secondary} />
-        },
-        {
-          id: 2,
-          title: "By Bus",
-          description: "From Málaga Airport, take bus to Marbella Centro (40 min). The Old Town is within walking distance.",
-          icon: <Bus size={24} color={theme.colors.secondary} />,
-          action: handleOpenBusRoute,
-          actionLabel: "View Bus Stop Location"
-        },
-        {
-          id: 3,
-          title: "By Taxi",
-          description: "Book your ride with Uber or Bolt for convenient transportation. Available 24/7 from Málaga Airport or anywhere in Marbella.",
-          icon: <Taxi size={24} color={theme.colors.secondary} />
-        }
-      ];
-    } else if (pathname.includes('aloha-pueblo')) {
-      return [
-        {
-          id: 1,
-          title: "By Car",
-          description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Aloha Golf area.",
-          icon: <Car size={24} color={theme.colors.secondary} />
-        },
-        {
-          id: 2,
-          title: "By Bus",
-          description: "From Málaga Airport, take L-75 bus to Nueva Andalucía (45 min).",
-          icon: <Bus size={24} color={theme.colors.secondary} />,
-          action: handleOpenBusRoute,
-          actionLabel: "View Bus Stop Location"
-        },
-        {
-          id: 3,
-          title: "By Taxi",
-          description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
           icon: <Taxi size={24} color={theme.colors.secondary} />
         }
       ];
@@ -140,6 +97,7 @@ export default function LocationScreen() {
   };
 
   // Get the current route to determine which property details to show
+  const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
   let propertyDetails = {
     name: '1+1 Jardines Tropicales Puerto Banús',
     location: 'Nueva Andalucía',
@@ -172,7 +130,7 @@ export default function LocationScreen() {
     }
   ];
 
-  if (pathname.includes('aloha-pueblo')) {
+  if (currentPath.includes('aloha-pueblo')) {
     propertyDetails = {
       name: '1+1 Aloha Pueblo Townhouse',
       location: 'Aloha',
@@ -202,7 +160,7 @@ export default function LocationScreen() {
         hasVideo: false
       }
     ];
-  } else if (pathname.includes('old-town')) {
+  } else if (currentPath.includes('old-town')) {
     propertyDetails = {
       name: '3+1 Marbella Old Town',
       location: 'Old Town',
@@ -232,7 +190,7 @@ export default function LocationScreen() {
         hasVideo: false
       }
     ];
-  } else if (pathname.includes('seaview-fontanilla')) {
+  } else if (currentPath.includes('seaview-fontanilla')) {
     propertyDetails = {
       name: '2+1 Seaview Playa de Fontanilla',
       location: 'Marbella Center',
