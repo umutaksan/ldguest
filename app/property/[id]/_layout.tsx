@@ -1,6 +1,5 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Chrome as Home, Search, BookOpen, Info, Phone } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
@@ -45,6 +44,7 @@ export default function TabLayout() {
         tabBarIconStyle: {
           marginTop: theme.layout.isWeb ? 4 : 2,
         },
+        tabBarIcon: () => null, // Remove all icons
       }}
     >
       <Tabs.Screen
@@ -52,9 +52,6 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarTestID: 'tab-001',
-          tabBarIcon: ({ color, size }) => (
-            <Home size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
@@ -62,9 +59,6 @@ export default function TabLayout() {
         options={{
           title: 'Explore',
           tabBarTestID: 'tab-002',
-          tabBarIcon: ({ color, size }) => (
-            <Search size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
@@ -72,9 +66,6 @@ export default function TabLayout() {
         options={{
           title: 'Guide',
           tabBarTestID: 'tab-003',
-          tabBarIcon: ({ color, size }) => (
-            <BookOpen size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
@@ -82,9 +73,6 @@ export default function TabLayout() {
         options={{
           title: 'Info',
           tabBarTestID: 'tab-004',
-          tabBarIcon: ({ color, size }) => (
-            <Info size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
@@ -92,9 +80,6 @@ export default function TabLayout() {
         options={{
           title: 'Contact',
           tabBarTestID: 'tab-005',
-          tabBarIcon: ({ color, size }) => (
-            <Phone size={size} color={color} />
-          ),
         }}
       />
     </Tabs>

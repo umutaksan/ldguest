@@ -2,7 +2,6 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
-import { Chrome as Home, Search, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
   const tabBarHeight = theme.layout.isWeb 
@@ -39,51 +38,37 @@ export default function TabLayout() {
           marginTop: 4,
           fontSize: theme.layout.isWeb ? 12 : 11,
         },
+        tabBarIcon: () => null, // Remove all icons
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Home size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color, size }) => (
-            <Search size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
         name="guide"
         options={{
           title: 'Guide',
-          tabBarIcon: ({ color, size }) => (
-            <BookOpen size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
         name="info"
         options={{
           title: 'Info',
-          tabBarIcon: ({ color, size }) => (
-            <Info size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
           title: 'Contact',
-          tabBarIcon: ({ color, size }) => (
-            <Phone size={size} color={color} />
-          ),
         }}
       />
     </Tabs>
