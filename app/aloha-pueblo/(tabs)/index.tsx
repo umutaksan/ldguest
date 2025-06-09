@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Platform, TouchableOpacity, Text, Linking, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
@@ -192,14 +192,16 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
   },
   row: {
-    flexDirection: 'row',
+    flexDirection: theme.layout.isWeb && theme.layout.isDesktop ? 'row' : 'row',
     width: '100%',
+    gap: theme.layout.isWeb ? theme.spacing.s : 0,
   },
   promoContainer: {
-    margin: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    height: 200,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
     ...theme.shadows.medium,
   },
   promoImage: {
@@ -243,7 +245,8 @@ const styles = StyleSheet.create({
     marginLeft: theme.spacing.xs,
   },
   ratingContainer: {
-    margin: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
     padding: theme.spacing.l,
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
