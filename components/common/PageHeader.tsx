@@ -30,20 +30,19 @@ export function PageHeader({
     if (onBackPress) {
       onBackPress();
     } else {
-      // Determine the correct property route based on the pathname
-      let propertyRoute = '/(tabs)'; // Default route
-      
-      if (pathname.includes('seaview-fontanilla')) {
-        propertyRoute = '/seaview-fontanilla/(tabs)';
-      } else if (pathname.includes('aloha-pueblo')) {
-        propertyRoute = '/aloha-pueblo/(tabs)';
-      } else if (pathname.includes('old-town')) {
-        propertyRoute = '/old-town/(tabs)';
-      } else if (pathname.includes('jardines-tropicales')) {
-        propertyRoute = '/jardines-tropicales/(tabs)';
+      // Check if we're in a property route
+      if (pathname.includes('/property/')) {
+        // Extract the property ID from the pathname
+        const matches = pathname.match(/\/property\/([^\/]+)/);
+        if (matches && matches[1]) {
+          const propertyId = matches[1];
+          router.replace(`/property/${propertyId}`);
+          return;
+        }
       }
       
-      router.replace(propertyRoute);
+      // Fallback to home if we can't determine the property
+      router.replace('/');
     }
   };
 
