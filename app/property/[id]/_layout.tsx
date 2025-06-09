@@ -51,35 +51,35 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
+          tabBarTestID: 'tab-001',
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color, size }) => <MapPin size={size} color={color} />,
+          tabBarTestID: 'tab-002',
         }}
       />
       <Tabs.Screen
         name="guide"
         options={{
           title: 'Guide',
-          tabBarIcon: ({ color, size }) => <Book size={size} color={color} />,
+          tabBarTestID: 'tab-003',
         }}
       />
       <Tabs.Screen
         name="info"
         options={{
           title: 'Info',
-          tabBarIcon: ({ color, size }) => <Info size={size} color={color} />,
+          tabBarTestID: 'tab-004',
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
           title: 'Contact',
-          tabBarIcon: ({ color, size }) => <Phone size={size} color={color} />,
+          tabBarTestID: 'tab-005',
         }}
       />
     </Tabs>
