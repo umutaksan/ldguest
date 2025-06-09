@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, Platform } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, usePathname } from 'expo-router';
 import { ChevronLeft } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -23,26 +23,27 @@ export function PageHeader({
   onBackPress 
 }: PageHeaderProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const insets = useSafeAreaInsets();
 
   const handleBack = () => {
     if (onBackPress) {
       onBackPress();
     } else {
-      // Get the current URL path
-      const currentPath = Platform.OS === 'web' ? window.location.pathname : '';
+      // Determine the correct property route based on the pathname
+      let propertyRoute = '/(tabs)'; // Default route
       
-      // Extract property ID from the path if it exists
-      const propertyIdMatch = currentPath.match(/\/property\/([^/]+)/);
-      const propertyId = propertyIdMatch ? propertyIdMatch[1] : null;
-      
-      if (propertyId) {
-        // If we're in a property section, go back to the property home
-        router.replace(`/property/${propertyId}`);
-      } else {
-        // Otherwise go to the main home
-        router.replace('/');
+      if (pathname.includes('seaview-fontanilla')) {
+        propertyRoute = '/seaview-fontanilla/(tabs)';
+      } else if (pathname.includes('aloha-pueblo')) {
+        propertyRoute = '/aloha-pueblo/(tabs)';
+      } else if (pathname.includes('old-town')) {
+        propertyRoute = '/old-town/(tabs)';
+      } else if (pathname.includes('jardines-tropicales')) {
+        propertyRoute = '/jardines-tropicales/(tabs)';
       }
+      
+      router.replace(propertyRoute);
     }
   };
 
