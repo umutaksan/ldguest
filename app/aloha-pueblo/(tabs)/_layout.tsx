@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
-import { Home, Search, BookOpen, Info, Phone } from 'lucide-react-native';
+import { Chrome as Home, Search, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
   const tabBarHeight = theme.layout.isWeb 

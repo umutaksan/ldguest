@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Home, Search, BookOpen, Info, Phone } from 'lucide-react-native';
+import { Chrome as Home, Search, BookOpen, Info, Phone } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
