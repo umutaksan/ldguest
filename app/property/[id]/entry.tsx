@@ -36,7 +36,12 @@ export default function EntryScreen() {
           description: 'Welcome to your Seaview apartment! Here are the entry instructions for Bolta Playa de Fontanilla Building.',
           note: 'Your apartment is number 106 on the 1st floor of the building. The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
           importantNote: 'You will need three separate codes to access the property:\n• 1st code: Outer building door\n• 2nd code: Inner building door\n• 3rd code: Apartment door\n\nPlease save all three codes, as you will need them during your stay.',
-          hasKeyImages: false
+          hasKeyImages: true,
+          keyImages: [
+            'https://static.wixstatic.com/media/8bbc22_5a77db7dbfa84c6a9215daae75f3bc15~mv2.jpg/v1/fill/w_328,h_441,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_14_0a292a40.jpg',
+            'https://static.wixstatic.com/media/8bbc22_b4c29ebf78b64d30a2c70e60b415a877~mv2.jpg/v1/fill/w_328,h_441,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_09_a8cef1b7.jpg'
+          ],
+          videoUrl: 'https://youtube.com/shorts/QhwtLiHdeRY?feature=share'
         };
       case '29051503': // Aloha Pueblo
         return {
@@ -119,7 +124,7 @@ export default function EntryScreen() {
               activeOpacity={0.8}
             >
               <Video size={20} color={theme.colors.white} />
-              <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
+              <Text style={styles.watchVideoText}>Watch Entry Video</Text>
             </TouchableOpacity>
           )}
           
@@ -224,7 +229,7 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.m,
   },
   keyLocationImage: {
-    width: '32%',
+    width: '48%',
     borderRadius: theme.borderRadius.m,
     margin: Platform.OS === 'web' ? theme.spacing.xs : theme.spacing.xxs,
   },

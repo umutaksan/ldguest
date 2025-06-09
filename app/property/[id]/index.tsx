@@ -25,7 +25,7 @@ export default function PropertyScreen() {
       case '29051502':
         return {
           title: '2+1 Seaview Playa de Fontanilla',
-          imageUrl: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/628787942.jpg?k=8debb78111131852bf35286c8e7e732682d6570737cf214f84c3803fce5d4806&o='
+          imageUrl: 'https://static.wixstatic.com/media/8bbc22_5a77db7dbfa84c6a9215daae75f3bc15~mv2.jpg/v1/fill/w_333,h_445,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_14_0a292a40.jpg'
         };
       case '29051503':
         return {
