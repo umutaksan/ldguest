@@ -50,6 +50,23 @@ export default function RootLayout() {
         <Stack.Screen name="properties/aloha-pueblo" options={{ headerShown: false }} />
         <Stack.Screen name="properties/old-town" options={{ headerShown: false }} />
         <Stack.Screen name="properties/seaview-fontanilla" options={{ headerShown: false }} />
+        
+        {/* Shared route files */}
+        <Stack.Screen name="location" options={{ headerShown: false }} />
+        <Stack.Screen name="entry" options={{ headerShown: false }} />
+        <Stack.Screen name="wifi" options={{ headerShown: false }} />
+        <Stack.Screen name="videos" options={{ headerShown: false }} />
+        <Stack.Screen name="rules" options={{ headerShown: false }} />
+        <Stack.Screen name="dining" options={{ headerShown: false }} />
+        <Stack.Screen name="attractions" options={{ headerShown: false }} />
+        <Stack.Screen name="luggage" options={{ headerShown: false }} />
+        <Stack.Screen name="car-rental" options={{ headerShown: false }} />
+        <Stack.Screen name="parking" options={{ headerShown: false }} />
+        <Stack.Screen name="cleaning" options={{ headerShown: false }} />
+        <Stack.Screen name="nearby-cities" options={{ headerShown: false }} />
+        <Stack.Screen name="info" options={{ headerShown: false }} />
+        <Stack.Screen name="sql-editor" options={{ headerShown: false }} />
+        
         <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
       </Stack>
       <StatusBar style="auto" />
