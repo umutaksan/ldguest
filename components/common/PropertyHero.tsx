@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking, Pla
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ChevronLeft, Chrome as Home, Share, Heart, Building2 } from 'lucide-react-native';
-import { useRouter, usePathname } from 'expo-router';
+import { useRouter } from 'expo-router';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -23,7 +23,6 @@ export function PropertyHero({
   showPropertySwitcher = true 
 }: PropertyHeroProps) {
   const router = useRouter();
-  const pathname = usePathname();
   const insets = useSafeAreaInsets();
   
   const handleHomePress = () => {

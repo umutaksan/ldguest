@@ -14,32 +14,28 @@ export default function PropertiesScreen() {
 
   const properties = [
     {
-      id: 1,
+      id: '29051501',
       name: '1+1 Jardines Tropicales Puerto Banús',
       location: 'Nueva Andalucía',
       image: 'https://i.postimg.cc/hPNR5jmM/Whats-App-Image-2024-09-18-at-14-15-27-3.jpg',
-      route: '/properties/jardines-tropicales'
     },
     {
-      id: 2,
+      id: '29051502',
       name: '2+1 Seaview Playa de Fontanilla',
       location: 'Marbella Center',
       image: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/628787942.jpg?k=8debb78111131852bf35286c8e7e732682d6570737cf214f84c3803fce5d4806&o=',
-      route: '/properties/seaview-fontanilla'
     },
     {
-      id: 3,
-      name: '3+1 Marbella Old Town',
-      location: 'Old Town',
-      image: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/645431688.jpg?k=0d1af13e52daafe35fe9638dd024af7730169834024271f0cc2f0540393f7104&o=',
-      route: '/properties/old-town'
-    },
-    {
-      id: 4,
+      id: '29051503',
       name: '1+1 Aloha Pueblo Townhouse',
       location: 'Nueva Andalucía',
       image: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/681135350.jpg?k=fc73c36cd1371fe8efdc2e947ec5aa836557ffe9210d4e33aadbb0e8f237d43a&o=&hp=1',
-      route: '/properties/aloha-pueblo'
+    },
+    {
+      id: '29051504',
+      name: '3+1 Marbella Old Town',
+      location: 'Old Town',
+      image: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/645431688.jpg?k=0d1af13e52daafe35fe9638dd024af7730169834024271f0cc2f0540393f7104&o=',
     }
   ];
 
@@ -90,7 +86,7 @@ export default function PropertiesScreen() {
               >
                 <TouchableOpacity
                   style={[styles.propertyCard, { height: cardHeight }]}
-                  onPress={() => router.push(property.route)}
+                  onPress={() => router.push(`/property/${property.id}`)}
                   activeOpacity={0.9}
                 >
                   <Image 

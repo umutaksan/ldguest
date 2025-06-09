@@ -41,30 +41,20 @@ export default function RootLayout() {
   return (
     <>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="jardines-tropicales/(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="aloha-pueblo/(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="old-town/(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="seaview-fontanilla/(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="properties/jardines-tropicales" options={{ headerShown: false }} />
-        <Stack.Screen name="properties/aloha-pueblo" options={{ headerShown: false }} />
-        <Stack.Screen name="properties/old-town" options={{ headerShown: false }} />
-        <Stack.Screen name="properties/seaview-fontanilla" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/location" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/entry" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/wifi" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/videos" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/rules" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/dining" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/attractions" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/luggage" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/car-rental" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/parking" options={{ headerShown: false }} />
         
-        {/* Shared route files */}
-        <Stack.Screen name="location" options={{ headerShown: false }} />
-        <Stack.Screen name="entry" options={{ headerShown: false }} />
-        <Stack.Screen name="wifi" options={{ headerShown: false }} />
-        <Stack.Screen name="videos" options={{ headerShown: false }} />
-        <Stack.Screen name="rules" options={{ headerShown: false }} />
-        <Stack.Screen name="dining" options={{ headerShown: false }} />
-        <Stack.Screen name="attractions" options={{ headerShown: false }} />
-        <Stack.Screen name="luggage" options={{ headerShown: false }} />
-        <Stack.Screen name="car-rental" options={{ headerShown: false }} />
-        <Stack.Screen name="parking" options={{ headerShown: false }} />
         <Stack.Screen name="cleaning" options={{ headerShown: false }} />
-        <Stack.Screen name="nearby-cities" options={{ headerShown: false }} />
-        <Stack.Screen name="info" options={{ headerShown: false }} />
         <Stack.Screen name="sql-editor" options={{ headerShown: false }} />
         
         <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />

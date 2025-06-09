@@ -1,0 +1,253 @@
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Platform, Linking } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useLocalSearchParams } from 'expo-router';
+import { theme } from '@/constants/theme';
+import { PageHeader } from '@/components/common/PageHeader';
+import { Video } from 'lucide-react-native';
+
+export default function EntryScreen() {
+  const insets = useSafeAreaInsets();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const { width } = Dimensions.get('window');
+  const imageHeight = Platform.OS === 'web' ? 180 : width * 0.3;
+
+  // Get entry instructions based on property ID
+  const getEntryInstructions = () => {
+    switch(id) {
+      case '29051501': // Jardines Tropicales
+        return {
+          title: 'Jardines Tropicales Entry Instructions',
+          description: 'Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.',
+          note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
+          keyboxCode: '****',
+          videoUrl: 'https://youtube.com/shorts/XNzqKrwDKf8',
+          entryVideoUrl: 'https://www.youtube.com/shorts/nWXkqDrRcyU',
+          hasKeyImages: true,
+          keyImages: [
+            'https://ldguest.com/wp-content/uploads/2024/11/1adsiz-tasarim-1.png',
+            'https://static.wixstatic.com/media/8bbc22_cd8e33bde09a4abf9fceaa4eff2d6f67~mv2.jpg/v1/fill/w_159,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_de854110.jpg',
+            'https://static.wixstatic.com/media/8bbc22_1f7abcf379124dff99994757af9c6b4a~mv2.jpg/v1/fill/w_123,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_3fad3c4b.jpg'
+          ]
+        };
+      case '29051502': // Seaview Fontanilla
+        return {
+          title: 'Seaview Fontanilla Entry Instructions',
+          description: 'Welcome to your Seaview apartment! Here are the entry instructions for Bolta Playa de Fontanilla Building.',
+          note: 'Your apartment is number 106 on the 1st floor of the building. The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
+          importantNote: 'You will need three separate codes to access the property:\n• 1st code: Outer building door\n• 2nd code: Inner building door\n• 3rd code: Apartment door\n\nPlease save all three codes, as you will need them during your stay.',
+          hasKeyImages: false
+        };
+      case '29051503': // Aloha Pueblo
+        return {
+          title: 'Aloha Pueblo Entry Instructions',
+          description: 'Welcome to your Aloha Pueblo townhouse! Here are the entry instructions for Calle del Agua, Apartment 168.',
+          note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
+          buildingCode: '345424#',
+          cabinetCode: '290',
+          hasKeyImages: false
+        };
+      case '29051504': // Old Town
+        return {
+          title: 'Old Town Entry Instructions',
+          description: 'Welcome to your Old Town apartment! Here are the entry instructions for Calle Málaga.',
+          note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
+          buildingCode: '6464173#',
+          cleaningCloset: 'The cleaning closet card is located under the cutlery. After taking the card, please scan it at the indicated spot to open the cleaning closet.',
+          hasKeyImages: false
+        };
+      default:
+        return {
+          title: 'Entry Instructions',
+          description: 'Welcome to your L&D Guest property! Here are the entry instructions.',
+          note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
+          hasKeyImages: false
+        };
+    }
+  };
+
+  const entryInstructions = getEntryInstructions();
+
+  const handleWatchVideo = (url: string) => {
+    Linking.openURL(url);
+  };
+
+  return (
+    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+      <PageHeader title="Home Entry Instructions" />
+
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.content}
+      >
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Entry Instructions</Text>
+          <Text style={styles.description}>
+            {entryInstructions.description}
+            {'\n\n'}
+            {entryInstructions.note}
+          </Text>
+
+          {entryInstructions.keyboxCode && (
+            <View style={styles.codeSection}>
+              <Text style={styles.codeTitle}>Building Access Codes:</Text>
+              <Text style={styles.codeText}>• Main Door: {entryInstructions.keyboxCode}</Text>
+            </View>
+          )}
+
+          {entryInstructions.buildingCode && (
+            <View style={styles.codeSection}>
+              <Text style={styles.codeTitle}>Building Access Codes:</Text>
+              <Text style={styles.codeText}>• Main Door: {entryInstructions.buildingCode}</Text>
+              {entryInstructions.cabinetCode && (
+                <Text style={styles.codeText}>• Cabinet Code: {entryInstructions.cabinetCode}</Text>
+              )}
+            </View>
+          )}
+
+          {entryInstructions.importantNote && (
+            <View style={styles.codeSection}>
+              <Text style={styles.codeTitle}>Important Note:</Text>
+              <Text style={styles.codeText}>{entryInstructions.importantNote}</Text>
+            </View>
+          )}
+
+          {entryInstructions.videoUrl && (
+            <TouchableOpacity 
+              style={styles.watchVideoButton}
+              onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
+              activeOpacity={0.8}
+            >
+              <Video size={20} color={theme.colors.white} />
+              <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
+            </TouchableOpacity>
+          )}
+          
+          {entryInstructions.hasKeyImages && (
+            <View style={styles.imageGrid}>
+              {entryInstructions.keyImages?.map((image, index) => (
+                <Image 
+                  key={index}
+                  source={{ uri: image }}
+                  style={[styles.keyLocationImage, { height: imageHeight }]}
+                  resizeMode="cover"
+                />
+              ))}
+            </View>
+          )}
+        </View>
+
+        {entryInstructions.entryVideoUrl && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Entering the Building</Text>
+            <Text style={styles.description}>
+              After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
+            </Text>
+            
+            <TouchableOpacity 
+              style={styles.watchVideoButton}
+              onPress={() => handleWatchVideo(entryInstructions.entryVideoUrl!)}
+              activeOpacity={0.8}
+            >
+              <Video size={20} color={theme.colors.white} />
+              <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {entryInstructions.cleaningCloset && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Cleaning Closet Access</Text>
+            <Text style={styles.description}>
+              {entryInstructions.cleaningCloset}
+            </Text>
+          </View>
+        )}
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Location Details</Text>
+          <Text style={styles.description}>
+            The apartment is located in {id === '29051502' ? 'Marbella Center, close to the beach.' : 
+                                        id === '29051503' ? 'the Aloha area, close to golf courses and Nueva Andalucía center.' : 
+                                        id === '29051504' ? 'the heart of Marbella\'s historic Old Town.' : 
+                                        'Nueva Andalucía, close to Puerto Banús.'}
+          </Text>
+        </View>
+
+        <Text style={styles.note}>
+          We wish you a pleasant stay.
+        </Text>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  content: {
+    padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
+  },
+  section: {
+    marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
+  },
+  sectionTitle: {
+    ...theme.typography.subheading,
+    marginBottom: theme.spacing.s,
+  },
+  description: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.m,
+  },
+  codeSection: {
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  codeTitle: {
+    ...theme.typography.bodyMedium,
+    marginBottom: theme.spacing.s,
+  },
+  codeText: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
+  },
+  imageGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: Platform.OS === 'web' ? -theme.spacing.xs : -theme.spacing.xxs,
+    marginTop: theme.spacing.m,
+  },
+  keyLocationImage: {
+    width: '32%',
+    borderRadius: theme.borderRadius.m,
+    margin: Platform.OS === 'web' ? theme.spacing.xs : theme.spacing.xxs,
+  },
+  note: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+    textAlign: 'center',
+    marginTop: theme.spacing.m,
+    marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl,
+  },
+  watchVideoButton: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.secondary,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  watchVideoText: {
+    ...theme.typography.button,
+    color: theme.colors.white,
+    marginLeft: theme.spacing.s,
+  },
+});
