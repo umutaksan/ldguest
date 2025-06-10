@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { Compass, Utensils, Palmtree, Camera, Ticket, MapPin, Star, ChevronRight } from 'lucide-react-native';
+import { Compass, Utensils, TreePalm as Palmtree, Camera, Ticket, MapPin, Star, ChevronRight } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function GuideScreen() {
