@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { Search, MapPin, Star, Filter } from 'lucide-react-native';
+import { Search, MapPin, Star, Filter, ArrowLeft } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useRouter } from 'expo-router';
 
 export default function ExploreScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState('All');
   
   const categories = [
@@ -87,8 +89,16 @@ export default function ExploreScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.header}>
-        <Text style={styles.title}>Explore</Text>
-        <Text style={styles.subtitle}>Discover amazing places</Text>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <ArrowLeft size={24} color={theme.colors.text} />
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.title}>Explore</Text>
+          <Text style={styles.subtitle}>Discover amazing places</Text>
+        </View>
       </View>
       
       <View style={styles.searchContainer}>
@@ -174,8 +184,13 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
     paddingTop: theme.spacing.m,
+  },
+  backButton: {
+    marginRight: theme.spacing.m,
   },
   title: {
     ...theme.typography.heading,

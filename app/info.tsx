@@ -2,218 +2,168 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { PageHeader } from '@/components/common/PageHeader';
-import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
-import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
+import { ChevronDown, ChevronUp, Plane, CreditCard, Import as Passport, Umbrella, Sun, Wifi, Smartphone, Pill, Globe, Languages, ArrowLeft } from 'lucide-react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { useRouter } from 'expo-router';
 
 export default function InfoScreen() {
   const insets = useSafeAreaInsets();
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const router = useRouter();
+  const [expandedSection, setExpandedSection] = useState<string | null>('flights');
   
-  const rules = [
-    { 
-      id: 1, 
-      title: 'Quiet Hours', 
-      description: 'Quiet hours are from 11:00 PM to 8:00 AM. Please avoid making noise during these hours.',
-      icon: <Moon size={24} color={theme.colors.secondary} />
+  const sections = [
+    {
+      id: 'flights',
+      title: 'Flight Information',
+      icon: <Plane size={24} color={theme.colors.primary} />,
+      content: `• Check in online 24-48 hours before your flight
+• Arrive at the airport at least 2 hours before domestic flights and 3 hours before international flights
+• Keep your passport and boarding pass easily accessible
+• Check baggage allowance before packing
+• Consider travel insurance for flight cancellations or delays`
     },
-    { 
-      id: 2, 
-      title: 'Common Areas', 
-      description: 'When using the pool, garden, or other shared spaces, please keep them clean and tidy. Be considerate of others in the community.',
-      icon: <Users size={24} color={theme.colors.secondary} />
+    {
+      id: 'payments',
+      title: 'Payment & Currency',
+      icon: <CreditCard size={24} color={theme.colors.primary} />,
+      content: `• Notify your bank of travel plans to avoid card blocks
+• Carry multiple payment methods (credit cards, debit cards, cash)
+• Use ATMs at banks for better exchange rates
+• Avoid currency exchange at airports when possible
+• Consider a travel-specific credit card with no foreign transaction fees`
     },
-    { 
-      id: 3, 
-      title: 'Check-In and Check-Out Times', 
-      description: '• Check-in: After 3:00 PM\n• Check-out: Before 10:00 AM',
-      icon: <Clock size={24} color={theme.colors.secondary} />
+    {
+      id: 'documents',
+      title: 'Travel Documents',
+      icon: <Passport size={24} color={theme.colors.primary} />,
+      content: `• Check passport validity (must be valid for at least 6 months beyond your trip)
+• Research visa requirements for your destination
+• Make digital and physical copies of important documents
+• Register with your country's embassy when traveling to high-risk areas
+• Keep emergency contact information readily available`
     },
-    { 
-      id: 4, 
-      title: 'Pets', 
-      description: 'You are welcome to bring your pets, but please inform us in advance.',
-      icon: <Dog size={24} color={theme.colors.secondary} />
+    {
+      id: 'weather',
+      title: 'Weather Preparation',
+      icon: <Umbrella size={24} color={theme.colors.primary} />,
+      content: `• Check seasonal weather patterns before booking
+• Pack appropriate clothing for your destination's climate
+• Bring layers for variable conditions
+• Consider waterproof gear for rainy destinations
+• Check for extreme weather alerts before departure`
     },
-    { 
-      id: 5, 
-      title: 'Smoking', 
-      description: 'Smoking is not allowed inside the house. You may smoke on the balcony or in outdoor areas.',
-      icon: <Smoking size={24} color={theme.colors.secondary} />
+    {
+      id: 'health',
+      title: 'Health & Safety',
+      icon: <Pill size={24} color={theme.colors.primary} />,
+      content: `• Research required vaccinations for your destination
+• Pack a basic first aid kit and personal medications
+• Check if your health insurance covers international travel
+• Note the location of nearby hospitals or clinics
+• Carry hand sanitizer and masks when traveling`
     },
-    { 
-      id: 6, 
-      title: 'Handle With Care', 
-      description: 'Please treat the house with care and respect. If any damage occurs or issues arise, let us know as soon as possible.',
-      icon: <Heart size={24} color={theme.colors.secondary} />
+    {
+      id: 'connectivity',
+      title: 'Staying Connected',
+      icon: <Wifi size={24} color={theme.colors.primary} />,
+      content: `• Research international data plans or local SIM options
+• Download offline maps and translation apps
+• Consider a portable WiFi device for multiple devices
+• Save important contacts and addresses offline
+• Bring appropriate power adapters for your destination`
     },
-    { 
-      id: 7, 
-      title: 'Towels and Linens', 
-      description: 'Provided towels are for indoor use only. Please bring your own towels for the beach.',
-      icon: <Bed size={24} color={theme.colors.secondary} />
+    {
+      id: 'apps',
+      title: 'Essential Travel Apps',
+      icon: <Smartphone size={24} color={theme.colors.primary} />,
+      content: `• Google Maps or Maps.me for navigation
+• Google Translate or iTranslate for language barriers
+• XE Currency for exchange rate calculations
+• TripIt or Google Trips for itinerary organization
+• Uber or local equivalents for transportation`
     },
-    { 
-      id: 8, 
-      title: 'Parties and Events', 
-      description: 'Hosting parties or large events is not allowed.',
-      icon: <Music size={24} color={theme.colors.secondary} />
+    {
+      id: 'etiquette',
+      title: 'Cultural Etiquette',
+      icon: <Globe size={24} color={theme.colors.primary} />,
+      content: `• Research local customs and traditions before arrival
+• Learn basic phrases in the local language
+• Dress appropriately for cultural sites and religious venues
+• Understand tipping practices at your destination
+• Be mindful of photography restrictions at certain sites`
+    },
+    {
+      id: 'language',
+      title: 'Language Tips',
+      icon: <Languages size={24} color={theme.colors.primary} />,
+      content: `• Learn basic greetings and phrases in the local language
+• Download an offline translation app
+• Carry a pocket phrasebook for quick reference
+• Practice pronunciation of essential phrases
+• Consider a translation device for longer conversations`
     }
   ];
-  
-  const amenities = [
-    { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-    { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-    { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-    { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-    { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
-    { id: 6, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-    { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-    { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
-  ];
-  
-  const faqs = [
-    { 
-      id: 1, 
-      question: 'Does the apartment have a balcony?', 
-      answer: 'No, this apartment does not have a balcony.'
-    },
-    { 
-      id: 2, 
-      question: 'Is there a pool?', 
-      answer: 'Yes, the building has a swimming pool for residents.'
-    },
-    { 
-      id: 3, 
-      question: 'Are pets allowed?', 
-      answer: 'Yes, pets are allowed. Please inform us in advance.'
-    },
-    { 
-      id: 4, 
-      question: 'Is check-in and check-out flexible?', 
-      answer: 'Check-in is flexible after 3:00 PM. Check-out is strict and must be completed by 10:00 AM.'
-    },
-    { 
-      id: 5, 
-      question: 'How many people can stay in the apartment?', 
-      answer: 'The apartment can accommodate up to 3 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room'
-    },
-    { 
-      id: 6, 
-      question: 'Is there a discount for long-term stays?', 
-      answer: 'Yes, discounts are available for long-term stays.'
-    },
-    { 
-      id: 7, 
-      question: 'Is the area safe at night?', 
-      answer: 'Yes, the area is very safe, even late at night.'
-    },
-    { 
-      id: 8, 
-      question: 'How far is public transport?', 
-      answer: 'Public transport is within walking distance.'
-    },
-    { 
-      id: 9, 
-      question: 'How can I get to the apartment from the airport?', 
-      answer: 'You can take a bus, Uber, or taxi to get to the apartment.'
-    },
-    { 
-      id: 10, 
-      question: 'Are laundry and cleaning supplies provided?', 
-      answer: 'Yes, the apartment comes with all necessary laundry and cleaning supplies.'
-    },
-    { 
-      id: 11, 
-      question: 'What is the size of the apartment?', 
-      answer: 'The apartment is 45 m².'
-    },
-    { 
-      id: 12, 
-      question: 'What is the heating and cooling system like?', 
-      answer: 'The apartment is equipped with air conditioning and ceiling fans. Heating is provided through the air conditioning system.'
-    }
-  ];
-  
-  const toggleFaq = (id: number) => {
-    setExpandedFaq(expandedFaq === id ? null : id);
-  };
-  
-  return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Property Information" showBackButton={false} />
 
-      <ScrollView 
+  const toggleSection = (sectionId: string) => {
+    setExpandedSection(expandedSection === sectionId ? null : sectionId);
+  };
+
+  return (
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <View style={styles.header}>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <ArrowLeft size={24} color={theme.colors.text} />
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.title}>Travel Information</Text>
+          <Text style={styles.subtitle}>Essential tips for your journey</Text>
+        </View>
+      </View>
+      
+      <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        <Text style={styles.sectionTitle}>House Rules</Text>
-        
-        {rules.map((rule, index) => (
-          <Animated.View 
-            key={rule.id}
-            entering={FadeIn.delay(index * 100)}
-            style={styles.ruleCard}
-          >
-            <View style={styles.ruleIconContainer}>
-              {rule.icon}
-            </View>
-            <View style={styles.ruleContent}>
-              <Text style={styles.ruleTitle}>{rule.title}</Text>
-              <Text style={styles.ruleDescription}>{rule.description}</Text>
-            </View>
-          </Animated.View>
-        ))}
-
-        <View style={styles.divider} />
-        
-        <Text style={styles.sectionTitle}>Amenities</Text>
-        
-        <View style={styles.amenitiesContainer}>
-          {amenities.map((amenity, index) => (
-            <Animated.View 
-              key={amenity.id}
-              entering={FadeIn.delay(index * 100)}
-              style={styles.amenityItem}
-            >
-              <View style={styles.amenityIcon}>
-                {amenity.icon}
-              </View>
-              <Text style={styles.amenityTitle}>{amenity.title}</Text>
-            </Animated.View>
-          ))}
-        </View>
-        
-        <View style={styles.divider} />
-        
-        <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
-        
-        {faqs.map((faq, index) => (
-          <Animated.View 
-            key={faq.id}
-            entering={FadeInDown.delay(index * 100)}
-            style={styles.faqContainer}
+        {sections.map((section, index) => (
+          <Animated.View
+            key={section.id}
+            entering={FadeIn.delay(index * 50)}
+            style={styles.sectionContainer}
           >
             <TouchableOpacity
-              style={styles.faqQuestion}
-              onPress={() => toggleFaq(faq.id)}
-              activeOpacity={0.8}
+              style={styles.sectionHeader}
+              onPress={() => toggleSection(section.id)}
+              activeOpacity={0.7}
             >
-              <Text style={styles.faqQuestionText}>{faq.question}</Text>
-              {expandedFaq === faq.id ? (
-                <ChevronUp size={20} color={theme.colors.text} />
+              <View style={styles.sectionTitleContainer}>
+                <View style={styles.iconContainer}>
+                  {section.icon}
+                </View>
+                <Text style={styles.sectionTitle}>{section.title}</Text>
+              </View>
+              {expandedSection === section.id ? (
+                <ChevronUp size={24} color={theme.colors.text} />
               ) : (
-                <ChevronDown size={20} color={theme.colors.text} />
+                <ChevronDown size={24} color={theme.colors.text} />
               )}
             </TouchableOpacity>
             
-            {expandedFaq === faq.id && (
-              <View style={styles.faqAnswer}>
-                <Text style={styles.faqAnswerText}>{faq.answer}</Text>
+            {expandedSection === section.id && (
+              <View style={styles.sectionContent}>
+                <Text style={styles.sectionText}>{section.content}</Text>
               </View>
             )}
           </Animated.View>
         ))}
+        
+        <View style={styles.disclaimer}>
+          <Text style={styles.disclaimerText}>
+            Information provided is for general guidance only. Always check official sources for the most up-to-date travel requirements and recommendations.
+          </Text>
+        </View>
       </ScrollView>
     </View>
   );
@@ -224,97 +174,80 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
-  content: {
-    padding: theme.spacing.m,
-  },
-  sectionTitle: {
-    ...theme.typography.subheading,
-    marginBottom: theme.spacing.m,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: theme.colors.border,
-    marginVertical: theme.spacing.l,
-  },
-  ruleCard: {
+  header: {
     flexDirection: 'row',
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  ruleIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: theme.colors.secondaryLight,
-    justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: theme.spacing.m,
+    paddingTop: theme.spacing.m,
+    paddingBottom: theme.spacing.s,
+  },
+  backButton: {
     marginRight: theme.spacing.m,
   },
-  ruleContent: {
-    flex: 1,
-  },
-  ruleTitle: {
-    ...theme.typography.bodyMedium,
-    marginBottom: theme.spacing.xs,
-  },
-  ruleDescription: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-  },
-  amenitiesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginHorizontal: -theme.spacing.s,
-  },
-  amenityItem: {
-    width: '33.33%',
-    alignItems: 'center',
-    padding: theme.spacing.s,
-    marginBottom: theme.spacing.m,
-  },
-  amenityIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: theme.colors.primaryLight,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: theme.spacing.s,
-  },
-  amenityTitle: {
-    ...theme.typography.bodySmall,
-    textAlign: 'center',
+  title: {
+    ...theme.typography.heading,
     color: theme.colors.text,
   },
-  faqContainer: {
+  subtitle: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginTop: theme.spacing.xs,
+  },
+  content: {
+    padding: theme.spacing.m,
+    paddingBottom: theme.spacing.xl * 2,
+  },
+  sectionContainer: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     marginBottom: theme.spacing.m,
     overflow: 'hidden',
     ...theme.shadows.small,
   },
-  faqQuestion: {
+  sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: theme.spacing.m,
   },
-  faqQuestionText: {
-    ...theme.typography.bodyMedium,
-    flex: 1,
-    marginRight: theme.spacing.s,
+  sectionTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  faqAnswer: {
+  iconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: theme.colors.primaryLight,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: theme.spacing.m,
+  },
+  sectionTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.text,
+  },
+  sectionContent: {
     padding: theme.spacing.m,
     paddingTop: 0,
     borderTopWidth: 1,
     borderTopColor: theme.colors.border,
   },
-  faqAnswerText: {
+  sectionText: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
+    lineHeight: 24,
+  },
+  disclaimer: {
+    marginTop: theme.spacing.m,
+    padding: theme.spacing.m,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.m,
+  },
+  disclaimerText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textTertiary,
+    textAlign: 'center',
+    fontStyle: 'italic',
   },
 });

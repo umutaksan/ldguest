@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { Compass, Utensils, TreePalm as Palmtree, Camera, Ticket, MapPin, Star, ChevronRight } from 'lucide-react-native';
+import { Compass, Utensils, TreePalm as Palmtree, Camera, Ticket, MapPin, Star, ChevronRight, ArrowLeft } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useRouter } from 'expo-router';
 
 export default function GuideScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState('Activities');
   
   const categories = [
@@ -153,8 +155,16 @@ export default function GuideScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.header}>
-        <Text style={styles.title}>Travel Guides</Text>
-        <Text style={styles.subtitle}>Expert recommendations for your journey</Text>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <ArrowLeft size={24} color={theme.colors.text} />
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.title}>Travel Guides</Text>
+          <Text style={styles.subtitle}>Expert recommendations for your journey</Text>
+        </View>
       </View>
       
       <ScrollView
@@ -236,8 +246,13 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
     paddingTop: theme.spacing.m,
+  },
+  backButton: {
+    marginRight: theme.spacing.m,
   },
   title: {
     ...theme.typography.heading,

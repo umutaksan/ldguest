@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { Mail, Phone, MapPin, MessageSquare, Send, CircleCheck as CheckCircle } from 'lucide-react-native';
+import { Mail, Phone, MapPin, MessageSquare, Send, CircleCheck as CheckCircle, ArrowLeft } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useRouter } from 'expo-router';
 
 export default function ContactScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -73,8 +75,16 @@ export default function ContactScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.header}>
-        <Text style={styles.title}>Contact Us</Text>
-        <Text style={styles.subtitle}>We're here to help with your travel needs</Text>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <ArrowLeft size={24} color={theme.colors.text} />
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.title}>Contact Us</Text>
+          <Text style={styles.subtitle}>We're here to help with your travel needs</Text>
+        </View>
       </View>
       
       <ScrollView
@@ -190,8 +200,13 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
     paddingTop: theme.spacing.m,
+  },
+  backButton: {
+    marginRight: theme.spacing.m,
   },
   title: {
     ...theme.typography.heading,
