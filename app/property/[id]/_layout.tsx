@@ -3,7 +3,7 @@ import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Chrome as Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
+import { Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -21,7 +21,7 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.darkGray,
+        tabBarInactiveTintColor: '#555555',
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme.colors.border,
