@@ -62,7 +62,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Home size={size} color={color} />
           ),
-          tabBarTestID: 'tab-001',
         }}
       />
       <Tabs.Screen
@@ -72,7 +71,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Compass size={size} color={color} />
           ),
-          tabBarTestID: 'tab-002',
         }}
       />
       <Tabs.Screen
@@ -82,7 +80,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <BookOpen size={size} color={color} />
           ),
-          tabBarTestID: 'tab-003',
         }}
       />
       <Tabs.Screen
@@ -92,7 +89,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Info size={size} color={color} />
           ),
-          tabBarTestID: 'tab-004',
         }}
       />
       <Tabs.Screen
@@ -102,7 +98,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Phone size={size} color={color} />
           ),
-          tabBarTestID: 'tab-005',
         }}
       />
     </Tabs>
