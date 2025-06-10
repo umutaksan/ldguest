@@ -17,15 +17,15 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.textTertiary,
+        tabBarActiveTintColor: '#E9B872', // Using primary color directly
+        tabBarInactiveTintColor: '#555555', // Darker color for better visibility
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme.colors.border,
           height: tabBarHeight,
           paddingBottom: paddingBottom,
           paddingTop: 8,
-          backgroundColor: theme.colors.background,
+          backgroundColor: '#FFFFFF', // White background
           ...theme.shadows.small,
           // Web-specific optimizations
           ...(theme.layout.isWeb && {
@@ -38,6 +38,7 @@ export default function TabLayout() {
           ...theme.typography.caption,
           marginTop: 4,
           fontSize: theme.layout.isWeb ? 12 : 11,
+          fontWeight: '500', // Medium weight for better visibility
         },
       }}
     >
