@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { ChevronDown, ChevronUp, Plane, CreditCard, Passport, Umbrella, Sun, Wifi, Smartphone, Pill, Globe, Languages } from 'lucide-react-native';
+import { ChevronDown, ChevronUp, Plane, CreditCard, Import as Passport, Umbrella, Sun, Wifi, Smartphone, Pill, Globe, Languages } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function InfoScreen() {

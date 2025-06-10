@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { Mail, Phone, MapPin, MessageSquare, Send, CheckCircle } from 'lucide-react-native';
+import { Mail, Phone, MapPin, MessageSquare, Send, CircleCheck as CheckCircle } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function ContactScreen() {

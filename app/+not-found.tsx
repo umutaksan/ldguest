@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Link, Stack } from 'expo-router';
 import { theme } from '@/constants/theme';
-import { Home, ArrowLeft } from 'lucide-react-native';
+import { Chrome as Home, ArrowLeft } from 'lucide-react-native';
 
 export default function NotFoundScreen() {
   return (
