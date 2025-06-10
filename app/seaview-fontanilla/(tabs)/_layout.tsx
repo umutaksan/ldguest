@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
+import { Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
   const tabBarHeight = theme.layout.isWeb 
@@ -17,14 +18,14 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.textTertiary,
+        tabBarInactiveTintColor: theme.colors.darkGray,
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme.colors.border,
           height: tabBarHeight,
           paddingBottom: paddingBottom,
           paddingTop: 8,
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.colors.white,
           ...theme.shadows.small,
           // Web-specific optimizations
           ...(theme.layout.isWeb && {
@@ -37,38 +38,53 @@ export default function TabLayout() {
           ...theme.typography.caption,
           marginTop: 4,
           fontSize: theme.layout.isWeb ? 12 : 11,
+          fontWeight: '500',
         },
-        tabBarIcon: () => null, // Remove all icons
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Home size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
+          tabBarIcon: ({ color, size }) => (
+            <Compass size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="guide"
         options={{
           title: 'Guide',
+          tabBarIcon: ({ color, size }) => (
+            <BookOpen size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="info"
         options={{
           title: 'Info',
+          tabBarIcon: ({ color, size }) => (
+            <Info size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
           title: 'Contact',
+          tabBarIcon: ({ color, size }) => (
+            <Phone size={size} color={color} />
+          ),
         }}
       />
     </Tabs>
