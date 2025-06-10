@@ -1,111 +1,184 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { PageHeader } from '@/components/common/PageHeader';
-import { Phone, Mail, MessageCircle, TriangleAlert as AlertTriangle, UserRound, Heart, Clock, MessageSquare } from 'lucide-react-native';
+import { Mail, Phone, MapPin, MessageSquare, Send, CheckCircle } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function ContactScreen() {
   const insets = useSafeAreaInsets();
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
 
-  const whatsappNumber = '+34606767052';
-
-  const handleWhatsApp = () => {
-    Linking.openURL(`https://wa.me/${whatsappNumber.replace(/\+/g, '')}`);
+  const handleSubmit = () => {
+    // In a real app, you would send the form data to a server
+    console.log('Form submitted:', formData);
+    setFormSubmitted(true);
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setFormSubmitted(false);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    }, 3000);
   };
 
-  const emergencyNumbers = [
-    { id: 'emergency', title: 'General Emergencies', number: '112' },
-    { id: 'police', title: 'National Police', number: '091' },
-    { id: 'police-marbella', title: 'National Police (Marbella)', number: '952 76 26 00' },
-    { id: 'local-police', title: 'Local Police', number: '092' },
-    { id: 'local-police-marbella', title: 'Local Police (Marbella)', number: '952 89 99 00' },
-    { id: 'civil-guard', title: 'Civil Guard', number: '062' },
-    { id: 'fire', title: 'Fire Department', number: '952 77 43 49' },
-    { id: 'red-cross', title: 'Red Cross', number: '901 222 222' },
-    { id: 'hospital', title: 'Costa del Sol Hospital', number: '951 97 66 69' },
-    { id: 'civil-protection', title: 'Civil Protection', number: '952 77 51 95' },
-    { id: 'airport', title: 'Malaga Airport', number: '952 04 84 04' },
-    { id: 'post-office', title: 'Marbella Post Office', number: '952 81 08 87' },
-    { id: 'traffic', title: 'Traffic (Marbella)', number: '952 77 25 49' },
-    { id: 'train', title: 'RENFE (Train Service)', number: '919 19 05 04' },
-    { id: 'taxi', title: 'Taxisol Marbella', number: '952 77 44 88' },
+  const updateFormData = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const contactInfo = [
+    {
+      id: 'email',
+      icon: <Mail size={24} color={theme.colors.white} />,
+      title: 'Email Us',
+      value: 'support@travelapp.com',
+      backgroundColor: theme.colors.primary
+    },
+    {
+      id: 'phone',
+      icon: <Phone size={24} color={theme.colors.white} />,
+      title: 'Call Us',
+      value: '+1 (555) 123-4567',
+      backgroundColor: theme.colors.secondary
+    },
+    {
+      id: 'chat',
+      icon: <MessageSquare size={24} color={theme.colors.white} />,
+      title: 'Live Chat',
+      value: 'Available 24/7',
+      backgroundColor: theme.colors.accent
+    },
+    {
+      id: 'office',
+      icon: <MapPin size={24} color={theme.colors.white} />,
+      title: 'Visit Us',
+      value: '123 Travel Street, City',
+      backgroundColor: theme.colors.success
+    }
   ];
 
-  const handleCall = (phoneNumber: string) => {
-    Linking.openURL(`tel:${phoneNumber}`);
-  };
-
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader 
-        title="L&D Guest Marbella" 
-        showBackButton={false}
-        isHost={true}
-      />
-
-      <ScrollView 
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Contact Us</Text>
+        <Text style={styles.subtitle}>We're here to help with your travel needs</Text>
+      </View>
+      
+      <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        <Animated.View 
-          entering={FadeIn.duration(500)}
-          style={styles.ldGuestCard}
-        >
-          <View style={styles.ldGuestHeader}>
-            <Text style={styles.ldGuestTitle}>L&D Guest Marbella</Text>
-            <Text style={styles.whatsappOnly}>WhatsApp Only</Text>
-          </View>
-          
-          <TouchableOpacity 
-            style={styles.whatsappButton}
-            onPress={handleWhatsApp}
-            activeOpacity={0.8}
-          >
-            <MessageSquare size={20} color={theme.colors.white} />
-            <Text style={styles.whatsappButtonText}>Message on WhatsApp</Text>
-          </TouchableOpacity>
-        </Animated.View>
-
-        <View style={styles.divider} />
-
-        <Text style={styles.sectionTitle}>Emergency Numbers</Text>
-        
-        {emergencyNumbers.map((contact, index) => (
-          <Animated.View 
-            key={contact.id}
-            entering={FadeIn.delay(index * 100)}
-            style={styles.contactCard}
-          >
-            <View style={[styles.contactIconContainer, { 
-              backgroundColor: contact.id === 'emergency' ? theme.colors.error :
-                             contact.id.includes('police') ? theme.colors.primary :
-                             contact.id === 'hospital' ? theme.colors.secondary :
-                             theme.colors.accent
-            }]}>
-              {contact.id === 'emergency' ? <AlertTriangle size={24} color={theme.colors.white} /> :
-               contact.id === 'hospital' ? <Heart size={24} color={theme.colors.white} /> :
-               <Phone size={24} color={theme.colors.white} />}
-            </View>
-            
-            <View style={styles.contactInfo}>
-              <Text style={styles.contactTitle}>{contact.title}</Text>
-              <Text style={styles.contactDetail}>{contact.number}</Text>
-            </View>
-
-            <TouchableOpacity 
-              style={styles.actionButton}
-              onPress={() => handleCall(contact.number.replace(/\s/g, ''))}
+        <View style={styles.contactCards}>
+          {contactInfo.map((item, index) => (
+            <Animated.View
+              key={item.id}
+              entering={FadeIn.delay(index * 100)}
+              style={[styles.contactCard, { backgroundColor: item.backgroundColor }]}
             >
-              <Phone size={22} color={theme.colors.primary} />
-            </TouchableOpacity>
-          </Animated.View>
-        ))}
-
-        <Text style={styles.note}>
-          In case of emergency, please don't hesitate to contact the appropriate service.
-        </Text>
+              <View style={styles.contactIconContainer}>
+                {item.icon}
+              </View>
+              <Text style={styles.contactTitle}>{item.title}</Text>
+              <Text style={styles.contactValue}>{item.value}</Text>
+            </Animated.View>
+          ))}
+        </View>
+        
+        <View style={styles.formContainer}>
+          <Text style={styles.formTitle}>Send us a message</Text>
+          
+          {formSubmitted ? (
+            <Animated.View 
+              entering={FadeIn}
+              style={styles.successMessage}
+            >
+              <CheckCircle size={24} color={theme.colors.success} />
+              <Text style={styles.successText}>
+                Thank you for your message! We'll get back to you soon.
+              </Text>
+            </Animated.View>
+          ) : (
+            <>
+              <View style={styles.inputContainer}>
+                <Text style={styles.inputLabel}>Full Name</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your name"
+                  placeholderTextColor={theme.colors.textTertiary}
+                  value={formData.name}
+                  onChangeText={(text) => updateFormData('name', text)}
+                />
+              </View>
+              
+              <View style={styles.inputContainer}>
+                <Text style={styles.inputLabel}>Email Address</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your email"
+                  placeholderTextColor={theme.colors.textTertiary}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  value={formData.email}
+                  onChangeText={(text) => updateFormData('email', text)}
+                />
+              </View>
+              
+              <View style={styles.inputContainer}>
+                <Text style={styles.inputLabel}>Phone Number</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your phone number"
+                  placeholderTextColor={theme.colors.textTertiary}
+                  keyboardType="phone-pad"
+                  value={formData.phone}
+                  onChangeText={(text) => updateFormData('phone', text)}
+                />
+              </View>
+              
+              <View style={styles.inputContainer}>
+                <Text style={styles.inputLabel}>Message</Text>
+                <TextInput
+                  style={[styles.input, styles.textArea]}
+                  placeholder="How can we help you?"
+                  placeholderTextColor={theme.colors.textTertiary}
+                  multiline
+                  numberOfLines={Platform.OS === 'ios' ? 0 : 4}
+                  textAlignVertical="top"
+                  value={formData.message}
+                  onChangeText={(text) => updateFormData('message', text)}
+                />
+              </View>
+              
+              <TouchableOpacity 
+                style={styles.submitButton}
+                onPress={handleSubmit}
+              >
+                <Text style={styles.submitButtonText}>Send Message</Text>
+                <Send size={20} color={theme.colors.white} />
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
+        
+        <View style={styles.officeHours}>
+          <Text style={styles.officeHoursTitle}>Office Hours</Text>
+          <Text style={styles.officeHoursText}>Monday - Friday: 9:00 AM - 6:00 PM</Text>
+          <Text style={styles.officeHoursText}>Saturday: 10:00 AM - 4:00 PM</Text>
+          <Text style={styles.officeHoursText}>Sunday: Closed</Text>
+        </View>
       </ScrollView>
     </View>
   );
@@ -116,91 +189,126 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
+  header: {
+    paddingHorizontal: theme.spacing.m,
+    paddingTop: theme.spacing.m,
+  },
+  title: {
+    ...theme.typography.heading,
+    color: theme.colors.text,
+  },
+  subtitle: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginTop: theme.spacing.xs,
+  },
   content: {
     padding: theme.spacing.m,
+    paddingBottom: theme.spacing.xl * 2,
   },
-  ldGuestCard: {
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  ldGuestHeader: {
-    marginBottom: theme.spacing.m,
-  },
-  ldGuestTitle: {
-    ...theme.typography.subheading,
-    color: theme.colors.text,
-    marginBottom: theme.spacing.xs,
-  },
-  whatsappOnly: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.textSecondary,
-  },
-  whatsappButton: {
+  contactCards: {
     flexDirection: 'row',
-    backgroundColor: '#25D366', // WhatsApp green
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...theme.shadows.small,
-  },
-  whatsappButtonText: {
-    ...theme.typography.button,
-    color: theme.colors.white,
-    marginLeft: theme.spacing.s,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: theme.colors.border,
-    marginVertical: theme.spacing.l,
-  },
-  sectionTitle: {
-    ...theme.typography.subheading,
-    marginBottom: theme.spacing.m,
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing.l,
   },
   contactCard: {
-    flexDirection: 'row',
-    backgroundColor: theme.colors.card,
+    width: '48%',
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
+    alignItems: 'center',
     ...theme.shadows.small,
   },
   contactIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgba(255,255,255,0.2)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: theme.spacing.m,
-  },
-  contactInfo: {
-    flex: 1,
-    justifyContent: 'center',
+    marginBottom: theme.spacing.s,
   },
   contactTitle: {
     ...theme.typography.bodyMedium,
-    marginBottom: 2,
+    color: theme.colors.white,
+    marginBottom: theme.spacing.xs,
   },
-  contactDetail: {
+  contactValue: {
     ...theme.typography.bodySmall,
-    color: theme.colors.textTertiary,
+    color: theme.colors.white,
+    opacity: 0.9,
+    textAlign: 'center',
   },
-  actionButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: theme.colors.primaryLight,
+  formContainer: {
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.l,
+    ...theme.shadows.small,
+  },
+  formTitle: {
+    ...theme.typography.subheading,
+    marginBottom: theme.spacing.m,
+  },
+  inputContainer: {
+    marginBottom: theme.spacing.m,
+  },
+  inputLabel: {
+    ...theme.typography.bodyMedium,
+    marginBottom: theme.spacing.xs,
+  },
+  input: {
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    ...theme.typography.body,
+    color: theme.colors.text,
+  },
+  textArea: {
+    minHeight: 120,
+    textAlignVertical: 'top',
+  },
+  submitButton: {
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    ...theme.shadows.small,
   },
-  note: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.textTertiary,
-    textAlign: 'center',
-    marginTop: theme.spacing.m,
-    fontStyle: 'italic',
+  submitButtonText: {
+    ...theme.typography.button,
+    color: theme.colors.white,
+    marginRight: theme.spacing.s,
+  },
+  successMessage: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+  },
+  successText: {
+    ...theme.typography.body,
+    color: theme.colors.success,
+    marginLeft: theme.spacing.m,
+    flex: 1,
+  },
+  officeHours: {
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  officeHoursTitle: {
+    ...theme.typography.subheading,
+    marginBottom: theme.spacing.s,
+  },
+  officeHoursText: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
   },
 });

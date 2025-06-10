@@ -1,452 +1,230 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
-import { PageHeader } from '@/components/common/PageHeader';
-import { InfoCard } from '@/components/common/InfoCard';
-import { UtensilsCrossed, Landmark, ShoppingBag, Waves, Map, CarFront, Wine, Film, Compass, Mountain, Dumbbell, TreePalm as Palmtree, Music, Sparkles, Store, ShoppingCart, Leaf, Gift, Building2, Shirt, Smartphone, Navigation2, Pizza, CreditCard, Globe as Globe2, Users, Languages, MessageSquare } from 'lucide-react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Compass, Utensils, Palmtree, Camera, Ticket, MapPin, Star, ChevronRight } from 'lucide-react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function GuideScreen() {
   const insets = useSafeAreaInsets();
-  const [selectedCategory, setSelectedCategory] = useState('activities');
-
+  const [activeCategory, setActiveCategory] = useState('Activities');
+  
   const categories = [
-    { id: 'activities', name: 'Activities', icon: <Compass size={20} color={theme.colors.primary} /> },
-    { id: 'shopping', name: 'Shopping', icon: <ShoppingBag size={20} color={theme.colors.primary} /> },
-    { id: 'apps', name: 'Useful Apps', icon: <Smartphone size={20} color={theme.colors.primary} /> },
+    { id: 'Activities', icon: <Compass size={24} color={theme.colors.primary} /> },
+    { id: 'Food', icon: <Utensils size={24} color={theme.colors.primary} /> },
+    { id: 'Nature', icon: <Palmtree size={24} color={theme.colors.primary} /> },
+    { id: 'Sightseeing', icon: <Camera size={24} color={theme.colors.primary} /> },
+    { id: 'Events', icon: <Ticket size={24} color={theme.colors.primary} /> },
   ];
-
-  const apps = {
-    transportation: [
-      { id: 1, name: 'Uber', description: 'Popular ride-hailing app for easy transportation' },
-      { id: 2, name: 'BlaBlaCar', description: 'Platform for intercity ride-sharing' },
-      { id: 3, name: 'Renfe Cercanías', description: 'Spain\'s national railway app for train schedules' },
-      { id: 4, name: 'Moovit', description: 'Public transport guide for bus and train schedules' },
-      { id: 5, name: 'Google Maps', description: 'Popular app for urban and intercity navigation' }
+  
+  const guides = {
+    Activities: [
+      {
+        id: 1,
+        title: 'Best Hiking Trails',
+        image: 'https://images.pexels.com/photos/2755612/pexels-photo-2755612.jpeg',
+        location: 'Swiss Alps',
+        rating: 4.9,
+        description: 'Discover the most breathtaking hiking trails in the Swiss Alps with panoramic views.'
+      },
+      {
+        id: 2,
+        title: 'Scuba Diving Adventures',
+        image: 'https://images.pexels.com/photos/1645028/pexels-photo-1645028.jpeg',
+        location: 'Great Barrier Reef',
+        rating: 4.8,
+        description: 'Explore the underwater world of the Great Barrier Reef with expert diving guides.'
+      },
+      {
+        id: 3,
+        title: 'Hot Air Balloon Rides',
+        image: 'https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg',
+        location: 'Cappadocia',
+        rating: 4.9,
+        description: 'Experience the magical landscapes of Cappadocia from above in a hot air balloon.'
+      }
     ],
-    foodAndRestaurants: [
-      { id: 1, name: 'Glovo', description: 'Delivery app for food, groceries, and daily needs' },
-      { id: 2, name: 'Just Eat', description: 'Order food from local restaurants easily' },
-      { id: 3, name: 'TheFork', description: 'Book reservations and get discounts at restaurants' }
+    Food: [
+      {
+        id: 1,
+        title: 'Street Food Tour',
+        image: 'https://images.pexels.com/photos/2347383/pexels-photo-2347383.jpeg',
+        location: 'Bangkok',
+        rating: 4.7,
+        description: 'Sample the best street food Bangkok has to offer with local food experts.'
+      },
+      {
+        id: 2,
+        title: 'Wine Tasting Experience',
+        image: 'https://images.pexels.com/photos/1123260/pexels-photo-1123260.jpeg',
+        location: 'Tuscany',
+        rating: 4.8,
+        description: 'Visit family-owned vineyards and taste premium wines in the heart of Tuscany.'
+      },
+      {
+        id: 3,
+        title: 'Cooking Class',
+        image: 'https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg',
+        location: 'Barcelona',
+        rating: 4.9,
+        description: 'Learn to cook authentic Spanish paella and tapas with professional chefs.'
+      }
     ],
-    tourismAndSocial: [
-      { id: 1, name: 'TripAdvisor', description: 'Discover places to visit and recommendations' },
-      { id: 2, name: 'Civitatis', description: 'Book city tours, activities, and events' },
-      { id: 3, name: 'Meetup', description: 'Join social events and meet new people' },
-      { id: 4, name: 'Eventbrite', description: 'Find tickets for concerts and events' }
+    Nature: [
+      {
+        id: 1,
+        title: 'Wildlife Safari',
+        image: 'https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg',
+        location: 'Serengeti',
+        rating: 4.9,
+        description: 'Witness the incredible wildlife of the Serengeti on a guided safari adventure.'
+      },
+      {
+        id: 2,
+        title: 'Rainforest Expedition',
+        image: 'https://images.pexels.com/photos/975771/pexels-photo-975771.jpeg',
+        location: 'Amazon',
+        rating: 4.8,
+        description: 'Explore the biodiversity of the Amazon rainforest with expert naturalists.'
+      },
+      {
+        id: 3,
+        title: 'Northern Lights Tour',
+        image: 'https://images.pexels.com/photos/1933316/pexels-photo-1933316.jpeg',
+        location: 'Iceland',
+        rating: 4.9,
+        description: 'Chase the aurora borealis across the Icelandic night sky with professional guides.'
+      }
     ],
-    financeAndPayments: [
-      { id: 1, name: 'Bizum', description: 'Quick person-to-person money transfers' },
-      { id: 2, name: 'Revolut', description: 'Manage currency exchange and expenses' },
-      { id: 3, name: 'PayPal', description: 'Widely used for online payments' }
+    Sightseeing: [
+      {
+        id: 1,
+        title: 'Ancient Ruins Tour',
+        image: 'https://images.pexels.com/photos/1797158/pexels-photo-1797158.jpeg',
+        location: 'Rome',
+        rating: 4.8,
+        description: 'Discover the fascinating history of ancient Rome with expert archaeologists.'
+      },
+      {
+        id: 2,
+        title: 'City Architecture Walk',
+        image: 'https://images.pexels.com/photos/699466/pexels-photo-699466.jpeg',
+        location: 'Paris',
+        rating: 4.7,
+        description: 'Explore the stunning architectural landmarks of Paris with design experts.'
+      },
+      {
+        id: 3,
+        title: 'Temple Exploration',
+        image: 'https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg',
+        location: 'Kyoto',
+        rating: 4.9,
+        description: 'Visit ancient temples and learn about Japanese culture and traditions.'
+      }
     ],
-    languageAndTranslation: [
-      { id: 1, name: 'Google Translate', description: 'Break language barriers in Spanish' },
-      { id: 2, name: 'Duolingo', description: 'Learn Spanish effectively' },
-      { id: 3, name: 'SayHi', description: 'Handy tool for voice translation' }
-    ],
-    communication: [
-      { id: 1, name: 'WhatsApp', description: 'Popular communication app in Spain' },
-      { id: 2, name: 'Instagram', description: 'Share photos and videos' },
-      { id: 3, name: 'Facebook', description: 'Events and group discussions' }
-    ],
-    parking: [
-      { id: 1, name: 'EasyPark', description: 'Find and pay for parking spots easily' },
-      { id: 2, name: 'Telpark', description: 'Popular for parking payments and spot finding' },
-      { id: 3, name: 'Parkopedia', description: 'Guide to parking locations and prices' }
+    Events: [
+      {
+        id: 1,
+        title: 'Music Festival Guide',
+        image: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg',
+        location: 'Barcelona',
+        rating: 4.8,
+        description: 'Navigate the best music festivals with insider tips and VIP access.'
+      },
+      {
+        id: 2,
+        title: 'Cultural Celebrations',
+        image: 'https://images.pexels.com/photos/1684187/pexels-photo-1684187.jpeg',
+        location: 'Rio de Janeiro',
+        rating: 4.9,
+        description: 'Experience the vibrant Carnival celebrations with local guides and dancers.'
+      },
+      {
+        id: 3,
+        title: 'Food & Wine Festival',
+        image: 'https://images.pexels.com/photos/5638331/pexels-photo-5638331.jpeg',
+        location: 'Melbourne',
+        rating: 4.7,
+        description: 'Sample gourmet cuisine and premium wines at Melbourne\'s top food festival.'
+      }
     ]
   };
-
-  const stores = {
-    supermarkets: [
-      { id: 1, name: 'Mercadona', description: "Spain's popular supermarket chain with quality products" },
-      { id: 2, name: 'Carrefour', description: 'Large supermarket with wide product selection' },
-      { id: 3, name: 'Lidl', description: 'Budget-friendly grocery store' },
-      { id: 4, name: 'ALDI', description: 'Quality products at affordable prices' },
-      { id: 5, name: 'Supersol', description: 'Local supermarket chain in Marbella' }
-    ],
-    organic: [
-      { id: 1, name: 'Bio Market Marbella', description: 'Organic and natural products' },
-      { id: 2, name: 'Gourmet Experience', description: 'Premium food and imported goods' },
-      { id: 3, name: 'The Farmacy Marbella', description: 'Natural and sustainable products' }
-    ],
-    markets: [
-      { id: 1, name: 'Marbella Municipal Market', description: 'Fresh local produce and goods' },
-      { id: 2, name: 'Puerto Banús Street Market', description: 'Saturday market with various items' },
-      { id: 3, name: 'San Pedro Market', description: 'Thursday market with fresh produce' }
-    ],
-    shopping_centers: [
-      { id: 1, name: 'La Cañada Shopping Center', description: 'Largest mall in Marbella' },
-      { id: 2, name: 'El Corte Inglés', description: 'Premium department store' },
-      { id: 3, name: 'Centro Plaza', description: 'Boutiques and restaurants' }
-    ],
-    specialty: [
-      { id: 1, name: 'El Arenal Organic Market', description: 'Ecological products' },
-      { id: 2, name: 'Dehesa de Los Monteros', description: 'Local organic products' },
-      { id: 3, name: 'Marbella Old Town Boutiques', description: 'Unique local shops' }
-    ]
-  };
-
-  const activities = {
-    beachAndWater: [
-      { id: 1, name: 'Playa de la Fontanilla', description: 'Central beach with excellent facilities' },
-      { id: 2, name: 'Playa Puerto Banús', description: 'Glamorous beach near the marina' },
-      { id: 3, name: 'Playa Nueva Andalucía', description: 'Family-friendly beach with calm waters' },
-      { id: 4, name: 'Jet Skiing', description: 'Exciting water sports adventure' },
-      { id: 5, name: 'Paddleboarding', description: 'Perfect for all skill levels' },
-      { id: 6, name: 'Yacht Charter', description: 'Luxury sailing experience' },
-      { id: 7, name: 'Dolphin Watching', description: 'See dolphins in their natural habitat' },
-      { id: 8, name: 'CostaWaterPark', description: 'Floating water park fun' },
-      { id: 9, name: 'Snorkeling Tour', description: 'Explore underwater marine life' },
-      { id: 10, name: 'Scuba Diving', description: 'Professional diving experiences' }
-    ],
-    adventureAndOutdoor: [
-      { id: 1, name: 'La Concha Mountain', description: 'Iconic hiking trail with panoramic views' },
-      { id: 2, name: 'Sierra de las Nieves', description: 'National park with diverse trails' },
-      { id: 3, name: 'Horseback Tour', description: 'Scenic rides through nature' },
-      { id: 4, name: 'Quad Biking', description: 'Off-road adventure tours' },
-      { id: 5, name: 'Rock Climbing', description: 'Various difficulty levels available' },
-      { id: 6, name: 'Mountain Biking', description: 'Trails for all skill levels' },
-      { id: 7, name: 'Selwo Aventura', description: 'Wildlife and adventure park' },
-      { id: 8, name: 'Paragliding', description: 'Breathtaking aerial views' },
-      { id: 9, name: 'Kitesurfing in Tarifa', description: 'World-class kitesurfing spot' },
-      { id: 10, name: 'Beach Volleyball', description: 'Active fun on the beach' }
-    ],
-    sportsAndFitness: [
-      { id: 1, name: 'Aloha Golf Club', description: 'Premium golf experience' },
-      { id: 2, name: 'Marbella Golf & Country Club', description: 'Championship course' },
-      { id: 3, name: 'Padel Tennis', description: 'Popular local sport' },
-      { id: 4, name: 'Beachside Yoga', description: 'Wellness by the sea' },
-      { id: 5, name: 'Tennis Club', description: 'Professional facilities' },
-      { id: 6, name: 'Fitness Classes', description: 'Various workout options' }
-    ],
-    culturalAndHistorical: [
-      { id: 1, name: 'Marbella Old Town', description: 'Historic district exploration' },
-      { id: 2, name: 'Avenida del Mar', description: 'Dalí sculptures display' },
-      { id: 3, name: 'Museo Ralli', description: 'Contemporary art museum' },
-      { id: 4, name: 'Murallas del Castillo', description: 'Ancient castle walls' },
-      { id: 5, name: 'Plaza de los Naranjos', description: 'Historic town square' },
-      { id: 6, name: 'Iglesia de la Encarnación', description: 'Beautiful old church' },
-      { id: 7, name: 'Museo del Grabado', description: 'Spanish engraving museum' }
-    ],
-    nightlifeAndEntertainment: [
-      { id: 1, name: 'Olivia Valère', description: 'Exclusive nightclub' },
-      { id: 2, name: 'Pangea', description: 'Rooftop club experience' },
-      { id: 3, name: 'Flamenco Shows', description: 'Traditional Spanish dance' },
-      { id: 4, name: 'Aqwa Mist', description: 'Popular nightclub' },
-      { id: 5, name: 'Casino Marbella', description: 'Gaming and entertainment' }
-    ]
-  };
-
-  const renderActivities = () => (
-    <>
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Waves size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Beach & Water Activities
-        </Text>
-        {activities.beachAndWater.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Mountain size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Adventure & Outdoor
-        </Text>
-        {activities.adventureAndOutdoor.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Dumbbell size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Sports & Fitness
-        </Text>
-        {activities.sportsAndFitness.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Landmark size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Cultural & Historical
-        </Text>
-        {activities.culturalAndHistorical.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Music size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Nightlife & Entertainment
-        </Text>
-        {activities.nightlifeAndEntertainment.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-    </>
-  );
-
-  const renderShopping = () => (
-    <>
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <ShoppingCart size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Supermarkets
-        </Text>
-        {stores.supermarkets.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Leaf size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Organic & Gourmet
-        </Text>
-        {stores.organic.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Store size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Local Markets
-        </Text>
-        {stores.markets.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Building2 size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Shopping Centers
-        </Text>
-        {stores.shopping_centers.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Gift size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Specialty Stores
-        </Text>
-        {stores.specialty.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-    </>
-  );
-
-  const renderApps = () => (
-    <>
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Navigation2 size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Transportation Apps
-        </Text>
-        {apps.transportation.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Pizza size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Food & Restaurants
-        </Text>
-        {apps.foodAndRestaurants.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Globe2 size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Tourism & Social
-        </Text>
-        {apps.tourismAndSocial.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <CreditCard size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Finance & Payments
-        </Text>
-        {apps.financeAndPayments.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <Languages size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Language & Translation
-        </Text>
-        {apps.languageAndTranslation.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <MessageSquare size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Communication
-        </Text>
-        {apps.communication.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-
-      <View style={styles.categorySection}>
-        <Text style={styles.categoryTitle}>
-          <CarFront size={20} color={theme.colors.primary} style={styles.categoryIcon} />
-          Parking
-        </Text>
-        {apps.parking.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
-      </View>
-    </>
-  );
 
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader 
-        title="Local Guide" 
-        showBackButton={false}
-      />
-
-      <View style={styles.categoryTabs}>
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoryTabsContent}
-        >
-          {categories.map((category) => (
-            <TouchableOpacity
-              key={category.id}
-              style={[
-                styles.categoryTab,
-                selectedCategory === category.id && styles.categoryTabActive
-              ]}
-              onPress={() => setSelectedCategory(category.id)}
-            >
-              {category.icon}
-              <Text style={[
-                styles.categoryTabText,
-                selectedCategory === category.id && styles.categoryTabTextActive
-              ]}>
-                {category.name}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Travel Guides</Text>
+        <Text style={styles.subtitle}>Expert recommendations for your journey</Text>
       </View>
-
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
+      
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoriesContainer}
       >
-        {selectedCategory === 'activities' && renderActivities()}
-        {selectedCategory === 'shopping' && renderShopping()}
-        {selectedCategory === 'apps' && renderApps()}
+        {categories.map(category => (
+          <TouchableOpacity
+            key={category.id}
+            style={[
+              styles.categoryButton,
+              activeCategory === category.id && styles.activeCategoryButton
+            ]}
+            onPress={() => setActiveCategory(category.id)}
+          >
+            <View style={styles.categoryIcon}>
+              {category.icon}
+            </View>
+            <Text
+              style={[
+                styles.categoryText,
+                activeCategory === category.id && styles.activeCategoryText
+              ]}
+            >
+              {category.id}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+      
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.guidesContainer}
+      >
+        {guides[activeCategory].map((guide, index) => (
+          <Animated.View
+            key={guide.id}
+            entering={FadeIn.delay(index * 100)}
+            style={styles.guideCard}
+          >
+            <Image
+              source={{ uri: guide.image }}
+              style={styles.guideImage}
+            />
+            <View style={styles.guideContent}>
+              <View style={styles.guideHeader}>
+                <Text style={styles.guideTitle}>{guide.title}</Text>
+                <View style={styles.ratingContainer}>
+                  <Star size={14} color={theme.colors.primary} />
+                  <Text style={styles.ratingText}>{guide.rating}</Text>
+                </View>
+              </View>
+              
+              <View style={styles.locationContainer}>
+                <MapPin size={14} color={theme.colors.textSecondary} />
+                <Text style={styles.locationText}>{guide.location}</Text>
+              </View>
+              
+              <Text style={styles.guideDescription} numberOfLines={2}>
+                {guide.description}
+              </Text>
+              
+              <TouchableOpacity style={styles.readMoreButton}>
+                <Text style={styles.readMoreText}>Read More</Text>
+                <ChevronRight size={16} color={theme.colors.primary} />
+              </TouchableOpacity>
+            </View>
+          </Animated.View>
+        ))}
       </ScrollView>
     </View>
   );
@@ -457,49 +235,109 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
-  categoryTabs: {
-    backgroundColor: theme.colors.card,
-    paddingVertical: theme.spacing.s,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
-  },
-  categoryTabsContent: {
+  header: {
     paddingHorizontal: theme.spacing.m,
+    paddingTop: theme.spacing.m,
   },
-  categoryTab: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: theme.spacing.s,
-    paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
-    marginRight: theme.spacing.s,
-    backgroundColor: theme.colors.surface,
+  title: {
+    ...theme.typography.heading,
+    color: theme.colors.text,
   },
-  categoryTabActive: {
-    backgroundColor: theme.colors.primaryLight,
-  },
-  categoryTabText: {
-    ...theme.typography.bodyMedium,
+  subtitle: {
+    ...theme.typography.body,
     color: theme.colors.textSecondary,
-    marginLeft: theme.spacing.s,
+    marginTop: theme.spacing.xs,
   },
-  categoryTabTextActive: {
+  categoriesContainer: {
+    paddingHorizontal: theme.spacing.m,
+    paddingVertical: theme.spacing.m,
+  },
+  categoryButton: {
+    alignItems: 'center',
+    marginRight: theme.spacing.l,
+  },
+  activeCategoryButton: {},
+  categoryIcon: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: theme.colors.card,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: theme.spacing.s,
+    ...theme.shadows.small,
+  },
+  categoryText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+  },
+  activeCategoryText: {
     color: theme.colors.primary,
+    ...theme.typography.bodyMedium,
   },
-  content: {
+  guidesContainer: {
     padding: theme.spacing.m,
   },
-  categorySection: {
-    marginBottom: theme.spacing.xl,
-  },
-  categoryTitle: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.primary,
+  guideCard: {
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: theme.colors.card,
+    overflow: 'hidden',
     marginBottom: theme.spacing.m,
+    ...theme.shadows.medium,
+  },
+  guideImage: {
+    width: '100%',
+    height: 200,
+  },
+  guideContent: {
+    padding: theme.spacing.m,
+  },
+  guideHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: theme.spacing.s,
+  },
+  guideTitle: {
+    ...theme.typography.bodyMedium,
+    flex: 1,
+  },
+  ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: theme.colors.primaryLight,
+    paddingHorizontal: theme.spacing.s,
+    paddingVertical: 4,
+    borderRadius: theme.borderRadius.s,
   },
-  categoryIcon: {
-    marginRight: theme.spacing.s,
+  ratingText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.primary,
+    marginLeft: 4,
+  },
+  locationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.s,
+  },
+  locationText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginLeft: theme.spacing.xs,
+  },
+  guideDescription: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.m,
+  },
+  readMoreButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+  },
+  readMoreText: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+    marginRight: theme.spacing.xs,
   },
 });

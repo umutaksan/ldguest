@@ -1,183 +1,207 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PropertyHero } from '@/components/common/PropertyHero';
-import { SectionCard } from '@/components/common/SectionCard';
-import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
-import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon } from 'lucide-react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { MapPin, Star, Clock, Users } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
-  
-  const handleViewMoreProperties = () => {
-    Linking.openURL('https://www.ldguest.com/ldhome');
-  };
 
-  const handleAirbnbReview = () => {
-    Linking.openURL('https://www.airbnb.com/rooms/review');
-  };
+  const featuredDestinations = [
+    {
+      id: 1,
+      name: 'Santorini, Greece',
+      image: 'https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg',
+      rating: 4.9,
+      duration: '5 days',
+      people: '2 adults'
+    },
+    {
+      id: 2,
+      name: 'Bali, Indonesia',
+      image: 'https://images.pexels.com/photos/1802255/pexels-photo-1802255.jpeg',
+      rating: 4.8,
+      duration: '7 days',
+      people: '2 adults'
+    },
+    {
+      id: 3,
+      name: 'Kyoto, Japan',
+      image: 'https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg',
+      rating: 4.7,
+      duration: '6 days',
+      people: '2 adults'
+    }
+  ];
 
-  const handleBookingReview = () => {
-    Linking.openURL('https://www.booking.com/reviews');
-  };
+  const popularExperiences = [
+    {
+      id: 1,
+      name: 'Cooking Class in Barcelona',
+      image: 'https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg',
+      price: '$65',
+      rating: 4.8
+    },
+    {
+      id: 2,
+      name: 'Wine Tasting in Tuscany',
+      image: 'https://images.pexels.com/photos/1123260/pexels-photo-1123260.jpeg',
+      price: '$89',
+      rating: 4.9
+    },
+    {
+      id: 3,
+      name: 'Surfing Lessons in Hawaii',
+      image: 'https://images.pexels.com/photos/1654489/pexels-photo-1654489.jpeg',
+      price: '$75',
+      rating: 4.7
+    }
+  ];
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          styles.scrollContent,
-          { paddingBottom: insets.bottom + theme.spacing.xl }
-        ]}
+        contentContainerStyle={styles.scrollContent}
       >
-        <PropertyHero
-          title="1+1 Jardines Tropicales Puerto Banús"
-          subtitle="Thank you for your reservation!"
-          imageUrl="https://a0.muscache.com/im/pictures/miso/Hosting-1316607383752040451/original/4009975e-0d1a-450c-9458-88acab09ef65.png?im_w=1440&im_format=avif"
-        />
-
-        <ResponsiveContainer>
-          <View style={styles.quickAccess}>
-            <View style={styles.row}>
-              <SectionCard
-                title="The Location"
-                icon={<MapPin size={28} color={theme.colors.secondary} />}
-                route="/location"
-                delay={1}
-              />
-              <SectionCard
-                title="Home Entry"
-                icon={<HomeIcon size={28} color={theme.colors.secondary} />}
-                route="/entry"
-                delay={2}
-              />
-            </View>
-            
-            <View style={styles.row}>
-              <SectionCard
-                title="WiFi"
-                icon={<Wifi size={28} color={theme.colors.secondary} />}
-                route="/wifi"
-                delay={3}
-              />
-              <SectionCard
-                title="House Videos"
-                icon={<Video size={28} color={theme.colors.secondary} />}
-                route="/videos"
-                delay={4}
-              />
-            </View>
-            
-            <View style={styles.row}>
-              <SectionCard
-                title="Property Rules"
-                icon={<Book size={28} color={theme.colors.secondary} />}
-                route="/rules"
-                delay={5}
-              />
-              <SectionCard
-                title="Places to Eat"
-                icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
-                route="/dining"
-                delay={6}
-              />
-            </View>
-            
-            <View style={styles.row}>
-              <SectionCard
-                title="Places to Visit"
-                icon={<Landmark size={28} color={theme.colors.secondary} />}
-                route="/attractions"
-                delay={7}
-              />
-              <SectionCard
-                title="Luggage Storage"
-                icon={<Briefcase size={28} color={theme.colors.secondary} />}
-                route="/luggage"
-                delay={8}
-              />
-            </View>
-
-            <View style={styles.row}>
-              <SectionCard
-                title="Car Rental"
-                icon={<Car size={28} color={theme.colors.secondary} />}
-                route="/car-rental"
-                delay={9}
-              />
-              <SectionCard
-                title="Parking"
-                icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
-                route="/parking"
-                delay={10}
-              />
-            </View>
+        <View style={styles.header}>
+          <View>
+            <Text style={styles.greeting}>Hello, Traveler</Text>
+            <Text style={styles.subtitle}>Where to next?</Text>
           </View>
-
-          <TouchableOpacity 
-            style={styles.promoContainer}
-            onPress={handleViewMoreProperties}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
-              style={styles.promoImage}
-              resizeMode="cover"
+          <View style={styles.profileImageContainer}>
+            <Image 
+              source={{ uri: 'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg' }} 
+              style={styles.profileImage} 
             />
-            <LinearGradient
-              colors={['transparent', 'rgba(0,0,0,0.8)']}
-              style={styles.promoOverlay}
+          </View>
+        </View>
+
+        <Text style={styles.sectionTitle}>Featured Destinations</Text>
+        
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.featuredContainer}
+        >
+          {featuredDestinations.map((destination, index) => (
+            <Animated.View 
+              key={destination.id}
+              entering={FadeIn.delay(index * 100)}
+              style={styles.featuredCard}
             >
-              <View style={styles.promoContent}>
-                <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
-                <Text style={styles.promoDescription}>
-                  Explore our collection of beautiful properties across Marbella's most desirable locations
-                </Text>
-                <View style={styles.promoButton}>
-                  <Text style={styles.promoButtonText}>View Properties</Text>
-                  <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+              <Image 
+                source={{ uri: destination.image }} 
+                style={styles.featuredImage} 
+              />
+              <View style={styles.featuredContent}>
+                <Text style={styles.featuredName}>{destination.name}</Text>
+                <View style={styles.featuredDetails}>
+                  <View style={styles.featuredDetail}>
+                    <Star size={16} color={theme.colors.primary} />
+                    <Text style={styles.featuredDetailText}>{destination.rating}</Text>
+                  </View>
+                  <View style={styles.featuredDetail}>
+                    <Clock size={16} color={theme.colors.primary} />
+                    <Text style={styles.featuredDetailText}>{destination.duration}</Text>
+                  </View>
+                  <View style={styles.featuredDetail}>
+                    <Users size={16} color={theme.colors.primary} />
+                    <Text style={styles.featuredDetailText}>{destination.people}</Text>
+                  </View>
                 </View>
               </View>
-            </LinearGradient>
-          </TouchableOpacity>
+            </Animated.View>
+          ))}
+        </ScrollView>
 
-          <View style={styles.ratingContainer}>
-            <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
-            <Text style={styles.ratingDescription}>
-              We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
-            </Text>
-            <View style={styles.ratingButtons}>
-              <TouchableOpacity 
-                style={[styles.ratingButton, styles.airbnbButton]}
-                onPress={handleAirbnbReview}
-                activeOpacity={0.8}
-              >
-                <Image 
-                  source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                  style={styles.platformLogo}
-                  resizeMode="contain"
-                />
-                <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                style={[styles.ratingButton, styles.bookingButton]}
-                onPress={handleBookingReview}
-                activeOpacity={0.8}
-              >
-                <Image 
-                  source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
-                  style={styles.platformLogo}
-                  resizeMode="contain"
-                />
-                <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>Review on Booking</Text>
-              </TouchableOpacity>
+        <Text style={styles.sectionTitle}>Popular Experiences</Text>
+        
+        <View style={styles.experiencesContainer}>
+          {popularExperiences.map((experience, index) => (
+            <Animated.View 
+              key={experience.id}
+              entering={FadeIn.delay(index * 100 + 300)}
+              style={styles.experienceCard}
+            >
+              <Image 
+                source={{ uri: experience.image }} 
+                style={styles.experienceImage} 
+              />
+              <View style={styles.experienceContent}>
+                <Text style={styles.experienceName}>{experience.name}</Text>
+                <View style={styles.experienceDetails}>
+                  <Text style={styles.experiencePrice}>{experience.price}</Text>
+                  <View style={styles.experienceRating}>
+                    <Star size={14} color={theme.colors.primary} />
+                    <Text style={styles.experienceRatingText}>{experience.rating}</Text>
+                  </View>
+                </View>
+              </View>
+            </Animated.View>
+          ))}
+        </View>
+
+        <Text style={styles.sectionTitle}>Trending Cities</Text>
+        
+        <View style={styles.trendingContainer}>
+          <TouchableOpacity style={styles.trendingItem}>
+            <Image 
+              source={{ uri: 'https://images.pexels.com/photos/699466/pexels-photo-699466.jpeg' }} 
+              style={styles.trendingImage} 
+            />
+            <View style={styles.trendingOverlay}>
+              <Text style={styles.trendingName}>Paris</Text>
+              <View style={styles.trendingLocation}>
+                <MapPin size={12} color={theme.colors.white} />
+                <Text style={styles.trendingLocationText}>France</Text>
+              </View>
             </View>
-          </View>
-        </ResponsiveContainer>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={styles.trendingItem}>
+            <Image 
+              source={{ uri: 'https://images.pexels.com/photos/1525612/pexels-photo-1525612.jpeg' }} 
+              style={styles.trendingImage} 
+            />
+            <View style={styles.trendingOverlay}>
+              <Text style={styles.trendingName}>Tokyo</Text>
+              <View style={styles.trendingLocation}>
+                <MapPin size={12} color={theme.colors.white} />
+                <Text style={styles.trendingLocationText}>Japan</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={styles.trendingItem}>
+            <Image 
+              source={{ uri: 'https://images.pexels.com/photos/2193300/pexels-photo-2193300.jpeg' }} 
+              style={styles.trendingImage} 
+            />
+            <View style={styles.trendingOverlay}>
+              <Text style={styles.trendingName}>New York</Text>
+              <View style={styles.trendingLocation}>
+                <MapPin size={12} color={theme.colors.white} />
+                <Text style={styles.trendingLocationText}>USA</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={styles.trendingItem}>
+            <Image 
+              source={{ uri: 'https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg' }} 
+              style={styles.trendingImage} 
+            />
+            <View style={styles.trendingOverlay}>
+              <Text style={styles.trendingName}>Barcelona</Text>
+              <View style={styles.trendingLocation}>
+                <MapPin size={12} color={theme.colors.white} />
+                <Text style={styles.trendingLocationText}>Spain</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   );
@@ -189,114 +213,152 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   scrollContent: {
-    flexGrow: 1,
-  },
-  quickAccess: {
     padding: theme.spacing.m,
+    paddingBottom: theme.spacing.xl * 2,
   },
-  row: {
-    flexDirection: theme.layout.isWeb && theme.layout.isDesktop ? 'row' : 'row',
-    width: '100%',
-    gap: theme.layout.isWeb ? theme.spacing.s : 0,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: theme.spacing.l,
   },
-  promoContainer: {
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+  greeting: {
+    ...theme.typography.subheading,
+    color: theme.colors.textSecondary,
+  },
+  subtitle: {
+    ...theme.typography.heading,
+    color: theme.colors.text,
+  },
+  profileImageContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     overflow: 'hidden',
-    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
-    ...theme.shadows.medium,
+    ...theme.shadows.small,
   },
-  promoImage: {
+  profileImage: {
     width: '100%',
     height: '100%',
   },
-  promoOverlay: {
+  sectionTitle: {
+    ...theme.typography.subheading,
+    marginBottom: theme.spacing.m,
+    marginTop: theme.spacing.l,
+  },
+  featuredContainer: {
+    paddingRight: theme.spacing.m,
+  },
+  featuredCard: {
+    width: 280,
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: theme.colors.card,
+    overflow: 'hidden',
+    marginRight: theme.spacing.m,
+    ...theme.shadows.medium,
+  },
+  featuredImage: {
+    width: '100%',
+    height: 180,
+  },
+  featuredContent: {
+    padding: theme.spacing.m,
+  },
+  featuredName: {
+    ...theme.typography.bodyMedium,
+    marginBottom: theme.spacing.s,
+  },
+  featuredDetails: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  featuredDetail: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  featuredDetailText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginLeft: theme.spacing.xs,
+  },
+  experiencesContainer: {
+    marginBottom: theme.spacing.m,
+  },
+  experienceCard: {
+    flexDirection: 'row',
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: theme.colors.card,
+    overflow: 'hidden',
+    marginBottom: theme.spacing.m,
+    height: 100,
+    ...theme.shadows.small,
+  },
+  experienceImage: {
+    width: 100,
+    height: '100%',
+  },
+  experienceContent: {
+    flex: 1,
+    padding: theme.spacing.m,
+    justifyContent: 'space-between',
+  },
+  experienceName: {
+    ...theme.typography.bodyMedium,
+  },
+  experienceDetails: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  experiencePrice: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+  },
+  experienceRating: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  experienceRatingText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginLeft: theme.spacing.xs,
+  },
+  trendingContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  trendingItem: {
+    width: '48%',
+    height: 120,
+    borderRadius: theme.borderRadius.m,
+    overflow: 'hidden',
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  trendingImage: {
+    width: '100%',
+    height: '100%',
+  },
+  trendingOverlay: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    padding: theme.spacing.s,
   },
-  promoContent: {
-    padding: theme.spacing.l,
-  },
-  promoTitle: {
-    ...theme.typography.subheading,
+  trendingName: {
+    ...theme.typography.bodyMedium,
     color: theme.colors.white,
-    marginBottom: theme.spacing.s,
   },
-  promoDescription: {
-    ...theme.typography.body,
-    color: theme.colors.white,
-    marginBottom: theme.spacing.m,
-  },
-  promoButton: {
+  trendingLocation: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: theme.colors.primary,
-    alignSelf: 'flex-start',
-    paddingVertical: theme.spacing.s,
-    paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
   },
-  promoButtonText: {
-    ...theme.typography.button,
+  trendingLocationText: {
+    ...theme.typography.bodySmall,
     color: theme.colors.white,
-    marginRight: theme.spacing.xs,
-  },
-  promoIcon: {
-    marginLeft: theme.spacing.xs,
-  },
-  ratingContainer: {
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    padding: theme.spacing.l,
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    alignItems: 'center',
-    ...theme.shadows.small,
-  },
-  ratingTitle: {
-    ...theme.typography.subheading,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.s,
-    textAlign: 'center',
-  },
-  ratingDescription: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    textAlign: 'center',
-    marginBottom: theme.spacing.l,
-  },
-  ratingButtons: {
-    width: '100%',
-    gap: theme.spacing.m,
-  },
-  ratingButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: theme.spacing.m,
-    paddingHorizontal: theme.spacing.l,
-    borderRadius: theme.borderRadius.m,
-    ...theme.shadows.small,
-  },
-  airbnbButton: {
-    backgroundColor: '#FF5A5F',
-  },
-  bookingButton: {
-    backgroundColor: '#003580',
-  },
-  ratingButtonText: {
-    ...theme.typography.button,
-    color: theme.colors.white,
-    marginLeft: theme.spacing.s,
-  },
-  bookingButtonText: {
-    color: theme.colors.white,
-  },
-  platformLogo: {
-    width: 24,
-    height: 24,
+    marginLeft: 4,
   },
 });
