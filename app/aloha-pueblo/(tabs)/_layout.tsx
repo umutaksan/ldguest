@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { Platform } from 'react-native';
-import { Chrome as Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
+import { Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
   const tabBarHeight = theme.layout.isWeb 
@@ -18,14 +18,14 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.darkGray,
+        tabBarInactiveTintColor: theme.colors.textTertiary,
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme.colors.border,
           height: tabBarHeight,
           paddingBottom: paddingBottom,
           paddingTop: 8,
-          backgroundColor: theme.colors.white,
+          backgroundColor: theme.colors.background,
           ...theme.shadows.small,
           // Web-specific optimizations
           ...(theme.layout.isWeb && {
@@ -38,7 +38,6 @@ export default function TabLayout() {
           ...theme.typography.caption,
           marginTop: 4,
           fontSize: theme.layout.isWeb ? 12 : 11,
-          fontWeight: '500',
         },
       }}
     >
