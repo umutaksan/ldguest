@@ -42,10 +42,6 @@ export default function RootLayout() {
     <>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="explore" options={{ headerShown: false }} />
-        <Stack.Screen name="guide" options={{ headerShown: false }} />
-        <Stack.Screen name="info" options={{ headerShown: false }} />
-        <Stack.Screen name="contact" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/location" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/entry" options={{ headerShown: false }} />
