@@ -40,6 +40,16 @@ export default function TabLayout() {
           fontSize: theme.layout.isWeb ? 12 : 11,
           fontWeight: '500', // Medium weight for better visibility
         },
+        tabBarShowLabel: true,
+        tabBarItemStyle: {
+          // Remove any indicators
+          borderTopWidth: 0,
+        },
+        tabBarIndicatorStyle: {
+          // Hide the indicator completely
+          opacity: 0,
+          height: 0,
+        },
       }}
     >
       <Tabs.Screen
