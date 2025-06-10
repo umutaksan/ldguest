@@ -17,15 +17,15 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#E9B872', // Using primary color directly
-        tabBarInactiveTintColor: '#555555', // Darker color for better visibility
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.textTertiary,
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme.colors.border,
           height: tabBarHeight,
           paddingBottom: paddingBottom,
           paddingTop: 8,
-          backgroundColor: '#FFFFFF', // White background
+          backgroundColor: theme.colors.background,
           ...theme.shadows.small,
           // Web-specific optimizations
           ...(theme.layout.isWeb && {
@@ -38,17 +38,6 @@ export default function TabLayout() {
           ...theme.typography.caption,
           marginTop: 4,
           fontSize: theme.layout.isWeb ? 12 : 11,
-          fontWeight: '500', // Medium weight for better visibility
-        },
-        tabBarShowLabel: true,
-        tabBarItemStyle: {
-          // Remove any indicators
-          borderTopWidth: 0,
-        },
-        tabBarIndicatorStyle: {
-          // Hide the indicator completely
-          opacity: 0,
-          height: 0,
         },
       }}
     >
