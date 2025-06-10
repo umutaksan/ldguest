@@ -21,14 +21,14 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.textTertiary,
+        tabBarInactiveTintColor: theme.colors.darkGray,
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme.colors.border,
           height: tabBarHeight,
           paddingBottom: paddingBottom,
           paddingTop: 8,
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.colors.white,
           ...theme.shadows.small,
           // Web-specific optimizations
           ...(theme.layout.isWeb && {
@@ -41,6 +41,7 @@ export default function TabLayout() {
           ...theme.typography.caption,
           marginTop: 4,
           fontSize: theme.layout.isWeb ? 12 : 11,
+          fontWeight: '500',
         },
       }}
     >
@@ -48,50 +49,50 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
+          tabBarTestID: 'tab-001',
           tabBarIcon: ({ color, size }) => (
             <Home size={size} color={color} />
           ),
-          tabBarTestID: 'tab-001',
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
+          tabBarTestID: 'tab-002',
           tabBarIcon: ({ color, size }) => (
             <Compass size={size} color={color} />
           ),
-          tabBarTestID: 'tab-002',
         }}
       />
       <Tabs.Screen
         name="guide"
         options={{
           title: 'Guide',
+          tabBarTestID: 'tab-003',
           tabBarIcon: ({ color, size }) => (
             <BookOpen size={size} color={color} />
           ),
-          tabBarTestID: 'tab-003',
         }}
       />
       <Tabs.Screen
         name="info"
         options={{
           title: 'Info',
+          tabBarTestID: 'tab-004',
           tabBarIcon: ({ color, size }) => (
             <Info size={size} color={color} />
           ),
-          tabBarTestID: 'tab-004',
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
           title: 'Contact',
+          tabBarTestID: 'tab-005',
           tabBarIcon: ({ color, size }) => (
             <Phone size={size} color={color} />
           ),
-          tabBarTestID: 'tab-005',
         }}
       />
     </Tabs>
