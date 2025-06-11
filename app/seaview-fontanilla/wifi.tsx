@@ -161,6 +161,8 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
     flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
   },
   copyButton: {
     width: 40,

@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     flex: 1,
     fontSize: theme.layout.isWeb ? 18 : 16,
+    fontWeight: '500',
   },
   copyButton: {
     width: 40,
