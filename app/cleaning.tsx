@@ -1,16 +1,106 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Linking, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Linking, Image, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Lock, Chrome as Home, Key, Coffee, Wine, Heater as Water, Footprints, MapPin, FileText } from 'lucide-react-native';
+import { Lock, Chrome as Home, Key, Coffee, Wine, Heater as Water, Footprints, MapPin, FileText, Clock } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function CleaningScreen() {
   const insets = useSafeAreaInsets();
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [showPasswords, setShowPasswords] = useState(false);
   const correctPassword = '606767052';
+
+  // Update current time every minute
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+      checkTimeWindow();
+    }, 60000); // Update every minute
+    
+    // Initial check
+    checkTimeWindow();
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  // Check if current time is within the allowed window (11:30 - 14:00 Madrid time)
+  const checkTimeWindow = () => {
+    const now = new Date();
+    
+    // Convert to Madrid time (UTC+2)
+    const madridHours = now.getUTCHours() + 2;
+    const madridMinutes = now.getUTCMinutes();
+    
+    // Calculate time in minutes since midnight
+    const currentTimeInMinutes = madridHours * 60 + madridMinutes;
+    
+    // Define allowed window (11:30 - 14:00)
+    const startTimeInMinutes = 11 * 60 + 30; // 11:30
+    const endTimeInMinutes = 14 * 60; // 14:00
+    
+    // Check if current time is within allowed window
+    setShowPasswords(currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes <= endTimeInMinutes);
+  };
+
+  const handleLogin = () => {
+    if (password === correctPassword) {
+      setIsAuthenticated(true);
+    } else {
+      setPassword('');
+    }
+  };
+
+  const formatMadridTime = () => {
+    // Convert to Madrid time (UTC+2)
+    const madridHours = currentTime.getUTCHours() + 2;
+    const madridMinutes = currentTime.getUTCMinutes();
+    
+    // Format time as HH:MM
+    return `${madridHours.toString().padStart(2, '0')}:${madridMinutes.toString().padStart(2, '0')}`;
+  };
+
+  const handleOpenCleaningRules = () => {
+    Linking.openURL('https://www.canva.com/design/DAGpCy3Jarw/jata95scklEn9lxPJgYqmA/view?utm_content=DAGpCy3Jarw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdd87734915');
+  };
+
+  const handleWatchVideo = (url: string) => {
+    Linking.openURL(url);
+  };
+
+  const handleOpenMaps = (url: string) => {
+    Linking.openURL(url);
+  };
+
+  const renderAmenityCheck = () => (
+    <View style={styles.amenityCheckContainer}>
+      <Text style={styles.amenityCheckTitle}>Required Amenities</Text>
+      <View style={styles.amenityList}>
+        <View style={styles.amenityItem}>
+          <Coffee size={20} color={theme.colors.primary} />
+          <Text style={styles.amenityText}>Coffee</Text>
+        </View>
+        <View style={styles.amenityItem}>
+          <Wine size={20} color={theme.colors.primary} />
+          <Text style={styles.amenityText}>Wine</Text>
+        </View>
+        <View style={styles.amenityItem}>
+          <Water size={20} color={theme.colors.primary} />
+          <Text style={styles.amenityText}>Water</Text>
+        </View>
+        <View style={styles.amenityItem}>
+          <Footprints size={20} color={theme.colors.primary} />
+          <Text style={styles.amenityText}>Slippers</Text>
+        </View>
+      </View>
+      <Text style={styles.amenityNote}>
+        Please ensure all amenities are provided for each property. For the number of guests, kindly check with us for confirmation.
+      </Text>
+    </View>
+  );
 
   const properties = [
     {
@@ -67,53 +157,6 @@ export default function CleaningScreen() {
     }
   ];
 
-  const handleLogin = () => {
-    if (password === correctPassword) {
-      setIsAuthenticated(true);
-    } else {
-      setPassword('');
-    }
-  };
-
-  const handleOpenMaps = (url: string) => {
-    Linking.openURL(url);
-  };
-
-  const handleOpenCleaningRules = () => {
-    Linking.openURL('https://www.canva.com/design/DAGpCy3Jarw/jata95scklEn9lxPJgYqmA/view?utm_content=DAGpCy3Jarw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdd87734915');
-  };
-
-  const handleWatchVideo = (url: string) => {
-    Linking.openURL(url);
-  };
-
-  const renderAmenityCheck = () => (
-    <View style={styles.amenityCheckContainer}>
-      <Text style={styles.amenityCheckTitle}>Required Amenities</Text>
-      <View style={styles.amenityList}>
-        <View style={styles.amenityItem}>
-          <Coffee size={20} color={theme.colors.primary} />
-          <Text style={styles.amenityText}>Coffee</Text>
-        </View>
-        <View style={styles.amenityItem}>
-          <Wine size={20} color={theme.colors.primary} />
-          <Text style={styles.amenityText}>Wine</Text>
-        </View>
-        <View style={styles.amenityItem}>
-          <Water size={20} color={theme.colors.primary} />
-          <Text style={styles.amenityText}>Water</Text>
-        </View>
-        <View style={styles.amenityItem}>
-          <Footprints size={20} color={theme.colors.primary} />
-          <Text style={styles.amenityText}>Slippers</Text>
-        </View>
-      </View>
-      <Text style={styles.amenityNote}>
-        Please ensure all amenities are provided for each property. For the number of guests, kindly check with us for confirmation.
-      </Text>
-    </View>
-  );
-
   if (!isAuthenticated) {
     return (
       <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -148,6 +191,19 @@ export default function CleaningScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
+        <View style={styles.timeStatusContainer}>
+          <Clock size={20} color={showPasswords ? theme.colors.success : theme.colors.error} />
+          <Text style={[
+            styles.timeStatus, 
+            { color: showPasswords ? theme.colors.success : theme.colors.error }
+          ]}>
+            Current Madrid time: {formatMadridTime()} 
+            {showPasswords 
+              ? ' - Passwords visible' 
+              : ' - Passwords hidden (visible 11:30-14:00)'}
+          </Text>
+        </View>
+
         <TouchableOpacity 
           style={styles.rulesButton}
           onPress={handleOpenCleaningRules}
@@ -195,7 +251,11 @@ export default function CleaningScreen() {
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Keybox Code:</Text>
                   <View style={styles.detailValueContainer}>
-                    <Text style={styles.detailValue}>{property.keyboxCode}</Text>
+                    <Text style={styles.detailValue}>
+                      {showPasswords 
+                        ? property.keyboxCode 
+                        : '••••••••••••••••••••••••••••'}
+                    </Text>
                     {property.keyboxVideo && (
                       <TouchableOpacity
                         style={styles.videoButton}
@@ -216,31 +276,51 @@ export default function CleaningScreen() {
               {property.doorCode && (
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Door Code:</Text>
-                  <Text style={styles.detailValue}>{property.doorCode}</Text>
+                  <Text style={styles.detailValue}>
+                    {showPasswords 
+                      ? property.doorCode 
+                      : '••••••••'}
+                  </Text>
                 </View>
               )}
               {property.outerDoorCode && (
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Outer Door Code:</Text>
-                  <Text style={styles.detailValue}>{property.outerDoorCode}</Text>
+                  <Text style={styles.detailValue}>
+                    {showPasswords 
+                      ? property.outerDoorCode 
+                      : '••••••'}
+                  </Text>
                 </View>
               )}
               {property.innerDoorCode && (
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Inner Door Code:</Text>
-                  <Text style={styles.detailValue}>{property.innerDoorCode}</Text>
+                  <Text style={styles.detailValue}>
+                    {showPasswords 
+                      ? property.innerDoorCode 
+                      : '••••••'}
+                  </Text>
                 </View>
               )}
               {property.apartmentDoorCode && (
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Apartment Door Code:</Text>
-                  <Text style={styles.detailValue}>{property.apartmentDoorCode}</Text>
+                  <Text style={styles.detailValue}>
+                    {showPasswords 
+                      ? property.apartmentDoorCode 
+                      : '••••••'}
+                  </Text>
                 </View>
               )}
               {property.cabinetCode && (
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Cabinet Code:</Text>
-                  <Text style={styles.detailValue}>{property.cabinetCode}</Text>
+                  <Text style={styles.detailValue}>
+                    {showPasswords 
+                      ? property.cabinetCode 
+                      : '•••'}
+                  </Text>
                 </View>
               )}
               {property.cleaningCloset && (
@@ -298,6 +378,18 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: theme.spacing.m,
+  },
+  timeStatusContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.surface,
+    padding: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    marginBottom: theme.spacing.m,
+  },
+  timeStatus: {
+    ...theme.typography.bodyMedium,
+    marginLeft: theme.spacing.s,
   },
   rulesButton: {
     flexDirection: 'row',
@@ -404,6 +496,8 @@ const styles = StyleSheet.create({
     flex: 2,
     textAlign: 'right',
     marginLeft: theme.spacing.m,
+    fontWeight: '500',
+    fontSize: 16,
   },
   detailValueContainer: {
     flex: 2,

@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
-import { MapPin } from 'lucide-react-native';
+import { MapPin, Wifi } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -111,12 +111,22 @@ export default function PropertiesScreen() {
             ))}
           </View>
 
-          <TouchableOpacity
-            style={styles.cleaningButton}
-            onPress={() => router.push('/cleaning')}
-          >
-            <Text style={styles.cleaningButtonText}>Cleaning Staff Access</Text>
-          </TouchableOpacity>
+          <View style={styles.adminButtonsContainer}>
+            <TouchableOpacity
+              style={styles.adminButton}
+              onPress={() => router.push('/cleaning')}
+            >
+              <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              style={styles.adminButton}
+              onPress={() => router.push('/wifi-passwords')}
+            >
+              <Wifi size={16} color={theme.colors.textSecondary} style={styles.adminButtonIcon} />
+              <Text style={styles.adminButtonText}>All WiFi Passwords</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </ResponsiveContainer>
     </View>
@@ -202,20 +212,31 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
     marginLeft: theme.spacing.xs,
   },
-  cleaningButton: {
+  adminButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: theme.spacing.m,
+  },
+  adminButton: {
     backgroundColor: theme.colors.surface,
     padding: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     alignItems: 'center',
-    marginTop: theme.spacing.m,
+    flex: 1,
+    marginHorizontal: theme.spacing.xs,
+    flexDirection: 'row',
+    justifyContent: 'center',
     // Web-specific styles
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
     }),
   },
-  cleaningButtonText: {
+  adminButtonText: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
+  },
+  adminButtonIcon: {
+    marginRight: theme.spacing.xs,
   },
 });
