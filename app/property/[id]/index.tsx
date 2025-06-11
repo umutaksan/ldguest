@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image, Platform, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { PropertyHero } from '@/components/common/PropertyHero';
@@ -13,6 +13,7 @@ export default function PropertyScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const { width } = useWindowDimensions();
   
   // Property data based on ID
   const getPropertyData = () => {
@@ -63,6 +64,10 @@ export default function PropertyScreen() {
     router.push(`/property/${id}/${section}`);
   };
 
+  // Determine if we're on a large screen
+  const isLargeScreen = width > 1024;
+  const isMediumScreen = width > 768 && width <= 1024;
+
   return (
     <View style={styles.container}>
       <ScrollView 
@@ -78,141 +83,196 @@ export default function PropertyScreen() {
           imageUrl={propertyData.imageUrl}
         />
 
-        <View style={styles.quickAccess}>
-          <View style={styles.row}>
-            <SectionCard
-              title="The Location"
-              icon={<MapPin size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('location')}
-              delay={1}
-            />
-            <SectionCard
-              title="Home Entry"
-              icon={<HomeIcon size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('entry')}
-              delay={2}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="WiFi"
-              icon={<Wifi size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('wifi')}
-              delay={3}
-            />
-            <SectionCard
-              title="House Videos"
-              icon={<Video size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('videos')}
-              delay={4}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Property Rules"
-              icon={<Book size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('rules')}
-              delay={5}
-            />
-            <SectionCard
-              title="Places to Eat"
-              icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('dining')}
-              delay={6}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Places to Visit"
-              icon={<Landmark size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('attractions')}
-              delay={7}
-            />
-            <SectionCard
-              title="Luggage Storage"
-              icon={<Briefcase size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('luggage')}
-              delay={8}
-            />
+        <View style={[
+          styles.mainContent,
+          isLargeScreen && styles.mainContentLarge
+        ]}>
+          <View style={[
+            styles.quickAccess,
+            isLargeScreen && styles.quickAccessLarge
+          ]}>
+            <View style={[
+              styles.sectionGrid,
+              isLargeScreen && styles.sectionGridLarge,
+              isMediumScreen && styles.sectionGridMedium
+            ]}>
+              <SectionCard
+                title="The Location"
+                icon={<MapPin size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('location')}
+                delay={1}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="Home Entry"
+                icon={<HomeIcon size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('entry')}
+                delay={2}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="WiFi"
+                icon={<Wifi size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('wifi')}
+                delay={3}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="House Videos"
+                icon={<Video size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('videos')}
+                delay={4}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="Property Rules"
+                icon={<Book size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('rules')}
+                delay={5}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="Places to Eat"
+                icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('dining')}
+                delay={6}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="Places to Visit"
+                icon={<Landmark size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('attractions')}
+                delay={7}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="Luggage Storage"
+                icon={<Briefcase size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('luggage')}
+                delay={8}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="Car Rental"
+                icon={<Car size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('car-rental')}
+                delay={9}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+              <SectionCard
+                title="Parking"
+                icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('parking')}
+                delay={10}
+                style={[
+                  styles.sectionCard,
+                  isLargeScreen && styles.sectionCardLarge,
+                  isMediumScreen && styles.sectionCardMedium
+                ]}
+              />
+            </View>
           </View>
 
-          <View style={styles.row}>
-            <SectionCard
-              title="Car Rental"
-              icon={<Car size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('car-rental')}
-              delay={9}
-            />
-            <SectionCard
-              title="Parking"
-              icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('parking')}
-              delay={10}
-            />
-          </View>
-        </View>
+          <View style={[
+            styles.sideContent,
+            isLargeScreen && styles.sideContentLarge
+          ]}>
+            <TouchableOpacity 
+              style={styles.promoContainer}
+              onPress={handleViewMoreProperties}
+              activeOpacity={0.8}
+            >
+              <Image
+                source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
+                style={styles.promoImage}
+                resizeMode="cover"
+              />
+              <LinearGradient
+                colors={['transparent', 'rgba(0,0,0,0.8)']}
+                style={styles.promoOverlay}
+              >
+                <View style={styles.promoContent}>
+                  <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
+                  <Text style={styles.promoDescription}>
+                    Explore our collection of beautiful properties across Marbella's most desirable locations
+                  </Text>
+                  <View style={styles.promoButton}>
+                    <Text style={styles.promoButtonText}>View Properties</Text>
+                    <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+                  </View>
+                </View>
+              </LinearGradient>
+            </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.promoContainer}
-          onPress={handleViewMoreProperties}
-          activeOpacity={0.8}
-        >
-          <Image
-            source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
-            style={styles.promoImage}
-            resizeMode="cover"
-          />
-          <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.8)']}
-            style={styles.promoOverlay}
-          >
-            <View style={styles.promoContent}>
-              <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
-              <Text style={styles.promoDescription}>
-                Explore our collection of beautiful properties across Marbella's most desirable locations
+            <View style={styles.ratingContainer}>
+              <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
+              <Text style={styles.ratingDescription}>
+                We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
               </Text>
-              <View style={styles.promoButton}>
-                <Text style={styles.promoButtonText}>View Properties</Text>
-                <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+              <View style={styles.ratingButtons}>
+                <TouchableOpacity 
+                  style={[styles.ratingButton, styles.airbnbButton]}
+                  onPress={handleAirbnbReview}
+                  activeOpacity={0.8}
+                >
+                  <Image 
+                    source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
+                    style={styles.platformLogo}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
+                  style={[styles.ratingButton, styles.bookingButton]}
+                  onPress={handleBookingReview}
+                  activeOpacity={0.8}
+                >
+                  <Image 
+                    source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
+                    style={styles.platformLogo}
+                    resizeMode="contain"
+                  />
+                  <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>Review on Booking</Text>
+                </TouchableOpacity>
               </View>
             </View>
-          </LinearGradient>
-        </TouchableOpacity>
-
-        <View style={styles.ratingContainer}>
-          <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
-          <Text style={styles.ratingDescription}>
-            We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
-          </Text>
-          <View style={styles.ratingButtons}>
-            <TouchableOpacity 
-              style={[styles.ratingButton, styles.airbnbButton]}
-              onPress={handleAirbnbReview}
-              activeOpacity={0.8}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                style={styles.platformLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={[styles.ratingButton, styles.bookingButton]}
-              onPress={handleBookingReview}
-              activeOpacity={0.8}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
-                style={styles.platformLogo}
-                resizeMode="contain"
-              />
-              <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>Review on Booking</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -228,20 +288,57 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
   },
-  quickAccess: {
+  mainContent: {
+    width: '100%',
+    maxWidth: 1200,
+    alignSelf: 'center',
     padding: theme.spacing.m,
   },
-  row: {
-    flexDirection: theme.layout.isWeb && theme.layout.isDesktop ? 'row' : 'row',
+  mainContentLarge: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    paddingHorizontal: theme.spacing.xl,
+  },
+  quickAccess: {
     width: '100%',
-    gap: theme.layout.isWeb ? theme.spacing.s : 0,
+  },
+  quickAccessLarge: {
+    width: '65%',
+  },
+  sideContent: {
+    width: '100%',
+  },
+  sideContentLarge: {
+    width: '30%',
+    marginTop: theme.spacing.m,
+  },
+  sectionGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  sectionGridLarge: {
+    marginRight: theme.spacing.l,
+  },
+  sectionGridMedium: {
+    justifyContent: 'space-around',
+  },
+  sectionCard: {
+    width: '48%',
+    marginBottom: theme.spacing.m,
+  },
+  sectionCardLarge: {
+    width: '30%',
+  },
+  sectionCardMedium: {
+    width: '45%',
   },
   promoContainer: {
-    marginHorizontal: theme.spacing.m,
     marginBottom: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
+    height: 250,
     ...theme.shadows.medium,
   },
   promoImage: {
@@ -285,8 +382,6 @@ const styles = StyleSheet.create({
     marginLeft: theme.spacing.xs,
   },
   ratingContainer: {
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
     padding: theme.spacing.l,
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,

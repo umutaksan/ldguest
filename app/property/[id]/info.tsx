@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -11,6 +11,7 @@ export default function InfoScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const { width } = useWindowDimensions();
   
   const rules = [
     { 
@@ -360,6 +361,10 @@ export default function InfoScreen() {
   const toggleFaq = (id: number) => {
     setExpandedFaq(expandedFaq === id ? null : id);
   };
+
+  // Determine if we're on a large screen
+  const isLargeScreen = width > 1024;
+  const isMediumScreen = width > 768 && width <= 1024;
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
@@ -367,75 +372,129 @@ export default function InfoScreen() {
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
+        contentContainerStyle={[
+          styles.content,
+          isLargeScreen && styles.contentLarge
+        ]}
       >
-        <Text style={styles.sectionTitle}>House Rules</Text>
-        
-        {rules.map((rule, index) => (
-          <Animated.View 
-            key={rule.id}
-            entering={FadeIn.delay(index * 100)}
-            style={styles.ruleCard}
-          >
-            <View style={styles.ruleIconContainer}>
-              {rule.icon}
+        <View style={[
+          styles.mainContent,
+          isLargeScreen && styles.mainContentLarge
+        ]}>
+          <View style={[
+            styles.rulesSection,
+            isLargeScreen && styles.rulesSectionLarge
+          ]}>
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>House Rules</Text>
+            
+            <View style={[
+              styles.rulesGrid,
+              isLargeScreen && styles.rulesGridLarge,
+              isMediumScreen && styles.rulesGridMedium
+            ]}>
+              {rules.map((rule, index) => (
+                <Animated.View 
+                  key={rule.id}
+                  entering={FadeIn.delay(index * 100)}
+                  style={[
+                    styles.ruleCard,
+                    isLargeScreen && styles.ruleCardLarge,
+                    isMediumScreen && styles.ruleCardMedium
+                  ]}
+                >
+                  <View style={styles.ruleIconContainer}>
+                    {rule.icon}
+                  </View>
+                  <View style={styles.ruleContent}>
+                    <Text style={styles.ruleTitle}>{rule.title}</Text>
+                    <Text style={styles.ruleDescription}>{rule.description}</Text>
+                  </View>
+                </Animated.View>
+              ))}
             </View>
-            <View style={styles.ruleContent}>
-              <Text style={styles.ruleTitle}>{rule.title}</Text>
-              <Text style={styles.ruleDescription}>{rule.description}</Text>
-            </View>
-          </Animated.View>
-        ))}
+          </View>
 
-        <View style={styles.divider} />
-        
-        <Text style={styles.sectionTitle}>Amenities</Text>
-        
-        <View style={styles.amenitiesContainer}>
-          {amenities.map((amenity, index) => (
-            <Animated.View 
-              key={amenity.id}
-              entering={FadeIn.delay(index * 100)}
-              style={styles.amenityItem}
-            >
-              <View style={styles.amenityIcon}>
-                {amenity.icon}
-              </View>
-              <Text style={styles.amenityTitle}>{amenity.title}</Text>
-            </Animated.View>
-          ))}
+          <View style={[
+            styles.amenitiesSection,
+            isLargeScreen && styles.amenitiesSectionLarge
+          ]}>
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>Amenities</Text>
+            
+            <View style={[
+              styles.amenitiesContainer,
+              isLargeScreen && styles.amenitiesContainerLarge,
+              isMediumScreen && styles.amenitiesContainerMedium
+            ]}>
+              {amenities.map((amenity, index) => (
+                <Animated.View 
+                  key={amenity.id}
+                  entering={FadeIn.delay(index * 100)}
+                  style={[
+                    styles.amenityItem,
+                    isLargeScreen && styles.amenityItemLarge,
+                    isMediumScreen && styles.amenityItemMedium
+                  ]}
+                >
+                  <View style={styles.amenityIcon}>
+                    {amenity.icon}
+                  </View>
+                  <Text style={styles.amenityTitle}>{amenity.title}</Text>
+                </Animated.View>
+              ))}
+            </View>
+          </View>
         </View>
         
         <View style={styles.divider} />
         
-        <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
+        <Text style={[
+          styles.sectionTitle,
+          isLargeScreen && styles.sectionTitleLarge
+        ]}>Frequently Asked Questions</Text>
         
-        {faqs.map((faq, index) => (
-          <Animated.View 
-            key={faq.id}
-            entering={FadeInDown.delay(index * 100)}
-            style={styles.faqContainer}
-          >
-            <TouchableOpacity
-              style={styles.faqQuestion}
-              onPress={() => toggleFaq(faq.id)}
-              activeOpacity={0.8}
+        <View style={[
+          styles.faqContainer,
+          isLargeScreen && styles.faqContainerLarge
+        ]}>
+          {faqs.map((faq, index) => (
+            <Animated.View 
+              key={faq.id}
+              entering={FadeInDown.delay(index * 100)}
+              style={styles.faqItem}
             >
-              <Text style={styles.faqQuestionText}>{faq.question}</Text>
-              {expandedFaq === faq.id ? (
-                <ChevronUp size={20} color={theme.colors.text} />
-              ) : (
-                <ChevronDown size={20} color={theme.colors.text} />
+              <TouchableOpacity
+                style={styles.faqQuestion}
+                onPress={() => toggleFaq(faq.id)}
+                activeOpacity={0.8}
+              >
+                <Text style={[
+                  styles.faqQuestionText,
+                  isLargeScreen && styles.faqQuestionTextLarge
+                ]}>{faq.question}</Text>
+                {expandedFaq === faq.id ? (
+                  <ChevronUp size={20} color={theme.colors.text} />
+                ) : (
+                  <ChevronDown size={20} color={theme.colors.text} />
+                )}
+              </TouchableOpacity>
+              
+              {expandedFaq === faq.id && (
+                <View style={styles.faqAnswer}>
+                  <Text style={[
+                    styles.faqAnswerText,
+                    isLargeScreen && styles.faqAnswerTextLarge
+                  ]}>{faq.answer}</Text>
+                </View>
               )}
-            </TouchableOpacity>
-            
-            {expandedFaq === faq.id && (
-              <View style={styles.faqAnswer}>
-                <Text style={styles.faqAnswerText}>{faq.answer}</Text>
-              </View>
-            )}
-          </Animated.View>
-        ))}
+            </Animated.View>
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
@@ -449,14 +508,56 @@ const styles = StyleSheet.create({
   content: {
     padding: theme.spacing.m,
   },
+  contentLarge: {
+    maxWidth: 1200,
+    alignSelf: 'center',
+    paddingHorizontal: theme.spacing.xl,
+  },
+  mainContent: {
+    width: '100%',
+  },
+  mainContentLarge: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rulesSection: {
+    width: '100%',
+  },
+  rulesSectionLarge: {
+    width: '60%',
+    paddingRight: theme.spacing.l,
+  },
+  amenitiesSection: {
+    width: '100%',
+  },
+  amenitiesSectionLarge: {
+    width: '35%',
+  },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
+  },
+  sectionTitleLarge: {
+    fontSize: 24,
+    marginBottom: theme.spacing.l,
   },
   divider: {
     height: 1,
     backgroundColor: theme.colors.border,
     marginVertical: theme.spacing.l,
+  },
+  rulesGrid: {
+    flexDirection: 'column',
+  },
+  rulesGridLarge: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  rulesGridMedium: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   ruleCard: {
     flexDirection: 'row',
@@ -465,6 +566,13 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    width: '100%',
+  },
+  ruleCardLarge: {
+    width: '48%',
+  },
+  ruleCardMedium: {
+    width: '48%',
   },
   ruleIconContainer: {
     width: 48,
@@ -489,13 +597,29 @@ const styles = StyleSheet.create({
   amenitiesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginHorizontal: -theme.spacing.s,
+  },
+  amenitiesContainerLarge: {
+    flexDirection: 'column',
+  },
+  amenitiesContainerMedium: {
+    justifyContent: 'space-between',
   },
   amenityItem: {
     width: '33.33%',
     alignItems: 'center',
     padding: theme.spacing.s,
     marginBottom: theme.spacing.m,
+  },
+  amenityItemLarge: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: theme.spacing.s,
+    marginBottom: theme.spacing.m,
+  },
+  amenityItemMedium: {
+    width: '25%',
   },
   amenityIcon: {
     width: 50,
@@ -512,6 +636,13 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
   },
   faqContainer: {
+    width: '100%',
+  },
+  faqContainerLarge: {
+    maxWidth: 800,
+    alignSelf: 'center',
+  },
+  faqItem: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     marginBottom: theme.spacing.m,
@@ -529,6 +660,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: theme.spacing.s,
   },
+  faqQuestionTextLarge: {
+    fontSize: 18,
+  },
   faqAnswer: {
     padding: theme.spacing.m,
     paddingTop: 0,
@@ -538,5 +672,8 @@ const styles = StyleSheet.create({
   faqAnswerText: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
+  },
+  faqAnswerTextLarge: {
+    fontSize: 16,
   },
 });

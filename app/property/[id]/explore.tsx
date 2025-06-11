@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking, ImageBackground, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -11,6 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function ExploreScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { width } = useWindowDimensions();
 
   const nearbyCities = [
     { 
@@ -96,69 +97,6 @@ export default function ExploreScreen() {
       description: 'A British territory featuring the iconic Rock of Gibraltar and its famous monkeys.',
       distance: '80 km',
       image: 'https://images.pexels.com/photos/17373400/pexels-photo-17373400.jpeg'
-    },
-    { 
-      id: 13, 
-      name: 'Tarifa',
-      description: 'A paradise for windsurfing and kiteboarding, located at the southernmost point of Europe.',
-      distance: '100 km',
-      image: 'https://images.pexels.com/photos/17373401/pexels-photo-17373401.jpeg'
-    },
-    { 
-      id: 14, 
-      name: 'Jerez de la Frontera',
-      description: 'Famous for its sherry wine, flamenco, and beautiful equestrian shows.',
-      distance: '160 km',
-      image: 'https://images.pexels.com/photos/17373402/pexels-photo-17373402.jpeg'
-    },
-    { 
-      id: 15, 
-      name: 'Sevilla',
-      description: 'A vibrant city known for its Gothic cathedral, Alcázar palace, and lively streets.',
-      distance: '250 km',
-      image: 'https://images.pexels.com/photos/17373403/pexels-photo-17373403.jpeg'
-    },
-    { 
-      id: 16, 
-      name: 'Cadiz',
-      description: "One of Europe's oldest cities, surrounded by the sea with a charming old town.",
-      distance: '160 km',
-      image: 'https://images.pexels.com/photos/17373404/pexels-photo-17373404.jpeg'
-    },
-    { 
-      id: 17, 
-      name: 'Almería',
-      description: 'A coastal city with a rich history and beautiful beaches.',
-      distance: '290 km',
-      image: 'https://images.pexels.com/photos/17373405/pexels-photo-17373405.jpeg'
-    },
-    { 
-      id: 18, 
-      name: 'Antequera',
-      description: 'Known as the "Heart of Andalusia," famous for its dolmens and natural park El Torcal.',
-      distance: '100 km',
-      image: 'https://images.pexels.com/photos/17373406/pexels-photo-17373406.jpeg'
-    },
-    { 
-      id: 19, 
-      name: 'Úbeda and Baeza',
-      description: 'UNESCO World Heritage Sites known for their Renaissance architecture.',
-      distance: '220 km',
-      image: 'https://images.pexels.com/photos/17373407/pexels-photo-17373407.jpeg'
-    },
-    { 
-      id: 20, 
-      name: 'Setenil de las Bodegas',
-      description: 'A unique town with houses built into rock formations.',
-      distance: '90 km',
-      image: 'https://images.pexels.com/photos/17373408/pexels-photo-17373408.jpeg'
-    },
-    { 
-      id: 21, 
-      name: 'Vejer de la Frontera',
-      description: 'A beautifully preserved white village with stunning views and rich history.',
-      distance: '130 km',
-      image: 'https://images.pexels.com/photos/17373409/pexels-photo-17373409.jpeg'
     }
   ];
 
@@ -167,92 +105,131 @@ export default function ExploreScreen() {
     Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${query}`);
   };
 
+  // Determine if we're on a large screen
+  const isLargeScreen = width > 1024;
+  const isMediumScreen = width > 768 && width <= 1024;
+
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Explore The Area" showBackButton={false} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
+        contentContainerStyle={[
+          styles.content,
+          isLargeScreen && styles.contentLarge
+        ]}
       >
         <ImageBackground
           source={{ uri: 'https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg' }}
-          style={styles.hero}
+          style={[
+            styles.hero,
+            isLargeScreen && styles.heroLarge
+          ]}
           resizeMode="cover"
         >
           <LinearGradient
             colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.7)']}
             style={styles.heroOverlay}
           >
-            <Text style={styles.heroTitle}>Discover Andalusia</Text>
-            <Text style={styles.heroSubtitle}>Explore beautiful cities and historic towns around Marbella</Text>
+            <Text style={[
+              styles.heroTitle,
+              isLargeScreen && styles.heroTitleLarge
+            ]}>Discover Andalusia</Text>
+            <Text style={[
+              styles.heroSubtitle,
+              isLargeScreen && styles.heroSubtitleLarge
+            ]}>Explore beautiful cities and historic towns around Marbella</Text>
           </LinearGradient>
         </ImageBackground>
 
-        <View style={styles.statsContainer}>
+        <View style={[
+          styles.statsContainer,
+          isLargeScreen && styles.statsContainerLarge
+        ]}>
           <View style={styles.statItem}>
-            <Text style={styles.statNumber}>21</Text>
+            <Text style={[
+              styles.statNumber,
+              isLargeScreen && styles.statNumberLarge
+            ]}>21</Text>
             <Text style={styles.statLabel}>Cities</Text>
           </View>
           <View style={styles.statDivider} />
           <View style={styles.statItem}>
-            <Text style={styles.statNumber}>300</Text>
+            <Text style={[
+              styles.statNumber,
+              isLargeScreen && styles.statNumberLarge
+            ]}>300</Text>
             <Text style={styles.statLabel}>km Radius</Text>
           </View>
           <View style={styles.statDivider} />
           <View style={styles.statItem}>
-            <Text style={styles.statNumber}>100+</Text>
+            <Text style={[
+              styles.statNumber,
+              isLargeScreen && styles.statNumberLarge
+            ]}>100+</Text>
             <Text style={styles.statLabel}>Attractions</Text>
           </View>
         </View>
 
-        <Text style={styles.sectionTitle}>Nearby Destinations</Text>
+        <Text style={[
+          styles.sectionTitle,
+          isLargeScreen && styles.sectionTitleLarge
+        ]}>Nearby Destinations</Text>
 
-        {nearbyCities.map((city, index) => (
-          <Animated.View 
-            key={city.id}
-            entering={FadeIn.delay(index * 100)}
-            style={styles.cityCard}
-          >
-            <ImageBackground 
-              source={{ uri: city.image }}
-              style={styles.cityImage}
-              resizeMode="cover"
+        <View style={[
+          styles.citiesGrid,
+          isLargeScreen && styles.citiesGridLarge,
+          isMediumScreen && styles.citiesGridMedium
+        ]}>
+          {nearbyCities.map((city, index) => (
+            <Animated.View 
+              key={city.id}
+              entering={FadeIn.delay(index * 100)}
+              style={[
+                styles.cityCard,
+                isLargeScreen && styles.cityCardLarge,
+                isMediumScreen && styles.cityCardMedium
+              ]}
             >
-              <LinearGradient
-                colors={['transparent', 'rgba(0,0,0,0.7)']}
-                style={styles.cityImageOverlay}
+              <ImageBackground 
+                source={{ uri: city.image }}
+                style={styles.cityImage}
+                resizeMode="cover"
               >
-                <View style={styles.cityHeader}>
-                  <View style={styles.cityInfo}>
-                    <Text style={styles.cityName}>{city.name}</Text>
-                    <View style={styles.distanceContainer}>
-                      <MapPin size={14} color={theme.colors.white} />
-                      <Text style={styles.distance}>{city.distance}</Text>
+                <LinearGradient
+                  colors={['transparent', 'rgba(0,0,0,0.7)']}
+                  style={styles.cityImageOverlay}
+                >
+                  <View style={styles.cityHeader}>
+                    <View style={styles.cityInfo}>
+                      <Text style={styles.cityName}>{city.name}</Text>
+                      <View style={styles.distanceContainer}>
+                        <MapPin size={14} color={theme.colors.white} />
+                        <Text style={styles.distance}>{city.distance}</Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              </LinearGradient>
-            </ImageBackground>
-            
-            <View style={styles.cityContent}>
-              <Text style={styles.cityDescription}>{city.description}</Text>
-              <TouchableOpacity
-                style={styles.directionsButton}
-                onPress={() => handleOpenMaps(city.name)}
-              >
-                <Navigation size={16} color={theme.colors.primary} />
-                <Text style={styles.directionsText}>Get Directions</Text>
-              </TouchableOpacity>
-            </View>
-          </Animated.View>
-        ))}
+                </LinearGradient>
+              </ImageBackground>
+              
+              <View style={styles.cityContent}>
+                <Text style={styles.cityDescription}>{city.description}</Text>
+                <TouchableOpacity
+                  style={styles.directionsButton}
+                  onPress={() => handleOpenMaps(city.name)}
+                >
+                  <Navigation size={16} color={theme.colors.primary} />
+                  <Text style={styles.directionsText}>Get Directions</Text>
+                </TouchableOpacity>
+              </View>
+            </Animated.View>
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
 }
-
-const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -262,11 +239,19 @@ const styles = StyleSheet.create({
   content: {
     padding: theme.spacing.m,
   },
+  contentLarge: {
+    maxWidth: 1200,
+    alignSelf: 'center',
+    paddingHorizontal: theme.spacing.xl,
+  },
   hero: {
     height: 200,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
     marginBottom: theme.spacing.m,
+  },
+  heroLarge: {
+    height: 400,
   },
   heroOverlay: {
     flex: 1,
@@ -278,9 +263,15 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
   },
+  heroTitleLarge: {
+    fontSize: 42,
+  },
   heroSubtitle: {
     ...theme.typography.body,
     color: theme.colors.white,
+  },
+  heroSubtitleLarge: {
+    fontSize: 20,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -290,6 +281,9 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.l,
     ...theme.shadows.small,
   },
+  statsContainerLarge: {
+    padding: theme.spacing.l,
+  },
   statItem: {
     flex: 1,
     alignItems: 'center',
@@ -298,6 +292,9 @@ const styles = StyleSheet.create({
     ...theme.typography.subheading,
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
+  },
+  statNumberLarge: {
+    fontSize: 32,
   },
   statLabel: {
     ...theme.typography.bodySmall,
@@ -312,12 +309,38 @@ const styles = StyleSheet.create({
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
   },
+  sectionTitleLarge: {
+    fontSize: 28,
+    marginBottom: theme.spacing.l,
+  },
+  citiesGrid: {
+    flexDirection: 'column',
+  },
+  citiesGridLarge: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  citiesGridMedium: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
   cityCard: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     marginBottom: theme.spacing.m,
     overflow: 'hidden',
     ...theme.shadows.small,
+    width: '100%',
+  },
+  cityCardLarge: {
+    width: '32%',
+    marginBottom: theme.spacing.xl,
+  },
+  cityCardMedium: {
+    width: '48%',
+    marginBottom: theme.spacing.l,
   },
   cityImage: {
     width: '100%',

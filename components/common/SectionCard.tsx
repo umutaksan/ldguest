@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ViewStyle, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import Animated, { FadeIn } from 'react-native-reanimated';
@@ -24,20 +24,10 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
     }
   };
 
-  const cardWidth = theme.layout.isWeb && theme.layout.isDesktop 
-    ? '48%' 
-    : theme.layout.isWeb && theme.layout.isTablet 
-    ? '48%' 
-    : '48%';
-
-  const cardHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 160 : 140) 
-    : 140;
-
   return (
-    <Animated.View entering={FadeIn.delay(delay * 100)} style={[styles.container, { width: cardWidth }, style]}>
+    <Animated.View entering={FadeIn.delay(delay * 100)} style={[styles.container, style]}>
       <TouchableOpacity 
-        style={[styles.card, { minHeight: cardHeight }]} 
+        style={styles.card} 
         onPress={handlePress}
         activeOpacity={0.8}
       >
@@ -63,14 +53,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     ...theme.shadows.small,
     // Web-specific hover effects
-    ...(theme.layout.isWeb && {
+    ...(Platform.OS === 'web' && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
+      ':hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      }
     }),
+    minHeight: 140,
   },
   iconContainer: {
-    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
-    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
+    width: 56,
+    height: 56,
     borderRadius: theme.borderRadius.round,
     backgroundColor: theme.colors.primaryLight,
     alignItems: 'center',
@@ -81,6 +76,6 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
     textAlign: 'center',
-    lineHeight: theme.layout.isWeb ? 20 : 18,
+    lineHeight: 20,
   },
 });

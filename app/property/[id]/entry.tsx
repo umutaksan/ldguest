@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Platform, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Platform, Linking, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -9,8 +9,7 @@ import { Video } from 'lucide-react-native';
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { width } = Dimensions.get('window');
-  const imageHeight = Platform.OS === 'web' ? 180 : width * 0.3;
+  const { width } = useWindowDimensions();
 
   // Get entry instructions based on property ID
   const getEntryInstructions = () => {
@@ -77,75 +76,113 @@ export default function EntryScreen() {
     Linking.openURL(url);
   };
 
+  // Determine if we're on a large screen
+  const isLargeScreen = width > 1024;
+  const isMediumScreen = width > 768 && width <= 1024;
+
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Home Entry Instructions" />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
+        contentContainerStyle={[
+          styles.content,
+          isLargeScreen && styles.contentLarge
+        ]}
       >
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Entry Instructions</Text>
-          <Text style={styles.description}>
-            {entryInstructions.description}
-            {'\n\n'}
-            {entryInstructions.note}
-          </Text>
+        <View style={[
+          styles.mainContent,
+          isLargeScreen && styles.mainContentLarge
+        ]}>
+          <View style={[
+            styles.section,
+            isLargeScreen && styles.sectionLarge
+          ]}>
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>Entry Instructions</Text>
+            <Text style={[
+              styles.description,
+              isLargeScreen && styles.descriptionLarge
+            ]}>
+              {entryInstructions.description}
+              {'\n\n'}
+              {entryInstructions.note}
+            </Text>
 
-          {entryInstructions.keyboxCode && (
-            <View style={styles.codeSection}>
-              <Text style={styles.codeTitle}>Building Access Codes:</Text>
-              <Text style={styles.codeText}>• Main Door: {entryInstructions.keyboxCode}</Text>
-            </View>
-          )}
+            {entryInstructions.keyboxCode && (
+              <View style={styles.codeSection}>
+                <Text style={styles.codeTitle}>Building Access Codes:</Text>
+                <Text style={styles.codeText}>• Main Door: {entryInstructions.keyboxCode}</Text>
+              </View>
+            )}
 
-          {entryInstructions.buildingCode && (
-            <View style={styles.codeSection}>
-              <Text style={styles.codeTitle}>Building Access Codes:</Text>
-              <Text style={styles.codeText}>• Main Door: {entryInstructions.buildingCode}</Text>
-              {entryInstructions.cabinetCode && (
-                <Text style={styles.codeText}>• Cabinet Code: {entryInstructions.cabinetCode}</Text>
-              )}
-            </View>
-          )}
+            {entryInstructions.buildingCode && (
+              <View style={styles.codeSection}>
+                <Text style={styles.codeTitle}>Building Access Codes:</Text>
+                <Text style={styles.codeText}>• Main Door: {entryInstructions.buildingCode}</Text>
+                {entryInstructions.cabinetCode && (
+                  <Text style={styles.codeText}>• Cabinet Code: {entryInstructions.cabinetCode}</Text>
+                )}
+              </View>
+            )}
 
-          {entryInstructions.importantNote && (
-            <View style={styles.codeSection}>
-              <Text style={styles.codeTitle}>Important Note:</Text>
-              <Text style={styles.codeText}>{entryInstructions.importantNote}</Text>
-            </View>
-          )}
+            {entryInstructions.importantNote && (
+              <View style={styles.codeSection}>
+                <Text style={styles.codeTitle}>Important Note:</Text>
+                <Text style={styles.codeText}>{entryInstructions.importantNote}</Text>
+              </View>
+            )}
 
-          {entryInstructions.videoUrl && (
-            <TouchableOpacity 
-              style={styles.watchVideoButton}
-              onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
-              activeOpacity={0.8}
-            >
-              <Video size={20} color={theme.colors.white} />
-              <Text style={styles.watchVideoText}>Watch Entry Video</Text>
-            </TouchableOpacity>
-          )}
-          
+            {entryInstructions.videoUrl && (
+              <TouchableOpacity 
+                style={styles.watchVideoButton}
+                onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
+                activeOpacity={0.8}
+              >
+                <Video size={20} color={theme.colors.white} />
+                <Text style={styles.watchVideoText}>Watch Entry Video</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+
           {entryInstructions.hasKeyImages && (
-            <View style={styles.imageGrid}>
-              {entryInstructions.keyImages?.map((image, index) => (
-                <Image 
-                  key={index}
-                  source={{ uri: image }}
-                  style={[styles.keyLocationImage, { height: imageHeight }]}
-                  resizeMode="cover"
-                />
-              ))}
+            <View style={[
+              styles.imagesSection,
+              isLargeScreen && styles.imagesSectionLarge
+            ]}>
+              <View style={[
+                styles.imageContainer,
+                isLargeScreen && styles.imageContainerLarge
+              ]}>
+                {entryInstructions.keyImages?.map((image, index) => (
+                  <Image 
+                    key={index}
+                    source={{ uri: image }}
+                    style={[
+                      styles.keyImage,
+                      isLargeScreen && styles.keyImageLarge
+                    ]}
+                    resizeMode="cover"
+                  />
+                ))}
+              </View>
             </View>
           )}
         </View>
 
         {entryInstructions.entryVideoUrl && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Entering the Building</Text>
-            <Text style={styles.description}>
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>Entering the Building</Text>
+            <Text style={[
+              styles.description,
+              isLargeScreen && styles.descriptionLarge
+            ]}>
               After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
             </Text>
             
@@ -162,16 +199,28 @@ export default function EntryScreen() {
 
         {entryInstructions.cleaningCloset && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Cleaning Closet Access</Text>
-            <Text style={styles.description}>
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>Cleaning Closet Access</Text>
+            <Text style={[
+              styles.description,
+              isLargeScreen && styles.descriptionLarge
+            ]}>
               {entryInstructions.cleaningCloset}
             </Text>
           </View>
         )}
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Location Details</Text>
-          <Text style={styles.description}>
+          <Text style={[
+            styles.sectionTitle,
+            isLargeScreen && styles.sectionTitleLarge
+          ]}>Location Details</Text>
+          <Text style={[
+            styles.description,
+            isLargeScreen && styles.descriptionLarge
+          ]}>
             The apartment is located in {id === '29051502' ? 'Marbella Center, close to the beach.' : 
                                         id === '29051503' ? 'the Aloha area, close to golf courses and Nueva Andalucía center.' : 
                                         id === '29051504' ? 'the heart of Marbella\'s historic Old Town.' : 
@@ -179,7 +228,10 @@ export default function EntryScreen() {
           </Text>
         </View>
 
-        <Text style={styles.note}>
+        <Text style={[
+          styles.note,
+          isLargeScreen && styles.noteLarge
+        ]}>
           We wish you a pleasant stay.
         </Text>
       </ScrollView>
@@ -195,22 +247,52 @@ const styles = StyleSheet.create({
   content: {
     padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
   },
+  contentLarge: {
+    maxWidth: 1200,
+    alignSelf: 'center',
+    paddingHorizontal: theme.spacing.xl,
+  },
+  mainContent: {
+    width: '100%',
+  },
+  mainContentLarge: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
   section: {
     marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
+  },
+  sectionLarge: {
+    width: '60%',
+  },
+  imagesSection: {
+    marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
+  },
+  imagesSectionLarge: {
+    width: '35%',
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.s,
+  },
+  sectionTitleLarge: {
+    fontSize: 24,
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
   },
+  descriptionLarge: {
+    fontSize: 18,
+    lineHeight: 28,
+  },
   codeSection: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
     ...theme.shadows.small,
   },
   codeTitle: {
@@ -222,16 +304,23 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.xs,
   },
-  imageGrid: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: Platform.OS === 'web' ? -theme.spacing.xs : -theme.spacing.xxs,
+  imageContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing.m,
     marginTop: theme.spacing.m,
   },
-  keyLocationImage: {
-    width: '48%',
+  imageContainerLarge: {
+    marginTop: theme.spacing.xl,
+  },
+  keyImage: {
+    width: '100%',
+    height: 200,
     borderRadius: theme.borderRadius.m,
-    margin: Platform.OS === 'web' ? theme.spacing.xs : theme.spacing.xxs,
+    ...theme.shadows.small,
+  },
+  keyImageLarge: {
+    height: 250,
   },
   note: {
     ...theme.typography.bodyMedium,
@@ -239,6 +328,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: theme.spacing.m,
     marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl,
+  },
+  noteLarge: {
+    fontSize: 18,
   },
   watchVideoButton: {
     flexDirection: 'row',

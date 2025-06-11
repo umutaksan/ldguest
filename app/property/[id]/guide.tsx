@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -12,6 +12,7 @@ export default function GuideScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [selectedCategory, setSelectedCategory] = useState('activities');
+  const { width } = useWindowDimensions();
 
   const categories = [
     { id: 'activities', name: 'Activities', icon: <Compass size={20} color={theme.colors.primary} /> },
@@ -141,21 +142,39 @@ export default function GuideScreen() {
     ]
   };
 
+  // Determine if we're on a large screen
+  const isLargeScreen = width > 1024;
+  const isMediumScreen = width > 768 && width <= 1024;
+
   const renderActivities = () => (
-    <>
+    <View style={[
+      styles.categoriesContainer,
+      isLargeScreen && styles.categoriesContainerLarge
+    ]}>
       <View style={styles.categorySection}>
         <Text style={styles.categoryTitle}>
           <Waves size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Beach & Water Activities
         </Text>
-        {activities.beachAndWater.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {activities.beachAndWater.map((activity) => (
+            <InfoCard
+              key={activity.id}
+              title={activity.name}
+              description={activity.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -163,14 +182,25 @@ export default function GuideScreen() {
           <Mountain size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Adventure & Outdoor
         </Text>
-        {activities.adventureAndOutdoor.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {activities.adventureAndOutdoor.map((activity) => (
+            <InfoCard
+              key={activity.id}
+              title={activity.name}
+              description={activity.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -178,14 +208,25 @@ export default function GuideScreen() {
           <Dumbbell size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Sports & Fitness
         </Text>
-        {activities.sportsAndFitness.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {activities.sportsAndFitness.map((activity) => (
+            <InfoCard
+              key={activity.id}
+              title={activity.name}
+              description={activity.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -193,14 +234,25 @@ export default function GuideScreen() {
           <Landmark size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Cultural & Historical
         </Text>
-        {activities.culturalAndHistorical.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {activities.culturalAndHistorical.map((activity) => (
+            <InfoCard
+              key={activity.id}
+              title={activity.name}
+              description={activity.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -208,33 +260,58 @@ export default function GuideScreen() {
           <Music size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Nightlife & Entertainment
         </Text>
-        {activities.nightlifeAndEntertainment.map((activity) => (
-          <InfoCard
-            key={activity.id}
-            title={activity.name}
-            description={activity.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {activities.nightlifeAndEntertainment.map((activity) => (
+            <InfoCard
+              key={activity.id}
+              title={activity.name}
+              description={activity.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
-    </>
+    </View>
   );
 
   const renderShopping = () => (
-    <>
+    <View style={[
+      styles.categoriesContainer,
+      isLargeScreen && styles.categoriesContainerLarge
+    ]}>
       <View style={styles.categorySection}>
         <Text style={styles.categoryTitle}>
           <ShoppingCart size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Supermarkets
         </Text>
-        {stores.supermarkets.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {stores.supermarkets.map((store) => (
+            <InfoCard
+              key={store.id}
+              title={store.name}
+              description={store.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -242,14 +319,25 @@ export default function GuideScreen() {
           <Leaf size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Organic & Gourmet
         </Text>
-        {stores.organic.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {stores.organic.map((store) => (
+            <InfoCard
+              key={store.id}
+              title={store.name}
+              description={store.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -257,14 +345,25 @@ export default function GuideScreen() {
           <Store size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Local Markets
         </Text>
-        {stores.markets.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {stores.markets.map((store) => (
+            <InfoCard
+              key={store.id}
+              title={store.name}
+              description={store.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -272,14 +371,25 @@ export default function GuideScreen() {
           <Building2 size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Shopping Centers
         </Text>
-        {stores.shopping_centers.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {stores.shopping_centers.map((store) => (
+            <InfoCard
+              key={store.id}
+              title={store.name}
+              description={store.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -287,33 +397,58 @@ export default function GuideScreen() {
           <Gift size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Specialty Stores
         </Text>
-        {stores.specialty.map((store) => (
-          <InfoCard
-            key={store.id}
-            title={store.name}
-            description={store.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {stores.specialty.map((store) => (
+            <InfoCard
+              key={store.id}
+              title={store.name}
+              description={store.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
-    </>
+    </View>
   );
 
   const renderApps = () => (
-    <>
+    <View style={[
+      styles.categoriesContainer,
+      isLargeScreen && styles.categoriesContainerLarge
+    ]}>
       <View style={styles.categorySection}>
         <Text style={styles.categoryTitle}>
           <Navigation2 size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Transportation Apps
         </Text>
-        {apps.transportation.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {apps.transportation.map((app) => (
+            <InfoCard
+              key={app.id}
+              title={app.name}
+              description={app.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -321,14 +456,25 @@ export default function GuideScreen() {
           <Pizza size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Food & Restaurants
         </Text>
-        {apps.foodAndRestaurants.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {apps.foodAndRestaurants.map((app) => (
+            <InfoCard
+              key={app.id}
+              title={app.name}
+              description={app.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -336,14 +482,25 @@ export default function GuideScreen() {
           <Globe2 size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Tourism & Social
         </Text>
-        {apps.tourismAndSocial.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {apps.tourismAndSocial.map((app) => (
+            <InfoCard
+              key={app.id}
+              title={app.name}
+              description={app.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -351,14 +508,25 @@ export default function GuideScreen() {
           <CreditCard size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Finance & Payments
         </Text>
-        {apps.financeAndPayments.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {apps.financeAndPayments.map((app) => (
+            <InfoCard
+              key={app.id}
+              title={app.name}
+              description={app.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -366,14 +534,25 @@ export default function GuideScreen() {
           <Languages size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Language & Translation
         </Text>
-        {apps.languageAndTranslation.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {apps.languageAndTranslation.map((app) => (
+            <InfoCard
+              key={app.id}
+              title={app.name}
+              description={app.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -381,14 +560,25 @@ export default function GuideScreen() {
           <MessageSquare size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Communication
         </Text>
-        {apps.communication.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {apps.communication.map((app) => (
+            <InfoCard
+              key={app.id}
+              title={app.name}
+              description={app.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.categorySection}>
@@ -396,16 +586,27 @@ export default function GuideScreen() {
           <CarFront size={20} color={theme.colors.primary} style={styles.categoryIcon} />
           Parking
         </Text>
-        {apps.parking.map((app) => (
-          <InfoCard
-            key={app.id}
-            title={app.name}
-            description={app.description}
-            showChevron={false}
-          />
-        ))}
+        <View style={[
+          styles.cardsGrid,
+          isLargeScreen && styles.cardsGridLarge,
+          isMediumScreen && styles.cardsGridMedium
+        ]}>
+          {apps.parking.map((app) => (
+            <InfoCard
+              key={app.id}
+              title={app.name}
+              description={app.description}
+              showChevron={false}
+              style={[
+                styles.infoCard,
+                isLargeScreen && styles.infoCardLarge,
+                isMediumScreen && styles.infoCardMedium
+              ]}
+            />
+          ))}
+        </View>
       </View>
-    </>
+    </View>
   );
 
   return (
@@ -444,7 +645,10 @@ export default function GuideScreen() {
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
+        contentContainerStyle={[
+          styles.content,
+          isLargeScreen && styles.contentLarge
+        ]}
       >
         {selectedCategory === 'activities' && renderActivities()}
         {selectedCategory === 'shopping' && renderShopping()}
@@ -491,6 +695,18 @@ const styles = StyleSheet.create({
   content: {
     padding: theme.spacing.m,
   },
+  contentLarge: {
+    maxWidth: 1200,
+    alignSelf: 'center',
+    paddingHorizontal: theme.spacing.xl,
+  },
+  categoriesContainer: {
+    width: '100%',
+  },
+  categoriesContainerLarge: {
+    maxWidth: 1200,
+    alignSelf: 'center',
+  },
   categorySection: {
     marginBottom: theme.spacing.xl,
   },
@@ -500,8 +716,34 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
     flexDirection: 'row',
     alignItems: 'center',
+    fontSize: 20,
   },
   categoryIcon: {
     marginRight: theme.spacing.s,
+  },
+  cardsGrid: {
+    flexDirection: 'column',
+  },
+  cardsGridLarge: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    gap: theme.spacing.m,
+  },
+  cardsGridMedium: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  infoCard: {
+    marginBottom: theme.spacing.m,
+  },
+  infoCardLarge: {
+    width: 'calc(33.33% - 16px)',
+    marginBottom: theme.spacing.m,
+  },
+  infoCardMedium: {
+    width: '48%',
+    marginBottom: theme.spacing.m,
   },
 });
