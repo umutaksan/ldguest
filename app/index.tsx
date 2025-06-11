@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -11,13 +11,13 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 export default function PropertiesScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  
+
   const properties = [
     {
       id: '29051501',
       name: '1+1 Jardines Tropicales Puerto Banús',
       location: 'Nueva Andalucía',
-      image: 'https://a0.muscache.com/im/pictures/miso/Hosting-1316607383752040451/original/4009975e-0d1a-450c-9458-88acab09ef65.png?im_w=1440&im_format=avif',
+      image: 'https://i.postimg.cc/hPNR5jmM/Whats-App-Image-2024-09-18-at-14-15-27-3.jpg',
     },
     {
       id: '29051502',
@@ -142,8 +142,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   welcomeText: {
-    fontFamily: 'PlayfairDisplay_700Bold',
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 36 : 32) : 30,
+    ...theme.typography.heading,
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
     textAlign: 'center',
