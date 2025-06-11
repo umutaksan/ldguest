@@ -192,14 +192,15 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
   },
   row: {
-    flexDirection: 'row',
+    flexDirection: theme.layout.isWeb && theme.layout.isDesktop ? 'row' : 'row',
     width: '100%',
+    gap: theme.layout.isWeb ? theme.spacing.s : 0,
   },
   promoContainer: {
     margin: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    height: 200,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
     ...theme.shadows.medium,
   },
   promoImage: {

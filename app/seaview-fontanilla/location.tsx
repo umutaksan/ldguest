@@ -45,7 +45,7 @@ export default function SeaviewLocationScreen() {
     location: 'Marbella Center',
     address: 'Calle Camilo José Cela, 7',
     apartment: '1st Floor, Apartment 106',
-    mapImage: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg'
+    mapImage: 'https://static.wixstatic.com/media/8bbc22_5a77db7dbfa84c6a9215daae75f3bc15~mv2.jpg/v1/fill/w_333,h_445,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_14_0a292a40.jpg'
   };
 
   const nearbyPOIs = [

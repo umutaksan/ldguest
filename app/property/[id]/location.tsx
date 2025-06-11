@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking, Platform, useWindowDimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -10,7 +10,6 @@ import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi, Video } from 'lucid
 export default function LocationScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { width } = useWindowDimensions();
   
   // Property data based on ID
   const getPropertyData = () => {
@@ -37,7 +36,7 @@ export default function LocationScreen() {
           location: 'Marbella Center',
           address: 'Calle Camilo José Cela, 7',
           apartment: '1st Floor, Apartment 106',
-          mapImage: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg',
+          mapImage: 'https://static.wixstatic.com/media/8bbc22_5a77db7dbfa84c6a9215daae75f3bc15~mv2.jpg/v1/fill/w_333,h_445,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_14_0a292a40.jpg',
           mapUrl: 'https://www.google.com/maps/dir/36.5080731,-4.8946322/C.+Camilo+Jos%C3%A9+Cela,+29602+Marbella,+M%C3%A1laga/@36.5080775,-4.8949322,20.5z/data=!4m8!4m7!1m0!1m5!1m1!1s0xd732801cbc22faf:0xf815e9f3937fdcc4!2m2!1d-4.8964084!2d36.5082514?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D',
           busUrl: 'https://maps.app.goo.gl/8KjN2vF3xYWPkQVH9',
           pois: [
@@ -160,10 +159,6 @@ export default function LocationScreen() {
       ];
     }
   };
-
-  // Determine if we're on a large screen
-  const isLargeScreen = width > 1024;
-  const isMediumScreen = width > 768 && width <= 1024;
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
@@ -171,87 +166,60 @@ export default function LocationScreen() {
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          styles.content,
-          isLargeScreen && styles.contentLarge
-        ]}
+        contentContainerStyle={styles.content}
       >
-        <View style={[
-          styles.mainContent,
-          isLargeScreen && styles.mainContentLarge
-        ]}>
-          <View style={[
-            styles.mapSection,
-            isLargeScreen && styles.mapSectionLarge
-          ]}>
-            <TouchableOpacity
-              style={[
-                styles.mapContainer,
-                isLargeScreen && styles.mapContainerLarge
-              ]}
-              onPress={handleOpenMaps}
-              activeOpacity={0.9}
-            >
-              <Image 
-                source={{ uri: propertyData.mapImage }} 
-                style={styles.mapImage}
-                resizeMode="cover"
-              />
-              <View style={styles.mapOverlay}>
-                <MapPin size={24} color={theme.colors.white} />
-                <Text style={styles.mapOverlayText}>{propertyData.address}, {propertyData.location}</Text>
-              </View>
-            </TouchableOpacity>
-            
-            <View style={styles.addressContainer}>
-              <MapPin size={20} color={theme.colors.primary} />
-              <View style={styles.addressContent}>
-                <Text style={styles.addressText}>{propertyData.address}</Text>
-                <Text style={styles.addressText}>{propertyData.apartment}</Text>
-                <Text style={styles.addressText}>{propertyData.location}</Text>
-                <Text style={styles.addressText}>29660 Marbella</Text>
-                <Text style={styles.addressText}>Málaga, Spain</Text>
-              </View>
-            </View>
-            
-            <TouchableOpacity 
-              style={styles.directionsButton}
-              onPress={handleOpenMaps}
-              activeOpacity={0.8}
-            >
-              <Navigation size={20} color={theme.colors.white} />
-              <Text style={styles.directionsButtonText}>Get Directions</Text>
-            </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.mapContainer}
+          onPress={handleOpenMaps}
+          activeOpacity={0.9}
+        >
+          <Image 
+            source={{ uri: propertyData.mapImage }} 
+            style={styles.mapImage}
+            resizeMode="cover"
+          />
+          <View style={styles.mapOverlay}>
+            <MapPin size={24} color={theme.colors.white} />
+            <Text style={styles.mapOverlayText}>{propertyData.address}, {propertyData.location}</Text>
           </View>
-          
-          <View style={[
-            styles.infoSection,
-            isLargeScreen && styles.infoSectionLarge
-          ]}>
-            <Text style={styles.sectionTitle}>How to Get Here</Text>
-            
-            {getTransportOptions().map((option) => (
-              <InfoCard
-                key={option.id}
-                title={option.title}
-                description={option.description}
-                icon={option.icon}
-                showChevron={!!option.action}
-                onPress={option.action}
-              />
-            ))}
+        </TouchableOpacity>
+        
+        <View style={styles.addressContainer}>
+          <MapPin size={20} color={theme.colors.primary} />
+          <View style={styles.addressContent}>
+            <Text style={styles.addressText}>{propertyData.address}</Text>
+            <Text style={styles.addressText}>{propertyData.apartment}</Text>
+            <Text style={styles.addressText}>{propertyData.location}</Text>
+            <Text style={styles.addressText}>29660 Marbella</Text>
+            <Text style={styles.addressText}>Málaga, Spain</Text>
           </View>
         </View>
         
-        <Text style={[
-          styles.sectionTitle,
-          isLargeScreen && styles.sectionTitleLarge
-        ]}>Nearby Points of Interest</Text>
+        <TouchableOpacity 
+          style={styles.directionsButton}
+          onPress={handleOpenMaps}
+          activeOpacity={0.8}
+        >
+          <Navigation size={20} color={theme.colors.white} />
+          <Text style={styles.directionsButtonText}>Get Directions</Text>
+        </TouchableOpacity>
         
-        <View style={[
-          styles.poiContainer,
-          isLargeScreen && styles.poiContainerLarge
-        ]}>
+        <Text style={styles.sectionTitle}>How to Get Here</Text>
+        
+        {getTransportOptions().map((option) => (
+          <InfoCard
+            key={option.id}
+            title={option.title}
+            description={option.description}
+            icon={option.icon}
+            showChevron={!!option.action}
+            onPress={option.action}
+          />
+        ))}
+        
+        <Text style={styles.sectionTitle}>Nearby Points of Interest</Text>
+        
+        <View style={styles.poiContainer}>
           {propertyData.pois.map((poi, index) => (
             <View key={index}>
               <View style={styles.poiItem}>
@@ -277,6 +245,8 @@ export default function LocationScreen() {
   );
 }
 
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -285,41 +255,12 @@ const styles = StyleSheet.create({
   content: {
     padding: theme.spacing.m,
   },
-  contentLarge: {
-    maxWidth: 1200,
-    alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl,
-  },
-  mainContent: {
-    width: '100%',
-  },
-  mainContentLarge: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: theme.spacing.xl,
-  },
-  mapSection: {
-    marginBottom: theme.spacing.l,
-  },
-  mapSectionLarge: {
-    width: '48%',
-    marginBottom: 0,
-  },
-  infoSection: {
-    marginBottom: theme.spacing.l,
-  },
-  infoSectionLarge: {
-    width: '48%',
-  },
   mapContainer: {
     height: 200,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
     marginBottom: theme.spacing.m,
     ...theme.shadows.medium,
-  },
-  mapContainerLarge: {
-    height: 300,
   },
   mapImage: {
     width: '100%',
@@ -375,18 +316,11 @@ const styles = StyleSheet.create({
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
   },
-  sectionTitleLarge: {
-    fontSize: 24,
-  },
   poiContainer: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
-  },
-  poiContainerLarge: {
-    maxWidth: 1200,
-    alignSelf: 'center',
   },
   poiItem: {
     paddingVertical: theme.spacing.s,

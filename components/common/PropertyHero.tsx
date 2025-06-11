@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking, Platform, useWindowDimensions } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ChevronLeft, Chrome as Home, Share, Heart, Building2 } from 'lucide-react-native';
@@ -24,7 +24,6 @@ export function PropertyHero({
 }: PropertyHeroProps) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { width, height } = useWindowDimensions();
   
   const handleHomePress = () => {
     router.replace('/');
@@ -77,15 +76,9 @@ export function PropertyHero({
     Linking.openURL('https://www.instagram.com/ldguestmarbella');
   };
 
-  // Responsive hero height based on screen size
-  const isLargeScreen = width > 1024;
-  const isMediumScreen = width > 768 && width <= 1024;
-  
-  const heroHeight = isLargeScreen 
-    ? 500 
-    : isMediumScreen 
-    ? 400 
-    : Math.min(350, height * 0.4);
+  const heroHeight = theme.layout.isWeb 
+    ? (theme.layout.isDesktop ? 400 : theme.layout.isTablet ? 350 : 300) 
+    : 300;
   
   return (
     <Animated.View 
@@ -142,20 +135,10 @@ export function PropertyHero({
             </View>
           </View>
           
-          <View style={[
-            styles.textContainer,
-            isLargeScreen && styles.textContainerLarge
-          ]}>
-            <Text style={[
-              styles.title,
-              isLargeScreen && styles.titleLarge,
-              isMediumScreen && styles.titleMedium
-            ]}>{title}</Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{title}</Text>
             {subtitle && (
-              <Text style={[
-                styles.subtitle,
-                isLargeScreen && styles.subtitleLarge
-              ]}>{subtitle}</Text>
+              <Text style={styles.subtitle}>{subtitle}</Text>
             )}
           </View>
         </LinearGradient>
@@ -195,7 +178,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: theme.spacing.s,
     // Web-specific styles
-    ...(Platform.OS === 'web' && {
+    ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
     }),
@@ -206,10 +189,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingHorizontal: theme.layout.containerPadding,
   },
-  textContainerLarge: {
-    maxWidth: 1200,
-    paddingHorizontal: theme.spacing.xl,
-  },
   title: {
     ...theme.typography.heading,
     color: theme.colors.white,
@@ -217,13 +196,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
     marginBottom: theme.spacing.xs,
-    fontSize: 28,
-  },
-  titleLarge: {
-    fontSize: 42,
-  },
-  titleMedium: {
-    fontSize: 36,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 32 : 28) : 28,
   },
   subtitle: {
     ...theme.typography.bodyMedium,
@@ -231,8 +204,5 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
-  },
-  subtitleLarge: {
-    fontSize: 20,
   },
 });
