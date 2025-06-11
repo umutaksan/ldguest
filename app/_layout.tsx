@@ -57,6 +57,7 @@ export default function RootLayout() {
         
         <Stack.Screen name="cleaning" options={{ headerShown: false }} />
         <Stack.Screen name="sql-editor" options={{ headerShown: false }} />
+        <Stack.Screen name="wifi-passwords" options={{ headerShown: false }} />
         
         <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
       </Stack>
