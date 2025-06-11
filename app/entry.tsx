@@ -3,14 +3,12 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import YoutubePlayer from 'react-native-youtube-iframe';
 import { Video } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
   const { width } = Dimensions.get('window');
   const imageHeight = Platform.OS === 'web' ? 180 : width * 0.3;
-  const videoHeight = Platform.OS === 'web' ? 240 : width * 0.5625; // 16:9 aspect ratio
 
   const handleWatchVideo = () => {
     Linking.openURL('https://youtube.com/shorts/XNzqKrwDKf8');
@@ -41,22 +39,24 @@ export default function EntryScreen() {
             <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
           </TouchableOpacity>
           
-          <View style={styles.imageGrid}>
+          <View style={styles.imageContainer}>
             <Image 
               source={{ uri: 'https://ldguest.com/wp-content/uploads/2024/11/1adsiz-tasarim-1.png' }}
-              style={[styles.keyLocationImage, { height: imageHeight }]}
+              style={styles.keyImage}
               resizeMode="cover"
             />
-            <Image 
-              source={{ uri: 'https://static.wixstatic.com/media/8bbc22_cd8e33bde09a4abf9fceaa4eff2d6f67~mv2.jpg/v1/fill/w_159,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_de854110.jpg' }}
-              style={[styles.keyLocationImage, { height: imageHeight }]}
-              resizeMode="cover"
-            />
-            <Image 
-              source={{ uri: 'https://static.wixstatic.com/media/8bbc22_1f7abcf379124dff99994757af9c6b4a~mv2.jpg/v1/fill/w_123,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_3fad3c4b.jpg' }}
-              style={[styles.keyLocationImage, { height: imageHeight }]}
-              resizeMode="cover"
-            />
+            <View style={styles.smallImagesContainer}>
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_cd8e33bde09a4abf9fceaa4eff2d6f67~mv2.jpg/v1/fill/w_159,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_de854110.jpg' }}
+                style={styles.smallKeyImage}
+                resizeMode="cover"
+              />
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_1f7abcf379124dff99994757af9c6b4a~mv2.jpg/v1/fill/w_123,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_3fad3c4b.jpg' }}
+                style={styles.smallKeyImage}
+                resizeMode="cover"
+              />
+            </View>
           </View>
         </View>
 
@@ -82,21 +82,21 @@ export default function EntryScreen() {
             Here's what you need to know about the keys and entry system:
           </Text>
           
-          <View style={styles.imageGrid}>
+          <View style={styles.imageContainer}>
             <Image 
               source={{ uri: 'https://static.wixstatic.com/media/8bbc22_89c3d72a7534442ba49e2b8b24f85759~mv2.jpg/v1/fill/w_283,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_edited.jpg' }}
-              style={[styles.keyImage, { height: imageHeight * 1.2 }]}
+              style={styles.keyImage}
               resizeMode="cover"
             />
-            <View style={styles.keyImagesContainer}>
+            <View style={styles.smallImagesContainer}>
               <Image 
                 source={{ uri: 'https://static.wixstatic.com/media/8bbc22_160ddf38bb8444cc880f92543da1f0dd~mv2.jpg/v1/fill/w_186,h_242,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2013_43_edited.jpg' }}
-                style={[styles.smallKeyImage, { height: imageHeight }]}
+                style={styles.smallKeyImage}
                 resizeMode="cover"
               />
               <Image 
                 source={{ uri: 'https://static.wixstatic.com/media/8bbc22_c313378eb121483a843293b0584f1f13~mv2.jpg/v1/fill/w_273,h_242,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2014_05_38_36e69ad5.jpg' }}
-                style={[styles.smallKeyImage, { height: imageHeight }]}
+                style={styles.smallKeyImage}
                 resizeMode="cover"
               />
             </View>
@@ -137,27 +137,23 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
   },
-  imageGrid: {
+  imageContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: Platform.OS === 'web' ? -theme.spacing.xs : -theme.spacing.xxs,
-  },
-  keyLocationImage: {
-    width: '32%',
-    borderRadius: theme.borderRadius.m,
-    margin: Platform.OS === 'web' ? theme.spacing.xs : theme.spacing.xxs,
+    marginTop: theme.spacing.m,
   },
   keyImage: {
     width: '48%',
+    height: 220,
     borderRadius: theme.borderRadius.m,
-    margin: Platform.OS === 'web' ? theme.spacing.xs : theme.spacing.xxs,
   },
-  keyImagesContainer: {
+  smallImagesContainer: {
     width: '48%',
     justifyContent: 'space-between',
   },
   smallKeyImage: {
     width: '100%',
+    height: 105,
     borderRadius: theme.borderRadius.m,
     marginBottom: theme.spacing.s,
   },
