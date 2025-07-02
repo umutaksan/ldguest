@@ -28,7 +28,6 @@ export default function EntryScreen() {
             Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
             {'\n\n'}
             The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
-            {'\n\n'}
             To enter the house, first:
             You need to take the black bar of the main door and the key card for entry from the designated location shown here.
           </Text>
