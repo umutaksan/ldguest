@@ -19,7 +19,7 @@ export default function EntryScreen() {
           title: 'Jardines Tropicales Entry Instructions',
           description: 'Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.',
           note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
-          keyboxCode: '****',
+          note2: 'To enter the house, first:\nYou need to take the black bar of the main door and the key card for entry from the designated location shown here.',
           videoUrl: 'https://youtube.com/shorts/XNzqKrwDKf8',
           entryVideoUrl: 'https://www.youtube.com/shorts/nWXkqDrRcyU',
           hasKeyImages: true,
@@ -108,6 +108,7 @@ export default function EntryScreen() {
               {entryInstructions.description}
               {'\n\n'}
               {entryInstructions.note}
+              {entryInstructions.note2 && '\n\n' + entryInstructions.note2}
             </Text>
 
             {id === '29051503' && (
