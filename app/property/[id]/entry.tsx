@@ -47,16 +47,14 @@ export default function EntryScreen() {
           title: 'Aloha Pueblo Entry Instructions',
           description: 'Welcome to your Aloha Pueblo townhouse! Here are the entry instructions for Calle del Agua, Apartment 168.',
           note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
-          buildingCode: '345424#',
-          cabinetCode: '290',
-          hasKeyImages: false
+          hasKeyImages: false,
+          videoUrl: 'https://youtube.com/shorts/-rT_D7LXwag?feature=share'
         };
       case '29051504': // Old Town
         return {
           title: 'Old Town Entry Instructions',
           description: 'Welcome to your Old Town apartment! Here are the entry instructions for Calle Málaga.',
           note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
-          buildingCode: '6464173#',
           cleaningCloset: 'The cleaning closet card is located under the cutlery. After taking the card, please scan it at the indicated spot to open the cleaning closet.',
           hasKeyImages: false
         };
@@ -112,20 +110,45 @@ export default function EntryScreen() {
               {entryInstructions.note}
             </Text>
 
+            {id === '29051503' && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>How do I reach the Aloha Pueblo house and how do I open the door?</Text>
+                
+                <TouchableOpacity 
+                  style={styles.watchVideoButton}
+                  onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
+                  activeOpacity={0.8}
+                >
+                  <Video size={20} color={theme.colors.white} />
+                  <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
+                </TouchableOpacity>
+
+                <View style={styles.imageContainer}>
+                  <Image 
+                    source={{ uri: 'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/crop/x_0,y_338,w_3024,h_2754/fill/w_366,h_333,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg' }}
+                    style={styles.mainImage}
+                    resizeMode="cover"
+                  />
+                </View>
+
+                <Text style={styles.description}>
+                  The pool entrance keys are in the house where you will be staying.
+                </Text>
+
+                <View style={styles.imageContainer}>
+                  <Image 
+                    source={{ uri: 'https://static.wixstatic.com/media/8bbc22_6dc1f4494ca4479b83079814d5d6fc16~mv2.jpeg/v1/crop/x_0,y_892,w_1152,h_683/fill/w_334,h_198,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-09%20at%2002_03_20.jpeg' }}
+                    style={styles.poolImage}
+                    resizeMode="cover"
+                  />
+                </View>
+              </View>
+            )}
+
             {entryInstructions.keyboxCode && (
               <View style={styles.codeSection}>
                 <Text style={styles.codeTitle}>Building Access Codes:</Text>
                 <Text style={styles.codeText}>• Main Door: {entryInstructions.keyboxCode}</Text>
-              </View>
-            )}
-
-            {entryInstructions.buildingCode && (
-              <View style={styles.codeSection}>
-                <Text style={styles.codeTitle}>Building Access Codes:</Text>
-                <Text style={styles.codeText}>• Main Door: {entryInstructions.buildingCode}</Text>
-                {entryInstructions.cabinetCode && (
-                  <Text style={styles.codeText}>• Cabinet Code: {entryInstructions.cabinetCode}</Text>
-                )}
               </View>
             )}
 
@@ -136,7 +159,7 @@ export default function EntryScreen() {
               </View>
             )}
 
-            {entryInstructions.videoUrl && (
+            {entryInstructions.videoUrl && id !== '29051503' && (
               <TouchableOpacity 
                 style={styles.watchVideoButton}
                 onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
@@ -321,6 +344,18 @@ const styles = StyleSheet.create({
   },
   keyImageLarge: {
     height: 250,
+  },
+  mainImage: {
+    width: '100%',
+    height: 300,
+    borderRadius: theme.borderRadius.m,
+    ...theme.shadows.small,
+  },
+  poolImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: theme.borderRadius.m,
+    ...theme.shadows.small,
   },
   note: {
     ...theme.typography.bodyMedium,

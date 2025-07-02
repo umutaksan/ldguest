@@ -25,9 +25,12 @@ export default function EntryScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Step 1: Getting the Key Card</Text>
           <Text style={styles.description}>
-            You need to take the black bar of the main door and the key card for entry from the designated location shown here. The code for the box outside the building is "****".
+            Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
             {'\n\n'}
-            (The passwords will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.)
+            The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
+            {'\n\n'}
+            To enter the house, first:
+            You need to take the black bar of the main door and the key card for entry from the designated location shown here.
           </Text>
 
           <TouchableOpacity 
