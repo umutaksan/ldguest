@@ -40,6 +40,9 @@ export default function TabLayout() {
           fontSize: theme.layout.isWeb ? 12 : 11,
           fontWeight: '500',
         },
+        tabBarItemStyle: {
+          display: 'none', // Hide all tabs by default
+        },
       }}
     >
       <Tabs.Screen
@@ -49,6 +52,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Home size={size} color={color} />
           ),
+          tabBarItemStyle: {
+            display: 'flex', // Show this tab
+          },
         }}
       />
       <Tabs.Screen
@@ -58,6 +64,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Compass size={size} color={color} />
           ),
+          tabBarItemStyle: {
+            display: 'flex', // Show this tab
+          },
         }}
       />
       <Tabs.Screen
@@ -67,6 +76,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <BookOpen size={size} color={color} />
           ),
+          tabBarItemStyle: {
+            display: 'flex', // Show this tab
+          },
         }}
       />
       <Tabs.Screen
@@ -76,6 +88,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Info size={size} color={color} />
           ),
+          tabBarItemStyle: {
+            display: 'flex', // Show this tab
+          },
         }}
       />
       <Tabs.Screen
@@ -85,6 +100,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Phone size={size} color={color} />
           ),
+          tabBarItemStyle: {
+            display: 'flex', // Show this tab
+          },
         }}
       />
     </Tabs>
