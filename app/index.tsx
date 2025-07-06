@@ -6,7 +6,6 @@ import { theme } from '@/constants/theme';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { MapPin } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Platform } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function PropertiesScreen() {
@@ -49,7 +48,7 @@ export default function PropertiesScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <ResponsiveContainer>
-        showsVerticalScrollIndicator={Platform.OS !== 'web'}
+        <Animated.View 
           entering={FadeIn.duration(500)}
           style={styles.header}
         >
@@ -133,14 +132,7 @@ const styles = StyleSheet.create({
       overflowX: 'hidden',
     }),
     ...(theme.layout.isWeb && {
-      maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
-    ...(theme.layout.isWeb && {
       minHeight: '100vh',
-    }),
-    ...(theme.layout.isWeb && {
-      paddingTop: theme.spacing.l,
     }),
   },
   header: {
@@ -150,14 +142,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
     marginBottom: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.xl,
-      borderRadius: theme.borderRadius.l,
-      maxWidth: 1200,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginBottom: theme.spacing.xl,
-    }),
     ...(theme.layout.isWeb && {
       padding: theme.spacing.xl,
     }),
@@ -166,20 +150,12 @@ const styles = StyleSheet.create({
     width: theme.layout.isWeb ? (theme.layout.isDesktop ? 180 : 145) : 145,
     height: theme.layout.isWeb ? (theme.layout.isDesktop ? 76 : 62) : 62,
     marginBottom: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      width: 200,
-      height: 85,
-    }),
   },
   welcomeText: {
     ...theme.typography.heading,
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
     textAlign: 'center',
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 42,
-      marginBottom: theme.spacing.s,
-    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 36,
     }),
@@ -192,33 +168,13 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 18,
       maxWidth: 600,
-      marginBottom: theme.spacing.m,
-    }),
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 18,
-      maxWidth: 600,
     }),
   },
   content: {
     padding: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      maxWidth: 1280,
-      margin: '0 auto',
-      padding: theme.spacing.xl,
-    }),
   },
   propertiesGrid: {
     justifyContent: 'space-between',
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(450px, 1fr))',
-      gap: theme.spacing.xl,
-    }),
-    ...(theme.layout.isWeb && !theme.layout.isDesktop && theme.layout.isTablet && {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: theme.spacing.l,
-    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
@@ -227,9 +183,6 @@ const styles = StyleSheet.create({
   },
   propertyCardContainer: {
     marginBottom: theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      marginBottom: 0,
-    }),
   },
   propertyCard: {
     borderRadius: theme.borderRadius.m,
@@ -242,10 +195,6 @@ const styles = StyleSheet.create({
       transition: 'all 0.3s ease-in-out',
       '&:hover': {
         transform: 'translateY(-8px)',
-        boxShadow: '0 20px 25px rgba(0,0,0,0.15)',
-      },
-      '&:hover': {
-        transform: 'translateY(-8px)',
         boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
       },
     }),
@@ -253,9 +202,6 @@ const styles = StyleSheet.create({
   propertyImage: {
     width: '100%',
     height: '100%',
-    ...(theme.layout.isWeb && {
-      objectFit: 'cover',
-    }),
   },
   overlay: {
     position: 'absolute',
@@ -263,9 +209,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.l,
-    }),
   },
   propertyInfo: {
     flex: 1,
@@ -275,12 +218,6 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
     fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 22 : 20) : 20,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 26,
-    }),
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 5,
@@ -296,9 +233,6 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 5,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
   },
   adminButton: {
     backgroundColor: theme.colors.surface,
@@ -310,10 +244,6 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
-      '&:hover': {
-        backgroundColor: theme.colors.border,
-        transform: 'translateY(-2px)',
-      },
       '&:hover': {
         backgroundColor: theme.colors.border,
       },

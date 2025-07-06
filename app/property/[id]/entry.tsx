@@ -267,73 +267,50 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    ...(theme.layout.isWeb && {
-      maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
   },
   content: {
     padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.xl,
-    }),
   },
   contentLarge: {
-    maxWidth: 1280,
+    maxWidth: 1200,
     alignSelf: 'center',
     paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {
     width: '100%',
-    ...(theme.layout.isWeb && {
-      marginTop: theme.spacing.l,
-    }),
   },
   mainContentLarge: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    gap: theme.spacing.xl,
   },
   section: {
     marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
-    ...(theme.layout.isWeb && {
-      marginBottom: theme.spacing.xxl,
-    }),
   },
   sectionLarge: {
-    width: '55%',
+    width: '60%',
   },
   imagesSection: {
     marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
   },
   imagesSectionLarge: {
-    width: '40%',
+    width: '35%',
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.s,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 28,
-      marginBottom: theme.spacing.m,
-    }),
   },
   sectionTitleLarge: {
-    fontSize: 32,
+    fontSize: 24,
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 18,
-      lineHeight: 1.6,
-      marginBottom: theme.spacing.l,
-    }),
   },
   descriptionLarge: {
-    fontSize: 20,
-    lineHeight: 32,
+    fontSize: 18,
+    lineHeight: 28,
   },
   codeSection: {
     backgroundColor: theme.colors.card,
@@ -341,81 +318,45 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      padding: theme.spacing.l,
-      marginBottom: theme.spacing.l,
-      boxShadow: '0 5px 15px rgba(0,0,0,0.08)',
-    }),
   },
   codeTitle: {
     ...theme.typography.bodyMedium,
     marginBottom: theme.spacing.s,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 20,
-      marginBottom: theme.spacing.m,
-    }),
   },
   codeText: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.xs,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 16,
-      marginBottom: theme.spacing.s,
-    }),
   },
   imageContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing.m,
     marginTop: theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      gap: theme.spacing.l,
-    }),
   },
   imageContainerLarge: {
-    marginTop: 0,
+    marginTop: theme.spacing.xl,
   },
   keyImage: {
     width: '100%',
     height: 200,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      transition: 'transform 0.3s ease',
-      '&:hover': {
-        transform: 'scale(1.02)',
-      },
-    }),
   },
   keyImageLarge: {
-    height: 280,
+    height: 250,
   },
   mainImage: {
     width: '100%',
     height: 300,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      height: 400,
-      transition: 'transform 0.3s ease',
-      '&:hover': {
-        transform: 'scale(1.02)',
-      },
-    }),
   },
   poolImage: {
     width: '100%',
     height: 200,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      height: 250,
-      transition: 'transform 0.3s ease',
-      '&:hover': {
-        transform: 'scale(1.02)',
-      },
-    }),
   },
   note: {
     ...theme.typography.bodyMedium,
@@ -423,14 +364,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: theme.spacing.m,
     marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl,
-    ...(theme.layout.isWeb && {
-      fontSize: 18,
-      marginTop: theme.spacing.xl,
-      marginBottom: theme.spacing.xxl,
-    }),
   },
   noteLarge: {
-    fontSize: 20,
+    fontSize: 18,
   },
   watchVideoButton: {
     flexDirection: 'row',
@@ -441,20 +377,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: theme.spacing.m,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      transition: 'background-color 0.3s ease, transform 0.3s ease',
-      '&:hover': {
-        backgroundColor: theme.colors.secondaryDark,
-        transform: 'translateY(-3px)',
-      },
-    }),
   },
   watchVideoText: {
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 18,
-    }),
   },
 });

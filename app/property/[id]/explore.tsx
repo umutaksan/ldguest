@@ -238,66 +238,51 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     ...(theme.layout.isWeb && {
       maxWidth: '100vw',
-      overflowX: 'hidden'
-    })
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.xl
-    })
   },
   contentLarge: {
-    maxWidth: 1280,
+    maxWidth: 1200,
     alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl
+    paddingHorizontal: theme.spacing.xl,
   },
   hero: {
     height: 200,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
     marginBottom: theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      boxShadow: '0 10px 30px rgba(0,0,0,0.15)'
-    })
   },
   heroLarge: {
-    height: 500
+    height: 450,
   },
   heroOverlay: {
     flex: 1,
     justifyContent: 'flex-end',
     padding: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.xl
-    })
   },
   heroTitle: {
     ...theme.typography.heading,
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
   },
   heroTitleLarge: {
-    fontSize: 52,
-    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    fontSize: 48,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 15
+    textShadowRadius: 10,
   },
   heroSubtitle: {
     ...theme.typography.body,
     color: theme.colors.white,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
   },
   heroSubtitleLarge: {
-    fontSize: 24,
-    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    fontSize: 22,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 15
+    textShadowRadius: 10,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -306,67 +291,56 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.l,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      boxShadow: '0 5px 15px rgba(0,0,0,0.08)'
-    })
   },
   statsContainerLarge: {
     padding: theme.spacing.l,
     maxWidth: 900,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: theme.spacing.xl
   },
   statItem: {
     flex: 1,
     alignItems: 'center',
-    ...(theme.layout.isWeb && {
-      padding: theme.spacing.m
-    })
   },
   statNumber: {
     ...theme.typography.subheading,
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 28
-    })
   },
   statNumberLarge: {
     fontSize: 38,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   statLabel: {
     ...theme.typography.bodySmall,
-    color: theme.colors.textSecondary
+    color: theme.colors.textSecondary,
   },
   statDivider: {
     width: 1,
     backgroundColor: theme.colors.border,
-    marginHorizontal: theme.spacing.m
+    marginHorizontal: theme.spacing.m,
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.spacing.m
+    marginBottom: theme.spacing.m,
   },
   sectionTitleLarge: {
-    fontSize: 42,
-    fontWeight: 'bold',
+    fontSize: 32,
     marginBottom: theme.spacing.l,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   citiesGrid: {
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   citiesGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   citiesGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   cityCard: {
     backgroundColor: theme.colors.card,
@@ -379,37 +353,37 @@ const styles = StyleSheet.create({
       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       '&:hover': {
         transform: 'translateY(-5px)',
-        boxShadow: '0 15px 30px rgba(0,0,0,0.15)'
-      }
-    })
+        boxShadow: '0 15px 30px rgba(0,0,0,0.15)',
+      },
+    }),
   },
   cityCardLarge: {
     width: '31%',
-    marginBottom: theme.spacing.xl
+    marginBottom: theme.spacing.xl,
   },
   cityCardMedium: {
     width: '47%',
-    marginBottom: theme.spacing.l
+    marginBottom: theme.spacing.l,
   },
   cityImage: {
     width: '100%',
-    height: 200
+    height: 200,
   },
   cityImageOverlay: {
     flex: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   cityContent: {
-    padding: theme.spacing.m
+    padding: theme.spacing.m,
   },
   cityHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-    padding: theme.spacing.m
+    padding: theme.spacing.m,
   },
   cityInfo: {
-    flex: 1
+    flex: 1,
   },
   cityName: {
     ...theme.typography.subheading,
@@ -417,11 +391,11 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5
+    textShadowRadius: 5,
   },
   distanceContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   distance: {
     ...theme.typography.bodySmall,
@@ -429,28 +403,36 @@ const styles = StyleSheet.create({
     marginLeft: theme.spacing.xs,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5
+    textShadowRadius: 5,
   },
   cityDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 16,
-      minHeight: 70
-    })
+    marginBottom: theme.spacing.m,
   },
   directionsButton: {
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'flex-start',
     backgroundColor: theme.colors.primaryLight,
     paddingVertical: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
-    marginTop: theme.spacing.m
+    ...(theme.layout.isWeb && {
+      transition: 'background-color 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primary,
+      },
+    }),
   },
   directionsText: {
     ...theme.typography.bodySmall,
     color: theme.colors.primary,
-    marginLeft: theme.spacing.xs
-  }
+    marginLeft: theme.spacing.xs,
+    ...(theme.layout.isWeb && {
+      '&:hover': {
+        color: theme.colors.white,
+      },
+    }),
+  },
 });
