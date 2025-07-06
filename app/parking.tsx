@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Linking } 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { MapPin, Navigation, Car } from 'lucide-react-native';
+import { MapPin, Navigation } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function ParkingScreen() {
@@ -26,7 +26,7 @@ export default function ParkingScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Free Parking Available</Text>
             <Text style={styles.description}>
-              Street parking is available in front of the house. To view the street parking, click on the "Get Directions" button below and then select the street view option.
+              There is an open parking lot in front of the house where you can park your vehicle free of charge.
             </Text>
 
             <Image 
@@ -60,11 +60,11 @@ export default function ParkingScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Parking Tips</Text>
             <View style={styles.tipsContainer}>
-              <Text style={styles.tip}>• Street parking is generally available</Text>
-              <Text style={styles.tip}>• The area is well-lit and safe</Text>
+              <Text style={styles.tip}>• The parking area is well-lit and safe</Text>
+              <Text style={styles.tip}>• Available 24/7</Text>
+              <Text style={styles.tip}>• No time restrictions</Text>
               <Text style={styles.tip}>• Keep valuables out of sight</Text>
               <Text style={styles.tip}>• Lock your vehicle at all times</Text>
-              <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
             </View>
           </View>
         </Animated.View>
