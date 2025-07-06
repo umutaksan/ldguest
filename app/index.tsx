@@ -119,6 +119,7 @@ export default function PropertiesScreen() {
           </TouchableOpacity>
         </ScrollView>
       </ResponsiveContainer>
+      </ResponsiveContainer>
     </View>
   );
 }
