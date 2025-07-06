@@ -133,33 +133,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    ...(theme.layout.isWeb && {
-      maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
   },
   content: {
     padding: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      maxWidth: 1200,
-      marginHorizontal: 'auto',
-      padding: theme.spacing.xl,
-    }),
   },
   section: {
     marginBottom: theme.spacing.l,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      marginBottom: theme.spacing.xl,
-    }),
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 26,
-      marginBottom: theme.spacing.l,
-      textAlign: 'center',
-    }),
   },
   ruleCard: {
     flexDirection: 'row',
@@ -168,19 +151,6 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      '&:hover': {
-        transform: 'translateY(-3px)',
-        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-      },
-    }),
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.l,
-      marginBottom: theme.spacing.l,
-      maxWidth: 800,
-      marginHorizontal: 'auto',
-    }),
   },
   iconContainer: {
     width: 48,
@@ -189,11 +159,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      width: 60,
-      height: 60,
-      borderRadius: 30,
-    }),
   },
   ruleContent: {
     flex: 1,
@@ -201,27 +166,14 @@ const styles = StyleSheet.create({
   ruleTitle: {
     ...theme.typography.bodyMedium,
     marginBottom: theme.spacing.xs,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 20,
-      marginBottom: theme.spacing.s,
-    }),
   },
   ruleDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 17,
-      lineHeight: 26,
-    }),
   },
   divider: {
     height: 1,
     backgroundColor: theme.colors.border,
     marginVertical: theme.spacing.l,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      marginVertical: theme.spacing.xl,
-      maxWidth: 800,
-      marginHorizontal: 'auto',
-    }),
   },
 });

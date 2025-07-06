@@ -126,8 +126,7 @@ const styles = StyleSheet.create({
   content: {
     padding: theme.spacing.m,
     maxWidth: 800,
-    marginHorizontal: 'auto',
-    marginVertical: 0,
+    alignSelf: 'center',
     width: '100%',
   },
   description: {

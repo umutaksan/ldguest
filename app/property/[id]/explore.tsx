@@ -246,8 +246,7 @@ const styles = StyleSheet.create({
   },
   contentLarge: {
     maxWidth: 1200,
-    marginHorizontal: 'auto',
-    marginVertical: 0,
+    alignSelf: 'center',
     paddingHorizontal: theme.spacing.xl,
   },
   hero: {
