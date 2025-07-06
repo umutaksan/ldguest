@@ -54,9 +54,22 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-3px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+    }),
   },
   iconContainer: {
     marginRight: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      transform: 'scale(1.2)',
+    }),
   },
   content: {
     flex: 1,
@@ -65,9 +78,16 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
     marginBottom: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      marginBottom: theme.spacing.s,
+    }),
   },
   description: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+    }),
   },
 });

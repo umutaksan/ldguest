@@ -111,27 +111,55 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1200,
+      marginHorizontal: 'auto',
+      padding: theme.spacing.xl,
+    }),
   },
   section: {
     marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
+    ...(theme.layout.isWeb && {
+      marginBottom: theme.spacing.xxl,
+    }),
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 26,
+      marginBottom: theme.spacing.m,
+    }),
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      lineHeight: 28,
+      maxWidth: 800,
+    }),
   },
   imageContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: theme.spacing.m,
   },
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      gap: theme.spacing.xl,
+    }),
   keyImage: {
     width: '48%',
     height: 220,
@@ -140,18 +168,30 @@ const styles = StyleSheet.create({
   smallImagesContainer: {
     width: '48%',
     justifyContent: 'space-between',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 400,
+      height: 300,
+    }),
   },
   smallKeyImage: {
     width: '100%',
     height: 105,
     borderRadius: theme.borderRadius.m,
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 600,
+      height: 400,
+    }),
   },
   videoContainer: {
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
     backgroundColor: theme.colors.card,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 600,
+      height: 300,
+    }),
   },
   note: {
     ...theme.typography.bodyMedium,
@@ -159,6 +199,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: theme.spacing.m,
     marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 20,
+      marginTop: theme.spacing.xl,
+    }),
   },
   watchVideoButton: {
     flexDirection: 'row',
@@ -169,10 +213,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      maxWidth: 300,
+      alignSelf: 'center',
+      transition: 'background-color 0.3s ease, transform 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.secondaryDark,
+        transform: 'translateY(-3px)',
+      },
+    }),
   },
   watchVideoText: {
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
 });

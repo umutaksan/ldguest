@@ -75,21 +75,46 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     paddingBottom: theme.spacing.xl,
+    ...(theme.layout.isWeb && {
+      minHeight: '100vh',
+    }),
   },
   mainContent: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1000,
+      marginHorizontal: 'auto',
+      padding: theme.spacing.xl,
+    }),
   },
   title: {
     ...theme.typography.heading,
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 36,
+      textAlign: 'center',
+      marginBottom: theme.spacing.m,
+    }),
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.l,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      lineHeight: 28,
+      textAlign: 'center',
+      maxWidth: 800,
+      marginHorizontal: 'auto',
+      marginBottom: theme.spacing.xl,
+    }),
   },
   benefitsContainer: {
     backgroundColor: theme.colors.card,
@@ -97,15 +122,36 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.l,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.xl,
+      maxWidth: 900,
+      marginHorizontal: 'auto',
+      marginBottom: theme.spacing.xl,
+    }),
   },
   benefitsTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 24,
+      textAlign: 'center',
+      marginBottom: theme.spacing.l,
+    }),
   },
   benefitsList: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginHorizontal: -theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      justifyContent: 'center',
+    }),
   },
   benefitItem: {
     flexDirection: 'row',
@@ -113,11 +159,18 @@ const styles = StyleSheet.create({
     width: '50%',
     paddingHorizontal: theme.spacing.s,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      width: '45%',
+      marginBottom: theme.spacing.l,
+    }),
   },
   benefitText: {
     ...theme.typography.body,
     marginLeft: theme.spacing.s,
     flex: 1,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 17,
+    }),
   },
   rentButton: {
     flexDirection: 'row',
@@ -128,16 +181,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: theme.spacing.m,
     ...theme.shadows.medium,
+    ...(theme.layout.isWeb && {
+      transition: 'background-color 0.3s ease, transform 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primaryDark,
+        transform: 'translateY(-3px)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+      maxWidth: 400,
+      marginHorizontal: 'auto',
+      marginBottom: theme.spacing.l,
+    }),
   },
   rentButtonText: {
     ...theme.typography.button,
     color: theme.colors.white,
     marginHorizontal: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
   note: {
     ...theme.typography.caption,
     color: theme.colors.textTertiary,
     textAlign: 'center',
     fontStyle: 'italic',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 15,
+    }),
   },
 });

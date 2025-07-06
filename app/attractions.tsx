@@ -205,14 +205,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1200,
+      marginHorizontal: 'auto',
+      padding: theme.spacing.xl,
+    }),
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.l,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      lineHeight: 28,
+      maxWidth: 800,
+      marginHorizontal: 'auto',
+      marginBottom: theme.spacing.xl,
+      textAlign: 'center',
+    }),
   },
   attractionCard: {
     backgroundColor: theme.colors.card,
@@ -220,12 +237,28 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-4px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+      marginBottom: theme.spacing.l,
+      maxWidth: 900,
+      marginHorizontal: 'auto',
+    }),
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginBottom: theme.spacing.m,
+    }),
   },
   nameContainer: {
     flex: 1,
@@ -233,6 +266,9 @@ const styles = StyleSheet.create({
   },
   attractionName: {
     ...theme.typography.bodyMedium,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 20,
+    }),
   },
   mapsButton: {
     width: 32,
@@ -241,16 +277,35 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primaryLight,
     justifyContent: 'center',
     alignItems: 'center',
+    ...(theme.layout.isWeb && {
+      transition: 'background-color 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primary,
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+    }),
   },
   category: {
     ...theme.typography.bodySmall,
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      fontWeight: '600',
+    }),
   },
   attractionDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 17,
+      lineHeight: 26,
+    }),
   },
   distanceContainer: {
     flexDirection: 'row',
@@ -260,5 +315,8 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.textTertiary,
     marginLeft: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 15,
+    }),
   },
 });

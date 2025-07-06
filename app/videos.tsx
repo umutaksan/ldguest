@@ -142,21 +142,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1200,
+      marginHorizontal: 'auto',
+      padding: theme.spacing.xl,
+    }),
   },
   section: {
     marginBottom: theme.spacing.xl,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginBottom: theme.spacing.xxl,
+    }),
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginBottom: theme.spacing.l,
+    }),
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 26,
+    }),
   },
   videoCard: {
     height: 200,
@@ -165,10 +183,22 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
     backgroundColor: theme.colors.card,
     ...theme.shadows.medium,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      height: 300,
+      marginBottom: theme.spacing.l,
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 15px 30px rgba(0,0,0,0.15)',
+      },
+    }),
   },
   thumbnail: {
     width: '100%',
     height: '100%',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      objectFit: 'cover',
+    }),
   },
   videoOverlay: {
     position: 'absolute',
@@ -178,6 +208,9 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     flexDirection: 'row',
     alignItems: 'flex-end',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+    }),
   },
   videoIcon: {
     width: 40,
@@ -187,6 +220,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+    }),
   },
   videoInfo: {
     flex: 1,
@@ -196,10 +234,22 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 20,
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 5,
+    }),
   },
   videoDescription: {
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     opacity: 0.8,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 5,
+    }),
   },
 });

@@ -77,21 +77,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1000,
+      marginHorizontal: 'auto',
+      padding: theme.spacing.xl,
+    }),
   },
   section: {
     marginBottom: theme.spacing.xl,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginBottom: theme.spacing.xxl,
+    }),
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 26,
+      marginBottom: theme.spacing.l,
+    }),
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      lineHeight: 28,
+      marginBottom: theme.spacing.l,
+    }),
   },
   parkingImage: {
     width: '100%',
@@ -99,6 +120,12 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      height: 400,
+      maxWidth: 800,
+      marginHorizontal: 'auto',
+      marginBottom: theme.spacing.l,
+    }),
   },
   directionsButton: {
     flexDirection: 'row',
@@ -108,11 +135,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      transition: 'background-color 0.3s ease, transform 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primaryDark,
+        transform: 'translateY(-3px)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+      maxWidth: 400,
+      marginHorizontal: 'auto',
+    }),
   },
   directionsButtonText: {
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
   locationCard: {
     flexDirection: 'row',
@@ -120,6 +162,18 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-3px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+      maxWidth: 800,
+      marginHorizontal: 'auto',
+    }),
   },
   locationInfo: {
     marginLeft: theme.spacing.m,
@@ -127,20 +181,43 @@ const styles = StyleSheet.create({
   address: {
     ...theme.typography.bodyMedium,
     marginBottom: 2,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      marginBottom: 4,
+    }),
   },
   addressDetail: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+    }),
   },
   tipsContainer: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-3px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+      maxWidth: 800,
+      marginHorizontal: 'auto',
+    }),
   },
   tip: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 17,
+      marginBottom: theme.spacing.m,
+    }),
   },
 });
