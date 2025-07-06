@@ -513,39 +513,39 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
   },
   contentLarge: {
-    maxWidth: 1280,
-    marginHorizontal: 'auto',
-    marginVertical: 0,
-    paddingHorizontal: theme.spacing.xl,
+  faqContainerLarge: {
+    maxWidth: 800,
+    alignSelf: 'center'
+    paddingHorizontal: theme.spacing.xl
   },
   mainContent: {
     width: '100%',
   },
   mainContentLarge: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
     gap: theme.spacing.xl,
   },
   rulesSection: {
     width: '100%',
   },
   rulesSectionLarge: {
-    width: '65%',
-    paddingRight: theme.spacing.l,
+    width: '60%',
+    paddingRight: theme.spacing.l
   },
   amenitiesSection: {
     width: '100%',
   },
   amenitiesSectionLarge: {
-    width: '30%',
+    width: '35%'
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
   },
   sectionTitleLarge: {
-    fontSize: 28,
-    marginBottom: theme.spacing.l,
+    fontSize: 24,
+    marginBottom: theme.spacing.l
   },
   divider: {
     height: 1,
@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
   rulesGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   ruleCard: {
     flexDirection: 'row',
@@ -578,8 +578,8 @@ const styles = StyleSheet.create({
     ...theme.shadows.small,
     width: '100%',
     ...(theme.layout.isWeb && {
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      '&:hover': {
+  ruleCardLarge: {
+    width: '48%'
         transform: 'translateY(-3px)',
         boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
       },
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
     width: 'calc(50% - 12px)',
   },
   ruleCardMedium: {
-    width: 'calc(50% - 10px)',
+    width: '48%'
   },
   ruleIconContainer: {
     width: 48,
@@ -619,10 +619,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   amenitiesContainerLarge: {
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   amenitiesContainerMedium: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   amenityItem: {
     width: '33.33%',
@@ -636,7 +636,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding: theme.spacing.s,
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.spacing.m
     ...(theme.layout.isWeb && {
       transition: 'transform 0.3s ease',
       '&:hover': {
@@ -645,7 +645,7 @@ const styles = StyleSheet.create({
     }),
   },
   amenityItemMedium: {
-    width: '25%',
+    width: '25%'
   },
   amenityIcon: {
     width: 50,
@@ -714,6 +714,6 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
   },
   faqAnswerTextLarge: {
-    fontSize: 18,
+    fontSize: 16
   },
 });

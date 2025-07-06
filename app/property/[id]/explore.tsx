@@ -245,19 +245,19 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
   },
   contentLarge: {
+  contentLarge: {
     maxWidth: 1200,
-    marginHorizontal: 'auto',
-    marginVertical: 0,
-    paddingHorizontal: theme.spacing.xl,
+    alignSelf: 'center',
+    paddingHorizontal: theme.spacing.xl
   },
   hero: {
     height: 200,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.spacing.m
   },
   heroLarge: {
-    height: 450,
+    height: 400
   },
   heroOverlay: {
     flex: 1,
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
   },
   heroTitleLarge: {
-    fontSize: 48,
+    fontSize: 42
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
   },
   heroSubtitleLarge: {
-    fontSize: 22,
+    fontSize: 20
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     ...theme.shadows.small,
   },
   statsContainerLarge: {
-    padding: theme.spacing.l,
+    padding: theme.spacing.l
     maxWidth: 900,
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -326,8 +326,8 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   sectionTitleLarge: {
-    fontSize: 32,
-    marginBottom: theme.spacing.l,
+    fontSize: 28,
+    marginBottom: theme.spacing.l
     textAlign: 'center',
   },
   citiesGrid: {
@@ -336,12 +336,12 @@ const styles = StyleSheet.create({
   citiesGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   citiesGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   cityCard: {
     backgroundColor: theme.colors.card,
@@ -359,12 +359,12 @@ const styles = StyleSheet.create({
     }),
   },
   cityCardLarge: {
-    width: '31%',
-    marginBottom: theme.spacing.xl,
+    width: '32%',
+    marginBottom: theme.spacing.xl
   },
   cityCardMedium: {
-    width: '47%',
-    marginBottom: theme.spacing.l,
+    width: '48%',
+    marginBottom: theme.spacing.l
   },
   cityImage: {
     width: '100%',

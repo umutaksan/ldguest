@@ -2,12 +2,12 @@ import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 import { theme } from '@/constants/theme';
 
-interface ResponsiveContainerProps {
+type ResponsiveContainerProps = {
   children: React.ReactNode;
   style?: ViewStyle;
   maxWidth?: number;
   centerContent?: boolean;
-}
+};
 
 export function ResponsiveContainer({ 
   children, 
@@ -18,11 +18,9 @@ export function ResponsiveContainer({
   return (
     <View style={[
       styles.container,
-      {
-        maxWidth,
-        alignSelf: centerContent ? 'center' : 'stretch',
-        paddingHorizontal: theme.layout.containerPadding,
-      },
+      styles.responsiveWidth,
+      { maxWidth, paddingHorizontal: theme.layout.containerPadding },
+      centerContent && styles.centered,
       style
     ]}>
       {children}
@@ -33,9 +31,16 @@ export function ResponsiveContainer({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    flex: 1
     flex: 1, 
     ...(theme.layout.isWeb && {
       boxSizing: 'border-box',
     }),
   },
+  responsiveWidth: {
+    width: '100%'
+  },
+  centered: {
+    alignSelf: 'center'
+  }
 });
