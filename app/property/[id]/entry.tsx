@@ -81,7 +81,7 @@ export default function EntryScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Home Entry Instructions" />
-      
+
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[
@@ -273,7 +273,8 @@ const styles = StyleSheet.create({
   },
   contentLarge: {
     maxWidth: 1200,
-    alignSelf: 'center',
+    marginHorizontal: 'auto',
+    marginVertical: 0,
     paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {
@@ -332,19 +333,19 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing.m,
-    marginTop: theme.spacing.m
+    marginTop: theme.spacing.m,
   },
   imageContainerLarge: {
-    marginTop: theme.spacing.xl
+    marginTop: theme.spacing.xl,
   },
   keyImage: {
     width: '100%',
     height: 200,
     borderRadius: theme.borderRadius.m,
-    ...theme.shadows.small
+    ...theme.shadows.small,
   },
   keyImageLarge: {
-    height: 250
+    height: 250,
   },
   mainImage: {
     width: '100%',
@@ -363,10 +364,10 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     textAlign: 'center',
     marginTop: theme.spacing.m,
-    marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl
+    marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl,
   },
   noteLarge: {
-    fontSize: 18
+    fontSize: 18,
   },
   watchVideoButton: {
     flexDirection: 'row',

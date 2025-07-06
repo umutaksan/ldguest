@@ -113,7 +113,7 @@ export default function EntryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.background
     ...(theme.layout.isWeb && {
       maxWidth: '100vw',
       overflowX: 'hidden',
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: theme.spacing.m,
-    width: '100%',
+    width: '100%'
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       maxWidth: 1200,
       marginHorizontal: 'auto',
@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     marginVertical: theme.spacing.m,
     alignItems: 'center',
+  },
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       display: 'flex',
       flexDirection: 'row',
@@ -169,7 +170,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       gap: theme.spacing.xl,
     }),
-  },
   keyImage: {
     width: '100%',
     height: 200,

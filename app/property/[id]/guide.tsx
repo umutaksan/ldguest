@@ -696,17 +696,17 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
   },
   contentLarge: {
-  contentLarge: {
-    maxWidth: 1200,
-    alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl
+    maxWidth: 1280,
+    marginHorizontal: 'auto',
+    marginVertical: 0,
+    paddingHorizontal: theme.spacing.xl,
   },
   categoriesContainer: {
     width: '100%',
   },
   categoriesContainerLarge: {
-    maxWidth: 1200,
-    alignSelf: 'center'
+    maxWidth: 1280,
+    marginHorizontal: 'auto',
     marginVertical: 0,
   },
   categorySection: {
@@ -736,20 +736,20 @@ const styles = StyleSheet.create({
   cardsGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    gap: theme.spacing.m
+    justifyContent: 'space-between',
+    gap: theme.spacing.m,
   },
   cardsGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   infoCard: {
     marginBottom: theme.spacing.m,
     ...(theme.layout.isWeb && {
-  infoCardLarge: {
-    width: '31%',
-    marginBottom: theme.spacing.m
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-4px)',
         boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
       },
     }),
@@ -759,7 +759,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   infoCardMedium: {
-    width: '48%',
-    marginBottom: theme.spacing.m
+    width: '47%',
+    marginBottom: theme.spacing.m,
   },
 });
