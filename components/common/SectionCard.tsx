@@ -31,7 +31,7 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
     : '48%';
 
   const cardHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 160 : 140) 
+    ? (theme.layout.isDesktop ? 180 : 150) 
     : 140;
 
   return (
@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
+      '&:hover': {
+        transform: 'translateY(-4px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      }
     }),
   },
   iconContainer: {
@@ -82,5 +86,6 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     textAlign: 'center',
     lineHeight: theme.layout.isWeb ? 20 : 18,
+    fontWeight: '600',
   },
 });

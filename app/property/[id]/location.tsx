@@ -251,9 +251,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1000,
+      margin: '0 auto',
+      padding: theme.spacing.xl,
+    }),
   },
   mapContainer: {
     height: 200,
@@ -261,6 +270,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: theme.spacing.m,
     ...theme.shadows.medium,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      height: 300,
+      marginBottom: theme.spacing.l,
+    }),
   },
   mapImage: {
     width: '100%',
@@ -280,6 +293,9 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 18,
+    }),
   },
   addressContainer: {
     flexDirection: 'row',
@@ -288,6 +304,9 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.l,
+    }),
   },
   addressContent: {
     marginLeft: theme.spacing.m,
@@ -296,6 +315,10 @@ const styles = StyleSheet.create({
     ...theme.typography.body,
     color: theme.colors.text,
     marginBottom: 2,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 17,
+      marginBottom: 4,
+    }),
   },
   directionsButton: {
     flexDirection: 'row',
@@ -306,6 +329,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      transition: 'background-color 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primaryDark,
+      },
+    }),
   },
   directionsButtonText: {
     ...theme.typography.button,
@@ -315,23 +344,39 @@ const styles = StyleSheet.create({
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 24,
+      marginBottom: theme.spacing.l,
+    }),
   },
   poiContainer: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.l,
+    }),
   },
   poiItem: {
     paddingVertical: theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      paddingVertical: theme.spacing.m,
+    }),
   },
   poiName: {
     ...theme.typography.bodyMedium,
     marginBottom: 2,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
   poiDistance: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 15,
+    }),
   },
   poiSeparator: {
     height: 1,
@@ -346,6 +391,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: theme.spacing.s,
     alignSelf: 'flex-start',
+    ...(theme.layout.isWeb && {
+      transition: 'background-color 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.secondaryDark,
+      },
+    }),
   },
   watchRouteText: {
     ...theme.typography.bodySmall,

@@ -137,11 +137,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     flex: 1,
     padding: theme.spacing.m,
     alignItems: 'center',
+    ...(theme.layout.isWeb && {
+      paddingTop: theme.spacing.xl,
+      paddingBottom: theme.spacing.xl,
+    }),
   },
   iconContainer: {
     width: 96,
@@ -152,11 +160,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: theme.spacing.l,
     ...theme.shadows.medium,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      width: 120,
+      height: 120,
+      borderRadius: 60,
+    }),
   },
   title: {
     ...theme.typography.heading,
     marginBottom: theme.spacing.s,
     textAlign: 'center',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 36,
+      marginBottom: theme.spacing.m,
+    }),
   },
   description: {
     ...theme.typography.body,
@@ -164,11 +181,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: theme.spacing.xl,
     maxWidth: 300,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      maxWidth: 500,
+      marginBottom: theme.spacing.xxl,
+    }),
   },
   detailsContainer: {
     width: '100%',
     maxWidth: 400,
     marginBottom: theme.spacing.xl,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 500,
+    }),
   },
   detailCard: {
     backgroundColor: theme.colors.card,
@@ -176,11 +201,22 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.l,
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-3px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
   },
   label: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+    }),
   },
   valueContainer: {
     flexDirection: 'row',
@@ -193,6 +229,9 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 18,
     fontWeight: '500',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 22,
+    }),
   },
   copyButton: {
     width: 40,
@@ -202,6 +241,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'background-color 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primary,
+      },
+    }),
   },
   tipsContainer: {
     width: '100%',
@@ -211,20 +257,36 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.l,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 500,
+      padding: theme.spacing.l,
+    }),
   },
   tipsTitle: {
     ...theme.typography.bodyMedium,
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 20,
+      marginBottom: theme.spacing.m,
+    }),
   },
   tipText: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      marginBottom: theme.spacing.s,
+    }),
   },
   supportText: {
     ...theme.typography.bodySmall,
     color: theme.colors.textTertiary,
     textAlign: 'center',
     maxWidth: 300,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 15,
+      maxWidth: 400,
+    }),
   },
 });

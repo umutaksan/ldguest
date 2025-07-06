@@ -696,7 +696,7 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
   },
   contentLarge: {
-    maxWidth: 1200,
+    maxWidth: 1280,
     alignSelf: 'center',
     paddingHorizontal: theme.spacing.xl,
   },
@@ -704,11 +704,14 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   categoriesContainerLarge: {
-    maxWidth: 1200,
+    maxWidth: 1280,
     alignSelf: 'center',
   },
   categorySection: {
     marginBottom: theme.spacing.xl,
+    ...(theme.layout.isWeb && {
+      marginBottom: theme.spacing.xxl,
+    }),
   },
   categoryTitle: {
     ...theme.typography.bodyMedium,
@@ -717,6 +720,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     fontSize: 20,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 24,
+      marginBottom: theme.spacing.l,
+    }),
   },
   categoryIcon: {
     marginRight: theme.spacing.s,
@@ -727,7 +734,7 @@ const styles = StyleSheet.create({
   cardsGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     gap: theme.spacing.m,
   },
   cardsGridMedium: {
@@ -737,13 +744,20 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-4px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
   },
   infoCardLarge: {
-    width: 'calc(33.33% - 16px)',
+    width: 'calc(33.33% - 20px)',
     marginBottom: theme.spacing.m,
   },
   infoCardMedium: {
-    width: '48%',
+    width: '47%',
     marginBottom: theme.spacing.m,
   },
 });
