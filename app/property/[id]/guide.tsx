@@ -697,7 +697,8 @@ const styles = StyleSheet.create({
   },
   contentLarge: {
     maxWidth: 1280,
-    alignSelf: 'center',
+    marginHorizontal: 'auto',
+    marginVertical: 0,
     paddingHorizontal: theme.spacing.xl,
   },
   categoriesContainer: {
@@ -705,7 +706,8 @@ const styles = StyleSheet.create({
   },
   categoriesContainerLarge: {
     maxWidth: 1280,
-    alignSelf: 'center',
+    marginHorizontal: 'auto',
+    marginVertical: 0,
   },
   categorySection: {
     marginBottom: theme.spacing.xl,

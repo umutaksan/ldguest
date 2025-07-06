@@ -273,7 +273,8 @@ const styles = StyleSheet.create({
   },
   contentLarge: {
     maxWidth: 1200,
-    alignSelf: 'center',
+    marginHorizontal: 'auto',
+    marginVertical: 0,
     paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {

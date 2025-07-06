@@ -514,7 +514,8 @@ const styles = StyleSheet.create({
   },
   contentLarge: {
     maxWidth: 1280,
-    alignSelf: 'center',
+    marginHorizontal: 'auto',
+    marginVertical: 0,
     paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {
@@ -669,7 +670,8 @@ const styles = StyleSheet.create({
   },
   faqContainerLarge: {
     maxWidth: 900,
-    alignSelf: 'center',
+    marginHorizontal: 'auto',
+    marginVertical: 0,
   },
   faqItem: {
     backgroundColor: theme.colors.card,
