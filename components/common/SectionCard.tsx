@@ -62,6 +62,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     ...theme.shadows.small,
+    // Web-specific hover effects
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease-in-out',
+      '&:hover': {
+        transform: 'translateY(-4px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      }
+    }),
+  },
+  iconContainer: {
+    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
+    borderRadius: theme.borderRadius.round,
+    backgroundColor: theme.colors.primaryLight,
+    alignItems: 'center',
     justifyContent: 'center',
     marginBottom: theme.spacing.m,
   },
@@ -70,7 +86,6 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     textAlign: 'center',
     lineHeight: theme.layout.isWeb ? 20 : 18,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 18 : 16) : 14,
     fontWeight: '600',
   },
 });

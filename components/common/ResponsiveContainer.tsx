@@ -20,7 +20,7 @@ export function ResponsiveContainer({
       styles.container,
       {
         maxWidth,
-        alignSelf: 'center',
+        alignSelf: centerContent ? 'center' : 'stretch',
         paddingHorizontal: theme.layout.containerPadding,
       },
       style

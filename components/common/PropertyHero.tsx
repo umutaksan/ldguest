@@ -77,13 +77,13 @@ export function PropertyHero({
   };
 
   const heroHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 500 : theme.layout.isTablet ? 400 : 350) 
+    ? (theme.layout.isDesktop ? 450 : theme.layout.isTablet ? 380 : 320) 
     : 300;
   
   return (
     <Animated.View 
       entering={FadeIn.duration(500)}
-      style={[styles.container, { height: heroHeight, maxWidth: 1600, alignSelf: 'center' }]}
+      style={[styles.container, { height: heroHeight }]}
     >
       <ImageBackground
         source={{ uri: imageUrl }}
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 12,
     marginBottom: theme.spacing.xs,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 42 : 32) : 28,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 38 : 32) : 28,
   },
   subtitle: {
     ...theme.typography.bodyMedium,
@@ -204,7 +204,6 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.85)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 12,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 20 : 18) : 16,
     fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 20 : 18) : 16,
   },
 });

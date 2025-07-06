@@ -24,12 +24,9 @@ export default function EntryScreen() {
           entryVideoUrl: 'https://www.youtube.com/shorts/nWXkqDrRcyU',
           hasKeyImages: true,
           keyImages: [
-            'https://static.wixstatic.com/media/8bbc22_e8dfb46609ce4f40afc0cafab9e28bdf~mv2.jpg/v1/fill/w_177,h_205,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_25_6ff293c6.jpg',
+            'https://ldguest.com/wp-content/uploads/2024/11/1adsiz-tasarim-1.png',
             'https://static.wixstatic.com/media/8bbc22_cd8e33bde09a4abf9fceaa4eff2d6f67~mv2.jpg/v1/fill/w_159,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_de854110.jpg',
-            'https://static.wixstatic.com/media/8bbc22_1f7abcf379124dff99994757af9c6b4a~mv2.jpg/v1/fill/w_123,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_3fad3c4b.jpg',
-            'https://static.wixstatic.com/media/8bbc22_89c3d72a7534442ba49e2b8b24f85759~mv2.jpg/v1/fill/w_315,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_edited.jpg',
-            'https://static.wixstatic.com/media/8bbc22_160ddf38bb8444cc880f92543da1f0dd~mv2.jpg/v1/fill/w_207,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2013_43_edited.jpg',
-            'https://static.wixstatic.com/media/8bbc22_c313378eb121483a843293b0584f1f13~mv2.jpg/v1/fill/w_303,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2014_05_38_36e69ad5.jpg'
+            'https://static.wixstatic.com/media/8bbc22_1f7abcf379124dff99994757af9c6b4a~mv2.jpg/v1/fill/w_123,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_3fad3c4b.jpg'
           ]
         };
       case '29051502': // Seaview Fontanilla
@@ -180,14 +177,10 @@ export default function EntryScreen() {
               styles.imagesSection,
               isLargeScreen && styles.imagesSectionLarge
             ]}>
-              <ScrollView 
-                horizontal={isLargeScreen}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={[
-                  styles.imageContainer,
-                  isLargeScreen && styles.imageContainerLarge
-                ]}
-              >
+              <View style={[
+                styles.imageContainer,
+                isLargeScreen && styles.imageContainerLarge
+              ]}>
                 {entryInstructions.keyImages?.map((image, index) => (
                   <Image 
                     key={index}
@@ -199,7 +192,7 @@ export default function EntryScreen() {
                     resizeMode="cover"
                   />
                 ))}
-              </ScrollView>
+              </View>
             </View>
           )}
         </View>
@@ -277,9 +270,6 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
-    maxWidth: 1200,
-    alignSelf: 'center',
-    width: '100%',
   },
   contentLarge: {
     maxWidth: 1200,
@@ -297,9 +287,6 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
-    maxWidth: 800,
-    alignSelf: 'center',
-    width: '100%',
   },
   sectionLarge: {
     width: '60%',
@@ -313,8 +300,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.s,
-    fontSize: Platform.OS === 'web' ? 24 : 20,
-    color: theme.colors.primary,
   },
   sectionTitleLarge: {
     fontSize: 24,
@@ -323,8 +308,6 @@ const styles = StyleSheet.create({
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
-    fontSize: Platform.OS === 'web' ? 16 : 14,
-    lineHeight: Platform.OS === 'web' ? 26 : 22,
   },
   descriptionLarge: {
     fontSize: 18,
@@ -347,26 +330,22 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
   },
   imageContainer: {
-    flexDirection: Platform.OS === 'web' ? 'row' : 'column',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
     gap: theme.spacing.m,
     marginTop: theme.spacing.m,
   },
   imageContainerLarge: {
-    paddingHorizontal: theme.spacing.m,
+    marginTop: theme.spacing.xl,
   },
   keyImage: {
-    width: Platform.OS === 'web' ? 250 : '100%',
-    height: Platform.OS === 'web' ? 220 : 200,
+    width: '100%',
+    height: 200,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
   },
   keyImageLarge: {
-    width: 220,
-    height: 220,
-    margin: theme.spacing.s,
+    height: 250,
   },
   mainImage: {
     width: '100%',
@@ -386,7 +365,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: theme.spacing.m,
     marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl,
-    fontSize: Platform.OS === 'web' ? 18 : 16,
   },
   noteLarge: {
     fontSize: 18,
@@ -400,8 +378,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: theme.spacing.m,
     ...theme.shadows.small,
-    maxWidth: 300,
-    alignSelf: 'center',
   },
   watchVideoText: {
     ...theme.typography.button,
