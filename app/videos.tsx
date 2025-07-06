@@ -16,7 +16,7 @@ export default function VideosScreen() {
         id: 1,
         title: 'Getting the Key Card',
         description: 'Instructions for getting the key card from the key box',
-        thumbnail: 'https://images.pexels.com/photos/279810/pexels-photo-279810.jpeg',
+        thumbnail: 'https://images.pexels.com/photos/4065906/pexels-photo-4065906.jpeg',
         url: 'https://www.youtube.com/shorts/XNzqKrwDKf8',
         icon: <Key size={24} color={theme.colors.white} />
       },
@@ -24,7 +24,7 @@ export default function VideosScreen() {
         id: 2,
         title: 'Entering the Building',
         description: 'How to use the key card to enter the building',
-        thumbnail: 'https://images.pexels.com/photos/5816297/pexels-photo-5816297.jpeg',
+        thumbnail: 'https://images.pexels.com/photos/3951355/pexels-photo-3951355.jpeg',
         url: 'https://www.youtube.com/shorts/nWXkqDrRcyU',
         icon: <Key size={24} color={theme.colors.white} />
       }
@@ -34,7 +34,7 @@ export default function VideosScreen() {
         id: 1,
         title: 'How to Use Electronics',
         description: 'Guide for using TV, AC, and other electronic devices',
-        thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
+        thumbnail: 'https://images.pexels.com/photos/3938465/pexels-photo-3938465.jpeg',
         url: 'https://youtu.be/HuYUrGQOR1E',
         icon: <Tv size={24} color={theme.colors.white} />
       }
@@ -44,7 +44,7 @@ export default function VideosScreen() {
         id: 1,
         title: 'How to Access the Pool',
         description: 'Instructions for finding and using the swimming pool',
-        thumbnail: 'https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg',
+        thumbnail: 'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg',
         url: 'https://youtu.be/IUErsgo7qd4',
         icon: <Palmtree size={24} color={theme.colors.white} />
       }
@@ -54,7 +54,7 @@ export default function VideosScreen() {
         id: 1,
         title: 'Walking to Nearby Cafes - Part 1',
         description: 'Guide to finding nearby cafes and restaurants',
-        thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
+        thumbnail: 'https://images.pexels.com/photos/2074130/pexels-photo-2074130.jpeg',
         url: 'https://youtu.be/RZJ0MxWX9v4',
         icon: <Coffee size={24} color={theme.colors.white} />
       },
@@ -62,7 +62,7 @@ export default function VideosScreen() {
         id: 2,
         title: 'Walking to Nearby Cafes - Part 2',
         description: 'More cafes and restaurants in the area',
-        thumbnail: 'https://images.pexels.com/photos/2549018/pexels-photo-2549018.jpeg',
+        thumbnail: 'https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg',
         url: 'https://youtu.be/rKdzIvFFjGQ',
         icon: <Coffee size={24} color={theme.colors.white} />
       },
@@ -70,7 +70,7 @@ export default function VideosScreen() {
         id: 3,
         title: 'Walking to Puerto Banús',
         description: 'How to walk to Puerto Banús from the apartment',
-        thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
+        thumbnail: 'https://images.pexels.com/photos/2119713/pexels-photo-2119713.jpeg',
         url: 'https://youtu.be/hAVfV32hWp8',
         icon: <MapPin size={24} color={theme.colors.white} />
       }
