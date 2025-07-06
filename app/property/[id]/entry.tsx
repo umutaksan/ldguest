@@ -180,27 +180,27 @@ export default function EntryScreen() {
               styles.imagesSection,
               isLargeScreen && styles.imagesSectionLarge
             ]}>
-              <View style={[
-            <ScrollView 
-              horizontal={isLargeScreen}
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={[
-                styles.imageContainer,
-                isLargeScreen && styles.imageContainerLarge
-              ]}
-            >
-              {entryInstructions.keyImages?.map((image, index) => (
-                <Image 
-                  key={index}
-                  source={{ uri: image }}
-                  style={[
-                    styles.keyImage,
-                    isLargeScreen && styles.keyImageLarge
-                  ]}
-                  resizeMode="cover"
-                />
-              ))}
-            </ScrollView>
+              <ScrollView 
+                horizontal={isLargeScreen}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={[
+                  styles.imageContainer,
+                  isLargeScreen && styles.imageContainerLarge
+                ]}
+              >
+                {entryInstructions.keyImages?.map((image, index) => (
+                  <Image 
+                    key={index}
+                    source={{ uri: image }}
+                    style={[
+                      styles.keyImage,
+                      isLargeScreen && styles.keyImageLarge
+                    ]}
+                    resizeMode="cover"
+                  />
+                ))}
+              </ScrollView>
+            </View>
           )}
         </View>
 
