@@ -78,7 +78,7 @@ export default function PropertyScreen() {
           imageUrl={propertyData.imageUrl}
         />
 
-        <View style={styles.quickAccess}>
+        <View style={[styles.quickAccess, Platform.OS === 'web' && styles.quickAccessWeb]}>
           <View style={styles.row}>
             <SectionCard
               title="The Location"
@@ -231,6 +231,12 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
+  quickAccessWeb: {
+    maxWidth: 1200,
+    alignSelf: 'center',
+    width: '100%',
+    paddingHorizontal: theme.spacing.xl,
+  },
     ...(theme.layout.isWeb && {
       minHeight: '100vh',
     }),
@@ -258,6 +264,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
     ...theme.shadows.medium,
+    maxWidth: 1000,
+    alignSelf: 'center',
     ...(theme.layout.isWeb && {
       transition: 'transform 0.3s ease',
       '&:hover': {
@@ -282,11 +290,13 @@ const styles = StyleSheet.create({
     ...theme.typography.subheading,
     color: theme.colors.white,
     marginBottom: theme.spacing.s,
+    fontSize: Platform.OS === 'web' ? 24 : 20,
   },
   promoDescription: {
     ...theme.typography.body,
     color: theme.colors.white,
     marginBottom: theme.spacing.m,
+    fontSize: Platform.OS === 'web' ? 16 : 14,
   },
   promoButton: {
     flexDirection: 'row',
@@ -313,6 +323,8 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     alignItems: 'center',
     ...theme.shadows.small,
+    maxWidth: 1000,
+    alignSelf: 'center',
     ...(theme.layout.isWeb && {
       maxWidth: 800,
       marginLeft: 'auto',
@@ -324,6 +336,7 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     marginBottom: theme.spacing.s,
     textAlign: 'center',
+    fontSize: Platform.OS === 'web' ? 24 : 20,
     ...(theme.layout.isWeb && {
       fontSize: 24,
     }),
@@ -333,6 +346,8 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     textAlign: 'center',
     marginBottom: theme.spacing.l,
+    fontSize: Platform.OS === 'web' ? 16 : 14,
+    maxWidth: 800,
     ...(theme.layout.isWeb && {
       maxWidth: 600,
     }),
@@ -340,6 +355,7 @@ const styles = StyleSheet.create({
   ratingButtons: {
     width: '100%',
     gap: theme.spacing.m,
+    maxWidth: 600,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       display: 'flex',
       flexDirection: 'row',

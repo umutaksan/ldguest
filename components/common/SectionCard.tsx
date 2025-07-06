@@ -67,14 +67,18 @@ const styles = StyleSheet.create({
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
       '&:hover': {
+        transform: 'scale(1.02)',
+        boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+      }
+      '&:hover': {
         transform: 'translateY(-4px)',
         boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
       }
     }),
   },
   iconContainer: {
-    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
-    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
+    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 72 : 64) : 56,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 72 : 64) : 56,
     borderRadius: theme.borderRadius.round,
     backgroundColor: theme.colors.primaryLight,
     alignItems: 'center',
@@ -86,6 +90,7 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     textAlign: 'center',
     lineHeight: theme.layout.isWeb ? 20 : 18,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 18 : 16) : 14,
     fontWeight: '600',
   },
 });
