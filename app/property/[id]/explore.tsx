@@ -238,23 +238,19 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     ...(theme.layout.isWeb && {
       maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
-    ...(theme.layout.isWeb && {
-      maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
+      overflowX: 'hidden'
+    })
   },
   content: {
     padding: theme.spacing.m,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.xl,
-    }),
+      padding: theme.spacing.xl
+    })
   },
   contentLarge: {
     maxWidth: 1280,
     alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl,
+    paddingHorizontal: theme.spacing.xl
   },
   hero: {
     height: 200,
@@ -262,19 +258,19 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: theme.spacing.m,
     ...(theme.layout.isWeb && {
-      boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
-    }),
+      boxShadow: '0 10px 30px rgba(0,0,0,0.15)'
+    })
   },
   heroLarge: {
-    height: 500,
+    height: 500
   },
   heroOverlay: {
     flex: 1,
     justifyContent: 'flex-end',
     padding: theme.spacing.m,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.xl,
-    }),
+      padding: theme.spacing.xl
+    })
   },
   heroTitle: {
     ...theme.typography.heading,
@@ -282,32 +278,26 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    textShadowRadius: 10
   },
   heroTitleLarge: {
     fontSize: 52,
     textShadowColor: 'rgba(0, 0, 0, 0.85)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 15,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    textShadowRadius: 15
   },
   heroSubtitle: {
     ...theme.typography.body,
     color: theme.colors.white,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    textShadowRadius: 10
   },
   heroSubtitleLarge: {
     fontSize: 24,
     textShadowColor: 'rgba(0, 0, 0, 0.85)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 15,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    textShadowRadius: 15
   },
   statsContainer: {
     flexDirection: 'row',
@@ -317,69 +307,66 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.l,
     ...theme.shadows.small,
     ...(theme.layout.isWeb && {
-      boxShadow: '0 5px 15px rgba(0,0,0,0.08)',
-    }),
+      boxShadow: '0 5px 15px rgba(0,0,0,0.08)'
+    })
   },
   statsContainerLarge: {
     padding: theme.spacing.l,
     maxWidth: 900,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: theme.spacing.xl,
-    maxWidth: 900,
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    marginBottom: theme.spacing.xl
   },
   statItem: {
     flex: 1,
     alignItems: 'center',
     ...(theme.layout.isWeb && {
-      padding: theme.spacing.m,
-    }),
+      padding: theme.spacing.m
+    })
   },
   statNumber: {
     ...theme.typography.subheading,
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 28,
-    }),
+      fontSize: 28
+    })
   },
   statNumberLarge: {
     fontSize: 38,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   statLabel: {
     ...theme.typography.bodySmall,
-    color: theme.colors.textSecondary,
+    color: theme.colors.textSecondary
   },
   statDivider: {
     width: 1,
     backgroundColor: theme.colors.border,
-    marginHorizontal: theme.spacing.m,
+    marginHorizontal: theme.spacing.m
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.spacing.m
   },
   sectionTitleLarge: {
     fontSize: 42,
     fontWeight: 'bold',
     marginBottom: theme.spacing.l,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   citiesGrid: {
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   citiesGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   citiesGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   cityCard: {
     backgroundColor: theme.colors.card,
@@ -392,37 +379,37 @@ const styles = StyleSheet.create({
       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       '&:hover': {
         transform: 'translateY(-5px)',
-        boxShadow: '0 15px 30px rgba(0,0,0,0.15)',
-      },
-    }),
+        boxShadow: '0 15px 30px rgba(0,0,0,0.15)'
+      }
+    })
   },
   cityCardLarge: {
     width: '31%',
-    marginBottom: theme.spacing.xl,
+    marginBottom: theme.spacing.xl
   },
   cityCardMedium: {
     width: '47%',
-    marginBottom: theme.spacing.l,
+    marginBottom: theme.spacing.l
   },
   cityImage: {
     width: '100%',
-    height: 200,
+    height: 200
   },
   cityImageOverlay: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   cityContent: {
-    padding: theme.spacing.m,
+    padding: theme.spacing.m
   },
   cityHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-    padding: theme.spacing.m,
+    padding: theme.spacing.m
   },
   cityInfo: {
-    flex: 1,
+    flex: 1
   },
   cityName: {
     ...theme.typography.subheading,
@@ -430,11 +417,11 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
+    textShadowRadius: 5
   },
   distanceContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   distance: {
     ...theme.typography.bodySmall,
@@ -442,104 +429,28 @@ const styles = StyleSheet.create({
     marginLeft: theme.spacing.xs,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
+    textShadowRadius: 5
   },
   cityDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
-    ...(theme.layout.isWeb && {
-      height: '60%',
-      alignSelf: 'center',
-    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 16,
-    ...(theme.layout.isWeb && {
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      '&:hover': {
-        transform: 'translateY(-8px)',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-      },
-    }),
-    fontSize: 36,
-    marginBottom: theme.spacing.m,
-    width: 'calc(33.33% - 24px)',
-    position: 'relative',
-    '&:after': {
-      content: '""',
-    width: 'calc(50% - 16px)',
-      bottom: -10,
-      left: '50%',
-      width: 100,
-      height: 3,
-      backgroundColor: theme.colors.primary,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      height: 250,
-    }),
-      transform: 'translateX(-50%)',
-    },
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 28,
-    }),
-    ...(theme.layout.isWeb && {
-      marginTop: theme.spacing.xl,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.l,
-    }),
-    justifyContent: 'center',
-    gap: theme.spacing.l,
+      minHeight: 70
+    })
   },
   directionsButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      padding: theme.spacing.l,
-    }),
-    justifyContent: 'center',
-    gap: theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      transition: 'all 0.3s ease',
-      '&:hover': {
-        backgroundColor: theme.colors.primary,
-        transform: 'translateY(-2px)',
-      },
-    }),
     backgroundColor: theme.colors.primaryLight,
     paddingVertical: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
-    ...(theme.layout.isWeb && {
-    ...(theme.layout.isWeb && {
-      '&:hover': {
-        color: theme.colors.white,
-      },
-    }),
-      transition: 'background-color 0.3s ease',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 24,
-    }),
-      '&:hover': {
-        backgroundColor: theme.colors.primary,
-      },
-    }),
+    marginTop: theme.spacing.m
   },
   directionsText: {
     ...theme.typography.bodySmall,
     color: theme.colors.primary,
-    marginLeft: theme.spacing.xs,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
-    ...(theme.layout.isWeb && {
-      '&:hover': {
-        color: theme.colors.white,
-      },
-    }),
-  },
+    marginLeft: theme.spacing.xs
+  }
 });
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 16,
-      minHeight: 70,
-    }),
