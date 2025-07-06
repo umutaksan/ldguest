@@ -44,13 +44,6 @@ export default function EntryScreen() {
             <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
           </TouchableOpacity>
           
-          <View style={styles.imageContainer}>
-            <Image 
-              source={{ uri: 'https://static.wixstatic.com/media/8bbc22_e8dfb46609ce4f40afc0cafab9e28bdf~mv2.jpg/v1/fill/w_177,h_205,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_25_6ff293c6.jpg' }}
-              style={styles.keyImage}
-              resizeMode="cover"
-            />
-          </View>
         </View>
 
         <View style={styles.section}>
