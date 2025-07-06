@@ -5,7 +5,6 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Video } from 'lucide-react-native';
 
-
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
   const { width } = Dimensions.get('window');
@@ -29,7 +28,8 @@ export default function EntryScreen() {
             Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
             {'\n\n'}
             The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
-            To enter the house, first:
+            {'\n\n'}
+            To enter the house, first: 
             You need to take the black bar of the main door and the key card for entry from the designated location shown here.
             To enter the house, first:
             You need to take the black bar of the main door and the key card for entry from the designated location shown here.
@@ -45,7 +45,7 @@ export default function EntryScreen() {
           </TouchableOpacity>
           
           <View style={styles.imageContainer}>
-            <Image
+            <Image 
               source={{ uri: 'https://static.wixstatic.com/media/8bbc22_e8dfb46609ce4f40afc0cafab9e28bdf~mv2.jpg/v1/fill/w_177,h_205,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_25_6ff293c6.jpg' }}
               style={styles.keyImage}
               resizeMode="cover"
@@ -73,7 +73,8 @@ export default function EntryScreen() {
           <Text style={styles.sectionTitle}>Step 3: Using the Keys</Text>
           <Text style={styles.description}>
             Here's what you need to know about the keys and entry system:
-          </Text>          
+          </Text>
+          
           <Text style={[styles.description, { marginTop: theme.spacing.m }]}>
             1. Use the black bar to open the main entrance door
             {'\n'}2. The key set includes all necessary keys for your stay
