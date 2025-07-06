@@ -62,19 +62,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     ...theme.shadows.small,
-    // Web-specific hover effects
-    ...(theme.layout.isWeb && {
-      cursor: 'pointer',
-      transition: 'all 0.2s ease-in-out',
-      '&:hover': {
-        transform: 'scale(1.02)',
-        boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
-      }
-      '&:hover': {
-        transform: 'translateY(-4px)',
-        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-      }
-    }),
   },
   iconContainer: {
     width: theme.layout.isWeb ? (theme.layout.isDesktop ? 72 : 64) : 56,
