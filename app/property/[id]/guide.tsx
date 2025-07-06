@@ -662,15 +662,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   categoryTabs: {
     backgroundColor: theme.colors.card,
     paddingVertical: theme.spacing.s,
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
+    ...(theme.layout.isWeb && {
+      position: 'sticky',
+      top: 70, // Match the header height
+      zIndex: 90,
+      boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+    }),
   },
   categoryTabsContent: {
     paddingHorizontal: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      paddingHorizontal: theme.spacing.xl,
+      maxWidth: 1280,
+      margin: '0 auto',
+    }),
   },
   categoryTab: {
     flexDirection: 'row',
@@ -680,20 +695,40 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     marginRight: theme.spacing.s,
     backgroundColor: theme.colors.surface,
+    ...(theme.layout.isWeb && {
+      transition: 'all 0.3s ease',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: theme.colors.primaryLight,
+        transform: 'translateY(-2px)',
+      },
+    }),
   },
   categoryTabActive: {
     backgroundColor: theme.colors.primaryLight,
+    ...(theme.layout.isWeb && {
+      boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    }),
   },
   categoryTabText: {
     ...theme.typography.bodyMedium,
     color: theme.colors.textSecondary,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+    }),
   },
   categoryTabTextActive: {
     color: theme.colors.primary,
+    ...(theme.layout.isWeb && {
+      fontWeight: 'bold',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.xl,
+    }),
   },
   contentLarge: {
     maxWidth: 1280,
@@ -702,6 +737,9 @@ const styles = StyleSheet.create({
   },
   categoriesContainer: {
     width: '100%',
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.l,
+    }),
   },
   categoriesContainerLarge: {
     maxWidth: 1280,
@@ -709,6 +747,9 @@ const styles = StyleSheet.create({
   },
   categorySection: {
     marginBottom: theme.spacing.xl,
+    ...(theme.layout.isWeb && {
+      marginBottom: theme.spacing.xxl,
+    }),
     ...(theme.layout.isWeb && {
       marginBottom: theme.spacing.xxl,
     }),
@@ -721,29 +762,58 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: 20,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 26,
+      marginBottom: theme.spacing.l,
+      position: 'relative',
+      paddingBottom: theme.spacing.s,
+      '&:after': {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: 80,
+        height: 3,
+        backgroundColor: theme.colors.primary,
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 24,
       marginBottom: theme.spacing.l,
     }),
   },
   categoryIcon: {
     marginRight: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginRight: theme.spacing.m,
+    }),
   },
   cardsGrid: {
     flexDirection: 'column',
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.l,
+    }),
   },
   cardsGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     gap: theme.spacing.m,
   },
   cardsGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    gap: theme.spacing.s,
   },
   infoCard: {
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
     ...(theme.layout.isWeb && {
       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       '&:hover': {
@@ -757,7 +827,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   infoCardMedium: {
-    width: '47%',
+    width: 'calc(50% - 10px)',
     marginBottom: theme.spacing.m,
   },
 });

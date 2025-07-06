@@ -508,9 +508,16 @@ const styles = StyleSheet.create({
       maxWidth: '100vw',
       overflowX: 'hidden',
     }),
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.xl,
+    }),
   },
   contentLarge: {
     maxWidth: 1280,
@@ -519,14 +526,21 @@ const styles = StyleSheet.create({
   },
   mainContent: {
     width: '100%',
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.l,
+    }),
   },
   mainContentLarge: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: theme.spacing.xl,
+    gap: theme.spacing.xl,
   },
   rulesSection: {
     width: '100%',
+    ...(theme.layout.isWeb && {
+      marginBottom: theme.spacing.xl,
+    }),
   },
   rulesSectionLarge: {
     width: '65%',
@@ -534,6 +548,9 @@ const styles = StyleSheet.create({
   },
   amenitiesSection: {
     width: '100%',
+    ...(theme.layout.isWeb && {
+      marginBottom: theme.spacing.xl,
+    }),
   },
   amenitiesSectionLarge: {
     width: '30%',
@@ -541,21 +558,42 @@ const styles = StyleSheet.create({
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 28,
+      marginBottom: theme.spacing.l,
+    }),
   },
   sectionTitleLarge: {
-    fontSize: 28,
+    fontSize: 32,
     marginBottom: theme.spacing.l,
+    position: 'relative',
+    paddingBottom: theme.spacing.s,
+    '&:after': {
+      content: '""',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: 80,
+      height: 3,
+      backgroundColor: theme.colors.primary,
+    },
   },
   divider: {
     height: 1,
     backgroundColor: theme.colors.border,
     marginVertical: theme.spacing.l,
     ...(theme.layout.isWeb && {
+      marginVertical: theme.spacing.xxl,
+    }),
+    ...(theme.layout.isWeb && {
       marginVertical: theme.spacing.xl,
     }),
   },
   rulesGrid: {
     flexDirection: 'column',
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.l,
+    }),
   },
   rulesGridLarge: {
     flexDirection: 'row',
@@ -566,7 +604,9 @@ const styles = StyleSheet.create({
   rulesGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    justifyContent: 'flex-start',
+    gap: theme.spacing.m,
   },
   ruleCard: {
     flexDirection: 'row',
@@ -579,16 +619,23 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
         transform: 'translateY(-3px)',
         boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
       },
     }),
   },
   ruleCardLarge: {
-    width: 'calc(50% - 12px)',
+    width: 'calc(50% - 24px)',
   },
   ruleCardMedium: {
-    width: 'calc(50% - 10px)',
+    width: 'calc(50% - 16px)',
   },
   ruleIconContainer: {
     width: 48,
@@ -598,6 +645,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      width: 56,
+      height: 56,
+      borderRadius: 28,
+      marginRight: theme.spacing.l,
+    }),
   },
   ruleContent: {
     flex: 1,
@@ -606,19 +659,30 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     marginBottom: theme.spacing.xs,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 20,
+      marginBottom: theme.spacing.s,
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 18,
     }),
   },
   ruleDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+    }),
   },
   amenitiesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.l,
+    }),
   },
   amenitiesContainerLarge: {
     flexDirection: 'column',
+    gap: theme.spacing.m,
   },
   amenitiesContainerMedium: {
     justifyContent: 'space-between',
@@ -628,6 +692,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: theme.spacing.s,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-5px)',
+      },
+    }),
   },
   amenityItemLarge: {
     width: '100%',
@@ -636,6 +706,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: theme.spacing.s,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      backgroundColor: theme.colors.card,
+      borderRadius: theme.borderRadius.m,
+      padding: theme.spacing.m,
+      boxShadow: '0 5px 15px rgba(0,0,0,0.05)',
+      '&:hover': {
+        transform: 'translateX(5px)',
+        boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+      },
+    }),
     ...(theme.layout.isWeb && {
       transition: 'transform 0.3s ease',
       '&:hover': {
@@ -654,11 +734,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      width: 60,
+      height: 60,
+      borderRadius: 30,
+      marginBottom: 0,
+    }),
   },
   amenityTitle: {
     ...theme.typography.bodySmall,
     textAlign: 'center',
     color: theme.colors.text,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginLeft: theme.spacing.l,
+      fontSize: 18,
+      textAlign: 'left',
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       marginLeft: theme.spacing.m,
       fontSize: 16,
@@ -666,6 +757,9 @@ const styles = StyleSheet.create({
   },
   faqContainer: {
     width: '100%',
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.xl,
+    }),
   },
   faqContainerLarge: {
     maxWidth: 900,
@@ -680,6 +774,12 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       transition: 'box-shadow 0.3s ease',
       '&:hover': {
+        boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
+      },
+    }),
+    ...(theme.layout.isWeb && {
+      transition: 'box-shadow 0.3s ease',
+      '&:hover': {
         boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
       },
     }),
@@ -691,12 +791,19 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
+      padding: theme.spacing.l,
+    }),
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
     }),
   },
   faqQuestionText: {
     ...theme.typography.bodyMedium,
     flex: 1,
     marginRight: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
   faqQuestionTextLarge: {
     fontSize: 20,
@@ -710,8 +817,17 @@ const styles = StyleSheet.create({
   faqAnswerText: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      lineHeight: 1.6,
+    }),
   },
   faqAnswerTextLarge: {
     fontSize: 18,
+    lineHeight: 1.7,
   },
 });
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.l,
+      paddingTop: 0,
+    }),

@@ -26,7 +26,7 @@ export function PropertyHero({
   const insets = useSafeAreaInsets();
   
   const handleHomePress = () => {
-    router.replace('/');
+    ? (theme.layout.isDesktop ? 500 : theme.layout.isTablet ? 400 : 350) 
   };
 
   const handlePropertySwitcher = () => {
@@ -150,6 +150,12 @@ export function PropertyHero({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    ...(theme.layout.isWeb && {
+      borderRadius: theme.borderRadius.l,
+      overflow: 'hidden',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+      marginBottom: theme.spacing.l,
+    }),
   },
   imageBackground: {
     flex: 1,
@@ -160,11 +166,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: theme.spacing.m,
     paddingBottom: theme.spacing.l,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      paddingHorizontal: theme.spacing.xl,
+      paddingBottom: theme.spacing.xl,
+    }),
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    ...(theme.layout.isWeb && {
+      paddingTop: theme.spacing.m,
+    }),
   },
   headerButtons: {
     flexDirection: 'row',
@@ -181,6 +194,10 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
+      '&:hover': {
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        transform: 'scale(1.05)',
+      },
     }),
   },
   textContainer: {
@@ -188,6 +205,9 @@ const styles = StyleSheet.create({
     maxWidth: theme.layout.maxWidth,
     alignSelf: 'center',
     paddingHorizontal: theme.layout.containerPadding,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1200,
+    }),
   },
   title: {
     ...theme.typography.heading,
@@ -196,7 +216,10 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 12,
     marginBottom: theme.spacing.xs,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 38 : 32) : 28,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 48 : 36) : 28,
+    ...(theme.layout.isWeb && {
+      fontWeight: 'bold',
+    }),
   },
   subtitle: {
     ...theme.typography.bodyMedium,
@@ -204,6 +227,7 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.85)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 12,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 22 : 18) : 16,
     fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 20 : 18) : 16,
   },
 });

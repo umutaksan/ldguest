@@ -141,11 +141,19 @@ const styles = StyleSheet.create({
       maxWidth: '100vw',
       overflowX: 'hidden',
     }),
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     flex: 1,
     padding: theme.spacing.m,
     alignItems: 'center',
+    ...(theme.layout.isWeb && {
+      paddingTop: theme.spacing.xl,
+      paddingBottom: theme.spacing.xxl,
+    }),
     ...(theme.layout.isWeb && {
       paddingTop: theme.spacing.xl,
       paddingBottom: theme.spacing.xl,
@@ -161,6 +169,12 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.l,
     ...theme.shadows.medium,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      width: 140,
+      height: 140,
+      borderRadius: 70,
+      marginBottom: theme.spacing.xl,
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
       width: 120,
       height: 120,
       borderRadius: 60,
@@ -170,6 +184,10 @@ const styles = StyleSheet.create({
     ...theme.typography.heading,
     marginBottom: theme.spacing.s,
     textAlign: 'center',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 42,
+      marginBottom: theme.spacing.m,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 36,
       marginBottom: theme.spacing.m,
@@ -186,11 +204,20 @@ const styles = StyleSheet.create({
       maxWidth: 500,
       marginBottom: theme.spacing.xxl,
     }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      maxWidth: 500,
+      marginBottom: theme.spacing.xxl,
+    }),
   },
   detailsContainer: {
     width: '100%',
     maxWidth: 400,
     marginBottom: theme.spacing.xl,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 600,
+      marginBottom: theme.spacing.xxl,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       maxWidth: 500,
     }),
@@ -205,6 +232,14 @@ const styles = StyleSheet.create({
       padding: theme.spacing.l,
       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.l,
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
         transform: 'translateY(-3px)',
         boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
       },
@@ -214,6 +249,10 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      marginBottom: theme.spacing.s,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 16,
     }),
@@ -230,6 +269,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 24,
+      letterSpacing: 0.5,
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 22,
     }),
   },
@@ -241,6 +284,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primary,
+        transform: 'scale(1.1)',
+      },
+    }),
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'background-color 0.3s ease',
@@ -258,6 +309,11 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.l,
     ...theme.shadows.small,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 600,
+      padding: theme.spacing.l,
+      marginBottom: theme.spacing.xl,
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
       maxWidth: 500,
       padding: theme.spacing.l,
     }),
@@ -265,6 +321,10 @@ const styles = StyleSheet.create({
   tipsTitle: {
     ...theme.typography.bodyMedium,
     marginBottom: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 20,
+      marginBottom: theme.spacing.m,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 20,
       marginBottom: theme.spacing.m,
@@ -277,6 +337,11 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 16,
       marginBottom: theme.spacing.s,
+      paddingLeft: theme.spacing.s,
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      marginBottom: theme.spacing.s,
     }),
   },
   supportText: {
@@ -284,6 +349,11 @@ const styles = StyleSheet.create({
     color: theme.colors.textTertiary,
     textAlign: 'center',
     maxWidth: 300,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      maxWidth: 500,
+      marginTop: theme.spacing.l,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 15,
       maxWidth: 400,

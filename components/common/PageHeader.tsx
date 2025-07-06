@@ -79,6 +79,12 @@ const styles = StyleSheet.create({
       position: 'sticky',
       top: 0,
       zIndex: 100,
+      boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+    }),
+    ...(theme.layout.isWeb && {
+      position: 'sticky',
+      top: 0,
+      zIndex: 100,
     }),
   },
   content: {
@@ -86,6 +92,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
+  },
+  webContent: {
+    height: 70,
+    maxWidth: theme.layout.maxWidth,
+    marginHorizontal: 'auto',
+    paddingHorizontal: theme.spacing.xl,
   },
   webContent: {
     height: 70,
@@ -99,6 +111,10 @@ const styles = StyleSheet.create({
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
       '&:hover': {
+        transform: 'translateX(-3px)',
+        opacity: 0.8,
+      },
+      '&:hover': {
         opacity: 0.8,
       },
     }),
@@ -110,6 +126,9 @@ const styles = StyleSheet.create({
   },
   title: {
     ...theme.typography.subheading,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 26,
+    }),
     ...(theme.layout.isWeb && {
       fontSize: 24,
     }),
@@ -122,6 +141,10 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     borderRadius: theme.borderRadius.s,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      paddingVertical: 4,
+      paddingHorizontal: theme.spacing.m,
+    }),
   },
   rightContainer: {
     marginLeft: theme.spacing.s,

@@ -255,9 +255,18 @@ const styles = StyleSheet.create({
       maxWidth: '100vw',
       overflowX: 'hidden',
     }),
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1000,
+      margin: '0 auto',
+      padding: theme.spacing.xl,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       maxWidth: 1000,
       margin: '0 auto',
@@ -271,6 +280,10 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
     ...theme.shadows.medium,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      height: 350,
+      marginBottom: theme.spacing.xl,
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
       height: 300,
       marginBottom: theme.spacing.l,
     }),
@@ -278,6 +291,9 @@ const styles = StyleSheet.create({
   mapImage: {
     width: '100%',
     height: '100%',
+    ...(theme.layout.isWeb && {
+      objectFit: 'cover',
+    }),
   },
   mapOverlay: {
     position: 'absolute',
@@ -288,11 +304,17 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     flexDirection: 'row',
     alignItems: 'center',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+    }),
   },
   mapOverlayText: {
     ...theme.typography.bodyMedium,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 20,
+    }),
     ...(theme.layout.isWeb && {
       fontSize: 18,
     }),
@@ -306,15 +328,30 @@ const styles = StyleSheet.create({
     ...theme.shadows.small,
     ...(theme.layout.isWeb && {
       padding: theme.spacing.l,
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.l,
     }),
   },
   addressContent: {
     marginLeft: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginLeft: theme.spacing.l,
+    }),
   },
   addressText: {
     ...theme.typography.body,
     color: theme.colors.text,
     marginBottom: 2,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      marginBottom: 5,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 17,
       marginBottom: 4,
@@ -330,6 +367,18 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
     ...(theme.layout.isWeb && {
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primaryDark,
+        transform: 'translateY(-3px)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.15)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+      marginBottom: theme.spacing.xl,
+    }),
+    ...(theme.layout.isWeb && {
       transition: 'background-color 0.3s ease',
       '&:hover': {
         backgroundColor: theme.colors.primaryDark,
@@ -340,10 +389,28 @@ const styles = StyleSheet.create({
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 28,
+      marginBottom: theme.spacing.l,
+      position: 'relative',
+      paddingBottom: theme.spacing.s,
+      '&:after': {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: 60,
+        height: 3,
+        backgroundColor: theme.colors.primary,
+      },
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 24,
       marginBottom: theme.spacing.l,
@@ -356,10 +423,21 @@ const styles = StyleSheet.create({
     ...theme.shadows.small,
     ...(theme.layout.isWeb && {
       padding: theme.spacing.l,
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
+      },
+    }),
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.l,
     }),
   },
   poiItem: {
     paddingVertical: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      paddingVertical: theme.spacing.m,
+    }),
     ...(theme.layout.isWeb && {
       paddingVertical: theme.spacing.m,
     }),
@@ -369,11 +447,18 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 18,
+      marginBottom: 5,
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
     }),
   },
   poiDistance: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       fontSize: 15,
     }),
@@ -382,6 +467,9 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: theme.colors.border,
     marginVertical: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      marginVertical: theme.spacing.m,
+    }),
   },
   watchRouteButton: {
     flexDirection: 'row',
@@ -391,6 +479,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: theme.spacing.s,
     alignSelf: 'flex-start',
+    ...(theme.layout.isWeb && {
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.secondaryDark,
+        transform: 'translateY(-2px)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.m,
+      borderRadius: theme.borderRadius.m,
+    }),
     ...(theme.layout.isWeb && {
       transition: 'background-color 0.3s ease',
       '&:hover': {
@@ -402,5 +501,8 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     marginLeft: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 14,
+    }),
   },
 });

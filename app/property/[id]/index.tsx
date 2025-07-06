@@ -228,15 +228,30 @@ const styles = StyleSheet.create({
       maxWidth: '100vw',
       overflowX: 'hidden',
     }),
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   scrollContent: {
     flexGrow: 1,
     ...(theme.layout.isWeb && {
       minHeight: '100vh',
     }),
+    ...(theme.layout.isWeb && {
+      minHeight: '100vh',
+    }),
   },
   quickAccess: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: theme.spacing.l,
+      maxWidth: 1280,
+      margin: '0 auto',
+      padding: theme.spacing.xl,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -248,6 +263,9 @@ const styles = StyleSheet.create({
     width: '100%',
     gap: theme.layout.isWeb ? theme.spacing.s : 0,
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      display: 'contents',
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
       marginBottom: theme.spacing.m,
     }),
   },
@@ -258,6 +276,16 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
     ...theme.shadows.medium,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1200,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      height: 300,
+      transition: 'transform 0.3s ease',
+      '&:hover': {
+        transform: 'scale(1.02)',
+      },
+    }),
     ...(theme.layout.isWeb && {
       transition: 'transform 0.3s ease',
       '&:hover': {
@@ -268,25 +296,47 @@ const styles = StyleSheet.create({
   promoImage: {
     width: '100%',
     height: '100%',
+    ...(theme.layout.isWeb && {
+      objectFit: 'cover',
+    }),
   },
   promoOverlay: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.m,
+    }),
   },
   promoContent: {
     padding: theme.spacing.l,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.xl,
+    }),
   },
   promoTitle: {
     ...theme.typography.subheading,
     color: theme.colors.white,
     marginBottom: theme.spacing.s,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 5,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 28,
+    }),
   },
   promoDescription: {
     ...theme.typography.body,
     color: theme.colors.white,
     marginBottom: theme.spacing.m,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 5,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      maxWidth: 600,
+    }),
   },
   promoButton: {
     flexDirection: 'row',
@@ -296,11 +346,21 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
+    ...(theme.layout.isWeb && {
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primaryDark,
+        transform: 'translateY(-3px)',
+      },
+    }),
   },
   promoButtonText: {
     ...theme.typography.button,
     color: theme.colors.white,
     marginRight: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
   promoIcon: {
     marginLeft: theme.spacing.xs,
@@ -313,6 +373,13 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     alignItems: 'center',
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      maxWidth: 1000,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      padding: theme.spacing.xl,
+      marginBottom: theme.spacing.xl,
+    }),
     ...(theme.layout.isWeb && {
       maxWidth: 800,
       marginLeft: 'auto',
@@ -324,6 +391,10 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     marginBottom: theme.spacing.s,
     textAlign: 'center',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 28,
+      color: theme.colors.text,
+    }),
     ...(theme.layout.isWeb && {
       fontSize: 24,
     }),
@@ -333,6 +404,11 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     textAlign: 'center',
     marginBottom: theme.spacing.l,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      maxWidth: 700,
+      marginBottom: theme.spacing.xl,
+    }),
     ...(theme.layout.isWeb && {
       maxWidth: 600,
     }),
@@ -340,6 +416,13 @@ const styles = StyleSheet.create({
   ratingButtons: {
     width: '100%',
     gap: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      gap: theme.spacing.xl,
+      maxWidth: 800,
+    }),
     ...(theme.layout.isWeb && theme.layout.isDesktop && {
       display: 'flex',
       flexDirection: 'row',
@@ -358,6 +441,18 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 15px 30px rgba(0,0,0,0.15)',
+      },
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      flex: 1,
+      maxWidth: 350,
+      paddingVertical: theme.spacing.l,
+    }),
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
         transform: 'translateY(-3px)',
         boxShadow: '0 10px 20px rgba(0,0,0,0.15)',
       },
@@ -373,6 +468,9 @@ const styles = StyleSheet.create({
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+    }),
   },
   bookingButtonText: {
     color: theme.colors.white,
@@ -380,5 +478,9 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24,
     height: 24,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      width: 30,
+      height: 30,
+    }),
   },
 });

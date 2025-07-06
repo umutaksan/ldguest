@@ -240,12 +240,19 @@ const styles = StyleSheet.create({
       maxWidth: '100vw',
       overflowX: 'hidden',
     }),
+    ...(theme.layout.isWeb && {
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+    }),
   },
   content: {
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.xl,
+    }),
   },
   contentLarge: {
-    maxWidth: 1200,
+    maxWidth: 1280,
     alignSelf: 'center',
     paddingHorizontal: theme.spacing.xl,
   },
@@ -254,22 +261,34 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+    }),
   },
   heroLarge: {
-    height: 450,
+    height: 500,
   },
   heroOverlay: {
     flex: 1,
     justifyContent: 'flex-end',
     padding: theme.spacing.m,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.xl,
+    }),
   },
   heroTitle: {
     ...theme.typography.heading,
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
   heroTitleLarge: {
-    fontSize: 48,
+    fontSize: 52,
+    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 15,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
@@ -277,9 +296,15 @@ const styles = StyleSheet.create({
   heroSubtitle: {
     ...theme.typography.body,
     color: theme.colors.white,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
   heroSubtitleLarge: {
-    fontSize: 22,
+    fontSize: 24,
+    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 15,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
@@ -291,9 +316,16 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.l,
     ...theme.shadows.small,
+    ...(theme.layout.isWeb && {
+      boxShadow: '0 5px 15px rgba(0,0,0,0.08)',
+    }),
   },
   statsContainerLarge: {
     padding: theme.spacing.l,
+    maxWidth: 900,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: theme.spacing.xl,
     maxWidth: 900,
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -301,11 +333,17 @@ const styles = StyleSheet.create({
   statItem: {
     flex: 1,
     alignItems: 'center',
+    ...(theme.layout.isWeb && {
+      padding: theme.spacing.m,
+    }),
   },
   statNumber: {
     ...theme.typography.subheading,
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 28,
+    }),
   },
   statNumberLarge: {
     fontSize: 38,
@@ -325,7 +363,8 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   sectionTitleLarge: {
-    fontSize: 32,
+    fontSize: 42,
+    fontWeight: 'bold',
     marginBottom: theme.spacing.l,
     textAlign: 'center',
   },
@@ -408,18 +447,79 @@ const styles = StyleSheet.create({
   cityDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && {
+      height: '60%',
+      alignSelf: 'center',
+    }),
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-8px)',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
+      },
+    }),
+    fontSize: 36,
     marginBottom: theme.spacing.m,
+    width: 'calc(33.33% - 24px)',
+    position: 'relative',
+    '&:after': {
+      content: '""',
+    width: 'calc(50% - 16px)',
+      bottom: -10,
+      left: '50%',
+      width: 100,
+      height: 3,
+      backgroundColor: theme.colors.primary,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      height: 250,
+    }),
+      transform: 'translateX(-50%)',
+    },
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 28,
+    }),
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.xl,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+    }),
+    justifyContent: 'center',
+    gap: theme.spacing.l,
   },
   directionsButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'flex-start',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.l,
+    }),
+    justifyContent: 'center',
+    gap: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        backgroundColor: theme.colors.primary,
+        transform: 'translateY(-2px)',
+      },
+    }),
     backgroundColor: theme.colors.primaryLight,
     paddingVertical: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     ...(theme.layout.isWeb && {
+    ...(theme.layout.isWeb && {
+      '&:hover': {
+        color: theme.colors.white,
+      },
+    }),
       transition: 'background-color 0.3s ease',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 5,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 24,
+    }),
       '&:hover': {
         backgroundColor: theme.colors.primary,
       },
@@ -429,6 +529,9 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.primary,
     marginLeft: theme.spacing.xs,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 5,
     ...(theme.layout.isWeb && {
       '&:hover': {
         color: theme.colors.white,
@@ -436,3 +539,7 @@ const styles = StyleSheet.create({
     }),
   },
 });
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 16,
+      minHeight: 70,
+    }),

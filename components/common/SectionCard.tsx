@@ -25,10 +25,10 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
   };
 
   const cardWidth = theme.layout.isWeb && theme.layout.isDesktop 
-    ? '48%' 
+    ? '100%' 
     : theme.layout.isWeb && theme.layout.isTablet 
-    ? '48%' 
-    : '48%';
+    ? '100%' 
+    : '48%'; 
 
   const cardHeight = theme.layout.isWeb 
     ? (theme.layout.isDesktop ? 180 : 150) 
@@ -53,6 +53,9 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
 const styles = StyleSheet.create({
   container: {
     padding: theme.spacing.s,
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      padding: theme.spacing.m,
+    }),
   },
   card: {
     flex: 1,
@@ -67,6 +70,11 @@ const styles = StyleSheet.create({
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
       '&:hover': {
+        transform: 'translateY(-5px)',
+        boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
+        backgroundColor: theme.colors.primaryLight,
+      }
+      '&:hover': {
         transform: 'translateY(-4px)',
         boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
       }
@@ -80,12 +88,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      transition: 'transform 0.3s ease',
+      '&:hover': {
+        transform: 'scale(1.1) rotate(5deg)',
+      },
+    }),
   },
   title: {
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
     textAlign: 'center',
     lineHeight: theme.layout.isWeb ? 20 : 18,
+    fontWeight: '600',
+    ...(theme.layout.isWeb && theme.layout.isDesktop && {
+      fontSize: 18,
+      marginTop: theme.spacing.s,
+    }),
     fontWeight: '600',
   },
 });
