@@ -62,13 +62,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     ...theme.shadows.small,
-  },
-  iconContainer: {
-    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 72 : 64) : 56,
-    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 72 : 64) : 56,
-    borderRadius: theme.borderRadius.round,
-    backgroundColor: theme.colors.primaryLight,
-    alignItems: 'center',
     justifyContent: 'center',
     marginBottom: theme.spacing.m,
   },
