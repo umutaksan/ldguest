@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle } from 'react-native';
+import { View, StyleSheet, ViewStyle, useWindowDimensions } from 'react-native';
 import { theme } from '@/constants/theme';
 
 interface ResponsiveContainerProps {
@@ -15,6 +15,9 @@ export function ResponsiveContainer({
   maxWidth = theme.layout.maxWidth,
   centerContent = true 
 }: ResponsiveContainerProps) {
+  const { width } = useWindowDimensions();
+  const isLargeScreen = width > 1024;
+  
   return (
     <View style={[
       styles.container,
@@ -22,7 +25,8 @@ export function ResponsiveContainer({
         maxWidth,
         alignSelf: centerContent ? 'center' : 'stretch',
         paddingHorizontal: theme.layout.containerPadding,
-      },
+        paddingHorizontal: isLargeScreen ? theme.spacing.xl : theme.spacing.m,
+      }, 
       style
     ]}>
       {children}

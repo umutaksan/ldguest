@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
+import { useWindowDimensions } from 'react-native';
+import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { InfoCard } from '@/components/common/InfoCard';
@@ -10,7 +12,12 @@ import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi, Video } from 'lucid
 export default function LocationScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { width } = useWindowDimensions();
   
+  // Determine if we're on a large screen
+  const isLargeScreen = width > 1024;
+  const isMediumScreen = width > 768 && width <= 1024;
+
   // Property data based on ID
   const getPropertyData = () => {
     switch(id) {
@@ -163,84 +170,134 @@ export default function LocationScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Location" />
-
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
+      
+      <ResponsiveContainer 
+        maxWidth={isLargeScreen ? 1200 : isMediumScreen ? 900 : 600}
+        style={styles.responsiveContainer}
       >
-        <TouchableOpacity
-          style={styles.mapContainer}
-          onPress={handleOpenMaps}
-          activeOpacity={0.9}
+        <ScrollView 
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.content,
+            isLargeScreen && styles.contentLarge
+          ]}
         >
-          <Image 
-            source={{ uri: propertyData.mapImage }} 
-            style={styles.mapImage}
-            resizeMode="cover"
-          />
-          <View style={styles.mapOverlay}>
-            <MapPin size={24} color={theme.colors.white} />
-            <Text style={styles.mapOverlayText}>{propertyData.address}, {propertyData.location}</Text>
-          </View>
-        </TouchableOpacity>
-        
-        <View style={styles.addressContainer}>
-          <MapPin size={20} color={theme.colors.primary} />
-          <View style={styles.addressContent}>
-            <Text style={styles.addressText}>{propertyData.address}</Text>
-            <Text style={styles.addressText}>{propertyData.apartment}</Text>
-            <Text style={styles.addressText}>{propertyData.location}</Text>
-            <Text style={styles.addressText}>29660 Marbella</Text>
-            <Text style={styles.addressText}>Málaga, Spain</Text>
-          </View>
-        </View>
-        
-        <TouchableOpacity 
-          style={styles.directionsButton}
-          onPress={handleOpenMaps}
-          activeOpacity={0.8}
-        >
-          <Navigation size={20} color={theme.colors.white} />
-          <Text style={styles.directionsButtonText}>Get Directions</Text>
-        </TouchableOpacity>
-        
-        <Text style={styles.sectionTitle}>How to Get Here</Text>
-        
-        {getTransportOptions().map((option) => (
-          <InfoCard
-            key={option.id}
-            title={option.title}
-            description={option.description}
-            icon={option.icon}
-            showChevron={!!option.action}
-            onPress={option.action}
-          />
-        ))}
-        
-        <Text style={styles.sectionTitle}>Nearby Points of Interest</Text>
-        
-        <View style={styles.poiContainer}>
-          {propertyData.pois.map((poi, index) => (
-            <View key={index}>
-              <View style={styles.poiItem}>
-                <Text style={styles.poiName}>{poi.name}</Text>
-                <Text style={styles.poiDistance}>{poi.distance}</Text>
-                {poi.hasVideo && poi.videoUrl && (
-                  <TouchableOpacity 
-                    style={styles.watchRouteButton}
-                    onPress={() => handleOpenVideoRoute(poi.videoUrl!)}
-                    activeOpacity={0.8}
-                  >
-                    <Video size={16} color={theme.colors.white} />
-                    <Text style={styles.watchRouteText}>Watch Walking Route</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
-              {index < propertyData.pois.length - 1 && <View style={styles.poiSeparator} />}
+          <View style={[
+            styles.topSection,
+            isLargeScreen && styles.topSectionLarge
+          ]}>
+            <View style={[
+              styles.mapSection,
+              isLargeScreen && styles.mapSectionLarge
+            ]}>
+              <TouchableOpacity
+                style={[
+                  styles.mapContainer,
+                  isLargeScreen && styles.mapContainerLarge
+                ]}
+                onPress={handleOpenMaps}
+                activeOpacity={0.9}
+              >
+                <Image 
+                  source={{ uri: propertyData.mapImage }} 
+                  style={styles.mapImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.mapOverlay}>
+                  <MapPin size={24} color={theme.colors.white} />
+                  <Text style={styles.mapOverlayText}>{propertyData.address}, {propertyData.location}</Text>
+                </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={[
+                  styles.directionsButton,
+                  isLargeScreen && styles.directionsButtonLarge
+                ]}
+                onPress={handleOpenMaps}
+                activeOpacity={0.8}
+              >
+                <Navigation size={20} color={theme.colors.white} />
+                <Text style={styles.directionsButtonText}>Get Directions</Text>
+              </TouchableOpacity>
             </View>
-          ))}
-        </View>
-      </ScrollView>
+            
+            <View style={[
+              styles.addressSection,
+              isLargeScreen && styles.addressSectionLarge
+            ]}>
+              <View style={[
+                styles.addressContainer,
+                isLargeScreen && styles.addressContainerLarge
+              ]}>
+                <MapPin size={20} color={theme.colors.primary} />
+                <View style={styles.addressContent}>
+                  <Text style={[styles.addressText, isLargeScreen && styles.addressTextLarge]}>{propertyData.address}</Text>
+                  <Text style={[styles.addressText, isLargeScreen && styles.addressTextLarge]}>{propertyData.apartment}</Text>
+                  <Text style={[styles.addressText, isLargeScreen && styles.addressTextLarge]}>{propertyData.location}</Text>
+                  <Text style={[styles.addressText, isLargeScreen && styles.addressTextLarge]}>29660 Marbella</Text>
+                  <Text style={[styles.addressText, isLargeScreen && styles.addressTextLarge]}>Málaga, Spain</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          
+          <Text style={[
+            styles.sectionTitle,
+            isLargeScreen && styles.sectionTitleLarge
+          ]}>How to Get Here</Text>
+          
+          <View style={[
+            styles.transportOptionsContainer,
+            isLargeScreen && styles.transportOptionsContainerLarge
+          ]}>
+            {getTransportOptions().map((option) => (
+              <InfoCard
+                key={option.id}
+                title={option.title}
+                description={option.description}
+                icon={option.icon}
+                showChevron={!!option.action}
+                onPress={option.action}
+                style={[
+                  styles.transportCard,
+                  isLargeScreen && styles.transportCardLarge
+                ]}
+              />
+            ))}
+          </View>
+          
+          <Text style={[
+            styles.sectionTitle,
+            isLargeScreen && styles.sectionTitleLarge
+          ]}>Nearby Points of Interest</Text>
+          
+          <View style={[
+            styles.poiContainer,
+            isLargeScreen && styles.poiContainerLarge
+          ]}>
+            {propertyData.pois.map((poi, index) => (
+              <View key={index}>
+                <View style={styles.poiItem}>
+                  <Text style={[styles.poiName, isLargeScreen && styles.poiNameLarge]}>{poi.name}</Text>
+                  <Text style={[styles.poiDistance, isLargeScreen && styles.poiDistanceLarge]}>{poi.distance}</Text>
+                  {poi.hasVideo && poi.videoUrl && (
+                    <TouchableOpacity 
+                      style={styles.watchRouteButton}
+                      onPress={() => handleOpenVideoRoute(poi.videoUrl!)}
+                      activeOpacity={0.8}
+                    >
+                      <Video size={16} color={theme.colors.white} />
+                      <Text style={styles.watchRouteText}>Watch Walking Route</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+                {index < propertyData.pois.length - 1 && <View style={styles.poiSeparator} />}
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+      </ResponsiveContainer>
     </View>
   );
 }
@@ -252,15 +309,45 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
+  responsiveContainer: {
+    flex: 1,
+  },
   content: {
     padding: theme.spacing.m,
+  },
+  contentLarge: {
+    paddingHorizontal: theme.spacing.xl,
+  },
+  topSection: {
+    width: '100%',
+  },
+  topSectionLarge: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing.xl,
+  },
+  mapSection: {
+    width: '100%',
+    marginBottom: theme.spacing.m,
+  },
+  mapSectionLarge: {
+    width: '60%',
+  },
+  addressSection: {
+    width: '100%',
+  },
+  addressSectionLarge: {
+    width: '35%',
   },
   mapContainer: {
     height: 200,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
     marginBottom: theme.spacing.m,
-    ...theme.shadows.medium,
+    ...theme.shadows.medium
+  },
+  mapContainerLarge: {
+    height: 300,
   },
   mapImage: {
     width: '100%',
@@ -287,6 +374,9 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
+    ...theme.shadows.small
+  },
+  addressContainerLarge: {
     ...theme.shadows.small,
   },
   addressContent: {
@@ -296,6 +386,9 @@ const styles = StyleSheet.create({
     ...theme.typography.body,
     color: theme.colors.text,
     marginBottom: 2,
+  },
+  addressTextLarge: {
+    fontSize: 16,
   },
   directionsButton: {
     flexDirection: 'row',
@@ -307,10 +400,24 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
   },
+  directionsButtonLarge: {
+    marginTop: theme.spacing.m,
+  },
   directionsButtonText: {
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+  },
+  transportOptionsContainer: {
+    width: '100%',
+  },
+  transportOptionsContainerLarge: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  transportCard: {
+    width: '100%',
   },
   sectionTitle: {
     ...theme.typography.subheading,
@@ -318,9 +425,20 @@ const styles = StyleSheet.create({
   },
   poiContainer: {
     backgroundColor: theme.colors.card,
+    width: '100%',
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
+  },
+  poiContainerLarge: {
+    padding: theme.spacing.l,
+  },
+  transportCardLarge: {
+    width: '32%',
+  },
+  sectionTitleLarge: {
+    fontSize: 24,
+    marginBottom: theme.spacing.l,
   },
   poiItem: {
     paddingVertical: theme.spacing.s,
@@ -329,9 +447,15 @@ const styles = StyleSheet.create({
     ...theme.typography.bodyMedium,
     marginBottom: 2,
   },
+  poiNameLarge: {
+    fontSize: 18,
+  },
   poiDistance: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
+  },
+  poiDistanceLarge: {
+    fontSize: 14,
   },
   poiSeparator: {
     height: 1,

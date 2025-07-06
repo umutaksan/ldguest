@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Platform, Linking, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
+import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Video } from 'lucide-react-native';
@@ -81,35 +82,38 @@ export default function EntryScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Home Entry Instructions" />
-
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          styles.content,
-          isLargeScreen && styles.contentLarge
-        ]}
+      
+      <ResponsiveContainer 
+        maxWidth={isLargeScreen ? 1200 : isMediumScreen ? 900 : 600}
+        style={styles.responsiveContainer}
       >
-        <View style={[
-          styles.mainContent,
-          isLargeScreen && styles.mainContentLarge
-        ]}>
-          <View style={[
-            styles.section,
-            isLargeScreen && styles.sectionLarge
+        <ScrollView 
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.content,
+            isLargeScreen && styles.contentLarge
           ]}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Entry Instructions</Text>
-            <Text style={[
-              styles.description,
-              isLargeScreen && styles.descriptionLarge
+          <View style={[
+            styles.mainContent,
+            isLargeScreen && styles.mainContentLarge
+          ]}>
+            <View style={[
+              styles.section,
+              isLargeScreen && styles.sectionLarge
             ]}>
-              {entryInstructions.description}
-              {'\n\n'}
-              {entryInstructions.note}
-              {entryInstructions.note2 && '\n\n' + entryInstructions.note2}
-            </Text>
+              <Text style={[
+                styles.sectionTitle,
+                isLargeScreen && styles.sectionTitleLarge
+              ]}>Entry Instructions</Text>
+              <Text style={[
+                styles.description,
+                isLargeScreen && styles.descriptionLarge
+              ]}>
+                {entryInstructions.description}
+                {'\n\n'}
+                {entryInstructions.note}
+                {entryInstructions.note2 && '\n\n' + entryInstructions.note2}
+              </Text>
 
             {id === '29051503' && (
               <View style={styles.section}>
@@ -172,11 +176,12 @@ export default function EntryScreen() {
             )}
           </View>
 
-          {entryInstructions.hasKeyImages && (
-            <View style={[
-              styles.imagesSection,
-              isLargeScreen && styles.imagesSectionLarge
-            ]}>
+          <View style={[
+            styles.imagesSection,
+            isLargeScreen && styles.imagesSectionLarge,
+            isMediumScreen && styles.imagesSectionMedium
+          ]}>
+            {entryInstructions.hasKeyImages && (
               <View style={[
                 styles.imageContainer,
                 isLargeScreen && styles.imageContainerLarge
@@ -193,72 +198,72 @@ export default function EntryScreen() {
                   />
                 ))}
               </View>
+            )}
+          </View>
+
+          {entryInstructions.entryVideoUrl && (
+            <View style={styles.section}>
+              <Text style={[
+                styles.sectionTitle,
+                isLargeScreen && styles.sectionTitleLarge
+              ]}>Entering the Building</Text>
+              <Text style={[
+                styles.description,
+                isLargeScreen && styles.descriptionLarge
+              ]}>
+                After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
+              </Text>
+              
+              <TouchableOpacity 
+                style={styles.watchVideoButton}
+                onPress={() => handleWatchVideo(entryInstructions.entryVideoUrl!)}
+                activeOpacity={0.8}
+              >
+                <Video size={20} color={theme.colors.white} />
+                <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
+              </TouchableOpacity>
             </View>
           )}
-        </View>
 
-        {entryInstructions.entryVideoUrl && (
+          {entryInstructions.cleaningCloset && (
+            <View style={styles.section}>
+              <Text style={[
+                styles.sectionTitle,
+                isLargeScreen && styles.sectionTitleLarge
+              ]}>Cleaning Closet Access</Text>
+              <Text style={[
+                styles.description,
+                isLargeScreen && styles.descriptionLarge
+              ]}>
+                {entryInstructions.cleaningCloset}
+              </Text>
+            </View>
+          )}
+
           <View style={styles.section}>
             <Text style={[
               styles.sectionTitle,
               isLargeScreen && styles.sectionTitleLarge
-            ]}>Entering the Building</Text>
+            ]}>Location Details</Text>
             <Text style={[
               styles.description,
               isLargeScreen && styles.descriptionLarge
             ]}>
-              After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
-            </Text>
-            
-            <TouchableOpacity 
-              style={styles.watchVideoButton}
-              onPress={() => handleWatchVideo(entryInstructions.entryVideoUrl!)}
-              activeOpacity={0.8}
-            >
-              <Video size={20} color={theme.colors.white} />
-              <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {entryInstructions.cleaningCloset && (
-          <View style={styles.section}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Cleaning Closet Access</Text>
-            <Text style={[
-              styles.description,
-              isLargeScreen && styles.descriptionLarge
-            ]}>
-              {entryInstructions.cleaningCloset}
+              The apartment is located in {id === '29051502' ? 'Marbella Center, close to the beach.' : 
+                                          id === '29051503' ? 'the Aloha area, close to golf courses and Nueva Andalucía center.' : 
+                                          id === '29051504' ? 'the heart of Marbella\'s historic Old Town.' : 
+                                          'Nueva Andalucía, close to Puerto Banús.'}
             </Text>
           </View>
-        )}
 
-        <View style={styles.section}>
           <Text style={[
-            styles.sectionTitle,
-            isLargeScreen && styles.sectionTitleLarge
-          ]}>Location Details</Text>
-          <Text style={[
-            styles.description,
-            isLargeScreen && styles.descriptionLarge
+            styles.note,
+            isLargeScreen && styles.noteLarge
           ]}>
-            The apartment is located in {id === '29051502' ? 'Marbella Center, close to the beach.' : 
-                                        id === '29051503' ? 'the Aloha area, close to golf courses and Nueva Andalucía center.' : 
-                                        id === '29051504' ? 'the heart of Marbella\'s historic Old Town.' : 
-                                        'Nueva Andalucía, close to Puerto Banús.'}
+            We wish you a pleasant stay.
           </Text>
-        </View>
-
-        <Text style={[
-          styles.note,
-          isLargeScreen && styles.noteLarge
-        ]}>
-          We wish you a pleasant stay.
-        </Text>
-      </ScrollView>
+        </ScrollView>
+      </ResponsiveContainer>
     </View>
   );
 }
@@ -268,12 +273,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
+  responsiveContainer: {
+    flex: 1,
+  },
   content: {
     padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
   },
   contentLarge: {
     maxWidth: 1200,
     alignSelf: 'center',
+    width: '100%',
     paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {
@@ -282,7 +291,7 @@ const styles = StyleSheet.create({
   mainContentLarge: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   section: {
     marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
@@ -293,7 +302,11 @@ const styles = StyleSheet.create({
   imagesSection: {
     marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
   },
+  imagesSectionMedium: {
+    width: '100%',
+  },
   imagesSectionLarge: {
+    flex: 1,
     width: '35%',
   },
   sectionTitle: {
