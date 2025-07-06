@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
-import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
@@ -370,137 +369,133 @@ export default function InfoScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Property Information" showBackButton={false} />
-      
-      <ResponsiveContainer 
-        maxWidth={isLargeScreen ? 1200 : isMediumScreen ? 900 : 600}
-        style={styles.responsiveContainer}
-      >
-        <ScrollView 
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={[
-            styles.content,
-            isLargeScreen && styles.contentLarge
-          ]}>
-          <View style={[
-            styles.mainContent,
-            isLargeScreen && styles.mainContentLarge
-          ]}>
-            <View style={[
-              styles.rulesSection,
-              isLargeScreen && styles.rulesSectionLarge
-            ]}>
-              <Text style={[
-                styles.sectionTitle,
-                isLargeScreen && styles.sectionTitleLarge
-              ]}>House Rules</Text>
-              
-              <View style={[
-                styles.rulesGrid,
-                isLargeScreen && styles.rulesGridLarge,
-                isMediumScreen && styles.rulesGridMedium
-              ]}>
-                {rules.map((rule, index) => (
-                  <Animated.View 
-                    key={rule.id}
-                    entering={FadeIn.delay(index * 100)}
-                    style={[
-                      styles.ruleCard,
-                      isLargeScreen && styles.ruleCardLarge,
-                      isMediumScreen && styles.ruleCardMedium
-                    ]}
-                  >
-                    <View style={styles.ruleIconContainer}>
-                      {rule.icon}
-                    </View>
-                    <View style={styles.ruleContent}>
-                      <Text style={[styles.ruleTitle, isLargeScreen && styles.ruleTitleLarge]}>{rule.title}</Text>
-                      <Text style={[styles.ruleDescription, isLargeScreen && styles.ruleDescriptionLarge]}>{rule.description}</Text>
-                    </View>
-                  </Animated.View>
-                ))}
-              </View>
-            </View>
 
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+          styles.content,
+          isLargeScreen && styles.contentLarge
+        ]}
+      >
+        <View style={[
+          styles.mainContent,
+          isLargeScreen && styles.mainContentLarge
+        ]}>
+          <View style={[
+            styles.rulesSection,
+            isLargeScreen && styles.rulesSectionLarge
+          ]}>
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>House Rules</Text>
+            
             <View style={[
-              styles.amenitiesSection,
-              isLargeScreen && styles.amenitiesSectionLarge
+              styles.rulesGrid,
+              isLargeScreen && styles.rulesGridLarge,
+              isMediumScreen && styles.rulesGridMedium
             ]}>
-              <Text style={[
-                styles.sectionTitle,
-                isLargeScreen && styles.sectionTitleLarge
-              ]}>Amenities</Text>
-              
-              <View style={[
-                styles.amenitiesContainer,
-                isLargeScreen && styles.amenitiesContainerLarge,
-                isMediumScreen && styles.amenitiesContainerMedium
-              ]}>
-                {amenities.map((amenity, index) => (
-                  <Animated.View 
-                    key={amenity.id}
-                    entering={FadeIn.delay(index * 100)}
-                    style={[
-                      styles.amenityItem,
-                      isLargeScreen && styles.amenityItemLarge,
-                      isMediumScreen && styles.amenityItemMedium
-                    ]}
-                  >
-                    <View style={styles.amenityIcon}>
-                      {amenity.icon}
-                    </View>
-                    <Text style={[styles.amenityTitle, isLargeScreen && styles.amenityTitleLarge]}>{amenity.title}</Text>
-                  </Animated.View>
-                ))}
-              </View>
+              {rules.map((rule, index) => (
+                <Animated.View 
+                  key={rule.id}
+                  entering={FadeIn.delay(index * 100)}
+                  style={[
+                    styles.ruleCard,
+                    isLargeScreen && styles.ruleCardLarge,
+                    isMediumScreen && styles.ruleCardMedium
+                  ]}
+                >
+                  <View style={styles.ruleIconContainer}>
+                    {rule.icon}
+                  </View>
+                  <View style={styles.ruleContent}>
+                    <Text style={styles.ruleTitle}>{rule.title}</Text>
+                    <Text style={styles.ruleDescription}>{rule.description}</Text>
+                  </View>
+                </Animated.View>
+              ))}
             </View>
           </View>
-          
-          <View style={styles.divider} />
-          
-          <Text style={[
-            styles.sectionTitle,
-            isLargeScreen && styles.sectionTitleLarge
-          ]}>Frequently Asked Questions</Text>
-          
+
           <View style={[
-            styles.faqContainer,
-            isLargeScreen && styles.faqContainerLarge
+            styles.amenitiesSection,
+            isLargeScreen && styles.amenitiesSectionLarge
           ]}>
-            {faqs.map((faq, index) => (
-              <Animated.View 
-                key={faq.id}
-                entering={FadeInDown.delay(index * 100)}
-                style={styles.faqItem}
-              >
-                <TouchableOpacity
-                  style={styles.faqQuestion}
-                  onPress={() => toggleFaq(faq.id)}
-                  activeOpacity={0.8}
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>Amenities</Text>
+            
+            <View style={[
+              styles.amenitiesContainer,
+              isLargeScreen && styles.amenitiesContainerLarge,
+              isMediumScreen && styles.amenitiesContainerMedium
+            ]}>
+              {amenities.map((amenity, index) => (
+                <Animated.View 
+                  key={amenity.id}
+                  entering={FadeIn.delay(index * 100)}
+                  style={[
+                    styles.amenityItem,
+                    isLargeScreen && styles.amenityItemLarge,
+                    isMediumScreen && styles.amenityItemMedium
+                  ]}
                 >
-                  <Text style={[
-                    styles.faqQuestionText,
-                    isLargeScreen && styles.faqQuestionTextLarge
-                  ]}>{faq.question}</Text>
-                  {expandedFaq === faq.id ? (
-                    <ChevronUp size={20} color={theme.colors.text} />
-                  ) : (
-                    <ChevronDown size={20} color={theme.colors.text} />
-                  )}
-                </TouchableOpacity>
-                
-                {expandedFaq === faq.id && (
-                  <View style={styles.faqAnswer}>
-                    <Text style={[
-                      styles.faqAnswerText,
-                      isLargeScreen && styles.faqAnswerTextLarge
-                    ]}>{faq.answer}</Text>
+                  <View style={styles.amenityIcon}>
+                    {amenity.icon}
                   </View>
-                )}
-              </Animated.View>
-            ))}
+                  <Text style={styles.amenityTitle}>{amenity.title}</Text>
+                </Animated.View>
+              ))}
+            </View>
           </View>
-        </ScrollView>
-      </ResponsiveContainer>
+        </View>
+        
+        <View style={styles.divider} />
+        
+        <Text style={[
+          styles.sectionTitle,
+          isLargeScreen && styles.sectionTitleLarge
+        ]}>Frequently Asked Questions</Text>
+        
+        <View style={[
+          styles.faqContainer,
+          isLargeScreen && styles.faqContainerLarge
+        ]}>
+          {faqs.map((faq, index) => (
+            <Animated.View 
+              key={faq.id}
+              entering={FadeInDown.delay(index * 100)}
+              style={styles.faqItem}
+            >
+              <TouchableOpacity
+                style={styles.faqQuestion}
+                onPress={() => toggleFaq(faq.id)}
+                activeOpacity={0.8}
+              >
+                <Text style={[
+                  styles.faqQuestionText,
+                  isLargeScreen && styles.faqQuestionTextLarge
+                ]}>{faq.question}</Text>
+                {expandedFaq === faq.id ? (
+                  <ChevronUp size={20} color={theme.colors.text} />
+                ) : (
+                  <ChevronDown size={20} color={theme.colors.text} />
+                )}
+              </TouchableOpacity>
+              
+              {expandedFaq === faq.id && (
+                <View style={styles.faqAnswer}>
+                  <Text style={[
+                    styles.faqAnswerText,
+                    isLargeScreen && styles.faqAnswerTextLarge
+                  ]}>{faq.answer}</Text>
+                </View>
+              )}
+            </Animated.View>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -510,16 +505,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
-  responsiveContainer: {
-    flex: 1,
-  },
   content: {
     padding: theme.spacing.m,
   },
   contentLarge: {
     maxWidth: 1200,
     alignSelf: 'center',
-    width: '100%',
     paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {
@@ -527,7 +518,7 @@ const styles = StyleSheet.create({
   },
   mainContentLarge: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   rulesSection: {
     width: '100%',
@@ -544,7 +535,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.spacing.m
+    marginBottom: theme.spacing.m,
   },
   sectionTitleLarge: {
     fontSize: 24,
@@ -553,7 +544,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: theme.colors.border,
-    marginVertical: theme.spacing.l
+    marginVertical: theme.spacing.l,
   },
   rulesGrid: {
     flexDirection: 'column',
@@ -561,12 +552,12 @@ const styles = StyleSheet.create({
   rulesGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   rulesGridMedium: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   ruleCard: {
     flexDirection: 'row',
@@ -575,10 +566,10 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
-    width: '100%'
+    width: '100%',
   },
   ruleCardLarge: {
-    width: '48%'
+    width: '48%',
   },
   ruleCardMedium: {
     width: '48%',
@@ -595,15 +586,9 @@ const styles = StyleSheet.create({
   ruleContent: {
     flex: 1,
   },
-  ruleTitleLarge: {
-    fontSize: 18,
-  },
   ruleTitle: {
     ...theme.typography.bodyMedium,
     marginBottom: theme.spacing.xs,
-  },
-  ruleDescriptionLarge: {
-    fontSize: 16,
   },
   ruleDescription: {
     ...theme.typography.body,
@@ -612,7 +597,7 @@ const styles = StyleSheet.create({
   amenitiesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-  }, 
+  },
   amenitiesContainerLarge: {
     flexDirection: 'column',
   },
@@ -645,9 +630,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: theme.spacing.s,
   },
-  amenityTitleLarge: {
-    fontSize: 16,
-  },
   amenityTitle: {
     ...theme.typography.bodySmall,
     textAlign: 'center',
@@ -658,7 +640,7 @@ const styles = StyleSheet.create({
   },
   faqContainerLarge: {
     maxWidth: 800,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   faqItem: {
     backgroundColor: theme.colors.card,

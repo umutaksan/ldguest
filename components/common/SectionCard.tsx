@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
-import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 type SectionCardProps = {
   title: string;
@@ -24,7 +24,7 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
     }
   };
 
-  const cardWidth = theme.layout.isWeb && theme.layout.isDesktop
+  const cardWidth = theme.layout.isWeb && theme.layout.isDesktop 
     ? '48%' 
     : theme.layout.isWeb && theme.layout.isTablet 
     ? '48%' 
@@ -35,7 +35,7 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
     : 140;
 
   return (
-    <Animated.View entering={FadeInDown.delay(delay * 100)} style={[styles.container, { width: cardWidth }, style]}>
+    <Animated.View entering={FadeIn.delay(delay * 100)} style={[styles.container, { width: cardWidth }, style]}>
       <TouchableOpacity 
         style={[styles.card, { minHeight: cardHeight }]} 
         onPress={handlePress}
@@ -53,6 +53,7 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
 const styles = StyleSheet.create({
   container: {
     padding: theme.spacing.s,
+  },
   card: {
     flex: 1,
     backgroundColor: theme.colors.card,
@@ -64,7 +65,6 @@ const styles = StyleSheet.create({
     // Web-specific hover effects
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
-      transform: 'scale(1)',
       transition: 'all 0.2s ease-in-out',
     }),
   },
@@ -82,6 +82,5 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     textAlign: 'center',
     lineHeight: theme.layout.isWeb ? 20 : 18,
-  }
   },
 });
