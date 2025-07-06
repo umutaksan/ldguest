@@ -49,7 +49,7 @@ export default function PropertiesScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <ResponsiveContainer>
-        <Animated.View 
+        showsVerticalScrollIndicator={Platform.OS !== 'web'}
           entering={FadeIn.duration(500)}
           style={styles.header}
         >
@@ -63,7 +63,7 @@ export default function PropertiesScreen() {
         </Animated.View>
 
         <ScrollView 
-          showsVerticalScrollIndicator={Platform.OS !== 'web'}
+          showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.content}
         >
           <View style={[
