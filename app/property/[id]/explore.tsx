@@ -108,7 +108,6 @@ export default function ExploreScreen() {
   // Determine if we're on a large screen
   const isLargeScreen = width > 1024;
   const isMediumScreen = width > 768 && width <= 1024;
-  const isSmallScreen = width <= 768;
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
@@ -236,10 +235,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    ...(theme.layout.isWeb && {
-      maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
   },
   content: {
     padding: theme.spacing.m,
@@ -256,7 +251,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   heroLarge: {
-    height: 450,
+    height: 400,
   },
   heroOverlay: {
     flex: 1,
@@ -269,20 +264,14 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
   },
   heroTitleLarge: {
-    fontSize: 48,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    fontSize: 42,
   },
   heroSubtitle: {
     ...theme.typography.body,
     color: theme.colors.white,
   },
   heroSubtitleLarge: {
-    fontSize: 22,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    fontSize: 20,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -294,9 +283,6 @@ const styles = StyleSheet.create({
   },
   statsContainerLarge: {
     padding: theme.spacing.l,
-    maxWidth: 900,
-    marginLeft: 'auto',
-    marginRight: 'auto',
   },
   statItem: {
     flex: 1,
@@ -308,8 +294,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
   },
   statNumberLarge: {
-    fontSize: 38,
-    fontWeight: 'bold',
+    fontSize: 32,
   },
   statLabel: {
     ...theme.typography.bodySmall,
@@ -325,9 +310,8 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   sectionTitleLarge: {
-    fontSize: 32,
+    fontSize: 28,
     marginBottom: theme.spacing.l,
-    textAlign: 'center',
   },
   citiesGrid: {
     flexDirection: 'column',
@@ -349,20 +333,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     ...theme.shadows.small,
     width: '100%',
-    ...(theme.layout.isWeb && {
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      '&:hover': {
-        transform: 'translateY(-5px)',
-        boxShadow: '0 15px 30px rgba(0,0,0,0.15)',
-      },
-    }),
   },
   cityCardLarge: {
-    width: '31%',
+    width: '32%',
     marginBottom: theme.spacing.xl,
   },
   cityCardMedium: {
-    width: '47%',
+    width: '48%',
     marginBottom: theme.spacing.l,
   },
   cityImage: {
@@ -389,9 +366,6 @@ const styles = StyleSheet.create({
     ...theme.typography.subheading,
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
   },
   distanceContainer: {
     flexDirection: 'row',
@@ -401,9 +375,6 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     marginLeft: theme.spacing.xs,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
   },
   cityDescription: {
     ...theme.typography.body,
@@ -418,21 +389,10 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
-    ...(theme.layout.isWeb && {
-      transition: 'background-color 0.3s ease',
-      '&:hover': {
-        backgroundColor: theme.colors.primary,
-      },
-    }),
   },
   directionsText: {
     ...theme.typography.bodySmall,
     color: theme.colors.primary,
     marginLeft: theme.spacing.xs,
-    ...(theme.layout.isWeb && {
-      '&:hover': {
-        color: theme.colors.white,
-      },
-    }),
   },
 });

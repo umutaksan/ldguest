@@ -48,7 +48,7 @@ export function PageHeader({
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }, style]}>
-      <View style={[styles.content, theme.layout.isWeb && styles.webContent]}>
+      <View style={styles.content}>
         {showBackButton && (
           <TouchableOpacity
             style={styles.backButton}
@@ -73,24 +73,14 @@ export function PageHeader({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.background,
-    borderBottomWidth: theme.layout.isWeb ? 2 : 1,
+    borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
-    ...(theme.layout.isWeb && {
-      position: 'sticky',
-      top: 0,
-      zIndex: 100,
-    }),
   },
   content: {
-    height: 60,
+    height: 56,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
-  },
-  webContent: {
-    height: 70,
-    maxWidth: theme.layout.maxWidth,
-    marginHorizontal: 'auto',
   },
   backButton: {
     marginRight: theme.spacing.s,
@@ -98,9 +88,6 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
-      '&:hover': {
-        opacity: 0.8,
-      },
     }),
   },
   titleContainer: {
@@ -110,9 +97,6 @@ const styles = StyleSheet.create({
   },
   title: {
     ...theme.typography.subheading,
-    ...(theme.layout.isWeb && {
-      fontSize: 24,
-    }),
   },
   hostBadge: {
     ...theme.typography.bodySmall,

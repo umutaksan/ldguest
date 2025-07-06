@@ -12,7 +12,7 @@ interface ResponsiveContainerProps {
 export function ResponsiveContainer({ 
   children, 
   style, 
-  maxWidth = theme.layout.maxWidth, 
+  maxWidth = theme.layout.maxWidth,
   centerContent = true 
 }: ResponsiveContainerProps) {
   return (
@@ -33,9 +33,6 @@ export function ResponsiveContainer({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    flex: 1, 
-    ...(theme.layout.isWeb && {
-      boxSizing: 'border-box',
-    }),
+    flex: 1,
   },
 });

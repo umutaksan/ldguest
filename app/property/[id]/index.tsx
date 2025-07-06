@@ -66,7 +66,7 @@ export default function PropertyScreen() {
   return (
     <View style={styles.container}>
       <ScrollView 
-        showsVerticalScrollIndicator={theme.layout.isWeb ? false : true}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={[
           styles.scrollContent,
           { paddingBottom: insets.bottom + theme.spacing.xl }
@@ -224,32 +224,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    ...(theme.layout.isWeb && {
-      maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
   },
   scrollContent: {
     flexGrow: 1,
-    ...(theme.layout.isWeb && {
-      minHeight: '100vh',
-    }),
   },
   quickAccess: {
     padding: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: theme.spacing.m,
-    }),
   },
   row: {
     flexDirection: theme.layout.isWeb && theme.layout.isDesktop ? 'row' : 'row',
     width: '100%',
     gap: theme.layout.isWeb ? theme.spacing.s : 0,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      marginBottom: theme.spacing.m,
-    }),
   },
   promoContainer: {
     marginHorizontal: theme.spacing.m,
@@ -258,12 +243,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
     ...theme.shadows.medium,
-    ...(theme.layout.isWeb && {
-      transition: 'transform 0.3s ease',
-      '&:hover': {
-        transform: 'scale(1.02)',
-      },
-    }),
   },
   promoImage: {
     width: '100%',
@@ -309,43 +288,26 @@ const styles = StyleSheet.create({
     marginHorizontal: theme.spacing.m,
     marginBottom: theme.spacing.m,
     padding: theme.spacing.l,
-    backgroundColor: theme.layout.isWeb ? theme.colors.primaryLight : theme.colors.card,
+    backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     alignItems: 'center',
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      maxWidth: 800,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    }),
   },
   ratingTitle: {
     ...theme.typography.subheading,
     color: theme.colors.primary,
     marginBottom: theme.spacing.s,
     textAlign: 'center',
-    ...(theme.layout.isWeb && {
-      fontSize: 24,
-    }),
   },
   ratingDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     textAlign: 'center',
     marginBottom: theme.spacing.l,
-    ...(theme.layout.isWeb && {
-      maxWidth: 600,
-    }),
   },
   ratingButtons: {
     width: '100%',
     gap: theme.spacing.m,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      gap: theme.spacing.xl,
-    }),
   },
   ratingButton: {
     flexDirection: 'row',
@@ -355,13 +317,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.l,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
-    ...(theme.layout.isWeb && {
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      '&:hover': {
-        transform: 'translateY(-3px)',
-        boxShadow: '0 10px 20px rgba(0,0,0,0.15)',
-      },
-    }),
   },
   airbnbButton: {
     backgroundColor: '#FF5A5F',

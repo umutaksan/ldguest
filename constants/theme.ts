@@ -5,7 +5,7 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 // Responsive breakpoints
 const breakpoints = {
   mobile: 480,
-  tablet: 768, 
+  tablet: 768,
   desktop: 1024,
   largeDesktop: 1440,
 };
@@ -41,23 +41,23 @@ const palette = {
 const getResponsiveSpacing = () => {
   if (isWeb && isDesktop) {
     return {
-      xxs: 6,
-      xs: 10,
-      s: 16,
-      m: 24,
-      l: 36,
-      xl: 52,
-      xxl: 72,
+      xxs: 4,
+      xs: 8,
+      s: 12,
+      m: 20,
+      l: 32,
+      xl: 48,
+      xxl: 64,
     };
   } else if (isWeb && isTablet) {
     return {
-      xxs: 4,
-      xs: 8,
-      s: 14,
-      m: 20,
-      l: 32,
-      xl: 44,
-      xxl: 60,
+      xxs: 3,
+      xs: 6,
+      s: 10,
+      m: 18,
+      l: 28,
+      xl: 40,
+      xxl: 56,
     };
   } else {
     return {
@@ -75,47 +75,47 @@ const getResponsiveSpacing = () => {
 // Responsive typography
 const getResponsiveTypography = () => {
   const baseSize = isWeb && isDesktop ? 1.1 : isWeb && isTablet ? 1.05 : 1;
-
+  
   return {
     heading: {
       fontFamily: 'PlayfairDisplay_700Bold',
-      fontSize: Math.round(32 * baseSize),
-      lineHeight: Math.round(40 * baseSize),
+      fontSize: Math.round(28 * baseSize),
+      lineHeight: Math.round(34 * baseSize),
     },
     subheading: {
       fontFamily: 'Inter_700Bold',
-      fontSize: Math.round(22 * baseSize),
-      lineHeight: Math.round(28 * baseSize),
+      fontSize: Math.round(20 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
     },
     body: {
       fontFamily: 'Inter_400Regular',
-      fontSize: Math.round(17 * baseSize),
-      lineHeight: Math.round(26 * baseSize),
+      fontSize: Math.round(16 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
     },
     bodyMedium: {
       fontFamily: 'Inter_500Medium',
-      fontSize: Math.round(17 * baseSize),
-      lineHeight: Math.round(26 * baseSize),
+      fontSize: Math.round(16 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
     },
     bodySmall: {
       fontFamily: 'Inter_400Regular',
-      fontSize: Math.round(15 * baseSize),
-      lineHeight: Math.round(22 * baseSize),
+      fontSize: Math.round(14 * baseSize),
+      lineHeight: Math.round(20 * baseSize),
     },
     caption: {
       fontFamily: 'Inter_400Regular',
-      fontSize: Math.round(13 * baseSize),
-      lineHeight: Math.round(18 * baseSize),
+      fontSize: Math.round(12 * baseSize),
+      lineHeight: Math.round(16 * baseSize),
     },
     button: {
       fontFamily: 'Inter_600SemiBold',
-      fontSize: Math.round(17 * baseSize),
-      lineHeight: Math.round(26 * baseSize),
+      fontSize: Math.round(16 * baseSize),
+      lineHeight: Math.round(24 * baseSize),
     },
     buttonTextMedium: {
       fontFamily: 'Inter_500Medium',
-      fontSize: Math.round(15 * baseSize),
-      lineHeight: Math.round(22 * baseSize),
+      fontSize: Math.round(14 * baseSize),
+      lineHeight: Math.round(20 * baseSize),
     }
   };
 };
@@ -186,7 +186,7 @@ export const theme = {
     isDesktop,
     screenWidth,
     screenHeight,
-    maxWidth: isWeb ? (isDesktop ? 1280 : isTablet ? 800 : 500) : screenWidth,
-    containerPadding: isWeb ? (isDesktop ? 48 : isTablet ? 32 : 20) : 16,
+    maxWidth: isWeb ? (isDesktop ? 1200 : isTablet ? 768 : 480) : screenWidth,
+    containerPadding: isWeb ? (isDesktop ? 40 : isTablet ? 24 : 16) : 16,
   },
 };

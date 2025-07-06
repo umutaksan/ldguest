@@ -127,13 +127,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    ...(theme.layout.isWeb && {
-      maxWidth: '100vw',
-      overflowX: 'hidden',
-    }),
-    ...(theme.layout.isWeb && {
-      minHeight: '100vh',
-    }),
   },
   header: {
     alignItems: 'center',
@@ -142,9 +135,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
     marginBottom: theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      padding: theme.spacing.xl,
-    }),
   },
   logo: {
     width: theme.layout.isWeb ? (theme.layout.isDesktop ? 180 : 145) : 145,
@@ -156,30 +146,18 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     marginBottom: theme.spacing.xs,
     textAlign: 'center',
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 36,
-    }),
   },
   subtitle: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     textAlign: 'center',
     maxWidth: theme.layout.isWeb ? 500 : 300,
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      fontSize: 18,
-      maxWidth: 600,
-    }),
   },
   content: {
     padding: theme.spacing.m,
   },
   propertiesGrid: {
     justifyContent: 'space-between',
-    ...(theme.layout.isWeb && theme.layout.isDesktop && {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
-      gap: theme.spacing.l,
-    }),
   },
   propertyCardContainer: {
     marginBottom: theme.spacing.m,
@@ -193,10 +171,6 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.3s ease-in-out',
-      '&:hover': {
-        transform: 'translateY(-8px)',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-      },
     }),
   },
   propertyImage: {
@@ -218,9 +192,6 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
     fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 22 : 20) : 20,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
   },
   locationContainer: {
     flexDirection: 'row',
@@ -230,9 +201,6 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     marginLeft: theme.spacing.xs,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 5,
   },
   adminButton: {
     backgroundColor: theme.colors.surface,
@@ -244,9 +212,6 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
-      '&:hover': {
-        backgroundColor: theme.colors.border,
-      },
     }),
   },
   adminButtonText: {

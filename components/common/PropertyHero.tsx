@@ -77,7 +77,7 @@ export function PropertyHero({
   };
 
   const heroHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 450 : theme.layout.isTablet ? 380 : 320) 
+    ? (theme.layout.isDesktop ? 400 : theme.layout.isTablet ? 350 : 300) 
     : 300;
   
   return (
@@ -192,18 +192,17 @@ const styles = StyleSheet.create({
   title: {
     ...theme.typography.heading,
     color: theme.colors.white,
-    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 12,
+    textShadowRadius: 10,
     marginBottom: theme.spacing.xs,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 38 : 32) : 28,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 32 : 28) : 28,
   },
   subtitle: {
     ...theme.typography.bodyMedium,
     color: theme.colors.white,
-    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 12,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 20 : 18) : 16,
+    textShadowRadius: 10,
   },
 });
