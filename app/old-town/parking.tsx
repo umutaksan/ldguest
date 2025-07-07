@@ -82,7 +82,6 @@ export default function OldTownParkingScreen() {
               <Navigation size={20} color={theme.colors.white} />
               <Text style={styles.directionsButtonText}>Get Directions to Parking</Text>
             </TouchableOpacity>
-            </View>
           </View>
         </Animated.View>
       </ScrollView>
