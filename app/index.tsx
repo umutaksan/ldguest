@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -120,18 +119,19 @@ export default function PropertiesScreen() {
           </TouchableOpacity>
 
           <View style={styles.footerLinks}>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.ldguest.com')}>
-          <Text style={styles.footerLink}>www.ldguest.com</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/ldguestmarbella')}>
-          <Text style={styles.footerLink}>www.instagram.com/ldguestmarbella</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/@ldguestmarbella')}>
-          <Text style={styles.footerLink}>www.youtube.com/@ldguestmarbella</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL('mailto:hello@ldguest.com')}>
-          <Text style={styles.footerLink}>hello@ldguest.com</Text>
-        </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('https://www.ldguest.com')}>
+              <Text style={styles.footerLink}>www.ldguest.com</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/ldguestmarbella')}>
+              <Text style={styles.footerLink}>www.instagram.com/ldguestmarbella</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/@ldguestmarbella')}>
+              <Text style={styles.footerLink}>www.youtube.com/@ldguestmarbella</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('mailto:hello@ldguest.com')}>
+              <Text style={styles.footerLink}>hello@ldguest.com</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </ResponsiveContainer>
     </View>
