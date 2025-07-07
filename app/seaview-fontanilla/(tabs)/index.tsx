@@ -35,10 +35,21 @@ export default function SeaviewFontanillaHomeScreen() {
         <PropertyHero
           title="2+1 Seaview Playa de Fontanilla"
           subtitle="Thank you for your reservation!"
+          registrationNumber="REGISTRO AUTONÓMICO: VUT/MA/84842"
           registrationNumber="REGISTRO AUTONÓMICO: NRA-MA-02372"
           imageUrl="https://cf.bstatic.com/xdata/images/hotel/max1024x768/628787942.jpg?k=8debb78111131852bf35286c8e7e732682d6570737cf214f84c3803fce5d4806&o="
         />
 
+        <View style={styles.alertContainer}>
+          <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
+          <Text style={styles.alertText}>
+            According to Spanish law, all guests must upload valid passport or ID documents to the system before check-in.
+          </Text>
+          <Text style={styles.alertText}>
+            Please complete this process through the ID upload link provided to you via the platform where you made your reservation.
+          </Text>
+        </View>
+        
         <View style={styles.alertContainer}>
           <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
           <Text style={styles.alertText}>
@@ -304,6 +315,25 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24, 
     height: 24, 
+  },
+  alertContainer: {
+    backgroundColor: theme.colors.primaryLight,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  alertTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.s,
+    fontWeight: '600',
+  },
+  alertText: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
   },
   alertContainer: {
     backgroundColor: theme.colors.primaryLight,

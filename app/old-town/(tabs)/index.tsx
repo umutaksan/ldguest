@@ -35,10 +35,21 @@ export default function OldTownHomeScreen() {
         <PropertyHero
           title="3+1 Marbella Old Town"
           subtitle="Thank you for your reservation!"
+          registrationNumber="REGISTRO AUTONÓMICO: VUT/MA/83102"
           registrationNumber="REGISTRO AUTONÓMICO: NRA-MA-02371"
           imageUrl="https://cf.bstatic.com/xdata/images/hotel/max1024x768/645431688.jpg?k=0d1af13e52daafe35fe9638dd024af7730169834024271f0cc2f0540393f7104&o="
         />
 
+        <View style={styles.alertContainer}>
+          <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
+          <Text style={styles.alertText}>
+            According to Spanish law, all guests must upload valid passport or ID documents to the system before check-in.
+          </Text>
+          <Text style={styles.alertText}>
+            Please complete this process through the ID upload link provided to you via the platform where you made your reservation.
+          </Text>
+        </View>
+        
         <View style={styles.alertContainer}>
           <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
           <Text style={styles.alertText}>
@@ -303,6 +314,25 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24, 
     height: 24, 
+  },
+  alertContainer: {
+    backgroundColor: theme.colors.primaryLight,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  alertTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.s,
+    fontWeight: '600',
+  },
+  alertText: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
   },
   alertContainer: {
     backgroundColor: theme.colors.primaryLight,
