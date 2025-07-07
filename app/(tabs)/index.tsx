@@ -5,7 +5,7 @@ import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard'; 
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
-import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, HelpCircle, Sofa, Image as ImageIcon } from 'lucide-react-native';
+import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
