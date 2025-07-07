@@ -32,16 +32,6 @@ export default function AlohaPuebloHomeScreen() {
           { paddingBottom: insets.bottom + theme.spacing.xl }
         ]}
       >
-        <View style={styles.importantNoticeContainer}>
-          <Text style={styles.importantNoticeTitle}>📌 Önemli Bilgilendirme – Kimlik Yükleme Zorunluluğu</Text>
-          <Text style={styles.importantNoticeText}>
-            İspanya yasaları gereği, konaklama başlamadan önce tüm misafirlerin geçerli pasaport veya kimlik (ID) belgelerini sisteme yüklemeleri yasal bir zorunluluktur.
-          </Text>
-          <Text style={styles.importantNoticeText}>
-            Rezervasyon yaptığınız platform üzerinden tarafınıza iletilen kimlik yükleme bağlantısı aracılığıyla, konaklamanız başlamadan önce bu işlemi tamamlamanızı rica ederiz.
-          </Text>
-        </View>
-
         <PropertyHero
           title="1+1 Aloha Pueblo Townhouse"
           subtitle="Thank you for your reservation!"
@@ -321,24 +311,6 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24,
     height: 24,
-  },
-  importantNoticeContainer: {
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    margin: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  importantNoticeTitle: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.s,
-    fontWeight: '700',
-  },
-  importantNoticeText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.s,
   },
   licenseContainer: {
     backgroundColor: theme.colors.surface,
