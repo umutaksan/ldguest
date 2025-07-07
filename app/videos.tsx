@@ -11,68 +11,56 @@ export default function VideosScreen() {
   const insets = useSafeAreaInsets();
 
   const videos = {
-    houseAccess: [
+    educational: [
       {
         id: 1,
-        title: 'Getting the Key Card',
-        description: 'Instructions for getting the key card from the key box',
-        thumbnail: 'https://hirdavatfirsati.com/marelli-pass-bnb-air-bnb-fonksiyonlu-sifreli-celik-kapi-kilidi-kapi-gobegi-g-11959.jpg',
-        url: 'https://www.youtube.com/shorts/XNzqKrwDKf8',
-        icon: <Key size={24} color={theme.colors.white} />
-      },
-      {
-        id: 2,
-        title: 'Entering the Building',
-        description: 'How to use the key card to enter the building',
-        thumbnail: 'https://image.made-in-china.com/202f0j00uHibzKgWCLod/Smart-Hotel-Door-Lock-Remote-Management-Airbnb-Phone-Unlocking-Lock.webp',
-        url: 'https://www.youtube.com/shorts/nWXkqDrRcyU',
-        icon: <Key size={24} color={theme.colors.white} />
-      }
-    ],
-    houseGuides: [
-      {
-        id: 1,
-        title: 'How to Use Electronics',
-        description: 'Guide for using TV, AC, and other electronic devices',
-        thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpyD9vfAlX2ovxnem8HeqNVDB7cFiJhFNp3w&s',
-        url: 'https://youtu.be/HuYUrGQOR1E',
+        title: 'How Do Propellers Work?',
+        description: 'Learn about the physics behind propellers',
+        thumbnail: 'https://i.ytimg.com/vi/0l6igtzY0xQ/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/0l6igtzY0xQ?feature=share',
         icon: <Tv size={24} color={theme.colors.white} />
-      }
-    ],
-    amenities: [
-      {
-        id: 1,
-        title: 'How to Access the Pool',
-        description: 'Instructions for finding and using the swimming pool',
-        thumbnail: 'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg',
-        url: 'https://youtu.be/IUErsgo7qd4',
-        icon: <Palmtree size={24} color={theme.colors.white} />
-      }
-    ],
-    nearby: [
-      {
-        id: 1,
-        title: 'Walking to Nearby Cafes - Part 1',
-        description: 'Guide to finding nearby cafes and restaurants',
-        thumbnail: 'https://cdn.recetasderechupete.com/wp-content/uploads/2023/11/Cafe-americano-portada.jpg',
-        url: 'https://youtu.be/RZJ0MxWX9v4',
-        icon: <Coffee size={24} color={theme.colors.white} />
       },
       {
         id: 2,
-        title: 'Walking to Nearby Cafes - Part 2',
-        description: 'More cafes and restaurants in the area',
-        thumbnail: 'https://cdn.recetasderechupete.com/wp-content/uploads/2023/11/Cafe-americano-portada.jpg',
-        url: 'https://youtu.be/rKdzIvFFjGQ',
+        title: 'How Does a Coffee Machine Work?',
+        description: 'Discover the inner workings of coffee machines',
+        thumbnail: 'https://i.ytimg.com/vi/XiKCGNhC9TY/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/XiKCGNhC9TY?feature=share',
         icon: <Coffee size={24} color={theme.colors.white} />
+      }
+    ],
+    propertyGuides: [
+      {
+        id: 1,
+        title: 'How do I get to the pool?',
+        description: 'Instructions for finding and accessing the swimming pool',
+        thumbnail: 'https://i.ytimg.com/vi/mxsMDPfzOuQ/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/mxsMDPfzOuQ?feature=share',
+        icon: <Palmtree size={24} color={theme.colors.white} />
+      },
+      {
+        id: 2,
+        title: 'How do I get to the beach? (Part 1)',
+        description: 'Guide to finding the nearest beach access',
+        thumbnail: 'https://i.ytimg.com/vi/u83ykP_syVM/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/u83ykP_syVM',
+        icon: <MapPin size={24} color={theme.colors.white} />
       },
       {
         id: 3,
-        title: 'Walking to Puerto Banús',
-        description: 'How to walk to Puerto Banús from the apartment',
-        thumbnail: 'https://images.pexels.com/photos/2119713/pexels-photo-2119713.jpeg',
-        url: 'https://youtu.be/hAVfV32hWp8',
+        title: 'How do I get to the beach? (Part 2)',
+        description: 'Additional information about beach access',
+        thumbnail: 'https://i.ytimg.com/vi/lMyemV_CiU4/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/lMyemV_CiU4?feature=share',
         icon: <MapPin size={24} color={theme.colors.white} />
+      },
+      {
+        id: 4,
+        title: 'How to Open and Close the Sunshade?',
+        description: 'Instructions for operating the sunshade',
+        thumbnail: 'https://i.ytimg.com/vi/us5KRyyCWMA/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/us5KRyyCWMA?feature=share',
+        icon: <Tv size={24} color={theme.colors.white} />
       }
     ]
   };
@@ -129,10 +117,8 @@ export default function VideosScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        {renderVideoSection('House Access', videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
-        {renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {renderVideoSection('Amenities', videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
-        {renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
+        {renderVideoSection('Educational Videos', videos.educational, <Tv size={20} color={theme.colors.primary} />)}
+        {renderVideoSection('Property Guides', videos.propertyGuides, <Palmtree size={20} color={theme.colors.primary} />)}
       </ScrollView>
     </View>
   );

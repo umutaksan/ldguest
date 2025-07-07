@@ -17,184 +17,276 @@ export default function VideosScreen() {
     switch(id) {
       case '29051501': // Jardines Tropicales
         return {
-          houseAccess: [
+          educational: [
             {
               id: 1,
-              title: 'Getting the Key Card',
-              description: 'Instructions for getting the key card from the key box',
-              thumbnail: 'https://hirdavatfirsati.com/marelli-pass-bnb-air-bnb-fonksiyonlu-sifreli-celik-kapi-kilidi-kapi-gobegi-g-11959.jpg',
-              url: 'https://www.youtube.com/shorts/XNzqKrwDKf8',
-              icon: <Key size={24} color={theme.colors.white} />
-            },
-            {
-              id: 2,
-              title: 'Entering the Building',
-              description: 'How to use the key card to enter the building',
-              thumbnail: 'https://image.made-in-china.com/202f0j00uHibzKgWCLod/Smart-Hotel-Door-Lock-Remote-Management-Airbnb-Phone-Unlocking-Lock.webp',
-              url: 'https://www.youtube.com/shorts/nWXkqDrRcyU',
-              icon: <Key size={24} color={theme.colors.white} />
-            }
-          ],
-          houseGuides: [
-            {
-              id: 1,
-              title: 'How to Use Electronics',
-              description: 'Guide for using TV, AC, and other electronic devices',
-              thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpyD9vfAlX2ovxnem8HeqNVDB7cFiJhFNp3w&s',
-              url: 'https://youtu.be/HuYUrGQOR1E',
+              title: 'How Do Propellers Work?',
+              description: 'Learn about the physics behind propellers',
+              thumbnail: 'https://i.ytimg.com/vi/0l6igtzY0xQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/0l6igtzY0xQ?feature=share',
               icon: <Tv size={24} color={theme.colors.white} />
-            }
-          ],
-          amenities: [
-            {
-              id: 1,
-              title: 'How to Access the Pool',
-              description: 'Instructions for finding and using the swimming pool',
-              thumbnail: 'https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg',
-              url: 'https://youtu.be/IUErsgo7qd4',
-              icon: <Palmtree size={24} color={theme.colors.white} />
-            }
-          ],
-          nearby: [
-            {
-              id: 1,
-              title: 'Walking to Nearby Cafes - Part 1',
-              description: 'Guide to finding nearby cafes and restaurants',
-              thumbnail: 'https://cdn.recetasderechupete.com/wp-content/uploads/2023/11/Cafe-americano-portada.jpg',
-              url: 'https://youtu.be/RZJ0MxWX9v4',
-              icon: <Coffee size={24} color={theme.colors.white} />
             },
             {
               id: 2,
-              title: 'Walking to Nearby Cafes - Part 2',
-              description: 'More cafes and restaurants in the area',
-              thumbnail: 'https://cdn.recetasderechupete.com/wp-content/uploads/2023/11/Cafe-americano-portada.jpg',
-              url: 'https://youtu.be/rKdzIvFFjGQ',
+              title: 'How Does a Coffee Machine Work?',
+              description: 'Discover the inner workings of coffee machines',
+              thumbnail: 'https://i.ytimg.com/vi/XiKCGNhC9TY/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/XiKCGNhC9TY?feature=share',
               icon: <Coffee size={24} color={theme.colors.white} />
+            }
+          ],
+          propertyGuides: [
+            {
+              id: 1,
+              title: 'How do I get to the pool?',
+              description: 'Instructions for finding and accessing the swimming pool',
+              thumbnail: 'https://i.ytimg.com/vi/mxsMDPfzOuQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/mxsMDPfzOuQ?feature=share',
+              icon: <Palmtree size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
+              title: 'How do I get to the beach? (Part 1)',
+              description: 'Guide to finding the nearest beach access',
+              thumbnail: 'https://i.ytimg.com/vi/u83ykP_syVM/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/u83ykP_syVM',
+              icon: <MapPin size={24} color={theme.colors.white} />
             },
             {
               id: 3,
-              title: 'Walking to Puerto Banús',
-              description: 'How to walk to Puerto Banús from the apartment',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: 'https://youtu.be/hAVfV32hWp8',
+              title: 'How do I get to the beach? (Part 2)',
+              description: 'Additional information about beach access',
+              thumbnail: 'https://i.ytimg.com/vi/lMyemV_CiU4/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/lMyemV_CiU4?feature=share',
               icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 4,
+              title: 'How to Open and Close the Sunshade?',
+              description: 'Instructions for operating the sunshade',
+              thumbnail: 'https://i.ytimg.com/vi/us5KRyyCWMA/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/us5KRyyCWMA?feature=share',
+              icon: <Tv size={24} color={theme.colors.white} />
             }
           ]
         };
       case '29051502': // Seaview Fontanilla
         return {
-          houseGuides: [
+          educational: [
             {
               id: 1,
-              title: 'Apartment Tour',
-              description: 'Complete tour of your Seaview apartment',
-              thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
-              url: '#',
+              title: 'How Do Propellers Work?',
+              description: 'Learn about the physics behind propellers',
+              thumbnail: 'https://i.ytimg.com/vi/0l6igtzY0xQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/0l6igtzY0xQ?feature=share',
               icon: <Tv size={24} color={theme.colors.white} />
-            }
-          ],
-          nearby: [
-            {
-              id: 1,
-              title: 'Walking to Fontanilla Beach',
-              description: 'Short walk to the beautiful Fontanilla Beach',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
-              icon: <MapPin size={24} color={theme.colors.white} />
             },
             {
               id: 2,
-              title: 'Marbella Old Town Walk',
-              description: 'How to walk to Marbella Old Town from the apartment',
-              thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-              url: '#',
+              title: 'How Does a Coffee Machine Work?',
+              description: 'Discover the inner workings of coffee machines',
+              thumbnail: 'https://i.ytimg.com/vi/XiKCGNhC9TY/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/XiKCGNhC9TY?feature=share',
               icon: <Coffee size={24} color={theme.colors.white} />
+            }
+          ],
+          propertyGuides: [
+            {
+              id: 1,
+              title: 'How do I get to the pool?',
+              description: 'Instructions for finding and accessing the swimming pool',
+              thumbnail: 'https://i.ytimg.com/vi/mxsMDPfzOuQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/mxsMDPfzOuQ?feature=share',
+              icon: <Palmtree size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
+              title: 'How do I get to the beach? (Part 1)',
+              description: 'Guide to finding the nearest beach access',
+              thumbnail: 'https://i.ytimg.com/vi/u83ykP_syVM/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/u83ykP_syVM',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 3,
+              title: 'How do I get to the beach? (Part 2)',
+              description: 'Additional information about beach access',
+              thumbnail: 'https://i.ytimg.com/vi/lMyemV_CiU4/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/lMyemV_CiU4?feature=share',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 4,
+              title: 'How to Open and Close the Sunshade?',
+              description: 'Instructions for operating the sunshade',
+              thumbnail: 'https://i.ytimg.com/vi/us5KRyyCWMA/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/us5KRyyCWMA?feature=share',
+              icon: <Tv size={24} color={theme.colors.white} />
             }
           ]
         };
       case '29051503': // Aloha Pueblo
         return {
-          houseGuides: [
+          educational: [
             {
               id: 1,
-              title: 'Townhouse Tour',
-              description: 'Complete tour of your Aloha Pueblo townhouse',
-              thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
-              url: '#',
+              title: 'How Do Propellers Work?',
+              description: 'Learn about the physics behind propellers',
+              thumbnail: 'https://i.ytimg.com/vi/0l6igtzY0xQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/0l6igtzY0xQ?feature=share',
               icon: <Tv size={24} color={theme.colors.white} />
-            }
-          ],
-          nearby: [
-            {
-              id: 1,
-              title: 'Walking to Golf Courses',
-              description: 'How to reach nearby golf courses from the townhouse',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
-              icon: <MapPin size={24} color={theme.colors.white} />
             },
             {
               id: 2,
-              title: 'Nueva Andalucía Center',
-              description: 'Walking guide to Nueva Andalucía shopping and dining',
-              thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-              url: '#',
+              title: 'How Does a Coffee Machine Work?',
+              description: 'Discover the inner workings of coffee machines',
+              thumbnail: 'https://i.ytimg.com/vi/XiKCGNhC9TY/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/XiKCGNhC9TY?feature=share',
               icon: <Coffee size={24} color={theme.colors.white} />
+            }
+          ],
+          propertyGuides: [
+            {
+              id: 1,
+              title: 'How do I get to the pool?',
+              description: 'Instructions for finding and accessing the swimming pool',
+              thumbnail: 'https://i.ytimg.com/vi/mxsMDPfzOuQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/mxsMDPfzOuQ?feature=share',
+              icon: <Palmtree size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
+              title: 'How do I get to the beach? (Part 1)',
+              description: 'Guide to finding the nearest beach access',
+              thumbnail: 'https://i.ytimg.com/vi/u83ykP_syVM/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/u83ykP_syVM',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 3,
+              title: 'How do I get to the beach? (Part 2)',
+              description: 'Additional information about beach access',
+              thumbnail: 'https://i.ytimg.com/vi/lMyemV_CiU4/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/lMyemV_CiU4?feature=share',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 4,
+              title: 'How to Open and Close the Sunshade?',
+              description: 'Instructions for operating the sunshade',
+              thumbnail: 'https://i.ytimg.com/vi/us5KRyyCWMA/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/us5KRyyCWMA?feature=share',
+              icon: <Tv size={24} color={theme.colors.white} />
             }
           ]
         };
       case '29051504': // Old Town
         return {
-          houseGuides: [
+          educational: [
             {
               id: 1,
-              title: 'Old Town Apartment Tour',
-              description: 'Complete tour of your historic Old Town apartment',
-              thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
-              url: '#',
+              title: 'How Do Propellers Work?',
+              description: 'Learn about the physics behind propellers',
+              thumbnail: 'https://i.ytimg.com/vi/0l6igtzY0xQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/0l6igtzY0xQ?feature=share',
               icon: <Tv size={24} color={theme.colors.white} />
-            }
-          ],
-          nearby: [
-            {
-              id: 1,
-              title: 'Walking to Plaza de los Naranjos',
-              description: 'Short walk to the famous Orange Square',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
-              icon: <MapPin size={24} color={theme.colors.white} />
             },
             {
               id: 2,
-              title: 'Exploring Old Town Streets',
-              description: 'Guide to the charming narrow streets and historic sites',
-              thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-              url: '#',
+              title: 'How Does a Coffee Machine Work?',
+              description: 'Discover the inner workings of coffee machines',
+              thumbnail: 'https://i.ytimg.com/vi/XiKCGNhC9TY/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/XiKCGNhC9TY?feature=share',
               icon: <Coffee size={24} color={theme.colors.white} />
+            }
+          ],
+          propertyGuides: [
+            {
+              id: 1,
+              title: 'How do I get to the pool?',
+              description: 'Instructions for finding and accessing the swimming pool',
+              thumbnail: 'https://i.ytimg.com/vi/mxsMDPfzOuQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/mxsMDPfzOuQ?feature=share',
+              icon: <Palmtree size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
+              title: 'How do I get to the beach? (Part 1)',
+              description: 'Guide to finding the nearest beach access',
+              thumbnail: 'https://i.ytimg.com/vi/u83ykP_syVM/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/u83ykP_syVM',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 3,
+              title: 'How do I get to the beach? (Part 2)',
+              description: 'Additional information about beach access',
+              thumbnail: 'https://i.ytimg.com/vi/lMyemV_CiU4/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/lMyemV_CiU4?feature=share',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 4,
+              title: 'How to Open and Close the Sunshade?',
+              description: 'Instructions for operating the sunshade',
+              thumbnail: 'https://i.ytimg.com/vi/us5KRyyCWMA/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/us5KRyyCWMA?feature=share',
+              icon: <Tv size={24} color={theme.colors.white} />
             }
           ]
         };
       default:
         return {
-          houseGuides: [
+          educational: [
             {
               id: 1,
-              title: 'Property Tour',
-              description: 'Complete tour of your property',
-              thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
-              url: '#',
+              title: 'How Do Propellers Work?',
+              description: 'Learn about the physics behind propellers',
+              thumbnail: 'https://i.ytimg.com/vi/0l6igtzY0xQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/0l6igtzY0xQ?feature=share',
               icon: <Tv size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
+              title: 'How Does a Coffee Machine Work?',
+              description: 'Discover the inner workings of coffee machines',
+              thumbnail: 'https://i.ytimg.com/vi/XiKCGNhC9TY/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/XiKCGNhC9TY?feature=share',
+              icon: <Coffee size={24} color={theme.colors.white} />
             }
           ],
-          nearby: [
+          propertyGuides: [
             {
               id: 1,
-              title: 'Nearby Attractions',
-              description: 'Guide to nearby attractions',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
+              title: 'How do I get to the pool?',
+              description: 'Instructions for finding and accessing the swimming pool',
+              thumbnail: 'https://i.ytimg.com/vi/mxsMDPfzOuQ/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/mxsMDPfzOuQ?feature=share',
+              icon: <Palmtree size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
+              title: 'How do I get to the beach? (Part 1)',
+              description: 'Guide to finding the nearest beach access',
+              thumbnail: 'https://i.ytimg.com/vi/u83ykP_syVM/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/u83ykP_syVM',
               icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 3,
+              title: 'How do I get to the beach? (Part 2)',
+              description: 'Additional information about beach access',
+              thumbnail: 'https://i.ytimg.com/vi/lMyemV_CiU4/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/lMyemV_CiU4?feature=share',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            {
+              id: 4,
+              title: 'How to Open and Close the Sunshade?',
+              description: 'Instructions for operating the sunshade',
+              thumbnail: 'https://i.ytimg.com/vi/us5KRyyCWMA/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/us5KRyyCWMA?feature=share',
+              icon: <Tv size={24} color={theme.colors.white} />
             }
           ]
         };
@@ -257,10 +349,8 @@ export default function VideosScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        {videos.houseAccess && renderVideoSection('House Access', videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
-        {videos.houseGuides && renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {videos.amenities && renderVideoSection('Amenities', videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
-        {videos.nearby && renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
+        {videos.educational && renderVideoSection('Educational Videos', videos.educational, <Tv size={20} color={theme.colors.primary} />)}
+        {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <Palmtree size={20} color={theme.colors.primary} />)}
       </ScrollView>
     </View>
   );
