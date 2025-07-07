@@ -67,13 +67,12 @@ export default function LocationScreen() {
       case '29051504': // Old Town
         return {
           name: '3+1 Marbella Old Town',
-          location: 'Edificio Sol',
+          location: 'Old Town',
           address: 'Calle Málaga',
           apartment: '1st Floor, Apartment 1',
           mapImage: 'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_333,h_445,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ads%C4%B1z%20tasar%C4%B1m.png',
           mapUrl: 'https://www.google.com/maps/dir//C.+M%C3%A1laga+29601+Marbella+M%C3%A1laga/@36.50968,-4.8809044,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0xd7327f7d5c879af:0xd00358ba0f5ccc75',
           busUrl: 'https://maps.app.goo.gl/pYDFhidoAYWPkQVH8',
-          videoUrl: 'https://youtube.com/shorts/CqmjJsOKGSk?feature=share',
           pois: [
             { name: 'Plaza de los Naranjos', distance: '200m (3 min walk)', hasVideo: false },
             { name: 'Marbella Old Town', distance: '100m (2 min walk)', hasVideo: false },
@@ -109,12 +108,6 @@ export default function LocationScreen() {
 
   const handleOpenVideoRoute = (url: string) => {
     Linking.openURL(url);
-  };
-  
-  const handleWatchHouseVideo = () => {
-    if (propertyData.videoUrl) {
-      Linking.openURL(propertyData.videoUrl);
-    }
   };
 
   const getTransportOptions = () => {
@@ -191,34 +184,6 @@ export default function LocationScreen() {
           </View>
         </TouchableOpacity>
         
-        {id === '29051504' && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Location</Text>
-            <Text style={styles.description}>
-              Edificio Sol is located on Calle Malaga. You will find our building easily identifiable.
-            </Text>
-            
-            <Text style={styles.sectionTitle}>Access Information</Text>
-            <View style={styles.accessInfo}>
-              <Text style={styles.accessPoint}>• The main door to the building will be open</Text>
-              <Text style={styles.accessPoint}>• If you find it closed, please contact us immediately</Text>
-              <Text style={styles.accessPoint}>• Your apartment is number 1 on the first floor</Text>
-              <Text style={styles.accessPoint}>• The access code will be sent to you one day before your stay</Text>
-            </View>
-            
-            <TouchableOpacity 
-              style={styles.watchVideoButton}
-              onPress={handleWatchHouseVideo}
-              activeOpacity={0.8}
-            >
-              <Video size={20} color={theme.colors.white} />
-              <Text style={styles.watchVideoText}>Watch House Video</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        
-        {id !== '29051504' && (
-        <>
         <View style={styles.addressContainer}>
           <MapPin size={20} color={theme.colors.primary} />
           <View style={styles.addressContent}>
@@ -275,8 +240,6 @@ export default function LocationScreen() {
             </View>
           ))}
         </View>
-        </>
-        )}
       </ScrollView>
     </View>
   );
@@ -373,7 +336,7 @@ const styles = StyleSheet.create({
   poiSeparator: {
     height: 1,
     backgroundColor: theme.colors.border,
-    marginVertical: theme.spacing.s
+    marginVertical: theme.spacing.s,
   },
   watchRouteButton: {
     flexDirection: 'row',
@@ -388,33 +351,5 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     marginLeft: theme.spacing.xs,
-  },
-  section: {
-    marginBottom: theme.spacing.xl,
-  },
-  accessInfo: {
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  accessPoint: {
-    ...theme.typography.body,
-    marginBottom: theme.spacing.s,
-  },
-  watchVideoButton: {
-    flexDirection: 'row',
-    backgroundColor: theme.colors.secondary,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...theme.shadows.small,
-  },
-  watchVideoText: {
-    ...theme.typography.button,
-    color: theme.colors.white,
-    marginLeft: theme.spacing.s,
   },
 });
