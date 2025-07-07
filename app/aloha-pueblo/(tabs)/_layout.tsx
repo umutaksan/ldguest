@@ -22,7 +22,7 @@ export default function TabLayout() {
         tabBarStyle: {
           borderTopWidth: 0,
           height: tabBarHeight,
-          paddingBottom: paddingBottom,
+          paddingBottom: theme.layout.isWeb ? 4 : paddingBottom,
           paddingTop: 8,
           backgroundColor: theme.colors.white,
           ...theme.shadows.small,
@@ -36,8 +36,9 @@ export default function TabLayout() {
         tabBarLabelStyle: {
           ...theme.typography.caption,
           marginTop: 4,
-          fontSize: theme.layout.isWeb ? 12 : 11,
+          fontSize: 12,
           fontWeight: '500',
+          lineHeight: 16,
         },
         tabBarItemStyle: {
           display: 'none', // Hide all tabs by default
@@ -54,7 +55,7 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Home size={size} color={color} />
+              <Home size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -68,7 +69,7 @@ export default function TabLayout() {
           title: 'Explore',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Compass size={size} color={color} />
+              <Compass size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -82,7 +83,7 @@ export default function TabLayout() {
           title: 'Guide',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <BookOpen size={size} color={color} />
+              <BookOpen size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -96,7 +97,7 @@ export default function TabLayout() {
           title: 'Info',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Info size={size} color={color} />
+              <Info size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -110,7 +111,7 @@ export default function TabLayout() {
           title: 'Contact',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Phone size={size} color={color} />
+              <Phone size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
