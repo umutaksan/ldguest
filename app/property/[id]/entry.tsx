@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     ...theme.shadows.small,
   },
   keyImageLarge: {
-    height: 250,
+    height: 200,
   },
   mainImage: {
     width: '100%',

@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   },
   entryImage: {
     width: '100%',
-    height: 400,
+    height: 300,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
   },
