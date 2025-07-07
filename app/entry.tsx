@@ -37,6 +37,13 @@ export default function EntryScreen() {
             <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
           </TouchableOpacity>
           
+          <View style={styles.imageContainer}>
+            <Image 
+              source={{ uri: 'https://static.wixstatic.com/media/8bbc22_e8dfb46609ce4f40afc0cafab9e28bdf~mv2.jpg/v1/fill/w_177,h_205,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_25_6ff293c6.jpg' }}
+              style={styles.keyImage}
+              resizeMode="cover"
+            />
+          </View>
         </View>
 
         <View style={styles.section}>
@@ -44,6 +51,26 @@ export default function EntryScreen() {
           <Text style={styles.description}>
             After taking the black bar and the key card, use the black bar to open the main door. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system. Your access code is ******#.
           </Text>
+          
+          <View style={styles.imageContainer}>
+            <Image 
+              source={{ uri: 'https://static.wixstatic.com/media/8bbc22_89c3d72a7534442ba49e2b8b24f85759~mv2.jpg/v1/fill/w_315,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_edited.jpg' }}
+              style={styles.keyImage}
+              resizeMode="cover"
+            />
+            <View style={styles.smallImagesContainer}>
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_160ddf38bb8444cc880f92543da1f0dd~mv2.jpg/v1/fill/w_207,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2013_43_edited.jpg' }}
+                style={styles.smallKeyImage}
+                resizeMode="cover"
+              />
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_c313378eb121483a843293b0584f1f13~mv2.jpg/v1/fill/w_303,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2014_05_38_36e69ad5.jpg' }}
+                style={styles.smallKeyImage}
+                resizeMode="cover"
+              />
+            </View>
+          </View>
           
           <TouchableOpacity 
             style={styles.watchVideoButton}
@@ -95,8 +122,26 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
   },
   imageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginVertical: theme.spacing.m,
-    alignItems: 'center',
+  },
+  keyImage: {
+    width: '48%',
+    height: 220,
+    borderRadius: theme.borderRadius.m,
+    ...theme.shadows.small,
+  },
+  smallImagesContainer: {
+    width: '48%',
+    justifyContent: 'space-between',
+  },
+  smallKeyImage: {
+    width: '100%',
+    height: 105,
+    borderRadius: theme.borderRadius.m,
+    marginBottom: theme.spacing.s,
+    ...theme.shadows.small,
   },
   videoContainer: {
     borderRadius: theme.borderRadius.m,
