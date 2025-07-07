@@ -2,16 +2,32 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
-import { MapPin } from 'lucide-react-native';
+import { MapPin, Instagram, Mail, Youtube, Globe } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function PropertiesScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const handleInstagramPress = () => {
+    Linking.openURL('https://www.instagram.com/ldguest');
+  };
+  
+  const handleEmailPress = () => {
+    Linking.openURL('mailto:hello@ldguest.com');
+  };
+  
+  const handleYoutubePress = () => {
+    Linking.openURL('https://www.youtube.com/@ldguest');
+  };
+  
+  const handleWebsitePress = () => {
+    Linking.openURL('https://www.ldguest.com');
+  };
 
   const properties = [
     {
@@ -50,7 +66,7 @@ export default function PropertiesScreen() {
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <ResponsiveContainer>
         <Animated.View 
-          entering={FadeIn.duration(500)}
+          entering={FadeIn.duration(400)}
           style={styles.header}
         >
           <Image 
@@ -58,8 +74,45 @@ export default function PropertiesScreen() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
-          <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
+          
+          <View style={styles.headerTextContainer}>
+            <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
+            <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
+          </View>
+          
+          <View style={styles.socialIconsContainer}>
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleInstagramPress}
+              activeOpacity={0.7}
+            >
+              <Instagram size={20} color={theme.colors.primary} />
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleEmailPress}
+              activeOpacity={0.7}
+            >
+              <Mail size={20} color={theme.colors.primary} />
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleYoutubePress}
+              activeOpacity={0.7}
+            >
+              <Youtube size={20} color={theme.colors.primary} />
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleWebsitePress}
+              activeOpacity={0.7}
+            >
+              <Globe size={20} color={theme.colors.primary} />
+            </TouchableOpacity>
+          </View>
         </Animated.View>
 
         <ScrollView 
@@ -76,7 +129,7 @@ export default function PropertiesScreen() {
             {properties.map((property, index) => (
               <Animated.View 
                 key={property.id}
-                entering={FadeIn.delay(index * 200)}
+                entering={FadeIn.delay(index * 150)}
                 style={[
                   styles.propertyCardContainer,
                   {
@@ -86,7 +139,7 @@ export default function PropertiesScreen() {
                 ]}
               >
                 <TouchableOpacity
-                  style={[styles.propertyCard, { height: cardHeight }]}
+                  style={[styles.propertyCard, { height: cardHeight, overflow: 'hidden' }]}
                   onPress={() => router.push(`/property/${property.id}`)}
                   activeOpacity={0.9}
                 >
@@ -95,18 +148,20 @@ export default function PropertiesScreen() {
                     style={styles.propertyImage}
                     resizeMode="cover"
                   />
-                  <LinearGradient
-                    colors={['transparent', 'rgba(0,0,0,0.8)']}
-                    style={styles.overlay}
-                  >
-                    <View style={styles.propertyInfo}>
-                      <Text style={styles.propertyName}>{property.name}</Text>
-                      <View style={styles.locationContainer}>
-                        <MapPin size={16} color={theme.colors.white} />
-                        <Text style={styles.locationText}>{property.location}</Text>
+                  <View style={styles.propertyContent}>
+                    <LinearGradient
+                      colors={['transparent', 'rgba(0,0,0,0.8)']}
+                      style={styles.overlay}
+                    >
+                      <View style={styles.propertyInfo}>
+                        <Text style={styles.propertyName}>{property.name}</Text>
+                        <View style={styles.locationContainer}>
+                          <MapPin size={16} color={theme.colors.white} />
+                          <Text style={styles.locationText}>{property.location}</Text>
+                        </View>
                       </View>
-                    </View>
-                  </LinearGradient>
+                    </LinearGradient>
+                  </View>
                 </TouchableOpacity>
               </Animated.View>
             ))}
@@ -118,22 +173,7 @@ export default function PropertiesScreen() {
             activeOpacity={0.8}
           >
             <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
-          </TouchableOpacity>
-
-          <View style={styles.footerLinks}>
-            <TouchableOpacity onPress={() => Linking.openURL('https://www.ldguest.com')}>
-              <Text style={styles.footerLink}>www.ldguest.com</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/ldguestmarbella')}>
-              <Text style={styles.footerLink}>www.instagram.com/ldguestmarbella</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/@ldguestmarbella')}>
-              <Text style={styles.footerLink}>www.youtube.com/@ldguestmarbella</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Linking.openURL('mailto:hello@ldguest.com')}>
-              <Text style={styles.footerLink}>hello@ldguest.com</Text>
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>          
         </ScrollView>
       </ResponsiveContainer>
     </View>
@@ -148,14 +188,16 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     padding: theme.spacing.l,
-    backgroundColor: theme.colors.card,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
+    backgroundColor: theme.colors.background,
     marginBottom: theme.spacing.m,
   },
   logo: {
     width: theme.layout.isWeb ? (theme.layout.isDesktop ? 180 : 145) : 145,
     height: theme.layout.isWeb ? (theme.layout.isDesktop ? 76 : 62) : 62,
+    marginBottom: theme.spacing.m,
+  },
+  headerTextContainer: {
+    alignItems: 'center',
     marginBottom: theme.spacing.m,
   },
   welcomeText: {
@@ -170,6 +212,22 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     maxWidth: theme.layout.isWeb ? 500 : 300,
   },
+  socialIconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: theme.spacing.s,
+  },
+  socialIconButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: theme.colors.primaryLight,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: theme.spacing.s,
+    ...theme.shadows.small,
+  },
   content: {
     padding: theme.spacing.m,
   },
@@ -183,6 +241,9 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
     backgroundColor: theme.colors.card,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    position: 'relative',
     ...theme.shadows.medium,
     // Web-specific styles
     ...(theme.layout.isWeb && {
@@ -194,6 +255,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  propertyContent: {
+    position: 'absolute',
+    bottom: 0, left: 0, right: 0,
+  },
   overlay: {
     position: 'absolute',
     bottom: 0,
@@ -204,7 +269,7 @@ const styles = StyleSheet.create({
   propertyInfo: {
     flex: 1,
   },
-  propertyName: {
+  propertyName: { 
     ...theme.typography.subheading,
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
@@ -225,6 +290,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     alignItems: 'center',
     marginTop: theme.spacing.m,
+    marginBottom: theme.spacing.m,
     // Web-specific styles
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
@@ -234,18 +300,5 @@ const styles = StyleSheet.create({
   adminButtonText: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
-  },
-  footerLinks: {
-    padding: theme.spacing.m,
-    alignItems: 'center',
-    backgroundColor: theme.colors.surface,
-    borderTopWidth: 1,
-    borderTopColor: theme.colors.border,
-  },
-  footerLink: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.primary,
-    marginVertical: theme.spacing.xs,
-    textDecorationLine: 'underline',
   },
 });
