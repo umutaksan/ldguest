@@ -25,13 +25,13 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
   };
 
   const cardWidth = theme.layout.isWeb && theme.layout.isDesktop 
-    ? '32%' 
+    ? '48%' 
     : theme.layout.isWeb && theme.layout.isTablet 
-    ? '45%' 
+    ? '48%' 
     : '48%';
 
   const cardHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 120 : 110) 
+    ? (theme.layout.isDesktop ? 160 : 140) 
     : 140;
 
   return (
@@ -57,40 +57,30 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
-    ...(theme.layout.isWeb ? {} : theme.shadows.small),
-    ...(theme.layout.isWeb && {
-      border: '1px solid #f0f0f0',
-    }),
+    ...theme.shadows.small,
     // Web-specific hover effects
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
-      ':hover': {
-        backgroundColor: '#fafafa',
-        transform: 'translateY(-2px)',
-      }
     }),
   },
   iconContainer: {
     width: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
     height: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.m : theme.borderRadius.round,
-    backgroundColor: theme.layout.isWeb ? 'rgba(233, 184, 114, 0.1)' : theme.colors.primaryLight,
+    borderRadius: theme.borderRadius.round,
+    backgroundColor: theme.colors.primaryLight,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.spacing.m,
   },
   title: {
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
     textAlign: 'center',
-    lineHeight: theme.layout.isWeb ? 18 : 18,
-    ...(theme.layout.isWeb && {
-      fontSize: 14,
-    }),
+    lineHeight: theme.layout.isWeb ? 20 : 18,
   },
 });

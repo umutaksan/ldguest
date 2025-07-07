@@ -74,7 +74,7 @@ export default function ParkingScreen() {
       case '29051503': // Aloha Pueblo
         return {
           title: 'Parking at Your Townhouse',
-          description: 'There is open street parking available nearby. The property does not have its own private parking.',
+          description: 'Your Aloha Pueblo townhouse includes private parking, making it convenient and secure for your vehicle during your stay.',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Calle+del+Agua%2C+Aloha%2C+Marbella',
           address: 'Calle del Agua',
           location: 'Aloha',
@@ -224,58 +224,30 @@ export default function ParkingScreen() {
             )}
           </View>
 
-          {showGeneralTips && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>General Parking Tips</Text>
-              <View style={styles.generalTipsContainer}>
-                {id === '29051502' ? (
-                  <>
-                    <Text style={styles.tip}>• Download parking apps like EasyPark or Telpark</Text>
-                    <Text style={styles.tip}>• Blue zones require payment Monday-Friday 9:00-14:00 & 17:00-20:00</Text>
-                    <Text style={styles.tip}>• Saturday mornings also require payment in some areas</Text>
-                    <Text style={styles.tip}>• Always check parking signs for specific regulations</Text>
-                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
-                  </>
-                ) : (
-                  <>
-                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse does not have private parking' : 'apartment includes nearby paid parking options'}</Text>
-                    <Text style={styles.tip}>• Street parking is available in the area</Text>
-                    <Text style={styles.tip}>• The area is generally safe for parking</Text>
-                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
-                    <Text style={styles.tip}>• Lock your vehicle at all times</Text>
-                    <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
-                  </>
-                )}
+          {parkingInfo.options && parkingInfo.options.map((option, index) => (
+            <Animated.View 
+              key={option.id}
+              entering={FadeIn.delay(index * 200)}
+              style={styles.parkingCard}
+            >
+              <View style={styles.parkingHeader}>
+                <Car size={24} color={theme.colors.primary} />
+                <View style={styles.parkingInfo}>
+                  <Text style={styles.parkingName}>{option.name}</Text>
+                  <Text style={styles.parkingPrice}>{option.price}</Text>
+                </View>
               </View>
-            </View>
-          )}
-
-          {parkingInfo.options && id !== '29051503' && (
-            parkingInfo.options.map((option, index) => (
-              <Animated.View 
-                key={option.id}
-                entering={FadeIn.delay(index * 200)}
-                style={styles.parkingCard}
-              >
-                <View style={styles.parkingHeader}>
-                  <Car size={24} color={theme.colors.primary} />
-                  <View style={styles.parkingInfo}>
-                    <Text style={styles.parkingName}>{option.name}</Text>
-                    <Text style={styles.parkingPrice}>{option.price}</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.parkingDescription}>{option.description}</Text>
-                
-                <View style={styles.tipsContainer}>
-                  <Text style={styles.tipsTitle}>Features:</Text>
-                  {option.tips.map((tip, tipIndex) => (
-                    <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
-                  ))}
-                </View>
-              </Animated.View>
-            ))
-          )}
+              
+              <Text style={styles.parkingDescription}>{option.description}</Text>
+              
+              <View style={styles.tipsContainer}>
+                <Text style={styles.tipsTitle}>Features:</Text>
+                {option.tips.map((tip, tipIndex) => (
+                  <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
+                ))}
+              </View>
+            </Animated.View>
+          ))}
 
           {showGeneralTipsSection && (
             <View style={styles.section}>
@@ -291,7 +263,7 @@ export default function ParkingScreen() {
                   </>
                 ) : (
                   <>
-                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse does not have private parking' : 'apartment'} includes {id === '29051501' ? 'free parking' : 'nearby paid parking options'}</Text>
+                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse' : 'apartment'} includes {id === '29051501' || id === '29051503' ? 'free parking' : 'nearby paid parking options'}</Text>
                     <Text style={styles.tip}>• The area is generally safe for parking</Text>
                     <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
                     <Text style={styles.tip}>• Lock your vehicle at all times</Text>

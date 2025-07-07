@@ -160,35 +160,30 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    padding: theme.spacing.m,
   },
   section: {
-    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
+    marginBottom: theme.spacing.l,
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      fontSize: 18,
-    }),
+    marginBottom: theme.spacing.m,
   },
   ruleCard: {
     flexDirection: 'row',
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
   },
   iconContainer: {
-    width: theme.layout.isWeb ? 40 : 48,
-    height: theme.layout.isWeb ? 40 : 48,
-    borderRadius: theme.layout.isWeb ? 20 : 24,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginRight: theme.spacing.m,
   },
   ruleContent: {
     flex: 1,
@@ -204,6 +199,6 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: theme.colors.border,
-    marginVertical: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
+    marginVertical: theme.spacing.l,
   },
 });

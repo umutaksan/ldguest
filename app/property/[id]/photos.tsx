@@ -151,15 +151,12 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    padding: theme.spacing.m,
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
-    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
-    ...(theme.layout.isWeb && {
-      fontSize: 14,
-    }),
+    marginBottom: theme.spacing.l,
   },
   photoGrid: {
     flexDirection: 'row',
@@ -167,12 +164,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   photoContainer: {
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    marginBottom: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    ...theme.shadows.small,
   },
   photo: {
     width: '100%',

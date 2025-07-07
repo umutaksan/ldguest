@@ -124,38 +124,27 @@ const styles = StyleSheet.create({
     paddingBottom: theme.spacing.xl,
   },
   mainContent: {
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    padding: theme.spacing.m,
   },
   title: {
     ...theme.typography.heading,
-    marginBottom: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
-    ...(theme.layout.isWeb && {
-      fontSize: 24,
-    }),
+    marginBottom: theme.spacing.s,
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
-    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
-    ...(theme.layout.isWeb && {
-      fontSize: 14,
-    }),
+    marginBottom: theme.spacing.l,
   },
   benefitsContainer: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.l,
+    ...theme.shadows.small,
   },
   benefitsTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      fontSize: 18,
-    }),
+    marginBottom: theme.spacing.m,
   },
   benefitsList: {
     flexDirection: 'row',
@@ -177,12 +166,12 @@ const styles = StyleSheet.create({
   rentButton: {
     flexDirection: 'row',
     backgroundColor: theme.colors.primary,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb ? {} : theme.shadows.medium),
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.medium,
   },
   rentButtonText: {
     ...theme.typography.button,
@@ -196,10 +185,10 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   disclaimerContainer: {
-    marginTop: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    backgroundColor: theme.layout.isWeb ? '#fafafa' : theme.colors.surface,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    marginTop: theme.spacing.m,
+    padding: theme.spacing.m,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.m,
   },
   disclaimer: {
     ...theme.typography.caption,

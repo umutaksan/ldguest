@@ -25,8 +25,8 @@ export default function EntryScreen() {
           hasKeyImages: true,
           keyImages: [
             'https://ldguest.com/wp-content/uploads/2024/11/1adsiz-tasarim-1.png',
-            'https://static.wixstatic.com/media/8bbc22_cd8e33bde09a4abf9fceaa4eff2d6f67~mv2.jpg/v1/fill/w_159,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_de854110.jpg',
-            'https://static.wixstatic.com/media/8bbc22_1f7abcf379124dff99994757af9c6b4a~mv2.jpg/v1/fill/w_123,h_184,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_26_3fad3c4b.jpg'
+            'https://static.wixstatic.com/media/8bbc22_160ddf38bb8444cc880f92543da1f0dd~mv2.jpg/v1/fill/w_207,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2013_43_edited.jpg',
+            'https://static.wixstatic.com/media/8bbc22_c313378eb121483a843293b0584f1f13~mv2.jpg/v1/fill/w_303,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2014_05_38_36e69ad5.jpg'
           ]
         };
       case '29051502': // Seaview Fontanilla
@@ -300,12 +300,12 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.s,
+    padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
   },
   contentLarge: {
     maxWidth: 1200,
     alignSelf: 'center',
-    paddingHorizontal: theme.spacing.l,
+    paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {
     width: '100%',
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   section: {
-    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
+    marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
   },
   sectionLarge: {
     width: '60%',
@@ -329,13 +329,10 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
-    ...(theme.layout.isWeb && {
-      fontSize: 18,
-    }),
+    marginBottom: theme.spacing.s,
   },
   sectionTitleLarge: {
-    fontSize: 20,
+    fontSize: 24,
   },
   description: {
     ...theme.typography.body,
@@ -348,12 +345,10 @@ const styles = StyleSheet.create({
   },
   codeSection: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
   },
   codeTitle: {
     ...theme.typography.bodyMedium,

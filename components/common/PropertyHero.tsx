@@ -77,7 +77,7 @@ export function PropertyHero({
   };
 
   const heroHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 320 : theme.layout.isTablet ? 280 : 250) 
+    ? (theme.layout.isDesktop ? 400 : theme.layout.isTablet ? 350 : 300) 
     : 300;
   
   return (
@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
   iconButton: {
     width: 40,
     height: 40,
-    borderRadius: theme.layout.isWeb ? 8 : 20,
-    backgroundColor: theme.layout.isWeb ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.3)',
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: theme.spacing.s,
@@ -181,9 +181,6 @@ const styles = StyleSheet.create({
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
-      ':hover': {
-        backgroundColor: 'rgba(0,0,0,0.4)',
-      }
     }),
   },
   textContainer: {
@@ -195,20 +192,17 @@ const styles = StyleSheet.create({
   title: {
     ...theme.typography.heading,
     color: theme.colors.white,
-    textShadowColor: theme.layout.isWeb ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: theme.layout.isWeb ? { width: 0, height: 1 } : { width: -1, height: 1 },
-    textShadowRadius: theme.layout.isWeb ? 6 : 10,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
     marginBottom: theme.spacing.xs,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 28 : 24) : 28,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 32 : 28) : 28,
   },
   subtitle: {
     ...theme.typography.bodyMedium,
     color: theme.colors.white,
-    textShadowColor: theme.layout.isWeb ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: theme.layout.isWeb ? { width: 0, height: 1 } : { width: -1, height: 1 },
-    textShadowRadius: theme.layout.isWeb ? 6 : 10,
-    ...(theme.layout.isWeb && {
-      fontSize: 14,
-    }),
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
 });

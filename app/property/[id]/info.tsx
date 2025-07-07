@@ -468,12 +468,12 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    padding: theme.spacing.m,
   },
   contentLarge: {
     maxWidth: 1200,
     alignSelf: 'center',
-    paddingHorizontal: theme.spacing.l,
+    paddingHorizontal: theme.spacing.xl,
   },
   mainContent: {
     width: '100%',
@@ -497,19 +497,15 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb && {
-      fontSize: 18,
-    }),
+    marginBottom: theme.spacing.m,
   },
   sectionTitleLarge: {
-    fontSize: 20,
-    marginBottom: theme.spacing.m,
+    fontSize: 24,
   },
   divider: {
     height: 1,
     backgroundColor: theme.colors.border,
-    marginVertical: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
+    marginVertical: theme.spacing.l,
   },
   rulesGrid: {
     flexDirection: 'column',
@@ -527,12 +523,10 @@ const styles = StyleSheet.create({
   ruleCard: {
     flexDirection: 'row',
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
     width: '100%',
   },
   ruleCardLarge: {
@@ -570,12 +564,10 @@ const styles = StyleSheet.create({
   },
   faqItem: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    marginBottom: theme.spacing.m,
     overflow: 'hidden',
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    ...theme.shadows.small,
   },
   faqQuestion: {
     flexDirection: 'row',

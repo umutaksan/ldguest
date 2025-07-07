@@ -139,21 +139,31 @@ export default function VideosScreen() {
         };
       case '29051503': // Aloha Pueblo
         return {
-          propertyGuides: [
+          houseGuides: [
             {
               id: 1,
-              title: 'How can I get to the cafés, and where can I park?',
-              description: 'Guide to finding nearby cafés and parking options',
-              thumbnail: 'https://i.ytimg.com/vi/95EeUOmeKZs/maxresdefault.jpg',
-              url: 'https://youtube.com/shorts/95EeUOmeKZs?feature=share',
-              icon: <Coffee size={24} color={theme.colors.white} />
+              title: 'Townhouse Tour',
+              description: 'Complete tour of your Aloha Pueblo townhouse',
+              thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
+              url: '#',
+              icon: <Tv size={24} color={theme.colors.white} />
+            }
+          ],
+          nearby: [
+            {
+              id: 1,
+              title: 'Walking to Golf Courses',
+              description: 'How to reach nearby golf courses from the townhouse',
+              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
+              url: '#',
+              icon: <MapPin size={24} color={theme.colors.white} />
             },
             {
               id: 2,
-              title: 'How can I get to the cafés, and where can I park? (Option 2)',
-              description: 'Alternative route to cafés and additional parking information',
-              thumbnail: 'https://i.ytimg.com/vi/tSxrs7erM-o/maxresdefault.jpg',
-              url: 'https://youtube.com/shorts/tSxrs7erM-o',
+              title: 'Nueva Andalucía Center',
+              description: 'Walking guide to Nueva Andalucía shopping and dining',
+              thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
+              url: '#',
               icon: <Coffee size={24} color={theme.colors.white} />
             }
           ]
@@ -168,16 +178,6 @@ export default function VideosScreen() {
               thumbnail: 'https://i.ytimg.com/vi/v0J9V--RcFw/maxresdefault.jpg',
               url: 'https://youtube.com/shorts/v0J9V--RcFw',
               icon: <Key size={24} color={theme.colors.white} />
-            }
-          ],
-          nearby: [
-            { 
-              id: 1, 
-              title: 'Old Town Apartment Tour',
-              description: 'Complete tour of your historic Old Town apartment',
-              thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
-              url: '#',
-              icon: <Tv size={24} color={theme.colors.white} />
             }
           ],
           nearby: [
@@ -220,23 +220,13 @@ export default function VideosScreen() {
             }
           ],
           nearby: [
-          ],
-          cafesAndParking: [
             {
               id: 1,
-              title: 'How can I get to the cafés, and where can I park?',
-              description: 'Guide to finding nearby cafés and parking options',
-              thumbnail: 'https://i.ytimg.com/vi/95EeUOmeKZs/maxresdefault.jpg',
-              url: 'https://youtube.com/shorts/95EeUOmeKZs?feature=share',
-              icon: <Coffee size={24} color={theme.colors.white} />
-            },
-            {
-              id: 1,
-              title: 'How can I get to the cafés, and where can I park? (Option 2)',
-              description: 'Alternative route to cafés and additional parking information',
-              thumbnail: 'https://i.ytimg.com/vi/tSxrs7erM-o/maxresdefault.jpg',
-              url: 'https://youtube.com/shorts/tSxrs7erM-o',
-              icon: <Palmtree size={24} color={theme.colors.white} />
+              title: 'Nearby Attractions',
+              description: 'Guide to nearby attractions',
+              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
+              url: '#',
+              icon: <MapPin size={24} color={theme.colors.white} />
             }
           ]
         };
@@ -246,7 +236,7 @@ export default function VideosScreen() {
   const videos = getVideos();
 
   const handleWatchVideo = (url: string) => {
-    if (url && url !== '#') {
+    if (url !== '#') {
       Linking.openURL(url);
     }
   };
@@ -299,12 +289,7 @@ export default function VideosScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        {videos.houseGuides && renderVideoSection('Educational Videos', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <Palmtree size={20} color={theme.colors.primary} />)}
-        {videos.cafesAndParking && renderVideoSection('Cafés & Parking', videos.cafesAndParking, <Coffee size={20} color={theme.colors.primary} />)}
         {videos.houseGuides && renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <Palmtree size={20} color={theme.colors.primary} />)}
-        {videos.cafesAndParking && renderVideoSection('Cafés & Parking', videos.cafesAndParking, <Coffee size={20} color={theme.colors.primary} />)}
         {videos.houseAccess && renderVideoSection('House Access', videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
         {videos.amenities && renderVideoSection('Amenities', videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
         {videos.nearby && renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
@@ -319,32 +304,27 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    padding: theme.spacing.m,
   },
   section: {
-    marginBottom: theme.layout.isWeb ? theme.spacing.l : theme.spacing.xl,
+    marginBottom: theme.spacing.xl,
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.spacing.m,
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginLeft: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
-    ...(theme.layout.isWeb && {
-      fontSize: 18,
-    }),
+    marginLeft: theme.spacing.s,
   },
   videoCard: {
-    height: theme.layout.isWeb ? 160 : 200,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    height: 200,
+    borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.spacing.m,
     backgroundColor: theme.colors.card,
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.medium),
+    ...theme.shadows.medium,
   },
   thumbnail: {
     width: '100%',

@@ -247,24 +247,19 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    padding: theme.spacing.m,
   },
   description: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
-    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
-    ...(theme.layout.isWeb && {
-      fontSize: 14,
-    }),
+    marginBottom: theme.spacing.l,
   },
   optionCard: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -298,20 +293,20 @@ const styles = StyleSheet.create({
   },
   bookButton: {
     backgroundColor: theme.colors.primary,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
     alignItems: 'center',
-    ...(theme.layout.isWeb ? {} : theme.shadows.small),
+    ...theme.shadows.small,
   },
   bookButtonText: {
     ...theme.typography.button,
     color: theme.colors.white,
   },
   disclaimerContainer: {
-    marginTop: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    backgroundColor: theme.layout.isWeb ? '#fafafa' : theme.colors.surface,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    marginTop: theme.spacing.m,
+    padding: theme.spacing.m,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.m,
   },
   disclaimer: {
     ...theme.typography.caption,

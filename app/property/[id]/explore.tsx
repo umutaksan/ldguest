@@ -246,12 +246,12 @@ const styles = StyleSheet.create({
   },
   hero: {
     height: 200,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.spacing.m,
   },
   heroLarge: {
-    height: 300,
+    height: 400,
   },
   heroOverlay: {
     flex: 1,
@@ -276,15 +276,13 @@ const styles = StyleSheet.create({
   statsContainer: {
     flexDirection: 'row',
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.l,
+    ...theme.shadows.small,
   },
   statsContainerLarge: {
-    padding: theme.spacing.m,
+    padding: theme.spacing.l,
   },
   statItem: {
     flex: 1,
@@ -330,25 +328,23 @@ const styles = StyleSheet.create({
   },
   cityCard: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
-    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    marginBottom: theme.spacing.m,
     overflow: 'hidden',
-    ...(theme.layout.isWeb ? {
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    ...theme.shadows.small,
     width: '100%',
   },
   cityCardLarge: {
     width: '32%',
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.spacing.xl,
   },
   cityCardMedium: {
     width: '48%',
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.spacing.l,
   },
   cityImage: {
     width: '100%',
-    height: theme.layout.isWeb ? 160 : 200,
+    height: 200,
   },
   cityImageOverlay: {
     flex: 1,
