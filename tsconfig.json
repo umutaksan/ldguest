@@ -2,7 +2,6 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "jsx": "react-jsx",
     "paths": {
       "@/*": ["./*"]
     }
@@ -12,7 +11,6 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts",
-    "vite-env.d.ts"
+    "nativewind-env.d.ts"
   ]
 }
