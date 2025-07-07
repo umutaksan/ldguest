@@ -109,11 +109,6 @@ export default function EntryScreen() {
               </TouchableOpacity>
               
               <View style={styles.imageContainer}>
-                <Image 
-                  source={{ uri: 'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/crop/x_0,y_338,w_3024,h_2754/fill/w_366,h_333,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg' }}
-                  style={styles.mainImage}
-                  resizeMode="cover"
-                />
               </View>
             </View>
           </View>
