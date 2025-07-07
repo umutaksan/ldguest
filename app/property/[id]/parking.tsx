@@ -276,7 +276,6 @@ export default function ParkingScreen() {
               </Animated.View>
            ))
           )}
-          )}
 
           {showGeneralTipsSection && (
             <View style={styles.section}>
