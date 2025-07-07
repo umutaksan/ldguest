@@ -99,6 +99,12 @@ export default function CarRentalScreen() {
             <Text style={styles.note}>
               *Prices and availability may vary depending on season and demand
             </Text>
+            
+            <View style={styles.disclaimerContainer}>
+              <Text style={styles.disclaimer}>
+                L&D Guest has shared this information for informational purposes only. We do not operate car rental services directly and do not accept any liability for any issues that may arise from using third-party car rental services. Customers are advised to review the terms and conditions of the car rental provider before making a reservation.
+              </Text>
+            </View>
           </View>
         </Animated.View>
       </ScrollView>
@@ -170,6 +176,18 @@ const styles = StyleSheet.create({
     marginHorizontal: theme.spacing.m,
   },
   note: {
+    ...theme.typography.caption,
+    color: theme.colors.textTertiary,
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  disclaimerContainer: {
+    marginTop: theme.spacing.m,
+    padding: theme.spacing.m,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.m,
+  },
+  disclaimer: {
     ...theme.typography.caption,
     color: theme.colors.textTertiary,
     textAlign: 'center',
