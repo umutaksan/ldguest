@@ -53,10 +53,13 @@ export default function EntryScreen() {
       case '29051504': // Old Town
         return {
           title: 'Old Town Entry Instructions',
-          description: 'Welcome to your Old Town apartment! Here are the entry instructions for Calle Málaga.',
-          note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
-          cleaningCloset: 'The cleaning closet card is located under the cutlery. After taking the card, please scan it at the indicated spot to open the cleaning closet.',
-          hasKeyImages: false
+          description: 'Location\nEdificio Sol is located on Calle Malaga. You will find our building easily identifiable.',
+          note: 'Access Information\n• The main door to the building will be open\n\n• If you find it closed, please contact us immediately\n\n• Your apartment is number 1 on the first floor\n\n• The access code will be sent to you one day before your stay',
+          hasKeyImages: true,
+          keyImages: [
+            'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_331,h_441,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png'
+          ],
+          videoUrl: 'https://youtube.com/shorts/CqmjJsOKGSk?feature=share'
         };
       default:
         return {
@@ -237,10 +240,10 @@ export default function EntryScreen() {
             
             <TouchableOpacity 
               style={styles.watchVideoButton}
-              onPress={() => handleWatchVideo(entryInstructions.entryVideoUrl!)}
+              onPress={() => handleWatchVideo(entryInstructions.videoUrl)}
               activeOpacity={0.8}
             >
-              <Video size={20} color={theme.colors.white} />
+              <Play size={20} color={theme.colors.white} />
               <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
             </TouchableOpacity>
           </View>

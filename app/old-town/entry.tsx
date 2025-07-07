@@ -3,12 +3,16 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video } from 'lucide-react-native';
+import { Video, Play } from 'lucide-react-native';
 
 export default function OldTownEntryScreen() {
   const insets = useSafeAreaInsets();
   const { width } = Dimensions.get('window');
   const imageHeight = Platform.OS === 'web' ? 180 : width * 0.3;
+
+  const handleWatchVideo = () => {
+    Linking.openURL('https://youtube.com/shorts/CqmjJsOKGSk?feature=share');
+  };
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
@@ -18,33 +22,35 @@ export default function OldTownEntryScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Entry Instructions</Text>
-          <Text style={styles.description}>
-            Welcome to your Old Town apartment! Here are the entry instructions for Calle Málaga.
-            {'\n\n'}
-            The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
-          </Text>
-
-          <View style={styles.codeSection}>
-            <Text style={styles.codeTitle}>Building Access Code:</Text>
-            <Text style={styles.codeText}>• Main Door: 6464173#</Text>
-          </View>
+        <Text style={styles.description}>
+          Location
+          {'\n'}Edificio Sol is located on Calle Malaga. You will find our building easily identifiable.
+        </Text>
+        
+        <Text style={styles.description}>
+          Access Information
+          {'\n'}• The main door to the building will be open
+          {'\n\n'}• If you find it closed, please contact us immediately
+          {'\n\n'}• Your apartment is number 1 on the first floor
+          {'\n\n'}• The access code will be sent to you one day before your stay
+        </Text>
+        
+        <View style={styles.imageContainer}>
+          <Image 
+            source={{ uri: 'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_331,h_441,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png' }}
+            style={styles.entryImage}
+            resizeMode="cover"
+          />
         </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Cleaning Closet Access</Text>
-          <Text style={styles.description}>
-            The cleaning closet card is located under the cutlery. After taking the card, please scan it at the indicated spot to open the cleaning closet.
-          </Text>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Location Details</Text>
-          <Text style={styles.description}>
-            The apartment is located on the 1st floor, Apartment 1, in the heart of Marbella's historic Old Town.
-          </Text>
-        </View>
+        
+        <TouchableOpacity 
+          style={styles.watchVideoButton}
+          onPress={handleWatchVideo}
+          activeOpacity={0.8}
+        >
+          <Play size={20} color={theme.colors.white} />
+          <Text style={styles.watchVideoText}>Watch Entry Video</Text>
+        </TouchableOpacity>
 
         <Text style={styles.note}>
           We wish you a pleasant stay in Marbella Old Town.
@@ -89,11 +95,44 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.xs,
   },
+  imageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: theme.spacing.l,
+    alignItems: 'center',
+  },
+  entryImage: {
+    width: '100%',
+    height: 400,
+    borderRadius: theme.borderRadius.m,
+    ...theme.shadows.small,
+  },
+  keyImage: {
+    width: '100%',
+    height: imageHeight,
+    borderRadius: theme.borderRadius.m,
+    ...theme.shadows.small,
+  },
   note: {
     ...theme.typography.bodyMedium,
     color: theme.colors.primary,
     textAlign: 'center',
     marginTop: theme.spacing.m,
     marginBottom: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.xl,
+  },
+  watchVideoButton: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.secondary,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: theme.spacing.l,
+    ...theme.shadows.small,
+  },
+  watchVideoText: {
+    ...theme.typography.button,
+    color: theme.colors.white,
+    marginLeft: theme.spacing.s,
   },
 });
