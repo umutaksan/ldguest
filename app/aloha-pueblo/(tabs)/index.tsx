@@ -206,14 +206,13 @@ export default function AlohaPuebloHomeScreen() {
             </TouchableOpacity>
           </View>
         </View>
+        </View>
       </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-              }
-  )
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
