@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
+import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music, Utensils } from 'lucide-react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
 export default function InfoScreen() {
@@ -54,17 +54,6 @@ export default function InfoScreen() {
           { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
           { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
           { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-          { id: 4, title: '2 Air conditioning units', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 6, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-          { id: 7, title: '1 Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
-          { id: 8, title: 'Fully equipped small appliances', icon: <Utensils size={24} color={theme.colors.primary} /> },
-        ];
-    }
-  };
-  
-  const amenities = getAmenities();
-  
   const rules = [
     { 
       id: 1, 
