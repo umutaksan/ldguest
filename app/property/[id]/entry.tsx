@@ -370,12 +370,12 @@ const styles = StyleSheet.create({
   },
   keyImage: {
     width: '100%',
-    height: 200,
+    height: 150,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
   },
   keyImageLarge: {
-    height: 200,
+    height: 150,
   },
   mainImage: {
     width: '100%',
