@@ -175,6 +175,15 @@ export default function HomeScreen() {
             />
           </View>
 
+          <View style={styles.row}>
+            <SectionCard
+              title="Photo Gallery"
+              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
+              route="/photos"
+              delay={13}
+            />
+          </View>
+
           <View style={styles.ratingContainer}>
             <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
             <Text style={styles.ratingDescription}>
