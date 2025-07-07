@@ -99,33 +99,11 @@ export default function ParkingScreen() {
       case '29051504': // Old Town
         return {
           title: 'Parking in Old Town',
-          description: 'Your Old Town apartment is located in Marbella\'s historic center where parking is very limited. Here are the best parking options available near Calle Málaga.',
+          description: 'This property does not have private parking. However, there are street parking options nearby. If you are looking for a covered parking garage, you can use the one shown in the map below:',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Calle+M%C3%A1laga%2C+Marbella+Old+Town',
           address: 'Calle Málaga',
           location: 'Old Town',
-          options: [
-            {
-              id: 1,
-              name: 'Street Parking',
-              description: 'Limited street parking available in the Old Town area.',
-              price: 'Paid parking zones',
-              tips: ['Check parking signs for time limits', 'Blue zones require payment during business hours', 'Very limited availability in historic center']
-            },
-            {
-              id: 2,
-              name: 'Parking Alameda',
-              description: 'Public parking near Parque de la Alameda, short walk to Old Town.',
-              price: 'Hourly rates apply',
-              tips: ['5-minute walk to apartment', 'More availability than street parking', 'Well-lit and secure']
-            },
-            {
-              id: 3,
-              name: 'Parking Marbella Centro',
-              description: 'Underground parking in Marbella center.',
-              price: 'Daily/hourly rates',
-              tips: ['Covered parking', '10-minute walk to Old Town', 'Available 24/7']
-            }
-          ]
+          parkingGarageUrl: 'https://www.google.com/maps/place/Parking+Parquesol/@36.508697,-4.883279,17z/data=!4m14!1m7!3m6!1s0xd732786dfc1e9d9:0xf8635c896b0f37df!2sParking+Parquesol!8m2!3d36.508697!4d-4.883279!16s%2Fg%2F11c5_0_2t0!3m5!1s0xd732786dfc1e9d9:0xf8635c896b0f37df!8m2!3d36.508697!4d-4.883279!16s%2Fg%2F11c5_0_2t0?entry=ttu'
         };
       default:
         return {
@@ -165,6 +143,12 @@ export default function ParkingScreen() {
     }
   };
 
+  const handleOpenParkingGarage = () => {
+    if (parkingInfo.parkingGarageUrl) {
+      Linking.openURL(parkingInfo.parkingGarageUrl);
+    }
+  };
+
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Parking Information" />
@@ -180,6 +164,27 @@ export default function ParkingScreen() {
               {parkingInfo.description}
             </Text>
 
+            {id === '29051504' && (
+              <View style={styles.mapContainer}>
+                {Platform.OS === 'web' ? (
+                  <View 
+                    style={styles.iframeContainer}
+                    dangerouslySetInnerHTML={{
+                      __html: `<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d400.86031951365055!2d-4.883279!3d36.508697!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd732786dfc1e9d9%3A0xf8635c896b0f37df!2sParking%20Parquesol!5e0!3m2!1str!2ses!4v1751890460090!5m2!1str!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+                    }}
+                  />
+                ) : (
+                  <TouchableOpacity
+                    style={styles.mapPlaceholder}
+                    onPress={handleOpenParkingGarage}
+                  >
+                    <Text style={styles.mapPlaceholderText}>Open Parking Garage Map</Text>
+                    <MapPin size={24} color={theme.colors.primary} />
+                  </TouchableOpacity>
+                )}
+              </View>
+            )}
+
             {parkingInfo.image && (
               <Image 
                 source={{ uri: parkingInfo.image }}
@@ -191,6 +196,206 @@ export default function ParkingScreen() {
             <TouchableOpacity 
               style={styles.directionsButton}
               onPress={handleOpenMaps}
+              activeOpacity={0.8}
+            >
+              <Navigation size={20} color={theme.colors.white} />
+              <Text style={styles.directionsButtonText}>Get Directions to {id === '29051503' ? 'Townhouse' : 'Apartment'}</Text>
+            </TouchableOpacity>
+            
+            {id === '29051504' && (
+              <TouchableOpacity 
+                style={[styles.directionsButton, { marginTop: theme.spacing.m, backgroundColor: theme.colors.secondary }]}
+                onPress={handleOpenParkingGarage}
+                activeOpacity={0.8}
+              >
+                <Car size={20} color={theme.colors.white} />
+                <Text style={styles.directionsButtonText}>Get Directions to Parking Garage</Text>
+              </TouchableOpacity>
+            )}
+
+            <Text style={styles.parkingTip}>
+              You can view the {id === '29051504' ? 'parking options' : 'street parking'} by clicking on the navigation link above and using street view.
+            </Text>
+          </View>
+
+          {id !== '29051504' && parkingInfo.options && parkingInfo.options.map((option, index) => (
+            <Animated.View 
+              key={option.id}
+              entering={FadeIn.delay(index * 200)}
+              style={styles.parkingCard}
+            >
+              <View style={styles.parkingHeader}>
+                <Car size={24} color={theme.colors.primary} />
+                <View style={styles.parkingInfo}>
+                  <Text style={styles.parkingName}>{option.name}</Text>
+                  <Text style={styles.parkingPrice}>{option.price}</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.parkingDescription}>{option.description}</Text>
+              
+              <View style={styles.tipsContainer}>
+                <Text style={styles.tipsTitle}>Features:</Text>
+                {option.tips.map((tip, tipIndex) => (
+                  <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
+                ))}
+              </View>
+            </Animated.View>
+          ))}
+
+          {id !== '29051504' && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>General Parking Tips</Text>
+              <View style={styles.generalTipsContainer}>
+                {id === '29051502' ? (
+                  <>
+                    <Text style={styles.tip}>• Download parking apps like EasyPark or Telpark</Text>
+                    <Text style={styles.tip}>• Blue zones require payment Monday-Friday 9:00-14:00 & 17:00-20:00</Text>
+                    <Text style={styles.tip}>• Saturday mornings also require payment in some areas</Text>
+                    <Text style={styles.tip}>• Always check parking signs for specific regulations</Text>
+                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse' : 'apartment'} includes {id === '29051501' || id === '29051503' ? 'free parking' : 'nearby paid parking options'}</Text>
+                    <Text style={styles.tip}>• The area is generally safe for parking</Text>
+                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
+                    <Text style={styles.tip}>• Lock your vehicle at all times</Text>
+                    <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
+                  </>
+                )}
+              </View>
+            </View>
+          )}
+        </Animated.View>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  content: {
+    padding: theme.spacing.m,
+  },
+  mapContainer: {
+    width: '100%',
+    height: 450,
+    marginVertical: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    overflow: 'hidden',
+    ...theme.shadows.medium,
+  },
+  iframeContainer: {
+    width: '100%',
+    height: '100%',
+  },
+  mapPlaceholder: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.colors.surface,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mapPlaceholderText: {
+    ...theme.typography.bodyMedium,
+    marginBottom: theme.spacing.m,
+    color: theme.colors.primary,
+  },
+  section: {
+    marginBottom: theme.spacing.xl,
+  },
+  sectionTitle: {
+    ...theme.typography.subheading,
+    marginBottom: theme.spacing.m,
+  },
+  description: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.m,
+  },
+  parkingImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: theme.borderRadius.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  directionsButton: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...theme.shadows.small,
+  },
+  directionsButtonText: {
+    ...theme.typography.button,
+    color: theme.colors.white,
+    marginLeft: theme.spacing.s,
+  },
+  parkingTip: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginTop: theme.spacing.s,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    marginBottom: theme.spacing.m,
+  },
+  parkingCard: {
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  parkingHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.m,
+  },
+  parkingInfo: {
+    marginLeft: theme.spacing.m,
+    flex: 1,
+  },
+  parkingName: {
+    ...theme.typography.bodyMedium,
+    marginBottom: 2,
+  },
+  parkingPrice: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.primary,
+  },
+  parkingDescription: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.m,
+  },
+  tipsContainer: {
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.s,
+    padding: theme.spacing.s,
+  },
+  tipsTitle: {
+    ...theme.typography.bodyMedium,
+    marginBottom: theme.spacing.xs,
+  },
+  tip: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
+  },
+  generalTipsContainer: {
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+});
               activeOpacity={0.8}
             >
               <Navigation size={20} color={theme.colors.white} />

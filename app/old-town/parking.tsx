@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { MapPin, Navigation, Car } from 'lucide-react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, { FadeIn } from 'react-native-reanimated'; 
 
 export default function OldTownParkingScreen() {
   const insets = useSafeAreaInsets();
@@ -48,10 +48,31 @@ export default function OldTownParkingScreen() {
       >
         <Animated.View entering={FadeIn.duration(500)}>
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Parking in Old Town</Text>
+            <Text style={styles.sectionTitle}>Parking Near Your Apartment</Text>
             <Text style={styles.description}>
-              Your Old Town apartment is located in Marbella's historic center where parking is very limited. Here are the best parking options available near Calle Málaga.
+              This property does not have private parking.
+              However, there are street parking options nearby.
+              If you are looking for a covered parking garage, you can use the one shown in the map below:
             </Text>
+
+            <View style={styles.mapContainer}>
+              {Platform.OS === 'web' ? (
+                <View 
+                  style={styles.iframeContainer}
+                  dangerouslySetInnerHTML={{
+                    __html: `<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d400.86031951365055!2d-4.883279!3d36.508697!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd732786dfc1e9d9%3A0xf8635c896b0f37df!2sParking%20Parquesol!5e0!3m2!1str!2ses!4v1751890460090!5m2!1str!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+                  }}
+                />
+              ) : (
+                <TouchableOpacity
+                  style={styles.mapPlaceholder}
+                  onPress={handleOpenMaps}
+                >
+                  <Text style={styles.mapPlaceholderText}>Open Map</Text>
+                  <MapPin size={24} color={theme.colors.primary} />
+                </TouchableOpacity>
+              )}
+            </View>
 
             <TouchableOpacity 
               style={styles.directionsButton}
@@ -59,44 +80,8 @@ export default function OldTownParkingScreen() {
               activeOpacity={0.8}
             >
               <Navigation size={20} color={theme.colors.white} />
-              <Text style={styles.directionsButtonText}>Get Directions to Apartment</Text>
+              <Text style={styles.directionsButtonText}>Get Directions to Parking</Text>
             </TouchableOpacity>
-          </View>
-
-          {parkingOptions.map((option, index) => (
-            <Animated.View 
-              key={option.id}
-              entering={FadeIn.delay(index * 200)}
-              style={styles.parkingCard}
-            >
-              <View style={styles.parkingHeader}>
-                <Car size={24} color={theme.colors.primary} />
-                <View style={styles.parkingInfo}>
-                  <Text style={styles.parkingName}>{option.name}</Text>
-                  <Text style={styles.parkingPrice}>{option.price}</Text>
-                </View>
-              </View>
-              
-              <Text style={styles.parkingDescription}>{option.description}</Text>
-              
-              <View style={styles.tipsContainer}>
-                <Text style={styles.tipsTitle}>Tips:</Text>
-                {option.tips.map((tip, tipIndex) => (
-                  <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
-                ))}
-              </View>
-            </Animated.View>
-          ))}
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>General Parking Tips</Text>
-            <View style={styles.generalTipsContainer}>
-              <Text style={styles.tip}>• Old Town has very limited parking - arrive early</Text>
-              <Text style={styles.tip}>• Consider parking outside Old Town and walking</Text>
-              <Text style={styles.tip}>• Blue zones require payment Monday-Friday 9:00-14:00 & 17:00-20:00</Text>
-              <Text style={styles.tip}>• Saturday mornings also require payment in some areas</Text>
-              <Text style={styles.tip}>• Always check parking signs for specific regulations</Text>
-              <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
             </View>
           </View>
         </Animated.View>
@@ -112,6 +97,30 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: theme.spacing.m,
+  },
+  mapContainer: {
+    width: '100%',
+    height: 450,
+    marginVertical: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    overflow: 'hidden',
+    ...theme.shadows.medium,
+  },
+  iframeContainer: {
+    width: '100%',
+    height: '100%',
+  },
+  mapPlaceholder: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.colors.surface,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mapPlaceholderText: {
+    ...theme.typography.bodyMedium,
+    marginBottom: theme.spacing.m,
+    color: theme.colors.primary,
   },
   section: {
     marginBottom: theme.spacing.xl,
@@ -137,55 +146,6 @@ const styles = StyleSheet.create({
   directionsButtonText: {
     ...theme.typography.button,
     color: theme.colors.white,
-    marginLeft: theme.spacing.s,
-  },
-  parkingCard: {
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  parkingHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: theme.spacing.m,
-  },
-  parkingInfo: {
-    marginLeft: theme.spacing.m,
-    flex: 1,
-  },
-  parkingName: {
-    ...theme.typography.bodyMedium,
-    marginBottom: 2,
-  },
-  parkingPrice: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.primary,
-  },
-  parkingDescription: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.m,
-  },
-  tipsContainer: {
-    backgroundColor: theme.colors.surface,
-    borderRadius: theme.borderRadius.s,
-    padding: theme.spacing.s,
-  },
-  tipsTitle: {
-    ...theme.typography.bodyMedium,
-    marginBottom: theme.spacing.xs,
-  },
-  tip: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.xs,
-  },
-  generalTipsContainer: {
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    ...theme.shadows.small,
+    marginLeft: theme.spacing.s
   },
 });
