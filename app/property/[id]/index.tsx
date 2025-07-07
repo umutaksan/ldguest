@@ -199,19 +199,13 @@ export default function PropertyScreen() {
               onPress={() => navigateToSection('info')}
               delay={11}
             />
-            <SectionCard
-              title="Amenities"
-              icon={<Sofa size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('amenities')}
-              delay={12}
-            />
           </View>
 
           <View style={styles.row}>
             <SectionCard
               title="Photo Gallery"
               icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('photos')}
+              onPress={() => Linking.openURL('https://ldguest.com/ldhome/')}
               delay={13}
             />
           </View>
