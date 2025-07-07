@@ -206,7 +206,7 @@ export default function PropertyScreen() {
               delay={12}
             />
           </View>
-
+        </View>
 
         <TouchableOpacity 
           style={styles.promoContainer}
