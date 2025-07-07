@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, Washing, Building, Waves, Clock } from 'lucide-react-native';
+import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, WashingMachine as Washing, Building, Waves, Clock } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -106,7 +106,6 @@ export default function OldTownVideosScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="House Videos" />
-
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
@@ -181,78 +180,5 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     opacity: 0.8,
-  },
-});
-      >
-        {renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
-      </ScrollView>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.background,
-  },
-  content: {
-    padding: theme.spacing.m,
-  },
-  section: {
-    marginBottom: theme.spacing.xl,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: theme.spacing.m,
-  },
-  sectionTitle: {
-    ...theme.typography.subheading,
-    marginLeft: theme.spacing.s,
-  },
-  videoCard: {
-    height: 200,
-    borderRadius: theme.borderRadius.m,
-    overflow: 'hidden',
-    marginBottom: theme.spacing.m,
-    backgroundColor: theme.colors.card,
-    ...theme.shadows.medium,
-  },
-  thumbnail: {
-    width: '100%',
-    height: '100%',
-  },
-  videoOverlay: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    padding: theme.spacing.m,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-  },
-  videoIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: theme.spacing.m,
-  },
-  videoInfo: {
-    flex: 1,
-    marginRight: theme.spacing.m,
-  },
-  videoTitle: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.white,
-    marginBottom: theme.spacing.xs,
-  },
-  videoDescription: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.white,
-    opacity: 0.8,
-  },
+  }
 });
