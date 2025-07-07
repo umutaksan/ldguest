@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
@@ -112,8 +113,13 @@ export default function PropertiesScreen() {
           </View>
 
           <TouchableOpacity
-      
-      <View style={styles.footerLinks}>
+            style={styles.adminButton}
+            onPress={() => router.push('/cleaning')}
+          >
+            <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
+          </TouchableOpacity>
+
+          <View style={styles.footerLinks}>
         <TouchableOpacity onPress={() => Linking.openURL('https://www.ldguest.com')}>
           <Text style={styles.footerLink}>www.ldguest.com</Text>
         </TouchableOpacity>
@@ -126,12 +132,6 @@ export default function PropertiesScreen() {
         <TouchableOpacity onPress={() => Linking.openURL('mailto:hello@ldguest.com')}>
           <Text style={styles.footerLink}>hello@ldguest.com</Text>
         </TouchableOpacity>
-      </View>
-            style={styles.adminButton}
-            onPress={() => router.push('/cleaning')}
-          >
-            <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
-          </TouchableOpacity>
         </ScrollView>
       </ResponsiveContainer>
     </View>
