@@ -133,7 +133,6 @@ export default function PropertiesScreen() {
             <TouchableOpacity onPress={() => Linking.openURL('mailto:hello@ldguest.com')}>
               <Text style={styles.footerLink}>hello@ldguest.com</Text>
             </TouchableOpacity>
-          </View>
         </ScrollView>
       </ResponsiveContainer>
     </View>
