@@ -54,6 +54,12 @@ export default function InfoScreen() {
           { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
           { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
           { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
+        ];
+    }
+  };
+
+  const amenities = getAmenities();
+
   const rules = [
     { 
       id: 1, 
