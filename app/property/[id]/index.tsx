@@ -136,68 +136,6 @@ export default function PropertyScreen() {
           </TouchableOpacity>
         </View>
 
-        <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
-          <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
-          <View style={styles.reviewButtonsContainer}>
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleAirbnbReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>Airbnb</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleBookingReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>Booking.com</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleVrboReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vrbo_logo.svg/2560px-Vrbo_logo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>VRBO</Text>
-            </TouchableOpacity>
-          </View>
-        </Animated.View>
-        
-        <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
-          <TouchableOpacity 
-            style={styles.websiteBannerContent}
-            onPress={handleMalagaMarbellaPress}
-            activeOpacity={0.7}
-          >
-            <View style={styles.websiteIconContainer}>
-              <Globe size={24} color={theme.colors.white} />
-            </View>
-            <View style={styles.websiteTextContainer}>
-              <Text style={styles.websiteBannerText}>
-                Discover more properties, local tips, and exclusive offers at malagamarbella.com
-              </Text>
-            </View>
-            <ExternalLink size={20} color={theme.colors.white} />
-          </TouchableOpacity>
-        </Animated.View>
-
         <View style={styles.licenseContainer}>
           <Text style={styles.licenseTitle}>Tourist License Information</Text>
           {id === '29051501' && (
@@ -364,6 +302,67 @@ export default function PropertyScreen() {
           </LinearGradient>
         </TouchableOpacity>
 
+        <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
+          <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
+          <View style={styles.reviewButtonsContainer}>
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleAirbnbReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Airbnb</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleBookingReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Booking.com</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleVrboReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vrbo_logo.svg/2560px-Vrbo_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>VRBO</Text>
+            </TouchableOpacity>
+          </View>
+        </Animated.View>
+        
+        <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
+          <TouchableOpacity 
+            style={styles.websiteBannerContent}
+            onPress={handleMalagaMarbellaPress}
+            activeOpacity={0.7}
+          >
+            <View style={styles.websiteIconContainer}>
+              <Globe size={24} color={theme.colors.white} />
+            </View>
+            <View style={styles.websiteTextContainer}>
+              <Text style={styles.websiteBannerText}>
+                Discover more properties, local tips, and exclusive offers at malagamarbella.com
+              </Text>
+            </View>
+            <ExternalLink size={20} color={theme.colors.white} />
+          </TouchableOpacity>
+        </Animated.View>
       </ScrollView>
     </View>
   );
