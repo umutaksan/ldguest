@@ -5,7 +5,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
-import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 export default function InfoScreen() {
   const insets = useSafeAreaInsets();
@@ -13,7 +13,9 @@ export default function InfoScreen() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const { width } = useWindowDimensions();
   
-  const rules = [
+  // Get rules based on property ID
+  const getRules = () => {
+    return [
     { 
       id: 1, 
       title: 'Quiet Hours', 
@@ -62,18 +64,10 @@ export default function InfoScreen() {
       description: 'Hosting parties or large events is not allowed.',
       icon: <Music size={24} color={theme.colors.secondary} />
     }
-  ];
-  
-  const amenities = [
-    { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-    { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-    { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-    { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-    { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
-    { id: 6, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-    { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-    { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
-  ];
+    ];
+  };
+
+  const rules = getRules();
   
   // Get FAQs based on property ID
   const getFaqs = () => {
@@ -206,7 +200,7 @@ export default function InfoScreen() {
           { 
             id: 13, 
             question: 'What is the size of the apartment?', 
-            answer: 'The apartment is 105 m².'
+            answer: 'The apartment is 85 m².'
           },
           { 
             id: 14, 
@@ -371,7 +365,7 @@ export default function InfoScreen() {
       <PageHeader title="Property Information" showBackButton={false} />
 
       <ScrollView 
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false} 
         contentContainerStyle={[
           styles.content,
           isLargeScreen && styles.contentLarge
@@ -421,39 +415,191 @@ export default function InfoScreen() {
             styles.amenitiesSection,
             isLargeScreen && styles.amenitiesSectionLarge
           ]}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Amenities</Text>
-            
-            <View style={[
-              styles.amenitiesContainer,
-              isLargeScreen && styles.amenitiesContainerLarge,
-              isMediumScreen && styles.amenitiesContainerMedium
-            ]}>
-              {amenities.map((amenity, index) => (
-                <Animated.View 
-                  key={amenity.id}
-                  entering={FadeIn.delay(index * 100)}
-                  style={[
-                    styles.amenityItem,
-                    isLargeScreen && styles.amenityItemLarge,
-                    isMediumScreen && styles.amenityItemMedium
-                  ]}
-                >
-                  <View style={styles.amenityIcon}>
-                    {amenity.icon}
-                  </View>
-                  <Text style={styles.amenityTitle}>{amenity.title}</Text>
-                </Animated.View>
-              ))}
-            </View>
-          </View>
-        </View>
-        
         <View style={styles.divider} />
         
         <Text style={[
+          styles.sectionTitle,
+          isLargeScreen && styles.sectionTitleLarge
+        ]} id="faq-section">Frequently Asked Questions</Text>
+        
+        <View style={[
+          styles.faqContainer,
+          isLargeScreen && styles.faqContainerLarge
+        ]}>
+          {faqs.map((faq, index) => (
+            <Animated.View 
+              key={faq.id}
+              entering={FadeInDown.delay(index * 100)}
+              style={styles.faqItem}
+            >
+              <TouchableOpacity
+                style={styles.faqQuestion}
+                onPress={() => toggleFaq(faq.id)}
+                activeOpacity={0.8}
+              >
+                <Text style={[
+                  styles.faqQuestionText,
+                  isLargeScreen && styles.faqQuestionTextLarge
+                ]}>{faq.question}</Text>
+                {expandedFaq === faq.id ? (
+                  <ChevronUp size={20} color={theme.colors.text} />
+                ) : (
+                  <ChevronDown size={20} color={theme.colors.text} />
+                )}
+              </TouchableOpacity>
+              
+              {expandedFaq === faq.id && (
+                <View style={styles.faqAnswer}>
+                  <Text style={[
+                    styles.faqAnswerText,
+                    isLargeScreen && styles.faqAnswerTextLarge
+                  ]}>{faq.answer}</Text>
+                </View>
+              )}
+            </Animated.View>
+          ))}
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  content: {
+    padding: theme.spacing.m,
+  },
+  contentLarge: {
+    maxWidth: 1200,
+    alignSelf: 'center',
+    paddingHorizontal: theme.spacing.xl,
+  },
+  mainContent: {
+    width: '100%',
+  },
+  mainContentLarge: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rulesSection: {
+    width: '100%',
+  },
+  rulesSectionLarge: {
+    width: '60%',
+    paddingRight: theme.spacing.l,
+  },
+  amenitiesSection: {
+    width: '100%',
+  },
+  amenitiesSectionLarge: {
+    width: '35%',
+  },
+  sectionTitle: {
+    ...theme.typography.subheading,
+    marginBottom: theme.spacing.m,
+  },
+  sectionTitleLarge: {
+    fontSize: 24,
+    marginBottom: theme.spacing.l,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: theme.colors.border,
+    marginVertical: theme.spacing.l,
+  },
+  rulesGrid: {
+    flexDirection: 'column',
+  },
+  rulesGridLarge: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  rulesGridMedium: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  ruleCard: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
+    width: '100%',
+  },
+  ruleCardLarge: {
+    width: '48%',
+  },
+  ruleCardMedium: {
+    width: '48%',
+  },
+  ruleIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: theme.colors.secondaryLight,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: theme.spacing.m,
+  },
+  ruleContent: {
+    flex: 1,
+  },
+  ruleTitle: {
+    ...theme.typography.bodyMedium,
+    marginBottom: theme.spacing.xs,
+  },
+  ruleDescription: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+  },
+  faqContainer: {
+    width: '100%',
+  },
+  faqContainerLarge: {
+    maxWidth: 800,
+    alignSelf: 'center',
+  },
+  faqItem: {
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    marginBottom: theme.spacing.m,
+    overflow: 'hidden',
+    ...theme.shadows.small,
+  },
+  faqQuestion: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: theme.spacing.m,
+  },
+  faqQuestionText: {
+    ...theme.typography.bodyMedium,
+    flex: 1,
+    marginRight: theme.spacing.s,
+  },
+  faqQuestionTextLarge: {
+    fontSize: 18,
+  },
+  faqAnswer: {
+    padding: theme.spacing.m,
+    paddingTop: 0,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.border,
+  },
+  faqAnswerText: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+  },
+  faqAnswerTextLarge: {
+    fontSize: 16,
+  },
+});
           styles.sectionTitle,
           isLargeScreen && styles.sectionTitleLarge
         ]}>Frequently Asked Questions</Text>
@@ -633,7 +779,7 @@ const styles = StyleSheet.create({
   amenityTitle: {
     ...theme.typography.bodySmall,
     textAlign: 'center',
-    color: theme.colors.text,
+    color: theme.colors.text
   },
   faqContainer: {
     width: '100%',
