@@ -145,6 +145,7 @@ export default function OldTownHomeScreen() {
             />
           </View>
 
+        </View>
 
         <TouchableOpacity 
           style={styles.promoContainer}
