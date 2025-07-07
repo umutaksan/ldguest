@@ -196,7 +196,7 @@ export default function PropertyScreen() {
             <SectionCard
               title="Frequently Asked Questions"
               icon={<HelpCircle size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('info')}
+              onPress={() => navigateToSection('info')} 
               delay={11}
             />
             <SectionCard

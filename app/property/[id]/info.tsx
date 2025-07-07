@@ -206,7 +206,7 @@ export default function InfoScreen() {
           { 
             id: 13, 
             question: 'What is the size of the apartment?', 
-            answer: 'The apartment is 105 m².'
+            answer: 'The apartment is 85 m².'
           },
           { 
             id: 14, 
@@ -368,7 +368,7 @@ export default function InfoScreen() {
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Property Information" showBackButton={false} />
+      <PageHeader title="Frequently Asked Questions" showBackButton={false} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -377,82 +377,6 @@ export default function InfoScreen() {
           isLargeScreen && styles.contentLarge
         ]}
       >
-        <View style={[
-          styles.mainContent,
-          isLargeScreen && styles.mainContentLarge
-        ]}>
-          <View style={[
-            styles.rulesSection,
-            isLargeScreen && styles.rulesSectionLarge
-          ]}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>House Rules</Text>
-            
-            <View style={[
-              styles.rulesGrid,
-              isLargeScreen && styles.rulesGridLarge,
-              isMediumScreen && styles.rulesGridMedium
-            ]}>
-              {rules.map((rule, index) => (
-                <Animated.View 
-                  key={rule.id}
-                  entering={FadeIn.delay(index * 100)}
-                  style={[
-                    styles.ruleCard,
-                    isLargeScreen && styles.ruleCardLarge,
-                    isMediumScreen && styles.ruleCardMedium
-                  ]}
-                >
-                  <View style={styles.ruleIconContainer}>
-                    {rule.icon}
-                  </View>
-                  <View style={styles.ruleContent}>
-                    <Text style={styles.ruleTitle}>{rule.title}</Text>
-                    <Text style={styles.ruleDescription}>{rule.description}</Text>
-                  </View>
-                </Animated.View>
-              ))}
-            </View>
-          </View>
-
-          <View style={[
-            styles.amenitiesSection,
-            isLargeScreen && styles.amenitiesSectionLarge
-          ]}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Amenities</Text>
-            
-            <View style={[
-              styles.amenitiesContainer,
-              isLargeScreen && styles.amenitiesContainerLarge,
-              isMediumScreen && styles.amenitiesContainerMedium
-            ]}>
-              {amenities.map((amenity, index) => (
-                <Animated.View 
-                  key={amenity.id}
-                  entering={FadeIn.delay(index * 100)}
-                  style={[
-                    styles.amenityItem,
-                    isLargeScreen && styles.amenityItemLarge,
-                    isMediumScreen && styles.amenityItemMedium
-                  ]}
-                >
-                  <View style={styles.amenityIcon}>
-                    {amenity.icon}
-                  </View>
-                  <Text style={styles.amenityTitle}>{amenity.title}</Text>
-                </Animated.View>
-              ))}
-            </View>
-          </View>
-        </View>
-        
-        <View style={styles.divider} />
-        
         <Text style={[
           styles.sectionTitle,
           isLargeScreen && styles.sectionTitleLarge

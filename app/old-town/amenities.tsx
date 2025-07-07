@@ -13,13 +13,13 @@ export default function OldTownAmenitiesScreen() {
     { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
     { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
     { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-    { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-    { id: 5, title: 'Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
-    { id: 6, title: 'Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
+    { id: 4, title: '2 Air conditioning units', icon: <Thermometer size={24} color={theme.colors.primary} /> },
+    { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
+    { id: 6, title: '3 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
     { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-    { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
+    { id: 8, title: '2 Sofa beds', icon: <Sofa size={24} color={theme.colors.primary} /> },
     { id: 9, title: 'Three balconies', icon: <Droplets size={24} color={theme.colors.primary} /> },
-    { id: 10, title: 'Fully equipped kitchen', icon: <Utensils size={24} color={theme.colors.primary} /> },
+    { id: 10, title: 'Fully equipped small appliances', icon: <Utensils size={24} color={theme.colors.primary} /> },
   ];
   
   return (
