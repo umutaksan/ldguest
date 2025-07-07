@@ -249,7 +249,8 @@ export default function ParkingScreen() {
             </View>
           )}
 
-          {parkingInfo.options && id !== '29051503' && id !== '29051504' && parkingInfo.options.map((option, index) => (
+          {parkingInfo.options && id !== '29051503' && id !== '29051504' && (
+            parkingInfo.options.map((option, index) => (
             <Animated.View 
               key={option.id}
               entering={FadeIn.delay(index * 200)}
@@ -272,7 +273,7 @@ export default function ParkingScreen() {
                 ))}
               </View>
             </Animated.View>
-          ))}
+          )))}
 
           {showGeneralTipsSection && (
             <View style={styles.section}>

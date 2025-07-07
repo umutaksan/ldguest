@@ -148,10 +148,7 @@ export default function VideosScreen() {
               url: 'https://youtube.com/shorts/SSvp84GEJMA?feature=share',
               icon: <Palmtree size={24} color={theme.colors.white} />
             }
-          ]
-        };
-      case '29051503-cafes': // Aloha Pueblo Cafes
-        return {
+          ],
           cafesAndParking: [
             {
               id: 1,
