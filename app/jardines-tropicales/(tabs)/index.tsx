@@ -128,6 +128,21 @@ export default function JardinesTropicalesHomeScreen() {
               resizeMode="cover"
             />
             <LinearGradient
+              colors={['transparent', 'rgba(0,0,0,0.8)']}
+              style={styles.promoOverlay}
+            >
+              <View style={styles.promoContent}>
+                <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
+                <Text style={styles.promoDescription}>
+                  Explore our collection of beautiful properties across Marbella's most desirable locations
+                </Text>
+                <View style={styles.promoButton}>
+                  <Text style={styles.promoButtonText}>View Properties</Text>
+                  <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+                </View>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
 
           <View style={styles.row}>
             <SectionCard
@@ -152,21 +167,6 @@ export default function JardinesTropicalesHomeScreen() {
               delay={13}
             />
           </View>
-              colors={['transparent', 'rgba(0,0,0,0.8)']}
-              style={styles.promoOverlay}
-            >
-              <View style={styles.promoContent}>
-                <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
-                <Text style={styles.promoDescription}>
-                  Explore our collection of beautiful properties across Marbella's most desirable locations
-                </Text>
-                <View style={styles.promoButton}>
-                  <Text style={styles.promoButtonText}>View Properties</Text>
-                  <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
-                </View>
-              </View>
-            </LinearGradient>
-          </TouchableOpacity>
 
           <View style={styles.ratingContainer}>
             <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
