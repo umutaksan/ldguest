@@ -138,7 +138,7 @@ export default function EntryScreen() {
 
                 <View style={styles.imageContainer}>
                   <Image 
-                    source={{ uri: 'https://hirdavatfirsati.com/marelli-pass-bnb-air-bnb-fonksiyonlu-sifreli-celik-kapi-kilidi-kapi-gobegi-g-11959.jpg' }}
+                    source={{ uri: 'https://static.wixstatic.com/media/8bbc22_6dc1f4494ca4479b83079814d5d6fc16~mv2.jpeg/v1/crop/x_0,y_892,w_1152,h_683/fill/w_334,h_198,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-09%20at%2002_03_20.jpeg' }}
                     style={styles.poolImage}
                     resizeMode="cover"
                   />
