@@ -199,6 +199,12 @@ export default function PropertyScreen() {
               onPress={() => navigateToSection('info')}
               delay={11}
             />
+            <SectionCard
+              title="Amenities"
+              icon={<Sofa size={28} color={theme.colors.secondary} />}
+              onPress={() => navigateToSection('amenities')}
+              delay={12}
+            />
           </View>
 
           <View style={styles.row}>

@@ -137,6 +137,12 @@ export default function SeaviewFontanillaHomeScreen() {
               route="/info"
               delay={11}
             />
+            <SectionCard
+              title="Amenities"
+              icon={<Sofa size={28} color={theme.colors.secondary} />}
+              route="/amenities"
+              delay={12}
+            />
           </View>
 
           <View style={styles.row}>
