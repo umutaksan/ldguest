@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Platform } from 'react-native';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { theme } from '@/constants/theme';
@@ -82,6 +83,9 @@ export default function PropertyScreen() {
   const handleMalagaMarbellaPress = () => {
     Linking.openURL('https://www.malagamarbella.com');
   };
+  
+  // Check if we're on web platform
+  const isWeb = Platform.OS === 'web';
 
   const navigateToSection = (section: string) => {
     router.push(`/property/${id}/${section}`);
@@ -101,6 +105,67 @@ export default function PropertyScreen() {
           subtitle="Thank you for your reservation!"
           imageUrl={propertyData.imageUrl}
         />
+
+        {isWeb && (
+          <View style={styles.webNavContainer}>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('location')}
+            >
+              <MapPin size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>Location</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('entry')}
+            >
+              <HomeIcon size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>Entry</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('wifi')}
+            >
+              <Wifi size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>WiFi</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('videos')}
+            >
+              <Video size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>Videos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('rules')}
+            >
+              <Book size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>Rules</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('dining')}
+            >
+              <UtensilsCrossed size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>Dining</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('attractions')}
+            >
+              <Landmark size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>Attractions</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.webNavItem} 
+              onPress={() => navigateToSection('info')}
+            >
+              <HelpCircle size={16} color={theme.colors.primary} />
+              <Text style={styles.webNavText}>Info</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
           <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
@@ -146,225 +211,463 @@ export default function PropertyScreen() {
           </View>
         </Animated.View>
 
-        <View style={styles.socialIconsContainer}>
-          <TouchableOpacity 
-            style={styles.socialIconButton}
-            onPress={handleInstagramPress}
-            activeOpacity={0.7}
-          >
-            <Instagram size={22} color={theme.colors.primary} />
-          </TouchableOpacity>
-          
-          <TouchableOpacity 
-            style={styles.socialIconButton}
-            onPress={handleEmailPress}
-            activeOpacity={0.7}
-          >
-            <Mail size={22} color={theme.colors.primary} />
-          </TouchableOpacity>
-          
-          <TouchableOpacity 
-            style={styles.socialIconButton}
-            onPress={handleYoutubePress}
-            activeOpacity={0.7}
-          >
-            <Youtube size={22} color={theme.colors.primary} />
-          </TouchableOpacity>
-          
-          <TouchableOpacity 
-            style={styles.socialIconButton}
-            onPress={handleWebsitePress}
-            activeOpacity={0.7}
-          >
-            <Globe size={22} color={theme.colors.primary} />
-          </TouchableOpacity>
-        </View>
+        {!isWeb && (
+          <View style={styles.socialIconsContainer}>
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleInstagramPress}
+              activeOpacity={0.7}
+            >
+              <Instagram size={22} color={theme.colors.primary} />
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleEmailPress}
+              activeOpacity={0.7}
+            >
+              <Mail size={22} color={theme.colors.primary} />
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleYoutubePress}
+              activeOpacity={0.7}
+            >
+              <Youtube size={22} color={theme.colors.primary} />
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.socialIconButton}
+              onPress={handleWebsitePress}
+              activeOpacity={0.7}
+            >
+              <Globe size={22} color={theme.colors.primary} />
+            </TouchableOpacity>
+          </View>
+        )}
 
-        <View style={styles.quickAccess}>
-          <View style={styles.row}>
-            <SectionCard
-              title="The Location"
-              icon={<MapPin size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('location')}
-              delay={1}
-            />
-            <SectionCard
-              title="Home Entry"
-              icon={<HomeIcon size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('entry')}
-              delay={2}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="WiFi"
-              icon={<Wifi size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('wifi')}
-              delay={3}
-            />
-            <SectionCard
-              title="House Videos"
-              icon={<Video size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('videos')}
-              delay={4}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Property Rules"
-              icon={<Book size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('rules')}
-              delay={5}
-            />
-            <SectionCard
-              title="Places to Eat"
-              icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('dining')}
-              delay={6}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Places to Visit"
-              icon={<Landmark size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('attractions')}
-              delay={7}
-            />
-            <SectionCard
-              title="Luggage Storage"
-              icon={<Briefcase size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('luggage')}
-              delay={8}
-            />
-          </View>
+        {!isWeb ? (
+          // Mobile layout (unchanged)
+          <View style={styles.quickAccess}>
+            <View style={styles.row}>
+              <SectionCard
+                title="The Location"
+                icon={<MapPin size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('location')}
+                delay={1}
+              />
+              <SectionCard
+                title="Home Entry"
+                icon={<HomeIcon size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('entry')}
+                delay={2}
+              />
+            </View>
+            
+            <View style={styles.row}>
+              <SectionCard
+                title="WiFi"
+                icon={<Wifi size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('wifi')}
+                delay={3}
+              />
+              <SectionCard
+                title="House Videos"
+                icon={<Video size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('videos')}
+                delay={4}
+              />
+            </View>
+            
+            <View style={styles.row}>
+              <SectionCard
+                title="Property Rules"
+                icon={<Book size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('rules')}
+                delay={5}
+              />
+              <SectionCard
+                title="Places to Eat"
+                icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('dining')}
+                delay={6}
+              />
+            </View>
+            
+            <View style={styles.row}>
+              <SectionCard
+                title="Places to Visit"
+                icon={<Landmark size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('attractions')}
+                delay={7}
+              />
+              <SectionCard
+                title="Luggage Storage"
+                icon={<Briefcase size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('luggage')}
+                delay={8}
+              />
+            </View>
 
-          <View style={styles.row}>
-            <SectionCard
-              title="Car Rental"
-              icon={<Car size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('car-rental')}
-              delay={9}
-            />
-            <SectionCard
-              title="Parking"
-              icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('parking')}
-              delay={10}
-            />
-          </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Frequently Asked Questions"
-              icon={<HelpCircle size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('info')}
-              delay={11}
-            />
-            <SectionCard
-              title="Amenities"
-              icon={<Sofa size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('amenities')}
-              delay={12}
-            />
-          </View>
+            <View style={styles.row}>
+              <SectionCard
+                title="Car Rental"
+                icon={<Car size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('car-rental')}
+                delay={9}
+              />
+              <SectionCard
+                title="Parking"
+                icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('parking')}
+                delay={10}
+              />
+            </View>
+            
+            <View style={styles.row}>
+              <SectionCard
+                title="Frequently Asked Questions"
+                icon={<HelpCircle size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('info')}
+                delay={11}
+              />
+              <SectionCard
+                title="Amenities"
+                icon={<Sofa size={28} color={theme.colors.secondary} />}
+                onPress={() => navigateToSection('amenities')}
+                delay={12}
+              />
+            </View>
 
-          <View style={styles.row}>
-            <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              onPress={() => Linking.openURL('https://ldguest.com/ldhome/')}
-              delay={13}
-            />
+            <View style={styles.row}>
+              <SectionCard
+                title="Photo Gallery"
+                icon={<ImageIcon size={28} color={theme.colors.secondary} />}
+                onPress={() => Linking.openURL('https://ldguest.com/ldhome/')}
+                delay={13}
+              />
+            </View>
           </View>
-        </View>
-
-        <TouchableOpacity 
-          style={styles.promoContainer}
-          onPress={handleViewMoreProperties}
-          activeOpacity={0.8}
-        >
-          <Image
-            source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
-            style={styles.promoImage}
-            resizeMode="cover"
-          />
-          <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.8)']}
-            style={styles.promoOverlay}
-          >
-            <View style={styles.promoContent}>
-              <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
-              <Text style={styles.promoDescription}>
-                Explore our collection of beautiful properties across Marbella's most desirable locations
-              </Text>
-              <View style={styles.promoButton}>
-                <Text style={styles.promoButtonText}>View Properties</Text>
-                <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+        ) : (
+          // Web layout (new tabbed interface)
+          <View style={styles.webContentContainer}>
+            <View style={styles.webMainContent}>
+              <View style={styles.webSection}>
+                <Text style={styles.webSectionTitle}>Essential Information</Text>
+                <View style={styles.webCardGrid}>
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('location')}
+                  >
+                    <MapPin size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Location</Text>
+                    <Text style={styles.webCardDescription}>View property location and directions</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('entry')}
+                  >
+                    <HomeIcon size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Entry Instructions</Text>
+                    <Text style={styles.webCardDescription}>How to access the property</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('wifi')}
+                  >
+                    <Wifi size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>WiFi Details</Text>
+                    <Text style={styles.webCardDescription}>Network name and password</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('rules')}
+                  >
+                    <Book size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>House Rules</Text>
+                    <Text style={styles.webCardDescription}>Important guidelines for your stay</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              
+              <View style={styles.webSection}>
+                <Text style={styles.webSectionTitle}>Local Area</Text>
+                <View style={styles.webCardGrid}>
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('dining')}
+                  >
+                    <UtensilsCrossed size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Places to Eat</Text>
+                    <Text style={styles.webCardDescription}>Recommended restaurants nearby</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('attractions')}
+                  >
+                    <Landmark size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Places to Visit</Text>
+                    <Text style={styles.webCardDescription}>Local attractions and activities</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('luggage')}
+                  >
+                    <Briefcase size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Luggage Storage</Text>
+                    <Text style={styles.webCardDescription}>Options for storing your luggage</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('parking')}
+                  >
+                    <ParkingIcon size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Parking</Text>
+                    <Text style={styles.webCardDescription}>Parking information and options</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              
+              <View style={styles.webSection}>
+                <Text style={styles.webSectionTitle}>Additional Resources</Text>
+                <View style={styles.webCardGrid}>
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('videos')}
+                  >
+                    <Video size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>House Videos</Text>
+                    <Text style={styles.webCardDescription}>Helpful video guides</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('car-rental')}
+                  >
+                    <Car size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Car Rental</Text>
+                    <Text style={styles.webCardDescription}>Rental options and information</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('info')}
+                  >
+                    <HelpCircle size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>FAQ</Text>
+                    <Text style={styles.webCardDescription}>Frequently asked questions</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webCard}
+                    onPress={() => navigateToSection('amenities')}
+                  >
+                    <Sofa size={20} color={theme.colors.primary} />
+                    <Text style={styles.webCardTitle}>Amenities</Text>
+                    <Text style={styles.webCardDescription}>Available facilities and features</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              
+              <View style={styles.webSocialContainer}>
+                <Text style={styles.webSocialTitle}>Connect with us</Text>
+                <View style={styles.webSocialIcons}>
+                  <TouchableOpacity 
+                    style={styles.webSocialButton}
+                    onPress={handleInstagramPress}
+                  >
+                    <Instagram size={20} color={theme.colors.primary} />
+                    <Text style={styles.webSocialText}>Instagram</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webSocialButton}
+                    onPress={handleEmailPress}
+                  >
+                    <Mail size={20} color={theme.colors.primary} />
+                    <Text style={styles.webSocialText}>Email</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webSocialButton}
+                    onPress={handleYoutubePress}
+                  >
+                    <Youtube size={20} color={theme.colors.primary} />
+                    <Text style={styles.webSocialText}>YouTube</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={styles.webSocialButton}
+                    onPress={handleWebsitePress}
+                  >
+                    <Globe size={20} color={theme.colors.primary} />
+                    <Text style={styles.webSocialText}>Website</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </LinearGradient>
-        </TouchableOpacity>
-
-        <View style={styles.footerContainer}>
-        <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
-          <TouchableOpacity 
-            style={styles.websiteBannerContent}
-            onPress={handleMalagaMarbellaPress}
-            activeOpacity={0.7}
-          >
-            <View style={styles.websiteIconContainer}>
-              <Globe size={24} color={theme.colors.white} />
+            
+            <View style={styles.webSidebar}>
+              <TouchableOpacity 
+                style={styles.promoContainerWeb}
+                onPress={handleViewMoreProperties}
+                activeOpacity={0.8}
+              >
+                <Image
+                  source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
+                  style={styles.promoImage}
+                  resizeMode="cover"
+                />
+                <LinearGradient
+                  colors={['transparent', 'rgba(0,0,0,0.8)']}
+                  style={styles.promoOverlay}
+                >
+                  <View style={styles.promoContent}>
+                    <Text style={styles.promoTitle}>Discover More Properties</Text>
+                    <Text style={styles.promoDescription}>
+                      Explore our collection of beautiful properties across Marbella
+                    </Text>
+                    <View style={styles.promoButton}>
+                      <Text style={styles.promoButtonText}>View Properties</Text>
+                      <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+                    </View>
+                  </View>
+                </LinearGradient>
+              </TouchableOpacity>
+              
+              <View style={styles.licenseContainerWeb}>
+                <Text style={styles.licenseTitle}>Tourist License</Text>
+                {id === '29051501' && (
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/78324</Text>
+                )}
+                {id === '29051502' && (
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/84842</Text>
+                )}
+                {id === '29051503' && (
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/76801</Text>
+                )}
+                {id === '29051504' && (
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/83102</Text>
+                )}
+                
+                <View style={styles.idNoticeContainerWeb}>
+                  <Text style={styles.idNoticeTitle}>📌 ID Upload Required</Text>
+                  <Text style={styles.idNoticeText}>
+                    Spanish law requires all guests to upload valid ID documents before their stay.
+                  </Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.websiteTextContainer}>
-              <Text style={styles.websiteBannerText}>
-                Discover more properties, local tips, and exclusive offers at malagamarbella.com
-              </Text>
-            </View>
-            <ExternalLink size={20} color={theme.colors.white} />
-          </TouchableOpacity>
-        </Animated.View>
-
-        <View style={styles.licenseContainer}>
-          <Text style={styles.licenseTitle}>Tourist License Information</Text>
-          {id === '29051501' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/78324</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290410000409120000000000000000VUT/MA/783241</Text>
-            </>
-          )}
-          {id === '29051502' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/84842</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290290006252920000000000000000VUT/MA/848425</Text>
-            </>
-          )}
-          {id === '29051503' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/76801</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290410003381870000000000000000VUT/MA/768015</Text>
-            </>
-          )}
-          {id === '29051504' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/83102</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290290006454810000000000000000VUT/MA/831025</Text>
-            </>
-          )}
-          
-          <View style={styles.idNoticeContainer}>
-            <Text style={styles.idNoticeTitle}>📌 Important Notice - ID Upload Requirement</Text>
-            <Text style={styles.idNoticeText}>
-              According to Spanish law, all guests are legally required to upload valid passport or ID documents to the system before the start of their stay.
-            </Text>
-            <Text style={styles.idNoticeText}>
-              Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation.
-            </Text>
           </View>
-        </View>
-       </View>
+        )}
+
+        {!isWeb && (
+          <TouchableOpacity 
+            style={styles.promoContainer}
+            onPress={handleViewMoreProperties}
+            activeOpacity={0.8}
+          >
+            <Image
+              source={{ uri: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg' }}
+              style={styles.promoImage}
+              resizeMode="cover"
+            />
+            <LinearGradient
+              colors={['transparent', 'rgba(0,0,0,0.8)']}
+              style={styles.promoOverlay}
+            >
+              <View style={styles.promoContent}>
+                <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
+                <Text style={styles.promoDescription}>
+                  Explore our collection of beautiful properties across Marbella's most desirable locations
+                </Text>
+                <View style={styles.promoButton}>
+                  <Text style={styles.promoButtonText}>View Properties</Text>
+                  <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
+                </View>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+        )}
+
+        {!isWeb && (
+          <View style={styles.footerContainer}>
+            <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
+              <TouchableOpacity 
+                style={styles.websiteBannerContent}
+                onPress={handleMalagaMarbellaPress}
+                activeOpacity={0.7}
+              >
+                <View style={styles.websiteIconContainer}>
+                  <Globe size={24} color={theme.colors.white} />
+                </View>
+                <View style={styles.websiteTextContainer}>
+                  <Text style={styles.websiteBannerText}>
+                    Discover more properties, local tips, and exclusive offers at malagamarbella.com
+                  </Text>
+                </View>
+                <ExternalLink size={20} color={theme.colors.white} />
+              </TouchableOpacity>
+            </Animated.View>
+
+            <View style={styles.licenseContainer}>
+              <Text style={styles.licenseTitle}>Tourist License Information</Text>
+              {id === '29051501' && (
+                <>
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/78324</Text>
+                  <Text style={styles.licenseText}>NRA: ESFCTU0000290410000409120000000000000000VUT/MA/783241</Text>
+                </>
+              )}
+              {id === '29051502' && (
+                <>
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/84842</Text>
+                  <Text style={styles.licenseText}>NRA: ESFCTU0000290290006252920000000000000000VUT/MA/848425</Text>
+                </>
+              )}
+              {id === '29051503' && (
+                <>
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/76801</Text>
+                  <Text style={styles.licenseText}>NRA: ESFCTU0000290410003381870000000000000000VUT/MA/768015</Text>
+                </>
+              )}
+              {id === '29051504' && (
+                <>
+                  <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/83102</Text>
+                  <Text style={styles.licenseText}>NRA: ESFCTU0000290290006454810000000000000000VUT/MA/831025</Text>
+                </>
+              )}
+              
+              <View style={styles.idNoticeContainer}>
+                <Text style={styles.idNoticeTitle}>📌 Important Notice - ID Upload Requirement</Text>
+                <Text style={styles.idNoticeText}>
+                  According to Spanish law, all guests are legally required to upload valid passport or ID documents to the system before the start of their stay.
+                </Text>
+                <Text style={styles.idNoticeText}>
+                  Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation.
+                </Text>
+              </View>
+            </View>
+          </View>
+        )}
+        
+        {isWeb && (
+          <View style={styles.webFooter}>
+            <TouchableOpacity 
+              style={styles.webFooterLink}
+              onPress={handleMalagaMarbellaPress}
+            >
+              <Text style={styles.webFooterLinkText}>Visit malagamarbella.com</Text>
+            </TouchableOpacity>
+            <Text style={styles.webFooterCopyright}>© 2025 L&D Guest Marbella. All rights reserved.</Text>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -373,7 +676,7 @@ export default function PropertyScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: Platform.OS === 'web' ? '#f9fafb' : theme.colors.background,
   },
   socialIconsContainer: {
     flexDirection: 'row',
@@ -426,6 +729,138 @@ const styles = StyleSheet.create({
     width: 60,
     height: 24,
     marginBottom: theme.spacing.xs,
+  // Web-specific styles
+  webNavContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    padding: 12,
+    marginBottom: 24,
+    borderBottom: '1px solid #f0f0f0',
+  },
+  webNavItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 8,
+    marginHorizontal: 8,
+  },
+  webNavText: {
+    marginLeft: 6,
+    fontSize: 14,
+    color: '#4A6FA5',
+  },
+  webContentContainer: {
+    flexDirection: 'row',
+    maxWidth: 1200,
+    margin: '0 auto',
+    padding: 24,
+  },
+  webMainContent: {
+    flex: 3,
+    marginRight: 24,
+  },
+  webSidebar: {
+    flex: 1,
+  },
+  webSection: {
+    marginBottom: 40,
+  },
+  webSectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+    color: '#333',
+  },
+  webCardGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: 16,
+  },
+  webCard: {
+    padding: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    border: '1px solid #f0f0f0',
+    boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+  },
+  webCardTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginTop: 12,
+    marginBottom: 4,
+    color: '#333',
+  },
+  webCardDescription: {
+    fontSize: 14,
+    color: '#666',
+  },
+  webSocialContainer: {
+    marginTop: 32,
+    padding: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    border: '1px solid #f0f0f0',
+  },
+  webSocialTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 16,
+    color: '#333',
+  },
+  webSocialIcons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  webSocialButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 16,
+    marginBottom: 8,
+    padding: 8,
+  },
+  webSocialText: {
+    marginLeft: 8,
+    fontSize: 14,
+    color: '#666',
+  },
+  promoContainerWeb: {
+    height: 240,
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginBottom: 24,
+    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+  },
+  licenseContainerWeb: {
+    padding: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    border: '1px solid #f0f0f0',
+  },
+  idNoticeContainerWeb: {
+    marginTop: 16,
+    paddingTop: 16,
+    borderTop: '1px solid #f0f0f0',
+  },
+  webFooter: {
+    marginTop: 40,
+    padding: 24,
+    borderTop: '1px solid #f0f0f0',
+    textAlign: 'center',
+  },
+  webFooterLink: {
+    marginBottom: 8,
+  },
+  webFooterLinkText: {
+    color: '#4A6FA5',
+    fontSize: 14,
+  },
+  webFooterCopyright: {
+    color: '#999',
+    fontSize: 12,
+  },
   },
   reviewButtonText: {
     ...theme.typography.bodySmall,
@@ -520,7 +955,7 @@ const styles = StyleSheet.create({
   licenseContainer: {
     backgroundColor: theme.colors.surface,
     borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
+    padding: theme.spacing.s,
     marginHorizontal: theme.spacing.m,
     marginBottom: theme.spacing.m,
   },
@@ -537,8 +972,8 @@ const styles = StyleSheet.create({
   idNoticeContainer: {
     marginTop: theme.spacing.m,
     paddingTop: theme.spacing.m,
-    borderTopWidth: 1,
-    borderTopColor: theme.colors.border,
+    borderTopWidth: Platform.OS === 'web' ? 0 : 1,
+    borderTopColor: Platform.OS === 'web' ? 'transparent' : theme.colors.border,
   },
   idNoticeTitle: {
     ...theme.typography.bodyMedium,

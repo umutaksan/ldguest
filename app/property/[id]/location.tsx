@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
+import { Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { InfoCard } from '@/components/common/InfoCard';
@@ -10,6 +11,9 @@ import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi, Video } from 'lucid
 export default function LocationScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  
+  // Check if we're on web platform
+  const isWeb = Platform.OS === 'web';
   
   // Property data based on ID
   const getPropertyData = () => {
@@ -219,84 +223,177 @@ export default function LocationScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="Location" />
-
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
-      >
-        <TouchableOpacity
-          style={styles.mapContainer}
-          onPress={handleOpenMaps}
-          activeOpacity={0.9}
+      
+      {isWeb ? (
+        // Web layout
+        <ScrollView 
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.webContent}
         >
-          <Image 
-            source={{ uri: propertyData.mapImage }} 
-            style={styles.mapImage}
-            resizeMode="cover"
-          />
-          <View style={styles.mapOverlay}>
-            <MapPin size={24} color={theme.colors.white} />
-            <Text style={styles.mapOverlayText}>{propertyData.address}, {propertyData.location}</Text>
-          </View>
-        </TouchableOpacity>
-        
-        <View style={styles.addressContainer}>
-          <MapPin size={20} color={theme.colors.primary} />
-          <View style={styles.addressContent}>
-            <Text style={styles.addressText}>{propertyData.address}</Text>
-            <Text style={styles.addressText}>{propertyData.apartment}</Text>
-            <Text style={styles.addressText}>{propertyData.location}</Text>
-            <Text style={styles.addressText}>29660 Marbella</Text>
-            <Text style={styles.addressText}>Málaga, Spain</Text>
-          </View>
-        </View>
-        
-        <TouchableOpacity 
-          style={styles.directionsButton}
-          onPress={handleOpenMaps}
-          activeOpacity={0.8}
-        >
-          <Navigation size={20} color={theme.colors.white} />
-          <Text style={styles.directionsButtonText}>Get Directions</Text>
-        </TouchableOpacity>
-        
-        <Text style={styles.sectionTitle}>How to Get Here</Text>
-        
-        {getTransportOptions().map((option) => (
-          <InfoCard
-            key={option.id}
-            title={option.title}
-            description={option.description}
-            icon={option.icon}
-            showChevron={!!option.action}
-            onPress={option.action}
-          />
-        ))}
-        
-        <Text style={styles.sectionTitle}>Nearby Points of Interest</Text>
-        
-        <View style={styles.poiContainer}>
-          {propertyData.pois.map((poi, index) => (
-            <View key={index}>
-              <View style={styles.poiItem}>
-                <Text style={styles.poiName}>{poi.name}</Text>
-                <Text style={styles.poiDistance}>{poi.distance}</Text>
-                {poi.hasVideo && poi.videoUrl && (
-                  <TouchableOpacity 
-                    style={styles.watchRouteButton}
-                    onPress={() => handleOpenVideoRoute(poi.videoUrl!)}
-                    activeOpacity={0.8}
-                  >
-                    <Video size={16} color={theme.colors.white} />
-                    <Text style={styles.watchRouteText}>Watch Walking Route</Text>
-                  </TouchableOpacity>
-                )}
+          <View style={styles.webContainer}>
+            <View style={styles.webMainContent}>
+              <TouchableOpacity
+                style={styles.webMapContainer}
+                onPress={handleOpenMaps}
+              >
+                <Image 
+                  source={{ uri: propertyData.mapImage }} 
+                  style={styles.webMapImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.webMapOverlay}>
+                  <MapPin size={20} color={theme.colors.white} />
+                  <Text style={styles.webMapText}>{propertyData.address}, {propertyData.location}</Text>
+                </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.webDirectionsButton}
+                onPress={handleOpenMaps}
+              >
+                <Navigation size={16} color={theme.colors.white} />
+                <Text style={styles.webDirectionsText}>Get Directions</Text>
+              </TouchableOpacity>
+              
+              <Text style={styles.webSectionTitle}>How to Get Here</Text>
+              
+              <View style={styles.webTransportOptions}>
+                {transportOptions.map((option) => (
+                  <View key={option.id} style={styles.webTransportCard}>
+                    <View style={styles.webTransportHeader}>
+                      {option.icon}
+                      <Text style={styles.webTransportTitle}>{option.title}</Text>
+                    </View>
+                    <Text style={styles.webTransportDescription}>{option.description}</Text>
+                    {option.action && (
+                      <TouchableOpacity 
+                        style={styles.webActionButton}
+                        onPress={option.action}
+                      >
+                        <Text style={styles.webActionText}>View Details</Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                ))}
               </View>
-              {index < propertyData.pois.length - 1 && <View style={styles.poiSeparator} />}
             </View>
+            
+            <View style={styles.webSidebar}>
+              <View style={styles.webAddressCard}>
+                <Text style={styles.webAddressTitle}>Property Address</Text>
+                <View style={styles.webAddressContent}>
+                  <MapPin size={16} color={theme.colors.primary} />
+                  <View style={styles.webAddressDetails}>
+                    <Text style={styles.webAddressText}>{propertyData.address}</Text>
+                    <Text style={styles.webAddressText}>{propertyData.apartment}</Text>
+                    <Text style={styles.webAddressText}>{propertyData.location}</Text>
+                    <Text style={styles.webAddressText}>29660 Marbella</Text>
+                    <Text style={styles.webAddressText}>Málaga, Spain</Text>
+                  </View>
+                </View>
+              </View>
+              
+              <View style={styles.webPoiCard}>
+                <Text style={styles.webPoiTitle}>Nearby Points of Interest</Text>
+                {propertyData.pois.map((poi, index) => (
+                  <View key={index} style={styles.webPoiItem}>
+                    <Text style={styles.webPoiName}>{poi.name}</Text>
+                    <Text style={styles.webPoiDistance}>{poi.distance}</Text>
+                    {poi.hasVideo && poi.videoUrl && (
+                      <TouchableOpacity 
+                        style={styles.webVideoButton}
+                        onPress={() => handleOpenVideoRoute(poi.videoUrl!)}
+                      >
+                        <Video size={14} color={theme.colors.primary} />
+                        <Text style={styles.webVideoText}>Watch Route</Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                ))}
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+      ) : (
+        // Mobile layout (unchanged)
+        <ScrollView 
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.content}
+        >
+          <TouchableOpacity
+            style={styles.mapContainer}
+            onPress={handleOpenMaps}
+            activeOpacity={0.9}
+          >
+            <Image 
+              source={{ uri: propertyData.mapImage }} 
+              style={styles.mapImage}
+              resizeMode="cover"
+            />
+            <View style={styles.mapOverlay}>
+              <MapPin size={24} color={theme.colors.white} />
+              <Text style={styles.mapOverlayText}>{propertyData.address}, {propertyData.location}</Text>
+            </View>
+          </TouchableOpacity>
+          
+          <View style={styles.addressContainer}>
+            <MapPin size={20} color={theme.colors.primary} />
+            <View style={styles.addressContent}>
+              <Text style={styles.addressText}>{propertyData.address}</Text>
+              <Text style={styles.addressText}>{propertyData.apartment}</Text>
+              <Text style={styles.addressText}>{propertyData.location}</Text>
+              <Text style={styles.addressText}>29660 Marbella</Text>
+              <Text style={styles.addressText}>Málaga, Spain</Text>
+            </View>
+          </View>
+          
+          <TouchableOpacity 
+            style={styles.directionsButton}
+            onPress={handleOpenMaps}
+            activeOpacity={0.8}
+          >
+            <Navigation size={20} color={theme.colors.white} />
+            <Text style={styles.directionsButtonText}>Get Directions</Text>
+          </TouchableOpacity>
+          
+          <Text style={styles.sectionTitle}>How to Get Here</Text>
+          
+          {transportOptions.map((option) => (
+            <InfoCard
+              key={option.id}
+              title={option.title}
+              description={option.description}
+              icon={option.icon}
+              showChevron={!!option.action}
+              onPress={option.action}
+            />
           ))}
-        </View>
-      </ScrollView>
+          
+          <Text style={styles.sectionTitle}>Nearby Points of Interest</Text>
+          
+          <View style={styles.poiContainer}>
+            {propertyData.pois.map((poi, index) => (
+              <View key={index}>
+                <View style={styles.poiItem}>
+                  <Text style={styles.poiName}>{poi.name}</Text>
+                  <Text style={styles.poiDistance}>{poi.distance}</Text>
+                  {poi.hasVideo && poi.videoUrl && (
+                    <TouchableOpacity 
+                      style={styles.watchRouteButton}
+                      onPress={() => handleOpenVideoRoute(poi.videoUrl!)}
+                      activeOpacity={0.8}
+                    >
+                      <Video size={16} color={theme.colors.white} />
+                      <Text style={styles.watchRouteText}>Watch Walking Route</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+                {index < propertyData.pois.length - 1 && <View style={styles.poiSeparator} />}
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+      )}
     </View>
   );
 }
@@ -306,7 +403,7 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: Platform.OS === 'web' ? '#f9fafb' : theme.colors.background,
   },
   content: {
     padding: theme.spacing.m,
@@ -407,5 +504,173 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     marginLeft: theme.spacing.xs,
+  },
+  // Web-specific styles
+  webContent: {
+    padding: 24,
+  },
+  webContainer: {
+    flexDirection: 'row',
+    maxWidth: 1200,
+    margin: '0 auto',
+  },
+  webMainContent: {
+    flex: 2,
+    marginRight: 24,
+  },
+  webSidebar: {
+    flex: 1,
+  },
+  webMapContainer: {
+    height: 300,
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginBottom: 16,
+    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+  },
+  webMapImage: {
+    width: '100%',
+    height: '100%',
+  },
+  webMapOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  webMapText: {
+    color: '#ffffff',
+    marginLeft: 8,
+    fontSize: 14,
+  },
+  webDirectionsButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#4A6FA5',
+    borderRadius: 6,
+    padding: 12,
+    marginBottom: 32,
+    cursor: 'pointer',
+  },
+  webDirectionsText: {
+    color: '#ffffff',
+    marginLeft: 8,
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  webSectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+    color: '#333',
+  },
+  webTransportOptions: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+    gap: 16,
+  },
+  webTransportCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    padding: 16,
+    boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+    border: '1px solid #f0f0f0',
+  },
+  webTransportHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  webTransportTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginLeft: 12,
+    color: '#333',
+  },
+  webTransportDescription: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
+    marginBottom: 16,
+  },
+  webActionButton: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#f0f5ff',
+    borderRadius: 6,
+    padding: '6px 12px',
+    cursor: 'pointer',
+  },
+  webActionText: {
+    fontSize: 14,
+    color: '#4A6FA5',
+  },
+  webAddressCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 24,
+    boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+    border: '1px solid #f0f0f0',
+  },
+  webAddressTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 16,
+    color: '#333',
+  },
+  webAddressContent: {
+    flexDirection: 'row',
+  },
+  webAddressDetails: {
+    marginLeft: 12,
+  },
+  webAddressText: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 4,
+  },
+  webPoiCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    padding: 16,
+    boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+    border: '1px solid #f0f0f0',
+  },
+  webPoiTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 16,
+    color: '#333',
+  },
+  webPoiItem: {
+    paddingVertical: 12,
+    borderBottom: '1px solid #f0f0f0',
+  },
+  webPoiName: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#333',
+    marginBottom: 4,
+  },
+  webPoiDistance: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 8,
+  },
+  webVideoButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    cursor: 'pointer',
+  },
+  webVideoText: {
+    fontSize: 14,
+    color: '#4A6FA5',
+    marginLeft: 6,
   },
 });

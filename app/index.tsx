@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
@@ -12,6 +13,9 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 export default function PropertiesScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  // Check if we're on web platform
+  const isWeb = Platform.OS === 'web';
 
   const handleInstagramPress = () => {
     Linking.openURL('https://www.instagram.com/ldguestmarbella');
@@ -65,115 +69,211 @@ export default function PropertiesScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <ResponsiveContainer>
-        <Animated.View 
-          entering={FadeIn.duration(400)}
-          style={styles.header}
-        >
-          <Image 
-            source={{ uri: 'https://ldguest.com/wp-content/uploads/2024/11/1-e1730659164604.png?w=145&h=62' }}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-          
-          <View style={styles.headerTextContainer}>
-            <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
-            <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
+        {isWeb ? (
+          // Web header
+          <Animated.View 
+            entering={FadeIn.duration(400)}
+            style={styles.webHeader}
+          >
+            <Image 
+              source={{ uri: 'https://ldguest.com/wp-content/uploads/2024/11/1-e1730659164604.png?w=145&h=62' }}
+              style={styles.webLogo}
+              resizeMode="contain"
+            />
             
-            <View style={styles.socialIconsContainer}>
+            <View style={styles.webHeaderContent}>
+              <Text style={styles.webWelcomeText}>Welcome to L&D Guest</Text>
+              <Text style={styles.webSubtitle}>Please select your reservation property</Text>
+            </View>
+            
+            <View style={styles.webSocial}>
               <TouchableOpacity 
-                style={styles.socialIconButton}
+                style={styles.webSocialButton}
                 onPress={handleInstagramPress}
-                activeOpacity={0.7}
               >
-                <Instagram size={20} color={theme.colors.primary} />
+                <Instagram size={18} color={theme.colors.primary} />
               </TouchableOpacity>
               
               <TouchableOpacity 
-                style={styles.socialIconButton}
+                style={styles.webSocialButton}
                 onPress={handleEmailPress}
-                activeOpacity={0.7}
               >
-                <Mail size={20} color={theme.colors.primary} />
+                <Mail size={18} color={theme.colors.primary} />
               </TouchableOpacity>
               
               <TouchableOpacity 
-                style={styles.socialIconButton}
+                style={styles.webSocialButton}
                 onPress={handleYoutubePress}
-                activeOpacity={0.7}
               >
-                <Youtube size={20} color={theme.colors.primary} />
+                <Youtube size={18} color={theme.colors.primary} />
               </TouchableOpacity>
               
               <TouchableOpacity 
-                style={styles.socialIconButton}
+                style={styles.webSocialButton}
                 onPress={handleWebsitePress}
-                activeOpacity={0.7}
               >
-                <Globe size={20} color={theme.colors.primary} />
+                <Globe size={18} color={theme.colors.primary} />
               </TouchableOpacity>
             </View>
-          </View>
-        </Animated.View>
+          </Animated.View>
+        ) : (
+          // Mobile header (unchanged)
+          <Animated.View 
+            entering={FadeIn.duration(400)}
+            style={styles.header}
+          >
+            <Image 
+              source={{ uri: 'https://ldguest.com/wp-content/uploads/2024/11/1-e1730659164604.png?w=145&h=62' }}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+            
+            <View style={styles.headerTextContainer}>
+              <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
+              <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
+              
+              <View style={styles.socialIconsContainer}>
+                <TouchableOpacity 
+                  style={styles.socialIconButton}
+                  onPress={handleInstagramPress}
+                  activeOpacity={0.7}
+                >
+                  <Instagram size={20} color={theme.colors.primary} />
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
+                  style={styles.socialIconButton}
+                  onPress={handleEmailPress}
+                  activeOpacity={0.7}
+                >
+                  <Mail size={20} color={theme.colors.primary} />
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
+                  style={styles.socialIconButton}
+                  onPress={handleYoutubePress}
+                  activeOpacity={0.7}
+                >
+                  <Youtube size={20} color={theme.colors.primary} />
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
+                  style={styles.socialIconButton}
+                  onPress={handleWebsitePress}
+                  activeOpacity={0.7}
+                >
+                  <Globe size={20} color={theme.colors.primary} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Animated.View>
+        )}
 
         <ScrollView 
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.content}
+          contentContainerStyle={isWeb ? styles.webContent : styles.content}
         >
-          <View style={[
-            styles.propertiesGrid,
-            { 
-              flexDirection: gridColumns === 2 ? 'row' : 'column',
-              flexWrap: gridColumns === 2 ? 'wrap' : 'nowrap',
-            }
-          ]}>
-            {properties.map((property, index) => (
-              <Animated.View 
-                key={property.id}
-                entering={FadeIn.delay(index * 150)}
-                style={[
-                  styles.propertyCardContainer,
-                  {
-                    width: gridColumns === 2 ? '48%' : '100%',
-                    marginRight: gridColumns === 2 && index % 2 === 0 ? '4%' : 0,
-                  }
-                ]}
-              >
-                <TouchableOpacity
-                  style={[styles.propertyCard, { height: cardHeight, overflow: 'hidden' }]}
-                  onPress={() => router.push(`/property/${property.id}`)}
-                  activeOpacity={0.9}
+          {isWeb ? (
+            // Web property grid
+            <View style={styles.webPropertiesGrid}>
+              {properties.map((property, index) => (
+                <Animated.View 
+                  key={property.id}
+                  entering={FadeIn.delay(index * 150)}
+                  style={styles.webPropertyCard}
                 >
-                  <Image 
-                    source={{ uri: property.image }}
-                    style={styles.propertyImage}
-                    resizeMode="cover"
-                  />
-                  <View style={styles.propertyContent}>
-                    <LinearGradient
-                      colors={['transparent', 'rgba(0,0,0,0.8)']}
-                      style={styles.overlay}
-                    >
-                      <View style={styles.propertyInfo}>
-                        <Text style={styles.propertyName}>{property.name}</Text>
-                        <View style={styles.locationContainer}>
-                          <MapPin size={16} color={theme.colors.white} />
-                          <Text style={styles.locationText}>{property.location}</Text>
-                        </View>
+                  <TouchableOpacity
+                    style={styles.webPropertyCardInner}
+                    onPress={() => router.push(`/property/${property.id}`)}
+                  >
+                    <Image 
+                      source={{ uri: property.image }}
+                      style={styles.webPropertyImage}
+                      resizeMode="cover"
+                    />
+                    <View style={styles.webPropertyContent}>
+                      <Text style={styles.webPropertyName}>{property.name}</Text>
+                      <View style={styles.webPropertyLocation}>
+                        <MapPin size={14} color="#666" />
+                        <Text style={styles.webLocationText}>{property.location}</Text>
                       </View>
-                    </LinearGradient>
-                  </View>
-                </TouchableOpacity>
-              </Animated.View>
-            ))}
-          </View>
+                    </View>
+                  </TouchableOpacity>
+                </Animated.View>
+              ))}
+            </View>
+          ) : (
+            // Mobile property grid (unchanged)
+            <View style={[
+              styles.propertiesGrid,
+              { 
+                flexDirection: gridColumns === 2 ? 'row' : 'column',
+                flexWrap: gridColumns === 2 ? 'wrap' : 'nowrap',
+              }
+            ]}>
+              {properties.map((property, index) => (
+                <Animated.View 
+                  key={property.id}
+                  entering={FadeIn.delay(index * 150)}
+                  style={[
+                    styles.propertyCardContainer,
+                    {
+                      width: gridColumns === 2 ? '48%' : '100%',
+                      marginRight: gridColumns === 2 && index % 2 === 0 ? '4%' : 0,
+                    }
+                  ]}
+                >
+                  <TouchableOpacity
+                    style={[styles.propertyCard, { height: cardHeight, overflow: 'hidden' }]}
+                    onPress={() => router.push(`/property/${property.id}`)}
+                    activeOpacity={0.9}
+                  >
+                    <Image 
+                      source={{ uri: property.image }}
+                      style={styles.propertyImage}
+                      resizeMode="cover"
+                    />
+                    <View style={styles.propertyContent}>
+                      <LinearGradient
+                        colors={['transparent', 'rgba(0,0,0,0.7)']}
+                        style={styles.overlay}
+                      >
+                        <View style={styles.propertyInfo}>
+                          <Text style={styles.propertyName}>{property.name}</Text>
+                          <View style={styles.locationContainer}>
+                            <MapPin size={16} color={theme.colors.white} />
+                            <Text style={styles.locationText}>{property.location}</Text>
+                          </View>
+                        </View>
+                      </LinearGradient>
+                    </View>
+                  </TouchableOpacity>
+                </Animated.View>
+              ))}
+            </View>
+          )}
 
-          <TouchableOpacity
-            style={styles.adminButton}
-            onPress={() => router.push('/cleaning')}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
-          </TouchableOpacity>          
+          {!isWeb && (
+            <TouchableOpacity
+              style={styles.adminButton}
+              onPress={() => router.push('/cleaning')}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
+            </TouchableOpacity>
+          )}
+          
+          {isWeb && (
+            <View style={styles.webFooter}>
+              <TouchableOpacity
+                style={styles.webAdminButton}
+                onPress={() => router.push('/cleaning')}
+              >
+                <Text style={styles.webAdminButtonText}>Cleaning Staff Access</Text>
+              </TouchableOpacity>
+              <Text style={styles.webFooterText}>© 2025 L&D Guest Marbella. All rights reserved.</Text>
+            </View>
+          )}
         </ScrollView>
       </ResponsiveContainer>
     </View>
@@ -182,8 +282,8 @@ export default function PropertiesScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: theme.colors.background,
+    flex: 1, 
+    backgroundColor: Platform.OS === 'web' ? '#f9fafb' : theme.colors.background,
   },
   header: {
     alignItems: 'center',
@@ -282,6 +382,112 @@ const styles = StyleSheet.create({
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     marginLeft: theme.spacing.xs,
+  },
+  // Web-specific styles
+  webHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 24,
+    backgroundColor: '#ffffff',
+    borderBottom: '1px solid #f0f0f0',
+  },
+  webLogo: {
+    width: 120,
+    height: 50,
+  },
+  webHeaderContent: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  webWelcomeText: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 4,
+  },
+  webSubtitle: {
+    fontSize: 16,
+    color: '#666',
+  },
+  webSocial: {
+    flexDirection: 'row',
+  },
+  webSocialButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#f0f5ff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 8,
+    cursor: 'pointer',
+  },
+  webContent: {
+    padding: 24,
+    maxWidth: 1200,
+    margin: '0 auto',
+  },
+  webPropertiesGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+    gap: 24,
+  },
+  webPropertyCard: {
+    borderRadius: 8,
+    overflow: 'hidden',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  },
+  webPropertyCardInner: {
+    cursor: 'pointer',
+    height: '100%',
+  },
+  webPropertyImage: {
+    width: '100%',
+    height: 180,
+    objectFit: 'cover',
+  },
+  webPropertyContent: {
+    padding: 16,
+  },
+  webPropertyName: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 8,
+  },
+  webPropertyLocation: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  webLocationText: {
+    fontSize: 14,
+    color: '#666',
+    marginLeft: 6,
+  },
+  webFooter: {
+    marginTop: 40,
+    padding: 24,
+    textAlign: 'center',
+    borderTop: '1px solid #f0f0f0',
+  },
+  webAdminButton: {
+    padding: '8px 16px',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 6,
+    marginBottom: 16,
+    display: 'inline-block',
+    cursor: 'pointer',
+  },
+  webAdminButtonText: {
+    fontSize: 14,
+    color: '#666',
+  },
+  webFooterText: {
+    fontSize: 12,
+    color: '#999',
   },
   adminButton: {
     backgroundColor: theme.colors.surface,

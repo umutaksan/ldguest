@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
+import { Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Wifi, Copy, Check } from 'lucide-react-native';
@@ -12,7 +13,10 @@ export default function WifiScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [copiedSSID, setCopiedSSID] = useState(false);
-  const [copiedPassword, setCopiedPassword] = useState(false);
+  const [copiedPassword, setCopiedPassword] = useState(false); 
+  
+  // Check if we're on web platform
+  const isWeb = Platform.OS === 'web';
 
   // Get WiFi details based on property ID
   const getWifiDetails = () => {
@@ -67,68 +71,132 @@ export default function WifiScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader title="WiFi Details" />
-
-      <Animated.View 
-        entering={FadeIn.duration(500)}
-        style={styles.content}
-      >
-        <View style={styles.iconContainer}>
-          <Wifi size={48} color={theme.colors.primary} />
-        </View>
-
-        <Text style={styles.title}>Connect to WiFi</Text>
-        <Text style={styles.description}>
-          Use these credentials to connect to the WiFi network in the apartment.
-        </Text>
-
-        <View style={styles.detailsContainer}>
-          <View style={styles.detailCard}>
-            <Text style={styles.label}>Network Name (SSID)</Text>
-            <View style={styles.valueContainer}>
-              <Text style={styles.value}>{wifiDetails.ssid}</Text>
-              <TouchableOpacity
-                style={styles.copyButton}
-                onPress={() => copyToClipboard(wifiDetails.ssid, 'ssid')}
-              >
-                {copiedSSID ? (
-                  <Check size={20} color={theme.colors.success} />
-                ) : (
-                  <Copy size={20} color={theme.colors.primary} />
-                )}
-              </TouchableOpacity>
+      
+      {isWeb ? (
+        // Web layout
+        <Animated.View 
+          entering={FadeIn.duration(500)}
+          style={styles.webContent}
+        >
+          <View style={styles.webCard}>
+            <View style={styles.webIconContainer}>
+              <Wifi size={32} color={theme.colors.primary} />
+            </View>
+            
+            <Text style={styles.webTitle}>Connect to WiFi</Text>
+            <Text style={styles.webDescription}>
+              Use these credentials to connect to the WiFi network in the apartment.
+            </Text>
+            
+            <View style={styles.webDetailsContainer}>
+              <View style={styles.webDetailRow}>
+                <Text style={styles.webLabel}>Network Name (SSID)</Text>
+                <View style={styles.webValueContainer}>
+                  <Text style={styles.webValue}>{wifiDetails.ssid}</Text>
+                  <TouchableOpacity
+                    style={styles.webCopyButton}
+                    onPress={() => copyToClipboard(wifiDetails.ssid, 'ssid')}
+                  >
+                    {copiedSSID ? (
+                      <Check size={16} color={theme.colors.success} />
+                    ) : (
+                      <Copy size={16} color={theme.colors.primary} />
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </View>
+              
+              <View style={styles.webDetailRow}>
+                <Text style={styles.webLabel}>Password</Text>
+                <View style={styles.webValueContainer}>
+                  <Text style={styles.webValue}>{wifiDetails.password}</Text>
+                  <TouchableOpacity
+                    style={styles.webCopyButton}
+                    onPress={() => copyToClipboard(wifiDetails.password, 'password')}
+                  >
+                    {copiedPassword ? (
+                      <Check size={16} color={theme.colors.success} />
+                    ) : (
+                      <Copy size={16} color={theme.colors.primary} />
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            
+            <View style={styles.webTipsContainer}>
+              <Text style={styles.webTipsTitle}>Connection Tips</Text>
+              <Text style={styles.webTipText}>• Make sure WiFi is enabled on your device</Text>
+              <Text style={styles.webTipText}>• Select the network name shown above</Text>
+              <Text style={styles.webTipText}>• Enter the password exactly as shown</Text>
+              <Text style={styles.webTipText}>• If you can't connect, try forgetting the network first</Text>
             </View>
           </View>
-
-          <View style={styles.detailCard}>
-            <Text style={styles.label}>Password</Text>
-            <View style={styles.valueContainer}>
-              <Text style={styles.value}>{wifiDetails.password}</Text>
-              <TouchableOpacity
-                style={styles.copyButton}
-                onPress={() => copyToClipboard(wifiDetails.password, 'password')}
-              >
-                {copiedPassword ? (
-                  <Check size={20} color={theme.colors.success} />
-                ) : (
-                  <Copy size={20} color={theme.colors.primary} />
-                )}
-              </TouchableOpacity>
+        </Animated.View>
+      ) : (
+        // Mobile layout (unchanged)
+        <Animated.View 
+          entering={FadeIn.duration(500)}
+          style={styles.content}
+        >
+          <View style={styles.iconContainer}>
+            <Wifi size={48} color={theme.colors.primary} />
+          </View>
+  
+          <Text style={styles.title}>Connect to WiFi</Text>
+          <Text style={styles.description}>
+            Use these credentials to connect to the WiFi network in the apartment.
+          </Text>
+  
+          <View style={styles.detailsContainer}>
+            <View style={styles.detailCard}>
+              <Text style={styles.label}>Network Name (SSID)</Text>
+              <View style={styles.valueContainer}>
+                <Text style={styles.value}>{wifiDetails.ssid}</Text>
+                <TouchableOpacity
+                  style={styles.copyButton}
+                  onPress={() => copyToClipboard(wifiDetails.ssid, 'ssid')}
+                >
+                  {copiedSSID ? (
+                    <Check size={20} color={theme.colors.success} />
+                  ) : (
+                    <Copy size={20} color={theme.colors.primary} />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+  
+            <View style={styles.detailCard}>
+              <Text style={styles.label}>Password</Text>
+              <View style={styles.valueContainer}>
+                <Text style={styles.value}>{wifiDetails.password}</Text>
+                <TouchableOpacity
+                  style={styles.copyButton}
+                  onPress={() => copyToClipboard(wifiDetails.password, 'password')}
+                >
+                  {copiedPassword ? (
+                    <Check size={20} color={theme.colors.success} />
+                  ) : (
+                    <Copy size={20} color={theme.colors.primary} />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-
-        <View style={styles.tipsContainer}>
-          <Text style={styles.tipsTitle}>Connection Tips</Text>
-          <Text style={styles.tipText}>• Make sure WiFi is enabled on your device</Text>
-          <Text style={styles.tipText}>• Select the network name shown above</Text>
-          <Text style={styles.tipText}>• Enter the password exactly as shown</Text>
-          <Text style={styles.tipText}>• If you can't connect, try forgetting the network first</Text>
-        </View>
-
-        <Text style={styles.supportText}>
-          Having trouble connecting? Contact our support team for assistance.
-        </Text>
-      </Animated.View>
+  
+          <View style={styles.tipsContainer}>
+            <Text style={styles.tipsTitle}>Connection Tips</Text>
+            <Text style={styles.tipText}>• Make sure WiFi is enabled on your device</Text>
+            <Text style={styles.tipText}>• Select the network name shown above</Text>
+            <Text style={styles.tipText}>• Enter the password exactly as shown</Text>
+            <Text style={styles.tipText}>• If you can't connect, try forgetting the network first</Text>
+          </View>
+  
+          <Text style={styles.supportText}>
+            Having trouble connecting? Contact our support team for assistance.
+          </Text>
+        </Animated.View>
+      )}
     </View>
   );
 }
@@ -136,7 +204,7 @@ export default function WifiScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: Platform.OS === 'web' ? '#f9fafb' : theme.colors.background,
   },
   content: {
     flex: 1,
@@ -226,5 +294,94 @@ const styles = StyleSheet.create({
     color: theme.colors.textTertiary,
     textAlign: 'center',
     maxWidth: 300,
+  },
+  // Web-specific styles
+  webContent: {
+    padding: 24,
+    maxWidth: 600,
+    margin: '0 auto',
+  },
+  webCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    padding: 24,
+    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+    border: '1px solid #f0f0f0',
+  },
+  webIconContainer: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#f0f5ff',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '0 auto 24px',
+  },
+  webTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 8,
+    color: '#333',
+  },
+  webDescription: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 32,
+    color: '#666',
+  },
+  webDetailsContainer: {
+    marginBottom: 32,
+  },
+  webDetailRow: {
+    marginBottom: 16,
+  },
+  webLabel: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 8,
+  },
+  webValueContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#f9fafb',
+    borderRadius: 6,
+    padding: 12,
+    border: '1px solid #f0f0f0',
+  },
+  webValue: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#333',
+  },
+  webCopyButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#f0f5ff',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+  },
+  webTipsContainer: {
+    backgroundColor: '#f9fafb',
+    borderRadius: 8,
+    padding: 16,
+    border: '1px solid #f0f0f0',
+  },
+  webTipsTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 12,
+    color: '#333',
+  },
+  webTipText: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 8,
+    lineHeight: 20,
   },
 });

@@ -17,10 +17,10 @@ const isDesktop = screenWidth >= breakpoints.desktop;
 const isWeb = Platform.OS === 'web';
 
 const palette = {
-  primary: '#E9B872', // Warm sand
-  primaryDark: '#D09B52',
-  primaryLight: '#F7D8A6',
-  secondary: '#2E8B98', // Teal
+  primary: '#4A6FA5', // Modern blue
+  primaryDark: '#385582',
+  primaryLight: '#D0E0F7',
+  secondary: '#2E8B98', // Keep teal as secondary
   secondaryDark: '#1D6B78',
   secondaryLight: '#68B4C1',
   accent: '#E67E4F', // Terracotta
@@ -76,6 +76,53 @@ const getResponsiveSpacing = () => {
 const getResponsiveTypography = () => {
   const baseSize = isWeb && isDesktop ? 1.1 : isWeb && isTablet ? 1.05 : 1;
   
+  // Web-specific typography
+  if (isWeb) {
+    return {
+      heading: {
+        fontFamily: 'Inter_700Bold',
+        fontSize: Math.round(28 * baseSize),
+        lineHeight: Math.round(34 * baseSize),
+      },
+      subheading: {
+        fontFamily: 'Inter_600SemiBold',
+        fontSize: Math.round(20 * baseSize),
+        lineHeight: Math.round(24 * baseSize),
+      },
+      body: {
+        fontFamily: 'Inter_400Regular',
+        fontSize: Math.round(16 * baseSize),
+        lineHeight: Math.round(24 * baseSize),
+      },
+      bodyMedium: {
+        fontFamily: 'Inter_500Medium',
+        fontSize: Math.round(16 * baseSize),
+        lineHeight: Math.round(24 * baseSize),
+      },
+      bodySmall: {
+        fontFamily: 'Inter_400Regular',
+        fontSize: Math.round(14 * baseSize),
+        lineHeight: Math.round(20 * baseSize),
+      },
+      caption: {
+        fontFamily: 'Inter_400Regular',
+        fontSize: Math.round(12 * baseSize),
+        lineHeight: Math.round(16 * baseSize),
+      },
+      button: {
+        fontFamily: 'Inter_600SemiBold',
+        fontSize: Math.round(16 * baseSize),
+        lineHeight: Math.round(24 * baseSize),
+      },
+      buttonTextMedium: {
+        fontFamily: 'Inter_500Medium',
+        fontSize: Math.round(14 * baseSize),
+        lineHeight: Math.round(20 * baseSize),
+      }
+    };
+  }
+  
+  // Mobile typography (unchanged)
   return {
     heading: {
       fontFamily: 'PlayfairDisplay_700Bold',
@@ -158,9 +205,9 @@ export const theme = {
   shadows: {
     small: {
       shadowColor: palette.black,
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.05,
+      shadowRadius: 2,
       elevation: 2,
     },
     medium: {
@@ -189,4 +236,24 @@ export const theme = {
     maxWidth: isWeb ? (isDesktop ? 1200 : isTablet ? 768 : 480) : screenWidth,
     containerPadding: isWeb ? (isDesktop ? 40 : isTablet ? 24 : 16) : 16,
   },
+  // Web-specific styles
+  web: isWeb ? {
+    card: {
+      borderRadius: '8px',
+      boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+      border: '1px solid #f0f0f0',
+      backgroundColor: '#ffffff',
+    },
+    container: {
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '0 24px',
+    },
+    button: {
+      borderRadius: '6px',
+      padding: '10px 16px',
+      fontWeight: 500,
+      transition: 'all 0.2s ease',
+    }
+  } : undefined,
 };

@@ -77,7 +77,7 @@ export function PropertyHero({
   };
 
   const heroHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 400 : theme.layout.isTablet ? 350 : 300) 
+    ? (theme.layout.isDesktop ? 320 : theme.layout.isTablet ? 280 : 240) 
     : 300;
   
   return (
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   textContainer: {
     width: '100%',
     maxWidth: theme.layout.maxWidth,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
     paddingHorizontal: theme.layout.containerPadding,
   },
   title: {
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
     marginBottom: theme.spacing.xs,
-    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 32 : 28) : 28,
+    fontSize: theme.layout.isWeb ? (theme.layout.isDesktop ? 28 : 24) : 28,
   },
   subtitle: {
     ...theme.typography.bodyMedium,
