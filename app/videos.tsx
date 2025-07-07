@@ -16,7 +16,7 @@ export default function VideosScreen() {
         id: 1,
         title: 'Getting the Key Card',
         description: 'Instructions for getting the key card from the key box',
-        thumbnail: 'https://images.pexels.com/photos/4065906/pexels-photo-4065906.jpeg',
+        thumbnail: 'https://hirdavatfirsati.com/marelli-pass-bnb-air-bnb-fonksiyonlu-sifreli-celik-kapi-kilidi-kapi-gobegi-g-11959.jpg',
         url: 'https://www.youtube.com/shorts/XNzqKrwDKf8',
         icon: <Key size={24} color={theme.colors.white} />
       },
@@ -24,7 +24,7 @@ export default function VideosScreen() {
         id: 2,
         title: 'Entering the Building',
         description: 'How to use the key card to enter the building',
-        thumbnail: 'https://images.pexels.com/photos/3951355/pexels-photo-3951355.jpeg',
+        thumbnail: 'https://image.made-in-china.com/202f0j00uHibzKgWCLod/Smart-Hotel-Door-Lock-Remote-Management-Airbnb-Phone-Unlocking-Lock.webp',
         url: 'https://www.youtube.com/shorts/nWXkqDrRcyU',
         icon: <Key size={24} color={theme.colors.white} />
       }
@@ -34,7 +34,7 @@ export default function VideosScreen() {
         id: 1,
         title: 'How to Use Electronics',
         description: 'Guide for using TV, AC, and other electronic devices',
-        thumbnail: 'https://images.pexels.com/photos/3938465/pexels-photo-3938465.jpeg',
+        thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpyD9vfAlX2ovxnem8HeqNVDB7cFiJhFNp3w&s',
         url: 'https://youtu.be/HuYUrGQOR1E',
         icon: <Tv size={24} color={theme.colors.white} />
       }
@@ -54,7 +54,7 @@ export default function VideosScreen() {
         id: 1,
         title: 'Walking to Nearby Cafes - Part 1',
         description: 'Guide to finding nearby cafes and restaurants',
-        thumbnail: 'https://images.pexels.com/photos/2074130/pexels-photo-2074130.jpeg',
+        thumbnail: 'https://cdn.recetasderechupete.com/wp-content/uploads/2023/11/Cafe-americano-portada.jpg',
         url: 'https://youtu.be/RZJ0MxWX9v4',
         icon: <Coffee size={24} color={theme.colors.white} />
       },
@@ -62,7 +62,7 @@ export default function VideosScreen() {
         id: 2,
         title: 'Walking to Nearby Cafes - Part 2',
         description: 'More cafes and restaurants in the area',
-        thumbnail: 'https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg',
+        thumbnail: 'https://cdn.recetasderechupete.com/wp-content/uploads/2023/11/Cafe-americano-portada.jpg',
         url: 'https://youtu.be/rKdzIvFFjGQ',
         icon: <Coffee size={24} color={theme.colors.white} />
       },
