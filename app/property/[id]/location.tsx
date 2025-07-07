@@ -129,6 +129,27 @@ export default function LocationScreen() {
             icon: <Taxi size={24} color={theme.colors.secondary} />
           }
         ];
+      case '29051501': // Jardines Tropicales (default case moved here)
+        return [
+          {
+            id: 1,
+            title: "By Car",
+            description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
+            icon: <Car size={24} color={theme.colors.secondary} />
+          },
+          {
+            id: 2,
+            title: "By Bus",
+            description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
+            icon: <Bus size={24} color={theme.colors.secondary} />
+          },
+          {
+            id: 3,
+            title: "By Taxi/Uber",
+            description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
+            icon: <Taxi size={24} color={theme.colors.secondary} />
+          }
+        ];
       case '29051504': // Old Town
         return [
           {
@@ -172,27 +193,27 @@ export default function LocationScreen() {
           }
         ];
       default:
-        // Default to Jardines Tropicales
         return [
           {
             id: 1,
             title: "By Car",
-            description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
+            description: "Take the AP-7 highway and follow signs to your destination.",
             icon: <Car size={24} color={theme.colors.secondary} />
           },
           {
             id: 2,
             title: "By Bus",
-            description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
+            description: "Public transportation available from Málaga Airport.",
             icon: <Bus size={24} color={theme.colors.secondary} />
           },
           {
             id: 3,
             title: "By Taxi/Uber",
-            description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
+            description: "Book your ride with Uber or Bolt for convenient transportation.",
             icon: <Taxi size={24} color={theme.colors.secondary} />
           }
         ];
+    }
     }
   };
   
