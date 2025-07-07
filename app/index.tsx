@@ -133,7 +133,6 @@ export default function PropertiesScreen() {
               <Text style={styles.footerLink}>hello@ldguest.com</Text>
             </TouchableOpacity>
           </View>
-          </View>
         </ScrollView>
       </ResponsiveContainer>
     </View>
