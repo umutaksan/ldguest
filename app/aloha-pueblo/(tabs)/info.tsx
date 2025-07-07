@@ -74,63 +74,63 @@ export default function AlohaPuebloInfoScreen() {
   
   const faqs = [
     { 
-      id: 1, 
-      question: 'Does the apartment have a balcony?', 
-      answer: 'No, this apartment does not have a balcony.'
+      id: 1,
+      question: 'Does the apartment have a balcony?',
+      answer: 'The building has a balcony, a garden, and a terrace.'
     },
     { 
-      id: 2, 
-      question: 'Is there a pool?', 
+      id: 2,
+      question: 'Is there a pool?',
       answer: 'Yes, the building has a swimming pool for residents.'
     },
     { 
-      id: 3, 
-      question: 'Are pets allowed?', 
-      answer: 'Yes, pets are allowed. Please inform us in advance.'
+      id: 3,
+      question: 'Are pets allowed?',
+      answer: 'No, pets aren\'t allowed.'
     },
     { 
-      id: 4, 
-      question: 'Is check-in and check-out flexible?', 
+      id: 4,
+      question: 'Is check-in and check-out flexible?',
       answer: 'Check-in is flexible after 3:00 PM. Check-out is strict and must be completed by 10:00 AM.'
     },
     { 
-      id: 5, 
-      question: 'How many people can stay in the apartment?', 
-      answer: 'The apartment can accommodate up to 3 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room'
+      id: 5,
+      question: 'How many people can stay in the apartment?',
+      answer: 'The apartment can accommodate up to 4 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room'
     },
     { 
-      id: 6, 
-      question: 'Is there a discount for long-term stays?', 
+      id: 6,
+      question: 'Is there a discount for long-term stays?',
       answer: 'Yes, discounts are available for long-term stays.'
     },
     { 
-      id: 7, 
-      question: 'Is the area safe at night?', 
+      id: 7,
+      question: 'Is the area safe at night?',
       answer: 'Yes, the area is very safe, even late at night.'
     },
     { 
-      id: 8, 
-      question: 'How far is public transport?', 
+      id: 8,
+      question: 'How far is public transport?',
       answer: 'Public transport is within walking distance.'
     },
     { 
-      id: 9, 
-      question: 'How can I get to the apartment from the airport?', 
+      id: 9,
+      question: 'How can I get to the apartment from the airport?',
       answer: 'You can take a bus, Uber, or taxi to get to the apartment.'
     },
     { 
-      id: 10, 
-      question: 'Are laundry and cleaning supplies provided?', 
+      id: 10,
+      question: 'Are laundry and cleaning supplies provided?',
       answer: 'Yes, the apartment comes with all necessary laundry and cleaning supplies.'
     },
     { 
-      id: 11, 
-      question: 'What is the size of the apartment?', 
-      answer: 'The apartment is 45 m².'
+      id: 11,
+      question: 'What is the size of the apartment?',
+      answer: 'The apartment is 120 m².'
     },
     { 
-      id: 12, 
-      question: 'What is the heating and cooling system like?', 
+      id: 12,
+      question: 'What is the heating and cooling system like?',
       answer: 'The apartment is equipped with air conditioning and ceiling fans. Heating is provided through the air conditioning system.'
     }
   ];

@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { InfoCard } from '@/components/common/InfoCard';
-import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi } from 'lucide-react-native';
+import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi, Building } from 'lucide-react-native';
 
 export default function OldTownLocationScreen() {
   const insets = useSafeAreaInsets();
@@ -21,21 +21,21 @@ export default function OldTownLocationScreen() {
     {
       id: 1,
       title: "By Car",
-      description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town).",
+      description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town). Street parking is available nearby, or use Parking Parquesol garage (5-minute walk).",
       icon: <Car size={24} color={theme.colors.secondary} />
     },
     {
       id: 2,
       title: "By Bus",
-      description: "From Málaga Airport, take bus to Marbella Centro (40 min). The Old Town is within walking distance.",
+      description: "From Málaga Airport, take bus to Marbella Bus Station (40 min). From there, it's a 10-minute walk to the apartment through Avenida Ricardo Soriano and into the Old Town.",
       icon: <Bus size={24} color={theme.colors.secondary} />,
       action: handleOpenBusRoute,
       actionLabel: "View Bus Stop Location"
     },
     {
       id: 3,
-      title: "By Taxi",
-      description: "Book your ride with Uber or Bolt for convenient transportation. Available 24/7 from Málaga Airport or anywhere in Marbella.",
+      title: "By Taxi/Uber",
+      description: "The most convenient option from the airport. Ask to be dropped at Calle Málaga in Marbella Old Town. The narrow streets may require a short walk to the exact address.",
       icon: <Taxi size={24} color={theme.colors.secondary} />
     }
   ];
@@ -51,22 +51,27 @@ export default function OldTownLocationScreen() {
   const nearbyPOIs = [
     {
       name: 'Plaza de los Naranjos',
+      distance: '150m (2 min walk)',
+      hasVideo: false
+    },
+    {
+      name: 'Iglesia de la Encarnación',
       distance: '200m (3 min walk)',
       hasVideo: false
     },
     {
-      name: 'Marbella Old Town',
-      distance: '100m (2 min walk)',
-      hasVideo: false
-    },
-    {
       name: 'Avenida del Mar',
-      distance: '400m (5 min walk)',
+      distance: '350m (4 min walk)',
       hasVideo: false
     },
     {
       name: 'Marbella Beach',
-      distance: '600m (8 min walk)',
+      distance: '500m (6 min walk)',
+      hasVideo: false
+    },
+    {
+      name: 'Puerto Deportivo Marbella',
+      distance: '700m (9 min walk)',
       hasVideo: false
     }
   ];
