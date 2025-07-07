@@ -201,18 +201,18 @@ export default function VideosScreen() {
           nearby: [
             { 
               id: 1, 
+              title: 'Where is the washing machine?',
+              description: 'Location of the washing machine in your apartment',
+              thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/hqdefault.jpg',
+              url: 'https://youtube.com/shorts/QMOfnHMO-Z4',
+              icon: <WashingMachine size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
               title: 'From L&D Guest to Plaza de los Naranjos',
               description: 'Guide to reaching the famous Orange Square',
               thumbnail: 'https://i.ytimg.com/vi/ImuFuD6O2jY/maxresdefault.jpg',
               url: 'https://youtube.com/shorts/ImuFuD6O2jY',
-              icon: <MapPin size={24} color={theme.colors.white} />
-            },
-            { 
-              id: 2, 
-              title: 'From L&D Guest to Playa de la Venus',
-              description: 'Your Marbella Beach Guide',
-              thumbnail: 'https://i.ytimg.com/vi/dSdARXpjDIw/maxresdefault.jpg',
-              url: 'https://youtube.com/shorts/dSdARXpjDIw',
               icon: <MapPin size={24} color={theme.colors.white} />
             },
             { 

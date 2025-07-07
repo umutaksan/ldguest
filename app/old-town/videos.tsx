@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, WashingMachine } from 'lucide-react-native';
+import { Video, MapPin, Key, Coffee, Tv, WashingMachine } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -42,6 +42,14 @@ export default function OldTownVideosScreen() {
     nearby: [
       {
         id: 1,
+        title: 'Where is the washing machine?',
+        description: 'Location of the washing machine in your apartment',
+        thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/hqdefault.jpg',
+        url: 'https://youtube.com/shorts/QMOfnHMO-Z4',
+        icon: <WashingMachine size={24} color={theme.colors.white} />
+      },
+      {
+        id: 2,
         title: 'From L&D Guest to Plaza de los Naranjos',
         description: 'Guide to reaching the famous Orange Square',
         thumbnail: 'https://i.ytimg.com/vi/ImuFuD6O2jY/maxresdefault.jpg',
@@ -49,7 +57,7 @@ export default function OldTownVideosScreen() {
         icon: <MapPin size={24} color={theme.colors.white} />
       },
       {
-        id: 2,
+        id: 3,
         title: 'From L&D Guest to Playa de la Venus',
         description: 'Your Marbella Beach Guide',
         thumbnail: 'https://i.ytimg.com/vi/dSdARXpjDIw/maxresdefault.jpg',
@@ -57,7 +65,7 @@ export default function OldTownVideosScreen() {
         icon: <MapPin size={24} color={theme.colors.white} />
       },
       {
-        id: 3,
+        id: 4,
         title: 'Exploring Old Town Streets',
         description: 'Guide to the charming narrow streets and historic sites',
         thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
