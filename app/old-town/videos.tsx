@@ -109,6 +109,7 @@ export default function OldTownVideosScreen() {
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
+      >
         {renderVideoSection('House Access & Information', videos.houseGuides, <Key size={20} color={theme.colors.primary} />)}
         {renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
       </ScrollView>
