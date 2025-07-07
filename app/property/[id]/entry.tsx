@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video } from 'lucide-react-native';
+import { Video, Play } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
@@ -63,10 +63,13 @@ export default function EntryScreen() {
         };
       default:
         return {
-          title: 'Entry Instructions',
-          description: 'Welcome to your L&D Guest property! Here are the entry instructions.',
-          note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
-          hasKeyImages: false
+          description: 'Location\nEdificio Sol is located on Calle Malaga. You will find our building easily identifiable.',
+          note: 'Access Information\n• The main door to the building will be open\n\n• If you find it closed, please contact us immediately\n\n• Your apartment is number 1 on the first floor\n\n• The access code will be sent to you one day before your stay',
+          hasKeyImages: true,
+          keyImages: [
+            'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_331,h_441,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png'
+          ],
+          videoUrl: 'https://youtube.com/shorts/CqmjJsOKGSk?feature=share'
         };
     }
   };
@@ -191,10 +194,10 @@ export default function EntryScreen() {
             {entryInstructions.videoUrl && id !== '29051503' && (
               <TouchableOpacity 
                 style={styles.watchVideoButton}
-                onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
+                onPress={() => handleWatchVideo(entryInstructions.videoUrl)}
                 activeOpacity={0.8}
               >
-                <Video size={20} color={theme.colors.white} />
+                <Play size={20} color={theme.colors.white} />
                 <Text style={styles.watchVideoText}>Watch Entry Video</Text>
               </TouchableOpacity>
             )}

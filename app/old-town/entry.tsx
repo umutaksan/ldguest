@@ -22,35 +22,46 @@ export default function OldTownEntryScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        <Text style={styles.description}>
-          Location
-          {'\n'}Edificio Sol is located on Calle Malaga. You will find our building easily identifiable.
-        </Text>
-        
-        <Text style={styles.description}>
-          Access Information
-          {'\n'}• The main door to the building will be open
-          {'\n\n'}• If you find it closed, please contact us immediately
-          {'\n\n'}• Your apartment is number 1 on the first floor
-          {'\n\n'}• The access code will be sent to you one day before your stay
-        </Text>
-        
-        <View style={styles.imageContainer}>
-          <Image 
-            source={{ uri: 'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_331,h_441,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png' }}
-            style={styles.entryImage}
-            resizeMode="cover"
-          />
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Entry Instructions</Text>
+          <Text style={styles.description}>
+            Welcome to your Old Town apartment! Here are the entry instructions for Calle Málaga.
+            {'\n\n'}
+            The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
+          </Text>
         </View>
-        
-        <TouchableOpacity 
-          style={styles.watchVideoButton}
-          onPress={handleWatchVideo}
-          activeOpacity={0.8}
-        >
-          <Play size={20} color={theme.colors.white} />
-          <Text style={styles.watchVideoText}>Watch Entry Video</Text>
-        </TouchableOpacity>
+
+        <View style={styles.section}>
+          <Text style={styles.description}>
+            Location
+            {'\n'}Edificio Sol is located on Calle Malaga. You will find our building easily identifiable.
+          </Text>
+          
+          <Text style={styles.description}>
+            Access Information
+            {'\n'}• The main door to the building will be open
+            {'\n\n'}• If you find it closed, please contact us immediately
+            {'\n\n'}• Your apartment is number 1 on the first floor
+            {'\n\n'}• The access code will be sent to you one day before your stay
+          </Text>
+          
+          <View style={styles.imageContainer}>
+            <Image 
+              source={{ uri: 'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_331,h_441,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png' }}
+              style={styles.entryImage}
+              resizeMode="cover"
+            />
+          </View>
+          
+          <TouchableOpacity 
+            style={styles.watchVideoButton}
+            onPress={handleWatchVideo}
+            activeOpacity={0.8}
+          >
+            <Play size={20} color={theme.colors.white} />
+            <Text style={styles.watchVideoText}>Watch Entry Video</Text>
+          </TouchableOpacity>
+        </View>
 
         <Text style={styles.note}>
           We wish you a pleasant stay in Marbella Old Town.
@@ -96,20 +107,12 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
   },
   imageContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: theme.spacing.l,
     alignItems: 'center',
+    marginVertical: theme.spacing.m,
   },
   entryImage: {
     width: '100%',
     height: 400,
-    borderRadius: theme.borderRadius.m,
-    ...theme.shadows.small,
-  },
-  keyImage: {
-    width: '100%',
-    height: imageHeight,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
   },
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: theme.spacing.l,
+    marginBottom: theme.spacing.m,
     ...theme.shadows.small,
   },
   watchVideoText: {
