@@ -29,7 +29,7 @@ export default function OldTownVideosScreen() {
         icon: <Clock size={24} color={theme.colors.white} />
       },
       {
-        id: 1,
+        id: 3,
         title: 'Old Town Apartment Tour',
         description: 'Complete tour of your historic Old Town apartment',
         thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
