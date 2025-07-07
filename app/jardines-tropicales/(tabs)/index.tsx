@@ -36,22 +36,11 @@ export default function JardinesTropicalesHomeScreen() {
         <PropertyHero
           title="1+1 Jardines Tropicales Puerto Banús"
           subtitle="Thank you for your reservation!"
-          registrationNumber="REGISTRO AUTONÓMICO: VUT/MA/78324"
           registrationNumber="REGISTRO AUTONÓMICO: NRA-MA-02369"
           imageUrl="https://a0.muscache.com/im/pictures/miso/Hosting-1316607383752040451/original/4009975e-0d1a-450c-9458-88acab09ef65.png?im_w=1440&im_format=avif"
         />
 
         <ResponsiveContainer>
-          <View style={styles.alertContainer}>
-            <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
-            <Text style={styles.alertText}>
-              According to Spanish law, all guests must upload valid passport or ID documents to the system before check-in.
-            </Text>
-            <Text style={styles.alertText}>
-              Please complete this process through the ID upload link provided to you via the platform where you made your reservation.
-            </Text>
-          </View>
-          
           <View style={styles.alertContainer}>
             <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
             <Text style={styles.alertText}>
@@ -320,25 +309,6 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24, 
     height: 24, 
-  },
-  alertContainer: {
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  alertTitle: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.s,
-    fontWeight: '600',
-  },
-  alertText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.xs,
   },
   alertContainer: {
     backgroundColor: theme.colors.primaryLight,

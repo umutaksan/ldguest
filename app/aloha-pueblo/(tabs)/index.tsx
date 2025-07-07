@@ -35,21 +35,10 @@ export default function AlohaPuebloHomeScreen() {
         <PropertyHero
           title="1+1 Aloha Pueblo Townhouse"
           subtitle="Thank you for your reservation!"
-          registrationNumber="REGISTRO AUTONÓMICO: VUT/MA/76801"
           registrationNumber="REGISTRO AUTONÓMICO: NRA-MA-02370"
           imageUrl="https://cf.bstatic.com/xdata/images/hotel/max1024x768/681135350.jpg?k=fc73c36cd1371fe8efdc2e947ec5aa836557ffe9210d4e33aadbb0e8f237d43a&o=&hp=1"
         />
 
-        <View style={styles.alertContainer}>
-          <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
-          <Text style={styles.alertText}>
-            According to Spanish law, all guests must upload valid passport or ID documents to the system before check-in.
-          </Text>
-          <Text style={styles.alertText}>
-            Please complete this process through the ID upload link provided to you via the platform where you made your reservation.
-          </Text>
-        </View>
-        
         <View style={styles.alertContainer}>
           <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
           <Text style={styles.alertText}>
@@ -317,25 +306,6 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24, 
     height: 24, 
-  },
-  alertContainer: {
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  alertTitle: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.s,
-    fontWeight: '600',
-  },
-  alertText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.xs,
   },
   alertContainer: {
     backgroundColor: theme.colors.primaryLight,
