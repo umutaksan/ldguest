@@ -392,7 +392,7 @@ export default function InfoScreen() {
               {rules.map((rule, index) => (
                 <Animated.View 
                   key={rule.id}
-                  entering={FadeIn.delay(index * 100)}
+                  entering={FadeInDown.delay(index * 100)}
                   style={[
                     styles.ruleCard,
                     isLargeScreen && styles.ruleCardLarge,
@@ -415,231 +415,51 @@ export default function InfoScreen() {
             styles.amenitiesSection,
             isLargeScreen && styles.amenitiesSectionLarge
           ]}>
-        <View style={styles.divider} />
-        
-        <Text style={[
-          styles.sectionTitle,
-          isLargeScreen && styles.sectionTitleLarge
-        ]} id="faq-section">Frequently Asked Questions</Text>
-        
-        <View style={[
-          styles.faqContainer,
-          isLargeScreen && styles.faqContainerLarge
-        ]}>
-          {faqs.map((faq, index) => (
-            <Animated.View 
-              key={faq.id}
-              entering={FadeInDown.delay(index * 100)}
-              style={styles.faqItem}
-            >
-              <TouchableOpacity
-                style={styles.faqQuestion}
-                onPress={() => toggleFaq(faq.id)}
-                activeOpacity={0.8}
-              >
-                <Text style={[
-                  styles.faqQuestionText,
-                  isLargeScreen && styles.faqQuestionTextLarge
-                ]}>{faq.question}</Text>
-                {expandedFaq === faq.id ? (
-                  <ChevronUp size={20} color={theme.colors.text} />
-                ) : (
-                  <ChevronDown size={20} color={theme.colors.text} />
-                )}
-              </TouchableOpacity>
-              
-              {expandedFaq === faq.id && (
-                <View style={styles.faqAnswer}>
-                  <Text style={[
-                    styles.faqAnswerText,
-                    isLargeScreen && styles.faqAnswerTextLarge
-                  ]}>{faq.answer}</Text>
-                </View>
-              )}
-            </Animated.View>
-          ))}
-        </View>
-      </ScrollView>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.background,
-  },
-  content: {
-    padding: theme.spacing.m,
-  },
-  contentLarge: {
-    maxWidth: 1200,
-    alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl,
-  },
-  mainContent: {
-    width: '100%',
-  },
-  mainContentLarge: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  rulesSection: {
-    width: '100%',
-  },
-  rulesSectionLarge: {
-    width: '60%',
-    paddingRight: theme.spacing.l,
-  },
-  amenitiesSection: {
-    width: '100%',
-  },
-  amenitiesSectionLarge: {
-    width: '35%',
-  },
-  sectionTitle: {
-    ...theme.typography.subheading,
-    marginBottom: theme.spacing.m,
-  },
-  sectionTitleLarge: {
-    fontSize: 24,
-    marginBottom: theme.spacing.l,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: theme.colors.border,
-    marginVertical: theme.spacing.l,
-  },
-  rulesGrid: {
-    flexDirection: 'column',
-  },
-  rulesGridLarge: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  rulesGridMedium: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  ruleCard: {
-    flexDirection: 'row',
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-    width: '100%',
-  },
-  ruleCardLarge: {
-    width: '48%',
-  },
-  ruleCardMedium: {
-    width: '48%',
-  },
-  ruleIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: theme.colors.secondaryLight,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: theme.spacing.m,
-  },
-  ruleContent: {
-    flex: 1,
-  },
-  ruleTitle: {
-    ...theme.typography.bodyMedium,
-    marginBottom: theme.spacing.xs,
-  },
-  ruleDescription: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-  },
-  faqContainer: {
-    width: '100%',
-  },
-  faqContainerLarge: {
-    maxWidth: 800,
-    alignSelf: 'center',
-  },
-  faqItem: {
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    marginBottom: theme.spacing.m,
-    overflow: 'hidden',
-    ...theme.shadows.small,
-  },
-  faqQuestion: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: theme.spacing.m,
-  },
-  faqQuestionText: {
-    ...theme.typography.bodyMedium,
-    flex: 1,
-    marginRight: theme.spacing.s,
-  },
-  faqQuestionTextLarge: {
-    fontSize: 18,
-  },
-  faqAnswer: {
-    padding: theme.spacing.m,
-    paddingTop: 0,
-    borderTopWidth: 1,
-    borderTopColor: theme.colors.border,
-  },
-  faqAnswerText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-  },
-  faqAnswerTextLarge: {
-    fontSize: 16,
-  },
-});
-          styles.sectionTitle,
-          isLargeScreen && styles.sectionTitleLarge
-        ]}>Frequently Asked Questions</Text>
-        
-        <View style={[
-          styles.faqContainer,
-          isLargeScreen && styles.faqContainerLarge
-        ]}>
-          {faqs.map((faq, index) => (
-            <Animated.View 
-              key={faq.id}
-              entering={FadeInDown.delay(index * 100)}
-              style={styles.faqItem}
-            >
-              <TouchableOpacity
-                style={styles.faqQuestion}
-                onPress={() => toggleFaq(faq.id)}
-                activeOpacity={0.8}
-              >
-                <Text style={[
-                  styles.faqQuestionText,
-                  isLargeScreen && styles.faqQuestionTextLarge
-                ]}>{faq.question}</Text>
-                {expandedFaq === faq.id ? (
-                  <ChevronUp size={20} color={theme.colors.text} />
-                ) : (
-                  <ChevronDown size={20} color={theme.colors.text} />
-                )}
-              </TouchableOpacity>
-              
-              {expandedFaq === faq.id && (
-                <View style={styles.faqAnswer}>
-                  <Text style={[
-                    styles.faqAnswerText,
-                    isLargeScreen && styles.faqAnswerTextLarge
-                  ]}>{faq.answer}</Text>
-                </View>
-              )}
-            </Animated.View>
-          ))}
+            <View style={styles.divider} />
+            
+            <Text style={[
+              styles.sectionTitle,
+              isLargeScreen && styles.sectionTitleLarge
+            ]}>Frequently Asked Questions</Text>
+            
+            <View style={[
+              styles.faqContainer,
+              isLargeScreen && styles.faqContainerLarge
+            ]}>
+              {faqs.map((faq, index) => (
+                <Animated.View 
+                  key={faq.id}
+                  entering={FadeInDown.delay(index * 100)}
+                  style={styles.faqItem}
+                >
+                  <TouchableOpacity
+                    style={styles.faqQuestion}
+                    onPress={() => toggleFaq(faq.id)}
+                    activeOpacity={0.8}
+                  >
+                    <Text style={[
+                      styles.faqQuestionText,
+                      isLargeScreen && styles.faqQuestionTextLarge
+                    ]}>{faq.question}</Text>
+                    {expandedFaq === faq.id ? (
+                      <ChevronUp size={20} color={theme.colors.text} />
+                    ) : (
+                      <ChevronDown size={20} color={theme.colors.text} />
+                    )}
+                  </TouchableOpacity>
+                  
+                  {expandedFaq === faq.id && (
+                    <View style={styles.faqAnswer}>
+                      <Text style={[
+                        styles.faqAnswerText,
+                        isLargeScreen && styles.faqAnswerTextLarge
+                      ]}>{faq.answer}</Text>
+                    </View>
+                  )}
+                </Animated.View>
+              ))}
+            </View>
+          </View>
         </View>
       </ScrollView>
     </View>
