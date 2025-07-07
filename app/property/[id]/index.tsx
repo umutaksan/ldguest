@@ -207,15 +207,6 @@ export default function PropertyScreen() {
             />
           </View>
 
-          <View style={styles.row}>
-            <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              onPress={() => navigateToSection('photos')}
-              delay={13}
-            />
-          </View>
-        </View>
 
         <TouchableOpacity 
           style={styles.promoContainer}

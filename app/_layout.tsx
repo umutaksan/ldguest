@@ -54,7 +54,7 @@ export default function RootLayout() {
         <Stack.Screen name="property/[id]/luggage" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/car-rental" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/parking" options={{ headerShown: false }} />
-        
+
         <Stack.Screen name="cleaning" options={{ headerShown: false }} />
         <Stack.Screen name="sql-editor" options={{ headerShown: false }} />
         <Stack.Screen name="wifi-passwords" options={{ headerShown: false }} />

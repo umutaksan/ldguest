@@ -145,15 +145,6 @@ export default function AlohaPuebloHomeScreen() {
             />
           </View>
 
-          <View style={styles.row}>
-            <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              route="/photos"
-              delay={13}
-            />
-          </View>
-        </View>
 
         <TouchableOpacity 
           style={styles.promoContainer}
