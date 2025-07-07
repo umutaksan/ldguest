@@ -78,7 +78,7 @@ export default function InfoScreen() {
   // Get FAQs based on property ID
   const getFaqs = () => {
     switch(id) {
-      case '29051501': // Jardines Tropicales
+      case '29051501': // Jardines Tropicales - Modern Apartment (1+1)
         return [
           { 
             id: 1, 
@@ -141,11 +141,11 @@ export default function InfoScreen() {
             answer: 'The apartment is equipped with air conditioning and ceiling fans. Heating is provided through the air conditioning system.'
           }
         ];
-      case '29051502': // Seaview Fontanilla
+      case '29051502': // Seaview Fontanilla - Beachfront Apartment (2+1)
         return [
           { 
             id: 1, 
-            question: 'How close is the apartment to the beach?', 
+            question: 'How close is the apartment to the beach?',
             answer: 'The apartment is beachfront, with the beach right outside the door.'
           },
           { 
@@ -214,12 +214,12 @@ export default function InfoScreen() {
             answer: 'The apartment is equipped with air conditioning and ceiling fans. Heating is provided through the air conditioning system.'
           }
         ];
-      case '29051503': // Aloha Pueblo
+      case '29051503': // Aloha Pueblo (1+1)
         return [
           { 
             id: 1, 
-            question: 'Does the apartment have a balcony?', 
-            answer: 'No, this apartment does not have a balcony.'
+            question: 'Does the apartment have a balcony?',
+            answer: 'The building has a balcony, a garden, and a terrace.'
           },
           { 
             id: 2, 
@@ -229,7 +229,7 @@ export default function InfoScreen() {
           { 
             id: 3, 
             question: 'Are pets allowed?', 
-            answer: 'Yes, pets are allowed. Please inform us in advance.'
+            answer: 'No, pets aren\'t allowed.'
           },
           { 
             id: 4, 
@@ -239,7 +239,7 @@ export default function InfoScreen() {
           { 
             id: 5, 
             question: 'How many people can stay in the apartment?', 
-            answer: 'The apartment can accommodate up to 3 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room'
+            answer: 'The apartment can accommodate up to 4 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room'
           },
           { 
             id: 6, 
@@ -269,7 +269,7 @@ export default function InfoScreen() {
           { 
             id: 11, 
             question: 'What is the size of the apartment?', 
-            answer: 'The apartment is 45 m².'
+            answer: 'The apartment is 120 m².'
           },
           { 
             id: 12, 
@@ -277,62 +277,62 @@ export default function InfoScreen() {
             answer: 'The apartment is equipped with air conditioning and ceiling fans. Heating is provided through the air conditioning system.'
           }
         ];
-      case '29051504': // Old Town
+      case '29051504': // Old Town - Central Apartment (3+1)
         return [
           { 
             id: 1, 
-            question: 'Does the apartment have a balcony?', 
-            answer: 'No, this apartment does not have a balcony.'
+            question: 'Does the apartment have balconies?',
+            answer: 'Yes, the apartment has three balconies with charming city views.'
           },
           { 
             id: 2, 
-            question: 'Is there a pool?', 
-            answer: 'Yes, the building has a swimming pool for residents.'
+            question: 'Are pets allowed?',
+            answer: 'Yes, pets are welcome. Please let us know in advance.'
           },
           { 
             id: 3, 
-            question: 'Are pets allowed?', 
-            answer: 'Yes, pets are allowed. Please inform us in advance.'
-          },
-          { 
-            id: 4, 
             question: 'Is check-in and check-out flexible?', 
             answer: 'Check-in is flexible after 3:00 PM. Check-out is strict and must be completed by 10:00 AM.'
           },
           { 
-            id: 5, 
+            id: 4, 
             question: 'How many people can stay in the apartment?', 
-            answer: 'The apartment can accommodate up to 3 people. Sleeping arrangements:\n• 1 bedroom with a double bed\n• 1 sofa bed in the living room'
+            answer: 'The apartment can host up to 6 people. Sleeping arrangements:\n• 3 bedrooms with double beds\n• 2 sofa beds in the living room'
+          },
+          { 
+            id: 5, 
+            question: 'Is there a discount for long-term stays?', 
+            answer: 'Yes, we provide discounts for extended stays.'
           },
           { 
             id: 6, 
-            question: 'Is there a discount for long-term stays?', 
-            answer: 'Yes, discounts are available for long-term stays.'
+            question: 'Is the area safe at night?', 
+            answer: 'Yes, the area is very safe, even at night.'
           },
           { 
             id: 7, 
-            question: 'Is the area safe at night?', 
-            answer: 'Yes, the area is very safe, even late at night.'
-          },
-          { 
-            id: 8, 
             question: 'How far is public transport?', 
             answer: 'Public transport is within walking distance.'
           },
           { 
-            id: 9, 
+            id: 8, 
             question: 'How can I get to the apartment from the airport?', 
             answer: 'You can take a bus, Uber, or taxi to get to the apartment.'
           },
           { 
+            id: 9, 
+            question: 'Are laundry and cleaning supplies provided?',
+            answer: 'Yes, laundry and cleaning supplies are provided in the apartment.'
+          },
+          { 
             id: 10, 
-            question: 'Are laundry and cleaning supplies provided?', 
-            answer: 'Yes, the apartment comes with all necessary laundry and cleaning supplies.'
+            question: 'Is there a pool?',
+            answer: 'No, this apartment does not have a pool.'
           },
           { 
             id: 11, 
-            question: 'What is the size of the apartment?', 
-            answer: 'The apartment is 45 m².'
+            question: 'What is the size of the apartment?',
+            answer: 'The apartment is 105 m².'
           },
           { 
             id: 12, 
