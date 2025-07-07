@@ -12,31 +12,55 @@ export default function SeaviewVideosScreen() {
 
   const videos = {
     houseGuides: [
-      {
-        id: 1,
-        title: 'Apartment Tour',
-        description: 'Complete tour of your Seaview apartment',
-        thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
-        url: '#',
+      { 
+        id: 1, 
+        title: 'How Do Propellers Work?',
+        description: 'Educational video explaining propeller mechanics',
+        thumbnail: 'https://i.ytimg.com/vi/0l6igtzY0xQ/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/0l6igtzY0xQ?feature=share',
         icon: <Tv size={24} color={theme.colors.white} />
+      },
+      { 
+        id: 2, 
+        title: 'How Does a Coffee Machine Work?',
+        description: 'Learn about the mechanics of coffee machines',
+        thumbnail: 'https://i.ytimg.com/vi/XiKCGNhC9TY/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/XiKCGNhC9TY?feature=share',
+        icon: <Coffee size={24} color={theme.colors.white} />
       }
     ],
-    nearby: [
-      {
-        id: 1,
-        title: 'Walking to Fontanilla Beach',
-        description: 'Short walk to the beautiful Fontanilla Beach',
-        thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-        url: '#',
+    propertyGuides: [
+      { 
+        id: 1, 
+        title: 'How do I get to the pool?',
+        description: 'Guide to finding and accessing the swimming pool',
+        thumbnail: 'https://i.ytimg.com/vi/mxsMDPfzOuQ/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/mxsMDPfzOuQ?feature=share',
+        icon: <Palmtree size={24} color={theme.colors.white} />
+      },
+      { 
+        id: 2, 
+        title: 'How do I get to the beach? (Part 1)',
+        description: 'Directions to the nearest beach from your apartment',
+        thumbnail: 'https://i.ytimg.com/vi/u83ykP_syVM/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/u83ykP_syVM',
         icon: <MapPin size={24} color={theme.colors.white} />
       },
-      {
-        id: 2,
-        title: 'Marbella Old Town Walk',
-        description: 'How to walk to Marbella Old Town from the apartment',
-        thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-        url: '#',
-        icon: <Coffee size={24} color={theme.colors.white} />
+      { 
+        id: 3, 
+        title: 'How do I get to the beach? (Part 2)',
+        description: 'Additional beach access information',
+        thumbnail: 'https://i.ytimg.com/vi/lMyemV_CiU4/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/lMyemV_CiU4?feature=share',
+        icon: <MapPin size={24} color={theme.colors.white} />
+      },
+      { 
+        id: 4, 
+        title: 'How to Open and Close the Sunshade?',
+        description: 'Instructions for operating the sunshade',
+        thumbnail: 'https://i.ytimg.com/vi/us5KRyyCWMA/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/us5KRyyCWMA?feature=share',
+        icon: <Tv size={24} color={theme.colors.white} />
       }
     ]
   };
@@ -95,8 +119,8 @@ export default function SeaviewVideosScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        {renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
+        {renderVideoSection('Educational Videos', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
+        {renderVideoSection('Property Guides', videos.propertyGuides, <MapPin size={20} color={theme.colors.primary} />)}
       </ScrollView>
     </View>
   );
