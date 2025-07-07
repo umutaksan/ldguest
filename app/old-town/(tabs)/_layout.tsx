@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
-import { Platform, View } from 'react-native';
+import { Platform, View, Text } from 'react-native';
 import { Chrome as Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
@@ -45,6 +45,7 @@ export default function TabLayout() {
         tabBarIconStyle: {
           marginBottom: 0,
         },
+        tabBarIcon: ({ focused }) => null, // Default empty icon
       }}
     >
       <Tabs.Screen
@@ -53,7 +54,7 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Home size={24} color={color} />
+              <Home size={size} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -67,7 +68,7 @@ export default function TabLayout() {
           title: 'Explore',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Compass size={24} color={color} />
+              <Compass size={size} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -81,7 +82,7 @@ export default function TabLayout() {
           title: 'Guide',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <BookOpen size={24} color={color} />
+              <BookOpen size={size} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -95,7 +96,7 @@ export default function TabLayout() {
           title: 'Info',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Info size={24} color={color} />
+              <Info size={size} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -109,7 +110,7 @@ export default function TabLayout() {
           title: 'Contact',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Phone size={24} color={color} />
+              <Phone size={size} color={color} />
             </View>
           ),
           tabBarItemStyle: {

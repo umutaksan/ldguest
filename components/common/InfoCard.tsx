@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ViewStyle } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
 import { ChevronRight } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 type InfoCardProps = {
   title: string;
@@ -28,13 +28,13 @@ export function InfoCard({
   return (
     <Animated.View entering={FadeIn.delay(delay * 100)}>
       <CardComponent
-        style={[styles.container, onPress && styles.touchable, style]}
+        style={[styles.container, style]}
         onPress={onPress}
         activeOpacity={0.8}
       >
         {icon && <View style={styles.iconContainer}>{icon}</View>}
         <View style={styles.content}>
-          <Text style={[styles.title, { marginBottom: description ? theme.spacing.xs : 0 }]}>{title}</Text>
+          <Text style={styles.title}>{title}</Text>
           {description && <Text style={styles.description}>{description}</Text>}
         </View>
         {showChevron && onPress && (
@@ -54,11 +54,6 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
     ...theme.shadows.small,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-  },
-  touchable: {
-    borderColor: theme.colors.primaryLight,
   },
   iconContainer: {
     marginRight: theme.spacing.m,
@@ -69,6 +64,7 @@ const styles = StyleSheet.create({
   title: {
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
+    marginBottom: theme.spacing.xs,
   },
   description: {
     ...theme.typography.bodySmall,

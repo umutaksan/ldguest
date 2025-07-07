@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video } from 'lucide-react-native';
+import { Video, Key } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
@@ -24,14 +24,8 @@ export default function EntryScreen() {
           <Text style={styles.sectionTitle}>Step 1: Getting the Key Card</Text>
           <Text style={styles.description}>
             Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
-          </Text>
-          
-          <Text style={styles.description}>
-            The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
-          </Text>
-          
-          <Text style={styles.description}>
-            To enter the house, first you need to take the black bar of the main door and the key card for entry from the designated location.
+            {'\n\n'}
+            The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM. To enter the house, first you need to take the black bar of the main door and the key card for entry from the designated location.
           </Text>
 
           <TouchableOpacity 
@@ -48,10 +42,7 @@ export default function EntryScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Step 2: Entering the Building</Text>
           <Text style={styles.description}>
-            After taking the black bar and the key card, use the black bar to open the main door.
-          </Text>
-          <Text style={styles.description}>
-            When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system. Your access code is ******#.
+            After taking the black bar and the key card, use the black bar to open the main door. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system. Your access code is ******#.
           </Text>
           
           <TouchableOpacity 
@@ -68,13 +59,10 @@ export default function EntryScreen() {
           <Text style={styles.sectionTitle}>Step 3: Using the Keys</Text>
           <Text style={styles.description}>
             Here's what you need to know about the keys and entry system:
-          </Text>
-          <Text style={styles.keyPoint}>• Use the black bar to open the main entrance door</Text>
-          <Text style={styles.keyPoint}>• The key set includes all necessary keys for your stay</Text>
-          <Text style={styles.keyPoint}>• Scan the key card where it says "LOCK" to enter the building</Text>
-          
-          <Text style={styles.description}>
-            Please keep your keys secure throughout your stay.
+            {'\n\n'}
+            1. Use the black bar to open the main entrance door
+            {'\n'}2. The key set includes all necessary keys for your stay
+            {'\n'}3. Scan the key card where it says "LOCK" to enter the building
           </Text>
         </View>
 
@@ -105,12 +93,6 @@ const styles = StyleSheet.create({
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
-  },
-  keyPoint: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.s,
-    paddingLeft: theme.spacing.m,
   },
   imageContainer: {
     marginVertical: theme.spacing.m,

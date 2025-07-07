@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import { useRouter } from 'expo-router';
-import Animated, { FadeIn } from 'react-native-reanimated';
 import { theme } from '@/constants/theme';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 type SectionCardProps = {
   title: string;
@@ -25,10 +25,10 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
   };
 
   const cardWidth = theme.layout.isWeb && theme.layout.isDesktop 
-    ? '49%' 
+    ? '48%' 
     : theme.layout.isWeb && theme.layout.isTablet 
-    ? '49%' 
-    : '49%';
+    ? '48%' 
+    : '48%';
 
   const cardHeight = theme.layout.isWeb 
     ? (theme.layout.isDesktop ? 160 : 140) 
@@ -55,13 +55,18 @@ const styles = StyleSheet.create({
     padding: theme.spacing.s,
   },
   card: {
-    width: '100%',
+    flex: 1,
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
     ...theme.shadows.small,
+    // Web-specific hover effects
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease-in-out',
+    }),
   },
   iconContainer: {
     width: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,

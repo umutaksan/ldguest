@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Animated, { FadeIn } from 'react-native-reanimated';
-import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, ExternalLink } from 'lucide-react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '@/constants/theme';
+import { PageHeader } from '@/components/common/PageHeader';
+import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv } from 'lucide-react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function AlohaPuebloVideosScreen() {
   const insets = useSafeAreaInsets();
@@ -62,7 +62,6 @@ export default function AlohaPuebloVideosScreen() {
             style={styles.videoCard}
             onPress={() => handleWatchVideo(video.url)}
             activeOpacity={0.9}
-            disabled={video.url === '#'}
           >
             <Image 
               source={{ uri: video.thumbnail }}
@@ -80,7 +79,7 @@ export default function AlohaPuebloVideosScreen() {
                 <Text style={styles.videoTitle}>{video.title}</Text>
                 <Text style={styles.videoDescription}>{video.description}</Text>
               </View>
-              <ExternalLink size={24} color={theme.colors.white} />
+              <Video size={24} color={theme.colors.white} />
             </LinearGradient>
           </TouchableOpacity>
         </Animated.View>
@@ -127,11 +126,9 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.spacing.l,
+    marginBottom: theme.spacing.m,
     backgroundColor: theme.colors.card,
     ...theme.shadows.medium,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
   },
   thumbnail: {
     width: '100%',
@@ -156,23 +153,17 @@ const styles = StyleSheet.create({
     marginRight: theme.spacing.m,
   },
   videoInfo: {
-    flex: 1, 
+    flex: 1,
     marginRight: theme.spacing.m,
   },
   videoTitle: {
     ...theme.typography.bodyMedium,
     color: theme.colors.white,
-    marginBottom: 4,
-    textShadowColor: 'rgba(0,0,0,0.5)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+    marginBottom: theme.spacing.xs,
   },
   videoDescription: {
     ...theme.typography.bodySmall,
     color: theme.colors.white,
     opacity: 0.8,
-    textShadowColor: 'rgba(0,0,0,0.5)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
   },
 });

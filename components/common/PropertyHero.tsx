@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking, Platform } from 'react-native';
+import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ChevronLeft, Chrome as Home, Share, Heart, Building2 } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
-import { theme } from '@/constants/theme';
 
 type PropertyHeroProps = {
   title: string;
@@ -177,6 +177,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: theme.spacing.s,
+    // Web-specific styles
+    ...(theme.layout.isWeb && {
+      cursor: 'pointer',
+      transition: 'all 0.2s ease-in-out',
+    }),
   },
   textContainer: {
     width: '100%',
