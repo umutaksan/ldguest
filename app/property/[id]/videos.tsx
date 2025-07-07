@@ -190,7 +190,7 @@ export default function VideosScreen() {
               icon: <MapPin size={24} color={theme.colors.white} />
             },
             {
-              id: 2,
+              id: 3,
               title: 'Exploring Old Town Streets',
               description: 'Guide to the charming narrow streets and historic sites',
               thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
