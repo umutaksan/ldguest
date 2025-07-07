@@ -468,12 +468,12 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.spacing.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   contentLarge: {
     maxWidth: 1200,
     alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl,
+    paddingHorizontal: theme.spacing.l,
   },
   mainContent: {
     width: '100%',
@@ -497,16 +497,19 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      fontSize: 18,
+    }),
   },
   sectionTitleLarge: {
-    fontSize: 24,
-    marginBottom: theme.spacing.l,
+    fontSize: 20,
+    marginBottom: theme.spacing.m,
   },
   divider: {
     height: 1,
     backgroundColor: theme.colors.border,
-    marginVertical: theme.spacing.l,
+    marginVertical: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
   },
   rulesGrid: {
     flexDirection: 'column',
@@ -524,10 +527,12 @@ const styles = StyleSheet.create({
   ruleCard: {
     flexDirection: 'row',
     backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
     width: '100%',
   },
   ruleCardLarge: {
@@ -565,10 +570,12 @@ const styles = StyleSheet.create({
   },
   faqItem: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    marginBottom: theme.spacing.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
     overflow: 'hidden',
-    ...theme.shadows.small,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
   },
   faqQuestion: {
     flexDirection: 'row',

@@ -246,12 +246,12 @@ const styles = StyleSheet.create({
   },
   hero: {
     height: 200,
-    borderRadius: theme.borderRadius.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   heroLarge: {
-    height: 400,
+    height: 300,
   },
   heroOverlay: {
     flex: 1,
@@ -276,13 +276,15 @@ const styles = StyleSheet.create({
   statsContainer: {
     flexDirection: 'row',
     backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.l,
-    ...theme.shadows.small,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
   },
   statsContainerLarge: {
-    padding: theme.spacing.l,
+    padding: theme.spacing.m,
   },
   statItem: {
     flex: 1,
@@ -328,23 +330,25 @@ const styles = StyleSheet.create({
   },
   cityCard: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    marginBottom: theme.spacing.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
     overflow: 'hidden',
-    ...theme.shadows.small,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
     width: '100%',
   },
   cityCardLarge: {
     width: '32%',
-    marginBottom: theme.spacing.xl,
+    marginBottom: theme.spacing.m,
   },
   cityCardMedium: {
     width: '48%',
-    marginBottom: theme.spacing.l,
+    marginBottom: theme.spacing.m,
   },
   cityImage: {
     width: '100%',
-    height: 200,
+    height: theme.layout.isWeb ? 160 : 200,
   },
   cityImageOverlay: {
     flex: 1,

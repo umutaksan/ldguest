@@ -309,14 +309,16 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.spacing.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   mapContainer: {
     height: 200,
-    borderRadius: theme.borderRadius.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.medium,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.medium),
   },
   mapImage: {
     width: '100%',
@@ -340,10 +342,12 @@ const styles = StyleSheet.create({
   addressContainer: {
     flexDirection: 'row',
     backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
   },
   addressContent: {
     marginLeft: theme.spacing.m,
@@ -356,12 +360,12 @@ const styles = StyleSheet.create({
   directionsButton: {
     flexDirection: 'row',
     backgroundColor: theme.colors.primary,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb ? {} : theme.shadows.small),
   },
   directionsButtonText: {
     ...theme.typography.button,
@@ -370,13 +374,18 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      fontSize: 18,
+    }),
   },
   poiContainer: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    ...theme.shadows.small,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
   },
   poiItem: {
     paddingVertical: theme.spacing.s,

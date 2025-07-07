@@ -433,11 +433,11 @@ const styles = StyleSheet.create({
   },
   websiteBanner: {
     backgroundColor: theme.colors.primary,
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+    marginHorizontal: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
     overflow: 'hidden',
-    ...theme.shadows.small,
+    ...(theme.layout.isWeb ? {} : theme.shadows.small),
   },
   websiteBannerContent: {
     flexDirection: 'row',
@@ -453,26 +453,42 @@ const styles = StyleSheet.create({
   websiteBannerText: {
     ...theme.typography.bodyMedium,
     color: theme.colors.white,
-    marginRight: theme.spacing.m,
+    marginRight: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      fontSize: 14,
+    }),
   },
   scrollContent: {
     flexGrow: 1,
   },
   quickAccess: {
-    padding: theme.spacing.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'flex-start',
+      gap: theme.spacing.s,
+    }),
   },
   row: {
-    flexDirection: theme.layout.isWeb && theme.layout.isDesktop ? 'row' : 'row',
-    width: '100%',
-    gap: theme.layout.isWeb ? theme.spacing.s : 0,
+    flexDirection: 'row',
+    width: theme.layout.isWeb ? 'auto' : '100%',
+    gap: theme.layout.isWeb ? theme.spacing.xs : 0,
+    ...(theme.layout.isWeb && {
+      marginBottom: 0,
+    }),
   },
   promoContainer: {
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
+    marginHorizontal: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
     overflow: 'hidden',
-    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 250 : 220) : 200,
-    ...theme.shadows.medium,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 180 : 160) : 200,
+    ...(theme.layout.isWeb ? {} : theme.shadows.medium),
+    ...(theme.layout.isWeb && {
+      border: '1px solid #f0f0f0',
+    }),
   },
   promoImage: {
     width: '100%',
@@ -490,12 +506,18 @@ const styles = StyleSheet.create({
   promoTitle: {
     ...theme.typography.subheading,
     color: theme.colors.white,
-    marginBottom: theme.spacing.s,
+    marginBottom: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 18,
+    }),
   },
   promoDescription: {
     ...theme.typography.body,
     color: theme.colors.white,
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      fontSize: 14,
+    }),
   },
   promoButton: {
     flexDirection: 'row',
@@ -516,38 +538,53 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     marginTop: theme.spacing.m,
+    ...(theme.layout.isWeb && {
+      marginTop: theme.spacing.s,
+    }),
   },
   licenseContainer: {
     backgroundColor: theme.colors.surface,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginHorizontal: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   licenseTitle: {
     ...theme.typography.bodyMedium,
     color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.s,
+    marginBottom: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 14,
+    }),
   },
   licenseText: {
     ...theme.typography.bodySmall,
     color: theme.colors.textTertiary,
-    marginBottom: theme.spacing.xs,
+    marginBottom: theme.layout.isWeb ? 2 : theme.spacing.xs,
+    ...(theme.layout.isWeb && {
+      fontSize: 12,
+    }),
   },
   idNoticeContainer: {
-    marginTop: theme.spacing.m,
-    paddingTop: theme.spacing.m,
+    marginTop: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    paddingTop: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
     borderTopWidth: 1,
     borderTopColor: theme.colors.border,
   },
   idNoticeTitle: {
     ...theme.typography.bodyMedium,
     color: theme.colors.secondary,
-    marginBottom: theme.spacing.s,
+    marginBottom: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 14,
+    }),
   },
   idNoticeText: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.s,
+    marginBottom: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 12,
+    }),
   },
 });

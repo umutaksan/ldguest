@@ -665,40 +665,46 @@ const styles = StyleSheet.create({
   },
   categoryTabs: {
     backgroundColor: theme.colors.card,
-    paddingVertical: theme.spacing.s,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
+    paddingVertical: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    borderBottomWidth: theme.layout.isWeb ? 0 : 1,
+    borderBottomColor: theme.layout.isWeb ? 'transparent' : theme.colors.border,
+    ...(theme.layout.isWeb && {
+      backgroundColor: 'transparent',
+    }),
   },
   categoryTabsContent: {
-    paddingHorizontal: theme.spacing.m,
+    paddingHorizontal: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   categoryTab: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: theme.spacing.s,
-    paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
-    marginRight: theme.spacing.s,
-    backgroundColor: theme.colors.surface,
+    paddingVertical: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    paddingHorizontal: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    marginRight: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    backgroundColor: theme.layout.isWeb ? '#f5f5f5' : theme.colors.surface,
   },
   categoryTabActive: {
-    backgroundColor: theme.colors.primaryLight,
+    backgroundColor: theme.layout.isWeb ? 'rgba(233, 184, 114, 0.15)' : theme.colors.primaryLight,
   },
   categoryTabText: {
     ...theme.typography.bodyMedium,
     color: theme.colors.textSecondary,
-    marginLeft: theme.spacing.s,
+    marginLeft: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 14,
+    }),
   },
   categoryTabTextActive: {
     color: theme.colors.primary,
   },
   content: {
-    padding: theme.spacing.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   contentLarge: {
     maxWidth: 1200,
     alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl,
+    paddingHorizontal: theme.spacing.l,
   },
   categoriesContainer: {
     width: '100%',
@@ -713,13 +719,13 @@ const styles = StyleSheet.create({
   categoryTitle: {
     ...theme.typography.bodyMedium,
     color: theme.colors.primary,
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
     flexDirection: 'row',
     alignItems: 'center',
-    fontSize: 20,
+    fontSize: theme.layout.isWeb ? 16 : 20,
   },
   categoryIcon: {
-    marginRight: theme.spacing.s,
+    marginRight: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
   },
   cardsGrid: {
     flexDirection: 'column',
@@ -727,8 +733,8 @@ const styles = StyleSheet.create({
   cardsGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    gap: theme.spacing.m,
+    justifyContent: 'space-between',
+    gap: theme.spacing.s,
   },
   cardsGridMedium: {
     flexDirection: 'row',
@@ -736,14 +742,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   infoCard: {
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   infoCardLarge: {
-    width: 'calc(33.33% - 16px)',
-    marginBottom: theme.spacing.m,
+    width: 'calc(33.33% - 10px)',
+    marginBottom: theme.spacing.s,
   },
   infoCardMedium: {
     width: '48%',
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.spacing.s,
   },
 });

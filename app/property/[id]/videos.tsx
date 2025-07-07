@@ -142,16 +142,6 @@ export default function VideosScreen() {
           propertyGuides: [
             {
               id: 1,
-              title: 'How do I get to the pool?',
-              description: 'Guide to finding and accessing the swimming pool',
-              thumbnail: 'https://i.ytimg.com/vi/SSvp84GEJMA/maxresdefault.jpg',
-              url: 'https://youtube.com/shorts/SSvp84GEJMA?feature=share',
-              icon: <Palmtree size={24} color={theme.colors.white} />
-            }
-          ],
-          cafesAndParking: [
-            {
-              id: 1,
               title: 'How can I get to the cafés, and where can I park?',
               description: 'Guide to finding nearby cafés and parking options',
               thumbnail: 'https://i.ytimg.com/vi/95EeUOmeKZs/maxresdefault.jpg',
@@ -230,13 +220,23 @@ export default function VideosScreen() {
             }
           ],
           nearby: [
+          ],
+          cafesAndParking: [
             {
               id: 1,
-              title: 'Nearby Attractions',
-              description: 'Guide to nearby attractions',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
-              icon: <MapPin size={24} color={theme.colors.white} />
+              title: 'How can I get to the cafés, and where can I park?',
+              description: 'Guide to finding nearby cafés and parking options',
+              thumbnail: 'https://i.ytimg.com/vi/95EeUOmeKZs/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/95EeUOmeKZs?feature=share',
+              icon: <Coffee size={24} color={theme.colors.white} />
+            },
+            {
+              id: 1,
+              title: 'How can I get to the cafés, and where can I park? (Option 2)',
+              description: 'Alternative route to cafés and additional parking information',
+              thumbnail: 'https://i.ytimg.com/vi/tSxrs7erM-o/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/tSxrs7erM-o',
+              icon: <Palmtree size={24} color={theme.colors.white} />
             }
           ]
         };
@@ -303,6 +303,8 @@ export default function VideosScreen() {
         {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <Palmtree size={20} color={theme.colors.primary} />)}
         {videos.cafesAndParking && renderVideoSection('Cafés & Parking', videos.cafesAndParking, <Coffee size={20} color={theme.colors.primary} />)}
         {videos.houseGuides && renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
+        {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <Palmtree size={20} color={theme.colors.primary} />)}
+        {videos.cafesAndParking && renderVideoSection('Cafés & Parking', videos.cafesAndParking, <Coffee size={20} color={theme.colors.primary} />)}
         {videos.houseAccess && renderVideoSection('House Access', videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
         {videos.amenities && renderVideoSection('Amenities', videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
         {videos.nearby && renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
@@ -317,27 +319,32 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: theme.spacing.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   section: {
-    marginBottom: theme.spacing.xl,
+    marginBottom: theme.layout.isWeb ? theme.spacing.l : theme.spacing.xl,
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginLeft: theme.spacing.s,
+    marginLeft: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 18,
+    }),
   },
   videoCard: {
-    height: 200,
-    borderRadius: theme.borderRadius.m,
+    height: theme.layout.isWeb ? 160 : 200,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
     overflow: 'hidden',
-    marginBottom: theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
     backgroundColor: theme.colors.card,
-    ...theme.shadows.medium,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.medium),
   },
   thumbnail: {
     width: '100%',

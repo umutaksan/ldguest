@@ -300,12 +300,12 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   content: {
-    padding: Platform.OS === 'web' ? theme.spacing.m : theme.spacing.s,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.s,
   },
   contentLarge: {
     maxWidth: 1200,
     alignSelf: 'center',
-    paddingHorizontal: theme.spacing.xl,
+    paddingHorizontal: theme.spacing.l,
   },
   mainContent: {
     width: '100%',
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   section: {
-    marginBottom: Platform.OS === 'web' ? theme.spacing.xl : theme.spacing.l,
+    marginBottom: theme.layout.isWeb ? theme.spacing.m : theme.spacing.l,
   },
   sectionLarge: {
     width: '60%',
@@ -329,10 +329,13 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...theme.typography.subheading,
-    marginBottom: theme.spacing.s,
+    marginBottom: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 18,
+    }),
   },
   sectionTitleLarge: {
-    fontSize: 24,
+    fontSize: 20,
   },
   description: {
     ...theme.typography.body,
@@ -345,10 +348,12 @@ const styles = StyleSheet.create({
   },
   codeSection: {
     backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
+    padding: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    marginBottom: theme.layout.isWeb ? theme.spacing.s : theme.spacing.m,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
   },
   codeTitle: {
     ...theme.typography.bodyMedium,

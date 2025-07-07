@@ -73,11 +73,14 @@ export function PageHeader({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.background,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
+    borderBottomWidth: theme.layout.isWeb ? 0 : 1,
+    borderBottomColor: theme.layout.isWeb ? 'transparent' : theme.colors.border,
+    ...(theme.layout.isWeb && {
+      marginBottom: theme.spacing.s,
+    }),
   },
   content: {
-    height: 56,
+    height: theme.layout.isWeb ? 48 : 56,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
@@ -97,15 +100,21 @@ const styles = StyleSheet.create({
   },
   title: {
     ...theme.typography.subheading,
+    ...(theme.layout.isWeb && {
+      fontSize: 18,
+    }),
   },
   hostBadge: {
     ...theme.typography.bodySmall,
     color: theme.colors.primary,
     backgroundColor: theme.colors.primaryLight,
-    paddingHorizontal: theme.spacing.s,
-    paddingVertical: 2,
-    borderRadius: theme.borderRadius.s,
+    paddingHorizontal: theme.layout.isWeb ? theme.spacing.xs : theme.spacing.s,
+    paddingVertical: theme.layout.isWeb ? 1 : 2,
+    borderRadius: theme.layout.isWeb ? 4 : theme.borderRadius.s,
     marginLeft: theme.spacing.s,
+    ...(theme.layout.isWeb && {
+      fontSize: 11,
+    }),
   },
   rightContainer: {
     marginLeft: theme.spacing.s,

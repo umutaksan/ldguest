@@ -49,11 +49,19 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
+    backgroundColor: theme.layout.isWeb ? theme.colors.white : theme.colors.card,
+    borderRadius: theme.layout.isWeb ? theme.borderRadius.s : theme.borderRadius.m,
     padding: theme.spacing.m,
     marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
+    ...(theme.layout.isWeb ? {
+      border: '1px solid #f0f0f0',
+    } : theme.shadows.small),
+    ...(theme.layout.isWeb && {
+      transition: 'all 0.2s ease-in-out',
+      ':hover': {
+        backgroundColor: '#fafafa',
+      }
+    }),
   },
   iconContainer: {
     marginRight: theme.spacing.m,
@@ -64,10 +72,16 @@ const styles = StyleSheet.create({
   title: {
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
-    marginBottom: theme.spacing.xs,
+    marginBottom: theme.layout.isWeb ? 2 : theme.spacing.xs,
+    ...(theme.layout.isWeb && {
+      fontSize: 15,
+    }),
   },
   description: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
+    ...(theme.layout.isWeb && {
+      fontSize: 13,
+    }),
   },
 });

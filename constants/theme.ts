@@ -41,23 +41,23 @@ const palette = {
 const getResponsiveSpacing = () => {
   if (isWeb && isDesktop) {
     return {
-      xxs: 4,
-      xs: 8,
-      s: 12,
-      m: 20,
-      l: 32,
-      xl: 48,
-      xxl: 64,
-    };
-  } else if (isWeb && isTablet) {
-    return {
       xxs: 3,
       xs: 6,
       s: 10,
-      m: 18,
-      l: 28,
-      xl: 40,
-      xxl: 56,
+      m: 16,
+      l: 24,
+      xl: 32,
+      xxl: 48,
+    };
+  } else if (isWeb && isTablet) {
+    return {
+      xxs: 2,
+      xs: 5,
+      s: 8,
+      m: 14,
+      l: 20,
+      xl: 28,
+      xxl: 40,
     };
   } else {
     return {
@@ -74,7 +74,7 @@ const getResponsiveSpacing = () => {
 
 // Responsive typography
 const getResponsiveTypography = () => {
-  const baseSize = isWeb && isDesktop ? 1.1 : isWeb && isTablet ? 1.05 : 1;
+  const baseSize = isWeb && isDesktop ? 1 : isWeb && isTablet ? 0.95 : 1;
   
   return {
     heading: {
@@ -158,23 +158,23 @@ export const theme = {
   shadows: {
     small: {
       shadowColor: palette.black,
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.05,
+      shadowRadius: 2,
       elevation: 2,
     },
     medium: {
       shadowColor: palette.black,
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.15,
-      shadowRadius: 8,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.08,
+      shadowRadius: 4,
       elevation: 4,
     },
     large: {
       shadowColor: palette.black,
-      shadowOffset: { width: 0, height: 8 },
-      shadowOpacity: 0.2,
-      shadowRadius: 16,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
       elevation: 8,
     },
   },
