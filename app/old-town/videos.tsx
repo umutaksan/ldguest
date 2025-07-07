@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, Washing } from 'lucide-react-native';
+import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, WashingMachine as Washing } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
