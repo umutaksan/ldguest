@@ -74,7 +74,7 @@ export default function ParkingScreen() {
       case '29051503': // Aloha Pueblo
         return {
           title: 'Parking at Your Townhouse',
-          description: 'Your Aloha Pueblo townhouse includes private parking, making it convenient and secure for your vehicle during your stay.',
+          description: 'There is open street parking available nearby. The property does not have its own private parking.',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Calle+del+Agua%2C+Aloha%2C+Marbella',
           address: 'Calle del Agua',
           location: 'Aloha',
@@ -249,7 +249,7 @@ export default function ParkingScreen() {
             </View>
           )}
 
-          {parkingInfo.options && parkingInfo.options.map((option, index) => (
+          {parkingInfo.options && id !== '29051503' && id !== '29051504' && parkingInfo.options.map((option, index) => (
             <Animated.View 
               key={option.id}
               entering={FadeIn.delay(index * 200)}
@@ -288,7 +288,7 @@ export default function ParkingScreen() {
                   </>
                 ) : (
                   <>
-                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse' : 'apartment'} includes {id === '29051501' || id === '29051503' ? 'free parking' : 'nearby paid parking options'}</Text>
+                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse does not have private parking' : 'apartment'} includes {id === '29051501' ? 'free parking' : 'nearby paid parking options'}</Text>
                     <Text style={styles.tip}>• The area is generally safe for parking</Text>
                     <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
                     <Text style={styles.tip}>• Lock your vehicle at all times</Text>

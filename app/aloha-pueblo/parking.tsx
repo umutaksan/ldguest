@@ -50,7 +50,7 @@ export default function AlohaPuebloParkingScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Parking at Your Townhouse</Text>
             <Text style={styles.description}>
-              Your Aloha Pueblo townhouse includes private parking, making it convenient and secure for your vehicle during your stay.
+              There is open street parking available nearby. The property does not have its own private parking.
             </Text>
 
             <TouchableOpacity 
@@ -63,39 +63,15 @@ export default function AlohaPuebloParkingScreen() {
             </TouchableOpacity>
           </View>
 
-          {parkingOptions.map((option, index) => (
-            <Animated.View 
-              key={option.id}
-              entering={FadeIn.delay(index * 200)}
-              style={styles.parkingCard}
-            >
-              <View style={styles.parkingHeader}>
-                <Car size={24} color={theme.colors.primary} />
-                <View style={styles.parkingInfo}>
-                  <Text style={styles.parkingName}>{option.name}</Text>
-                  <Text style={styles.parkingPrice}>{option.price}</Text>
-                </View>
-              </View>
-              
-              <Text style={styles.parkingDescription}>{option.description}</Text>
-              
-              <View style={styles.tipsContainer}>
-                <Text style={styles.tipsTitle}>Features:</Text>
-                {option.tips.map((tip, tipIndex) => (
-                  <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
-                ))}
-              </View>
-            </Animated.View>
-          ))}
-
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>General Parking Tips</Text>
             <View style={styles.generalTipsContainer}>
-              <Text style={styles.tip}>• Your townhouse includes private parking space</Text>
-              <Text style={styles.tip}>• Golf courses nearby have additional parking if needed</Text>
+              <Text style={styles.tip}>• Your townhouse does not have private parking</Text>
+              <Text style={styles.tip}>• Street parking is available in the area</Text>
               <Text style={styles.tip}>• The area is generally safe for parking</Text>
               <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
               <Text style={styles.tip}>• Lock your vehicle at all times</Text>
+              <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
             </View>
           </View>
         </Animated.View>
