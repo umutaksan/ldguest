@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
-import { Platform, View, Text } from 'react-native';
+import { Platform, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Chrome as Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
 
@@ -48,7 +48,6 @@ export default function TabLayout() {
         tabBarIconStyle: {
           marginBottom: 0,
         },
-        tabBarIcon: ({ focused }) => null, // Default empty icon
       }}
     >
       <Tabs.Screen
@@ -58,7 +57,7 @@ export default function TabLayout() {
           tabBarTestID: 'tab-001',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Home size={size} color={color} />
+              <Home size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -73,7 +72,7 @@ export default function TabLayout() {
           tabBarTestID: 'tab-002',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Compass size={size} color={color} />
+              <Compass size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -88,7 +87,7 @@ export default function TabLayout() {
           tabBarTestID: 'tab-003',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <BookOpen size={size} color={color} />
+              <BookOpen size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -103,7 +102,7 @@ export default function TabLayout() {
           tabBarTestID: 'tab-004',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Info size={size} color={color} />
+              <Info size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {
@@ -118,7 +117,7 @@ export default function TabLayout() {
           tabBarTestID: 'tab-005',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
-              <Phone size={size} color={color} />
+              <Phone size={24} color={color} />
             </View>
           ),
           tabBarItemStyle: {

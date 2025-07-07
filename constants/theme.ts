@@ -18,14 +18,14 @@ const isWeb = Platform.OS === 'web';
 
 const palette = {
   primary: '#E9B872', // Warm sand
-  primaryDark: '#D09B52',
-  primaryLight: '#F7D8A6',
+  primaryDark: '#D8A75F',
+  primaryLight: '#F5E0C0',
   secondary: '#2E8B98', // Teal
-  secondaryDark: '#1D6B78',
-  secondaryLight: '#68B4C1',
+  secondaryDark: '#1E7A87',
+  secondaryLight: '#7FCAD7',
   accent: '#E67E4F', // Terracotta
-  accentDark: '#C65E2F',
-  accentLight: '#F1A686',
+  accentDark: '#D06A3B',
+  accentLight: '#F4B59C',
   success: '#4CAF50',
   warning: '#FFC107',
   error: '#F44336',
@@ -152,29 +152,32 @@ export const theme = {
     m: 8,
     l: 16,
     xl: 24,
-    round: 9999,
+      transition: 'transform 0.2s ease-in-out',
+      ':hover': {
+        transform: 'scale(1.02)',
+      }
   },
   typography: getResponsiveTypography(),
   shadows: {
     small: {
       shadowColor: palette.black,
-      shadowOffset: { width: 0, height: 2 },
+      shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.1,
-      shadowRadius: 4,
+      shadowRadius: 3,
       elevation: 2,
     },
     medium: {
       shadowColor: palette.black,
-      shadowOffset: { width: 0, height: 4 },
+      shadowOffset: { width: 0, height: 3 },
       shadowOpacity: 0.15,
-      shadowRadius: 8,
+      shadowRadius: 6,
       elevation: 4,
     },
     large: {
       shadowColor: palette.black,
-      shadowOffset: { width: 0, height: 8 },
+      shadowOffset: { width: 0, height: 6 },
       shadowOpacity: 0.2,
-      shadowRadius: 16,
+      shadowRadius: 12,
       elevation: 8,
     },
   },
