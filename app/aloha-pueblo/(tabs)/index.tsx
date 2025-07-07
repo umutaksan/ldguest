@@ -129,28 +129,13 @@ export default function AlohaPuebloHomeScreen() {
               delay={10}
             />
           </View>
-          
-          <View style={styles.row}>
-            <SectionCard
-              title="Frequently Asked Questions"
-              icon={<HelpCircle size={28} color={theme.colors.secondary} />}
-              route="/info"
-              delay={11}
-            />
-            <SectionCard
-              title="Amenities"
-              icon={<Sofa size={28} color={theme.colors.secondary} />}
-              route="/amenities"
-              delay={12}
-            />
-          </View>
 
           <View style={styles.row}>
             <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              route="/photos"
-              delay={13}
+              title="Frequently Asked Questions" 
+              icon={<HelpCircle size={28} color={theme.colors.secondary} />} 
+              route="/info" 
+              delay={11} 
             />
           </View>
         </View>
