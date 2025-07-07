@@ -16,12 +16,6 @@ export default function ParkingScreen() {
     // Safely determine if we're on web platform
     setIsWeb(Platform.OS === 'web');
   }, []);
-  const [isWeb, setIsWeb] = useState(false);
-  
-  useEffect(() => {
-    // Safely determine if we're on web platform
-    setIsWeb(Platform.OS === 'web');
-  }, []);
 
   // Get parking information based on property ID
   const getParkingInfo = () => {
@@ -172,8 +166,7 @@ export default function ParkingScreen() {
         <Animated.View entering={FadeIn.duration(500)}>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>{parkingInfo.title}</Text>
-            <Text style={styles.description}>
-              This property does not have private parking. However, there are street parking options nearby. If you are looking for a covered parking garage, you can use the following location on Google Maps:
+            <Text style={styles.description}>{parkingInfo.description}</Text>
 
             {id === '29051504' && (
               <View style={styles.mapContainer}>  
@@ -228,9 +221,8 @@ export default function ParkingScreen() {
               You can view the {id === '29051504' ? 'parking options' : 'street parking'} by clicking on the navigation link above and using street view.
             </Text>
           </View>
-            {id === '29051504' && (
-              <View style={styles.mapContainer}>  
-                {isWeb ? (
+
+          {parkingInfo.options && parkingInfo.options.map((option, index) => (
             <Animated.View 
               key={option.id}
               entering={FadeIn.delay(index * 200)}
@@ -276,9 +268,8 @@ export default function ParkingScreen() {
                     <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
                   </>
                 )}
-                )}
               </View>
-            )}
+            </View>
           )}
         </Animated.View>
       </ScrollView>
