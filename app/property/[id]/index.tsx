@@ -5,7 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { theme } from '@/constants/theme';
-import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon } from 'lucide-react-native';
+import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, HelpCircle, Sofa, Image as ImageIcon } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -189,6 +189,30 @@ export default function PropertyScreen() {
               icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('parking')}
               delay={10}
+            />
+          </View>
+
+          <View style={styles.row}>
+            <SectionCard
+              title="Frequently Asked Questions"
+              icon={<HelpCircle size={28} color={theme.colors.secondary} />}
+              onPress={() => navigateToSection('info')}
+              delay={11}
+            />
+            <SectionCard
+              title="Amenities"
+              icon={<Sofa size={28} color={theme.colors.secondary} />}
+              onPress={() => navigateToSection('amenities')}
+              delay={12}
+            />
+          </View>
+
+          <View style={styles.row}>
+            <SectionCard
+              title="Photo Gallery"
+              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
+              onPress={() => navigateToSection('photos')}
+              delay={13}
             />
           </View>
         </View>
