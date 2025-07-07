@@ -139,31 +139,34 @@ export default function VideosScreen() {
         };
       case '29051503': // Aloha Pueblo
         return {
-          houseGuides: [
+          propertyGuides: [
             {
               id: 1,
-              title: 'Townhouse Tour',
-              description: 'Complete tour of your Aloha Pueblo townhouse',
-              thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
-              url: '#',
-              icon: <Tv size={24} color={theme.colors.white} />
+              title: 'How do I get to the pool?',
+              description: 'Guide to finding and accessing the swimming pool',
+              thumbnail: 'https://i.ytimg.com/vi/SSvp84GEJMA/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/SSvp84GEJMA?feature=share',
+              icon: <Palmtree size={24} color={theme.colors.white} />
             }
-          ],
-          nearby: [
+          ]
+        };
+      case '29051503-cafes': // Aloha Pueblo Cafes
+        return {
+          cafesAndParking: [
             {
               id: 1,
-              title: 'Walking to Golf Courses',
-              description: 'How to reach nearby golf courses from the townhouse',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
-              icon: <MapPin size={24} color={theme.colors.white} />
+              title: 'How can I get to the cafés, and where can I park?',
+              description: 'Guide to finding nearby cafés and parking options',
+              thumbnail: 'https://i.ytimg.com/vi/95EeUOmeKZs/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/95EeUOmeKZs?feature=share',
+              icon: <Coffee size={24} color={theme.colors.white} />
             },
             {
               id: 2,
-              title: 'Nueva Andalucía Center',
-              description: 'Walking guide to Nueva Andalucía shopping and dining',
-              thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-              url: '#',
+              title: 'How can I get to the cafés, and where can I park? (Option 2)',
+              description: 'Alternative route to cafés and additional parking information',
+              thumbnail: 'https://i.ytimg.com/vi/tSxrs7erM-o/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/tSxrs7erM-o',
               icon: <Coffee size={24} color={theme.colors.white} />
             }
           ]
@@ -246,7 +249,7 @@ export default function VideosScreen() {
   const videos = getVideos();
 
   const handleWatchVideo = (url: string) => {
-    if (url !== '#') {
+    if (url && url !== '#') {
       Linking.openURL(url);
     }
   };
@@ -300,6 +303,8 @@ export default function VideosScreen() {
         contentContainerStyle={styles.content}
       >
         {videos.houseGuides && renderVideoSection('Educational Videos', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
+        {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <Palmtree size={20} color={theme.colors.primary} />)}
+        {videos.cafesAndParking && renderVideoSection('Cafés & Parking', videos.cafesAndParking, <Coffee size={20} color={theme.colors.primary} />)}
         {videos.houseGuides && renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
         {videos.houseAccess && renderVideoSection('House Access', videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
         {videos.amenities && renderVideoSection('Amenities', videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
