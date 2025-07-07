@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music, Utensils } from 'lucide-react-native';
+import { Book, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
 export default function InfoScreen() {
@@ -13,52 +13,6 @@ export default function InfoScreen() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const { width } = useWindowDimensions();
   
-  // Get amenities based on property ID
-  const getAmenities = () => {
-    switch(id) {
-      case '29051504': // Old Town
-        return [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-          { id: 4, title: '2 Air conditioning units', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
-          { id: 6, title: '3 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-          { id: 8, title: '2 Sofa beds', icon: <Sofa size={24} color={theme.colors.primary} /> },
-        ];
-      case '29051503': // Aloha Pueblo
-        return [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-          { id: 4, title: '2 Air conditioning units', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: '1 Smart TV', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 6, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-          { id: 7, title: '2 Sofa beds', icon: <Sofa size={24} color={theme.colors.primary} /> },
-          { id: 8, title: 'Fully equipped small appliances', icon: <Utensils size={24} color={theme.colors.primary} /> },
-        ];
-      case '29051502': // Seaview Fontanilla
-        return [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-          { id: 4, title: '2 Air conditioning units', icon: <Thermometer size={24} color={theme.colors.primary} /> },
-          { id: 5, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
-          { id: 6, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-          { id: 7, title: '1 Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
-          { id: 8, title: 'Fully equipped small appliances', icon: <Utensils size={24} color={theme.colors.primary} /> },
-        ];
-      default: // Jardines Tropicales
-        return [
-          { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
-          { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
-          { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
-        ];
-    }
-  };
-
-  const amenities = getAmenities();
 
   const rules = [
     { 
@@ -462,32 +416,6 @@ export default function InfoScreen() {
               isLargeScreen && styles.sectionTitleLarge
             ]}>Amenities</Text>
             
-            <View style={[
-              styles.amenitiesContainer,
-              isLargeScreen && styles.amenitiesContainerLarge,
-              isMediumScreen && styles.amenitiesContainerMedium
-            ]}>
-              {amenities.map((amenity, index) => (
-                <Animated.View 
-                  key={amenity.id}
-                  entering={FadeIn.delay(index * 100)}
-                  style={[
-                    styles.amenityItem,
-                    isLargeScreen && styles.amenityItemLarge,
-                    isMediumScreen && styles.amenityItemMedium
-                  ]}
-                >
-                  <View style={styles.amenityIcon}>
-                    {amenity.icon}
-                  </View>
-                  <Text style={styles.amenityTitle}>{amenity.title}</Text>
-                </Animated.View>
-              ))}
-            </View>
-          </View>
-        </View>
-        
-        <View style={styles.divider} />
         
         <Text style={[
           styles.sectionTitle,
@@ -629,47 +557,6 @@ const styles = StyleSheet.create({
   ruleDescription: {
     ...theme.typography.body,
     color: theme.colors.textSecondary,
-  },
-  amenitiesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  amenitiesContainerLarge: {
-    flexDirection: 'column',
-  },
-  amenitiesContainerMedium: {
-    justifyContent: 'space-between',
-  },
-  amenityItem: {
-    width: '33.33%',
-    alignItems: 'center',
-    padding: theme.spacing.s,
-    marginBottom: theme.spacing.m,
-  },
-  amenityItemLarge: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: theme.spacing.s,
-    marginBottom: theme.spacing.m,
-  },
-  amenityItemMedium: {
-    width: '25%',
-  },
-  amenityIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: theme.colors.primaryLight,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: theme.spacing.s,
-  },
-  amenityTitle: {
-    ...theme.typography.bodySmall,
-    textAlign: 'center',
-    color: theme.colors.text,
   },
   faqContainer: {
     width: '100%',
