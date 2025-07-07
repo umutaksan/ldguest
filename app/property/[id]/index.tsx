@@ -5,7 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { theme } from '@/constants/theme';
-import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon } from 'lucide-react-native';
+import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon, Instagram, Mail, Youtube, Globe } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -58,6 +58,22 @@ export default function PropertyScreen() {
   const handleBookingReview = () => {
     Linking.openURL('https://www.booking.com/reviews');
   };
+  
+  const handleInstagramPress = () => {
+    Linking.openURL('https://www.instagram.com/ldguest');
+  };
+  
+  const handleEmailPress = () => {
+    Linking.openURL('mailto:hello@ldguest.com');
+  };
+  
+  const handleYoutubePress = () => {
+    Linking.openURL('https://www.youtube.com/@ldguest');
+  };
+  
+  const handleWebsitePress = () => {
+    Linking.openURL('https://www.ldguest.com');
+  };
 
   const navigateToSection = (section: string) => {
     router.push(`/property/${id}/${section}`);
@@ -77,6 +93,40 @@ export default function PropertyScreen() {
           subtitle="Thank you for your reservation!"
           imageUrl={propertyData.imageUrl}
         />
+
+        <View style={styles.socialIconsContainer}>
+          <TouchableOpacity 
+            style={styles.socialIconButton}
+            onPress={handleInstagramPress}
+            activeOpacity={0.7}
+          >
+            <Instagram size={22} color={theme.colors.primary} />
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={styles.socialIconButton}
+            onPress={handleEmailPress}
+            activeOpacity={0.7}
+          >
+            <Mail size={22} color={theme.colors.primary} />
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={styles.socialIconButton}
+            onPress={handleYoutubePress}
+            activeOpacity={0.7}
+          >
+            <Youtube size={22} color={theme.colors.primary} />
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={styles.socialIconButton}
+            onPress={handleWebsitePress}
+            activeOpacity={0.7}
+          >
+            <Globe size={22} color={theme.colors.primary} />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.licenseContainer}>
           <Text style={styles.licenseTitle}>Tourist License Information</Text>
@@ -244,39 +294,6 @@ export default function PropertyScreen() {
           </LinearGradient>
         </TouchableOpacity>
 
-        <View style={styles.ratingContainer}>
-          <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
-          <Text style={styles.ratingDescription}>
-            We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
-          </Text>
-          <View style={styles.ratingButtons}>
-            <TouchableOpacity 
-              style={[styles.ratingButton, styles.airbnbButton]}
-              onPress={handleAirbnbReview}
-              activeOpacity={0.8}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                style={styles.platformLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={[styles.ratingButton, styles.bookingButton]}
-              onPress={handleBookingReview}
-              activeOpacity={0.8}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
-                style={styles.platformLogo}
-                resizeMode="contain"
-              />
-              <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>Review on Booking</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
       </ScrollView>
     </View>
   );
@@ -286,6 +303,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+  },
+  socialIconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: theme.spacing.m,
+    backgroundColor: theme.colors.card,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.border,
+  },
+  socialIconButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: theme.colors.primaryLight,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: theme.spacing.s,
+    ...theme.shadows.small,
   },
   scrollContent: {
     flexGrow: 1,
@@ -345,58 +381,6 @@ const styles = StyleSheet.create({
   },
   promoIcon: {
     marginLeft: theme.spacing.xs,
-  },
-  ratingContainer: {
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    padding: theme.spacing.l,
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    alignItems: 'center',
-    ...theme.shadows.small,
-  },
-  ratingTitle: {
-    ...theme.typography.subheading,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.s,
-    textAlign: 'center',
-  },
-  ratingDescription: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    textAlign: 'center',
-    marginBottom: theme.spacing.l,
-  },
-  ratingButtons: {
-    width: '100%',
-    gap: theme.spacing.m,
-  },
-  ratingButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: theme.spacing.m,
-    paddingHorizontal: theme.spacing.l,
-    borderRadius: theme.borderRadius.m,
-    ...theme.shadows.small,
-  },
-  airbnbButton: {
-    backgroundColor: '#FF5A5F',
-  },
-  bookingButton: {
-    backgroundColor: '#003580',
-  },
-  ratingButtonText: {
-    ...theme.typography.button,
-    color: theme.colors.white,
-    marginLeft: theme.spacing.s,
-  },
-  bookingButtonText: {
-    color: theme.colors.white,
-  },
-  platformLogo: {
-    width: 24,
-    height: 24,
   },
   licenseContainer: {
     backgroundColor: theme.colors.surface,
