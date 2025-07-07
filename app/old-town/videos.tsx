@@ -66,11 +66,11 @@ export default function OldTownVideosScreen() {
       },
       {
         id: 4,
-        title: 'Exploring Old Town Streets',
-        description: 'Guide to the charming narrow streets and historic sites',
-        thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-        url: '#',
-        icon: <Coffee size={24} color={theme.colors.white} />
+        title: 'From L&D Guest to Playa de la Venus',
+        description: 'Your Marbella Beach Guide',
+        thumbnail: 'https://i.ytimg.com/vi/dSdARXpjDIw/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/dSdARXpjDIw',
+        icon: <MapPin size={24} color={theme.colors.white} />
       }
     ]
   };
