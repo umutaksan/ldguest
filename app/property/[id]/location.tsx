@@ -101,18 +101,6 @@ export default function LocationScreen() {
   const handleOpenMaps = () => {
     Linking.openURL(propertyData.mapUrl);
   };
-
-  const handleOpenBusRoute = () => {
-    Linking.openURL(propertyData.busUrl);
-  };
-
-  const handleOpenVideoRoute = (url: string) => {
-    Linking.openURL(url);
-  };
-
-  const getTransportOptions = () => {
-    switch(id) {
-      case '29051503': // Aloha Pueblo
         return [
           {
             id: 1,
@@ -124,9 +112,7 @@ export default function LocationScreen() {
             id: 2,
             title: "By Bus",
             description: "From Málaga Airport, take the L-75 bus to Puerto Banús (approximately 45 minutes). From Puerto Banús, you can take a short taxi ride (5 minutes) to Aloha Pueblo, or walk for about 20 minutes. Alternatively, you can take a bus from Marbella Bus Station to Nueva Andalucía and then walk or take a short taxi ride to Calle del Agua.",
-            icon: <Bus size={24} color={theme.colors.secondary} />,
-            action: handleOpenBusRoute,
-            actionLabel: "View Bus Stop Location"
+            icon: <Bus size={24} color={theme.colors.secondary} />
           },
           {
             id: 3,
@@ -147,9 +133,7 @@ export default function LocationScreen() {
             id: 2,
             title: "By Bus",
             description: "From Málaga Airport, take the direct bus to Marbella Bus Station (40-45 min). From the bus station, walk east on Avenida Ricardo Soriano for about 5 minutes, then turn right into the Old Town area. Continue for another 5 minutes to reach Calle Málaga. Total walking time is approximately 10 minutes.",
-            icon: <Bus size={24} color={theme.colors.secondary} />,
-            action: handleOpenBusRoute,
-            actionLabel: "View Bus Stop Location"
+            icon: <Bus size={24} color={theme.colors.secondary} />
           },
           {
             id: 3,
@@ -170,9 +154,7 @@ export default function LocationScreen() {
             id: 2,
             title: "By Bus",
             description: "From Málaga Airport, take bus to Marbella Centro (40 min). Local buses available to Fontanilla Beach.",
-            icon: <Bus size={24} color={theme.colors.secondary} />,
-            action: handleOpenBusRoute,
-            actionLabel: "View Bus Stop Location"
+            icon: <Bus size={24} color={theme.colors.secondary} />
           },
           {
             id: 3,
@@ -194,9 +176,7 @@ export default function LocationScreen() {
             id: 2,
             title: "By Bus",
             description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
-            icon: <Bus size={24} color={theme.colors.secondary} />,
-            action: handleOpenBusRoute,
-            actionLabel: "View Bus Stop Location"
+            icon: <Bus size={24} color={theme.colors.secondary} />
           },
           {
             id: 3,
