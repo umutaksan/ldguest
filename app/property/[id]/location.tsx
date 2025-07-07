@@ -214,7 +214,6 @@ export default function LocationScreen() {
           }
         ];
     }
-    }
   };
   
   return (
