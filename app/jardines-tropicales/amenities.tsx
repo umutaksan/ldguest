@@ -20,6 +20,7 @@ export default function JardinesTropicalesAmenitiesScreen() {
     { id: 8, title: '1 Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
     { id: 9, title: 'Fully equipped small appliances', icon: <Utensils size={24} color={theme.colors.primary} /> },
     { id: 10, title: 'Access to community swimming pool', icon: <Droplets size={24} color={theme.colors.primary} /> },
+  ];
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
