@@ -20,14 +20,14 @@ export default function AlohaPuebloLocationScreen() {
   const transportOptions = [
     {
       id: 1,
-      title: "By Car", 
-      description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Aloha Golf area. The townhouse is located on Calle del Agua in the Aloha Pueblo complex, with private parking available.",
+      title: "By Car",
+      description: "Take the AP-7 highway and exit at Nueva Andalucía. Follow signs to the Aloha Golf area. Navigate to Calle del Agua in the Aloha Pueblo complex. The townhouse has dedicated private parking available for your use during your stay.",
       icon: <Car size={24} color={theme.colors.secondary} />
     },
     {
       id: 2,
       title: "By Bus",
-      description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min). From there, it's a short taxi ride or a 20-minute walk to Aloha Pueblo. Local buses also connect from Marbella Bus Station.",
+      description: "From Málaga Airport, take the L-75 bus to Puerto Banús (approximately 45 minutes). From Puerto Banús, you can take a short taxi ride (5 minutes) to Aloha Pueblo, or walk for about 20 minutes. Alternatively, you can take a bus from Marbella Bus Station to Nueva Andalucía and then walk or take a short taxi ride to Calle del Agua.",
       icon: <Bus size={24} color={theme.colors.secondary} />,
       action: handleOpenBusRoute,
       actionLabel: "View Bus Stop Location"
@@ -35,7 +35,7 @@ export default function AlohaPuebloLocationScreen() {
     {
       id: 3,
       title: "By Taxi/Uber",
-      description: "The most convenient option from the airport (about 45-minute drive). Ask to be dropped at Calle del Agua in Aloha Pueblo, Nueva Andalucía. All taxi services know this popular residential area.",
+      description: "This is the most convenient option from Málaga Airport (approximately 45-50 minute drive). Ask the driver to take you to Calle del Agua in Aloha Pueblo, Nueva Andalucía, Marbella. This is a well-known residential area, and most taxi and rideshare drivers are familiar with it. The fare typically ranges from €70-90 depending on time of day.",
       icon: <Taxi size={24} color={theme.colors.secondary} />
     }
   ];

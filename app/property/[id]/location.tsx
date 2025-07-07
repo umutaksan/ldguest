@@ -111,64 +111,100 @@ export default function LocationScreen() {
   };
 
   const getTransportOptions = () => {
-    if (id === '29051502') { // Seaview Fontanilla
-      return [
-        {
-          id: 1,
-          title: "By Car",
-          description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Playa de Fontanilla.",
-          icon: <Car size={24} color={theme.colors.secondary} />
-        },
-        {
-          id: 2,
-          title: "By Bus",
-          description: "From Málaga Airport, take bus to Marbella Centro (40 min). Local buses available to Fontanilla Beach.",
-          icon: <Bus size={24} color={theme.colors.secondary} />,
-          action: handleOpenBusRoute,
-          actionLabel: "View Bus Stop Location"
-        },
-        {
-          id: 3,
-          title: "By Taxi",
-          description: "Book your ride with Uber or Bolt for convenient transportation. Available 24/7 from Málaga Airport or anywhere in Marbella.",
-          icon: <Taxi size={24} color={theme.colors.secondary} />
-        }
-      ];
-    } else {
-      return [
-        {
-          id: 1, 
-          title: "By Car", 
-          description: id === '29051503' 
-            ? "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Aloha Golf area. The townhouse is located on Calle del Agua in the Aloha Pueblo complex, with private parking available."
-            : id === '29051504'
-            ? "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town). Street parking is available nearby, or use Parking Parquesol garage (5-minute walk)."
-            : "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
-          icon: <Car size={24} color={theme.colors.secondary} />
-        },
-        {
-          id: 2,
-          title: "By Bus",
-          description: id === '29051503'
-            ? "From Málaga Airport, take L-75 bus to Puerto Banús (45 min). From there, it's a short taxi ride or a 20-minute walk to Aloha Pueblo. Local buses also connect from Marbella Bus Station."
-            : id === '29051504'
-            ? "From Málaga Airport, take bus to Marbella Bus Station (40 min). From there, it's a 10-minute walk to the apartment through Avenida Ricardo Soriano and into the Old Town."
-            : "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
-          icon: <Bus size={24} color={theme.colors.secondary} />,
-          action: handleOpenBusRoute,
-          actionLabel: "View Bus Stop Location"
-        },
-        {
-          id: 3,
-          title: "By Taxi/Uber",
-          description: id === '29051503'
-            ? "The most convenient option from the airport (about 45-minute drive). Ask to be dropped at Calle del Agua in Aloha Pueblo, Nueva Andalucía. All taxi services know this popular residential area."
-            : id === '29051504'
-            ? "The most convenient option from the airport. Ask to be dropped at Calle Málaga in Marbella Old Town. The narrow streets may require a short walk to the exact address."
-            : "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
-          icon: <Taxi size={24} color={theme.colors.secondary} />
-        }
-      ];
+    switch(id) {
+      case '29051503': // Aloha Pueblo
+        return [
+          {
+            id: 1,
+            title: "By Car",
+            description: "Take the AP-7 highway and exit at Nueva Andalucía. Follow signs to the Aloha Golf area. Navigate to Calle del Agua in the Aloha Pueblo complex. The townhouse has dedicated private parking available for your use during your stay.",
+            icon: <Car size={24} color={theme.colors.secondary} />
+          },
+          {
+            id: 2,
+            title: "By Bus",
+            description: "From Málaga Airport, take the L-75 bus to Puerto Banús (approximately 45 minutes). From Puerto Banús, you can take a short taxi ride (5 minutes) to Aloha Pueblo, or walk for about 20 minutes. Alternatively, you can take a bus from Marbella Bus Station to Nueva Andalucía and then walk or take a short taxi ride to Calle del Agua.",
+            icon: <Bus size={24} color={theme.colors.secondary} />,
+            action: handleOpenBusRoute,
+            actionLabel: "View Bus Stop Location"
+          },
+          {
+            id: 3,
+            title: "By Taxi/Uber",
+            description: "This is the most convenient option from Málaga Airport (approximately 45-50 minute drive). Ask the driver to take you to Calle del Agua in Aloha Pueblo, Nueva Andalucía, Marbella. This is a well-known residential area, and most taxi and rideshare drivers are familiar with it. The fare typically ranges from €70-90 depending on time of day.",
+            icon: <Taxi size={24} color={theme.colors.secondary} />
+          }
+        ];
+      case '29051504': // Old Town
+        return [
+          {
+            id: 1,
+            title: "By Car",
+            description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town). The narrow streets of Old Town have limited street parking. We recommend using Parking Parquesol garage (5-minute walk from the apartment) for secure parking.",
+            icon: <Car size={24} color={theme.colors.secondary} />
+          },
+          {
+            id: 2,
+            title: "By Bus",
+            description: "From Málaga Airport, take the direct bus to Marbella Bus Station (40-45 min). From the bus station, walk east on Avenida Ricardo Soriano for about 5 minutes, then turn right into the Old Town area. Continue for another 5 minutes to reach Calle Málaga. Total walking time is approximately 10 minutes.",
+            icon: <Bus size={24} color={theme.colors.secondary} />,
+            action: handleOpenBusRoute,
+            actionLabel: "View Bus Stop Location"
+          },
+          {
+            id: 3,
+            title: "By Taxi/Uber",
+            description: "The most convenient option from the airport (approximately 45-minute drive). Ask to be dropped at Calle Málaga in Marbella Old Town. Due to the narrow streets, the driver may need to drop you at the nearest accessible point, which might require a short walk to the exact address.",
+            icon: <Taxi size={24} color={theme.colors.secondary} />
+          }
+        ];
+      case '29051502': // Seaview Fontanilla
+        return [
+          {
+            id: 1,
+            title: "By Car",
+            description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Playa de Fontanilla.",
+            icon: <Car size={24} color={theme.colors.secondary} />
+          },
+          {
+            id: 2,
+            title: "By Bus",
+            description: "From Málaga Airport, take bus to Marbella Centro (40 min). Local buses available to Fontanilla Beach.",
+            icon: <Bus size={24} color={theme.colors.secondary} />,
+            action: handleOpenBusRoute,
+            actionLabel: "View Bus Stop Location"
+          },
+          {
+            id: 3,
+            title: "By Taxi",
+            description: "Book your ride with Uber or Bolt for convenient transportation. Available 24/7 from Málaga Airport or anywhere in Marbella.",
+            icon: <Taxi size={24} color={theme.colors.secondary} />
+          }
+        ];
+      default:
+        // Default to Jardines Tropicales
+        return [
+          {
+            id: 1,
+            title: "By Car",
+            description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
+            icon: <Car size={24} color={theme.colors.secondary} />
+          },
+          {
+            id: 2,
+            title: "By Bus",
+            description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
+            icon: <Bus size={24} color={theme.colors.secondary} />,
+            action: handleOpenBusRoute,
+            actionLabel: "View Bus Stop Location"
+          },
+          {
+            id: 3,
+            title: "By Taxi/Uber",
+            description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
+            icon: <Taxi size={24} color={theme.colors.secondary} />
+          }
+        ];
     }
   };
   

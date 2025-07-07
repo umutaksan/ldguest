@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
@@ -10,6 +10,12 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 export default function ParkingScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const [isWeb, setIsWeb] = useState(false);
+  
+  useEffect(() => {
+    // Safely determine if we're on web platform
+    setIsWeb(Platform.OS === 'web');
+  }, []);
   const [isWeb, setIsWeb] = useState(false);
   
   useEffect(() => {
@@ -167,8 +173,7 @@ export default function ParkingScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>{parkingInfo.title}</Text>
             <Text style={styles.description}>
-              {parkingInfo.description}
-            </Text>
+              This property does not have private parking. However, there are street parking options nearby. If you are looking for a covered parking garage, you can use the following location on Google Maps:
 
             {id === '29051504' && (
               <View style={styles.mapContainer}>  
@@ -223,8 +228,9 @@ export default function ParkingScreen() {
               You can view the {id === '29051504' ? 'parking options' : 'street parking'} by clicking on the navigation link above and using street view.
             </Text>
           </View>
-
-          {id !== '29051504' && parkingInfo.options && parkingInfo.options.map((option, index) => (
+            {id === '29051504' && (
+              <View style={styles.mapContainer}>  
+                {isWeb ? (
             <Animated.View 
               key={option.id}
               entering={FadeIn.delay(index * 200)}
@@ -270,8 +276,9 @@ export default function ParkingScreen() {
                     <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
                   </>
                 )}
+                )}
               </View>
-            </View>
+            )}
           )}
         </Animated.View>
       </ScrollView>

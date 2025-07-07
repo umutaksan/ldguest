@@ -21,13 +21,13 @@ export default function OldTownLocationScreen() {
     {
       id: 1,
       title: "By Car",
-      description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town). Street parking is available nearby, or use Parking Parquesol garage (5-minute walk).",
+      description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town). The narrow streets of Old Town have limited street parking. We recommend using Parking Parquesol garage (5-minute walk from the apartment) for secure parking.",
       icon: <Car size={24} color={theme.colors.secondary} />
     },
     {
       id: 2,
       title: "By Bus",
-      description: "From Málaga Airport, take bus to Marbella Bus Station (40 min). From there, it's a 10-minute walk to the apartment through Avenida Ricardo Soriano and into the Old Town.",
+      description: "From Málaga Airport, take the direct bus to Marbella Bus Station (40-45 min). From the bus station, walk east on Avenida Ricardo Soriano for about 5 minutes, then turn right into the Old Town area. Continue for another 5 minutes to reach Calle Málaga. Total walking time is approximately 10 minutes.",
       icon: <Bus size={24} color={theme.colors.secondary} />,
       action: handleOpenBusRoute,
       actionLabel: "View Bus Stop Location"
@@ -35,7 +35,7 @@ export default function OldTownLocationScreen() {
     {
       id: 3,
       title: "By Taxi/Uber",
-      description: "The most convenient option from the airport. Ask to be dropped at Calle Málaga in Marbella Old Town. The narrow streets may require a short walk to the exact address.",
+      description: "The most convenient option from the airport (approximately 45-minute drive). Ask to be dropped at Calle Málaga in Marbella Old Town. Due to the narrow streets, the driver may need to drop you at the nearest accessible point, which might require a short walk to the exact address.",
       icon: <Taxi size={24} color={theme.colors.secondary} />
     }
   ];
