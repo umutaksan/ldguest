@@ -52,7 +52,7 @@ export default function PropertyScreen() {
   };
 
   const handleInstagramPress = () => {
-    Linking.openURL('https://www.instagram.com/ldguest');
+    Linking.openURL('https://www.instagram.com/ldguestmarbella');
   };
   
   const handleEmailPress = () => {
@@ -60,7 +60,7 @@ export default function PropertyScreen() {
   };
   
   const handleYoutubePress = () => {
-    Linking.openURL('https://www.youtube.com/@ldguest');
+    Linking.openURL('https://www.youtube.com/watch?v=C-sOfBfdf1M');
   };
   
   const handleWebsitePress = () => {
