@@ -71,6 +71,7 @@ export default function InfoScreen() {
     { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
     { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
   ];
+
   
   const faqs = [
     { 
