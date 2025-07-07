@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, Utensils, Washer, Droplets } from 'lucide-react-native';
+import { Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, Utensils, Hash as Washer, Droplets } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function OldTownAmenitiesScreen() {
