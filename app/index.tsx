@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
-import { MapPin, Instagram, Mail, Youtube, Globe } from 'lucide-react-native';
+import { MapPin, Instagram, Mail, Youtube, Globe, ExternalLink } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -78,40 +78,40 @@ export default function PropertiesScreen() {
           <View style={styles.headerTextContainer}>
             <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
             <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
-          </View>
-          
-          <View style={styles.socialIconsContainer}>
-            <TouchableOpacity 
-              style={styles.socialIconButton}
-              onPress={handleInstagramPress}
-              activeOpacity={0.7}
-            >
-              <Instagram size={20} color={theme.colors.primary} />
-            </TouchableOpacity>
             
-            <TouchableOpacity 
-              style={styles.socialIconButton}
-              onPress={handleEmailPress}
-              activeOpacity={0.7}
-            >
-              <Mail size={20} color={theme.colors.primary} />
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.socialIconButton}
-              onPress={handleYoutubePress}
-              activeOpacity={0.7}
-            >
-              <Youtube size={20} color={theme.colors.primary} />
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.socialIconButton}
-              onPress={handleWebsitePress}
-              activeOpacity={0.7}
-            >
-              <Globe size={20} color={theme.colors.primary} />
-            </TouchableOpacity>
+            <View style={styles.socialIconsContainer}>
+              <TouchableOpacity 
+                style={styles.socialIconButton}
+                onPress={handleInstagramPress}
+                activeOpacity={0.7}
+              >
+                <Instagram size={20} color={theme.colors.primary} />
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.socialIconButton}
+                onPress={handleEmailPress}
+                activeOpacity={0.7}
+              >
+                <Mail size={20} color={theme.colors.primary} />
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.socialIconButton}
+                onPress={handleYoutubePress}
+                activeOpacity={0.7}
+              >
+                <Youtube size={20} color={theme.colors.primary} />
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.socialIconButton}
+                onPress={handleWebsitePress}
+                activeOpacity={0.7}
+              >
+                <Globe size={20} color={theme.colors.primary} />
+              </TouchableOpacity>
+            </View>
           </View>
         </Animated.View>
 
@@ -215,8 +215,7 @@ const styles = StyleSheet.create({
   socialIconsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: theme.spacing.s,
+    marginTop: theme.spacing.m,
   },
   socialIconButton: {
     width: 36,
