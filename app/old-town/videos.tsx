@@ -25,9 +25,9 @@ export default function OldTownVideosScreen() {
       {
         id: 1,
         title: 'Where is the washing machine?',
-        description: 'Find the washing machine in your Old Town apartment',
-        thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/maxresdefault.jpg',
-        url: 'https://youtube.com/shorts/QMOfnHMO-Z4',
+        description: 'Location of the washing machine in your apartment',
+        thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/hqdefault.jpg',
+        url: 'https://youtube.com/shorts/QMOfnHMO-Z4?feature=share',
         icon: <WashingMachine size={24} color={theme.colors.white} />
       },
       {
