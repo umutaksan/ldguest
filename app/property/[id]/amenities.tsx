@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wifi, Coffee, Bath, Thermometer, Wind, Tv, Safe, Sofa, Droplets, Utensils } from 'lucide-react-native';
+import { Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, Droplets, Utensils } from 'lucide-react-native';
 import { theme } from '../../../constants/theme';
 
 export const getAmenities = (id: string) => {
