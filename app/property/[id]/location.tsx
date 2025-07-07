@@ -101,6 +101,14 @@ export default function LocationScreen() {
   const handleOpenMaps = () => {
     Linking.openURL(propertyData.mapUrl);
   };
+
+  const handleOpenVideoRoute = (url: string) => {
+    Linking.openURL(url);
+  };
+
+  const getTransportOptions = () => {
+    switch(id) {
+      case '29051503': // Aloha Pueblo
         return [
           {
             id: 1,
