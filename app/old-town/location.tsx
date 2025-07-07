@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { InfoCard } from '@/components/common/InfoCard';
-import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi } from 'lucide-react-native';
+import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi, Video } from 'lucide-react-native';
 
 export default function OldTownLocationScreen() {
   const insets = useSafeAreaInsets();
@@ -15,6 +15,10 @@ export default function OldTownLocationScreen() {
 
   const handleOpenBusRoute = () => {
     Linking.openURL('https://maps.app.goo.gl/pYDFhidoAYWPkQVH8');
+  };
+
+  const handleWatchVideo = () => {
+    Linking.openURL('https://youtube.com/shorts/CqmjJsOKGSk?feature=share');
   };
 
   const transportOptions = [
@@ -78,68 +82,35 @@ export default function OldTownLocationScreen() {
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
-      >
-        <TouchableOpacity
-          style={styles.mapContainer}
-          onPress={handleOpenMaps}
-          activeOpacity={0.9}
-        >
+      > 
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Location</Text>
+          <Text style={styles.description}>
+            Edificio Sol is located on Calle Malaga. You will find our building easily identifiable.
+          </Text>
+          
           <Image 
-            source={{ uri: propertyDetails.mapImage }} 
+            source={{ uri: 'https://static.wixstatic.com/media/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png/v1/fill/w_331,h_441,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8bbc22_93c95372b66e44aea663ed535ce33eda~mv2.png' }} 
             style={styles.mapImage}
             resizeMode="cover"
           />
-          <View style={styles.mapOverlay}>
-            <MapPin size={24} color={theme.colors.white} />
-            <Text style={styles.mapOverlayText}>{propertyDetails.address}, {propertyDetails.location}</Text>
+          
+          <Text style={styles.sectionTitle}>Access Information</Text>
+          <View style={styles.accessInfo}>
+            <Text style={styles.accessPoint}>• The main door to the building will be open</Text>
+            <Text style={styles.accessPoint}>• If you find it closed, please contact us immediately</Text>
+            <Text style={styles.accessPoint}>• Your apartment is number 1 on the first floor</Text>
+            <Text style={styles.accessPoint}>• The access code will be sent to you one day before your stay</Text>
           </View>
-        </TouchableOpacity>
-        
-        <View style={styles.addressContainer}>
-          <MapPin size={20} color={theme.colors.primary} />
-          <View style={styles.addressContent}>
-            <Text style={styles.addressText}>{propertyDetails.address}</Text>
-            <Text style={styles.addressText}>{propertyDetails.apartment}</Text>
-            <Text style={styles.addressText}>{propertyDetails.location}</Text>
-            <Text style={styles.addressText}>29601 Marbella</Text>
-            <Text style={styles.addressText}>Málaga, Spain</Text>
-          </View>
-        </View>
-        
-        <TouchableOpacity 
-          style={styles.directionsButton}
-          onPress={handleOpenMaps}
-          activeOpacity={0.8}
-        >
-          <Navigation size={20} color={theme.colors.white} />
-          <Text style={styles.directionsButtonText}>Get Directions</Text>
-        </TouchableOpacity>
-        
-        <Text style={styles.sectionTitle}>How to Get Here</Text>
-        
-        {transportOptions.map((option) => (
-          <InfoCard
-            key={option.id}
-            title={option.title}
-            description={option.description}
-            icon={option.icon}
-            showChevron={!!option.action}
-            onPress={option.action}
-          />
-        ))}
-        
-        <Text style={styles.sectionTitle}>Nearby Points of Interest</Text>
-        
-        <View style={styles.poiContainer}>
-          {nearbyPOIs.map((poi, index) => (
-            <View key={index}>
-              <View style={styles.poiItem}>
-                <Text style={styles.poiName}>{poi.name}</Text>
-                <Text style={styles.poiDistance}>{poi.distance}</Text>
-              </View>
-              {index < nearbyPOIs.length - 1 && <View style={styles.poiSeparator} />}
-            </View>
-          ))}
+          
+          <TouchableOpacity 
+            style={styles.watchVideoButton}
+            onPress={handleWatchVideo}
+            activeOpacity={0.8}
+          >
+            <Video size={20} color={theme.colors.white} />
+            <Text style={styles.watchVideoText}>Watch House Video</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -151,10 +122,23 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.background
   },
   content: {
     padding: theme.spacing.m,
+  },
+  section: {
+    marginBottom: theme.spacing.xl,
+  },
+  sectionTitle: {
+    ...theme.typography.subheading,
+    marginBottom: theme.spacing.m,
+    marginTop: theme.spacing.m,
+  },
+  description: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.m,
   },
   mapContainer: {
     height: 200,
@@ -165,6 +149,7 @@ const styles = StyleSheet.create({
   },
   mapImage: {
     width: '100%',
+    height: 400,
     height: '100%',
   },
   mapOverlay: {
@@ -238,5 +223,25 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: theme.colors.border,
     marginVertical: theme.spacing.s,
+  },
+  accessInfo: {
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  accessPoint: {
+    ...theme.typography.body,
+    marginBottom: theme.spacing.s,
+  },
+  watchVideoButton: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.secondary,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...theme.shadows.small,
   },
 });
