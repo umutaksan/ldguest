@@ -72,7 +72,7 @@ export default function InfoScreen() {
     { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
     { id: 6, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
     { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
-    { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> }
+    { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
   ];
   
   // Get FAQs based on property ID
@@ -421,51 +421,79 @@ export default function InfoScreen() {
             styles.amenitiesSection,
             isLargeScreen && styles.amenitiesSectionLarge
           ]}>
-            <View style={styles.divider} />
-            
             <Text style={[
               styles.sectionTitle,
               isLargeScreen && styles.sectionTitleLarge
-            ]}>Frequently Asked Questions</Text>
+            ]}>Amenities</Text>
             
             <View style={[
-              styles.faqContainer,
-              isLargeScreen && styles.faqContainerLarge
+              styles.amenitiesContainer,
+              isLargeScreen && styles.amenitiesContainerLarge,
+              isMediumScreen && styles.amenitiesContainerMedium
             ]}>
-              {faqs.map((faq, index) => (
+              {amenities.map((amenity, index) => (
                 <Animated.View 
-                  key={faq.id}
-                  entering={FadeInDown.delay(index * 100)}
-                  style={styles.faqItem}
+                  key={amenity.id}
+                  entering={FadeIn.delay(index * 100)}
+                  style={[
+                    styles.amenityItem,
+                    isLargeScreen && styles.amenityItemLarge,
+                    isMediumScreen && styles.amenityItemMedium
+                  ]}
                 >
-                  <TouchableOpacity
-                    style={styles.faqQuestion}
-                    onPress={() => toggleFaq(faq.id)}
-                    activeOpacity={0.8}
-                  >
-                    <Text style={[
-                      styles.faqQuestionText,
-                      isLargeScreen && styles.faqQuestionTextLarge
-                    ]}>{faq.question}</Text>
-                    {expandedFaq === faq.id ? (
-                      <ChevronUp size={20} color={theme.colors.text} />
-                    ) : (
-                      <ChevronDown size={20} color={theme.colors.text} />
-                    )}
-                  </TouchableOpacity>
-                  
-                  {expandedFaq === faq.id && (
-                    <View style={styles.faqAnswer}>
-                      <Text style={[
-                        styles.faqAnswerText,
-                        isLargeScreen && styles.faqAnswerTextLarge
-                      ]}>{faq.answer}</Text>
-                    </View>
-                  )}
+                  <View style={styles.amenityIcon}>
+                    {amenity.icon}
+                  </View>
+                  <Text style={styles.amenityTitle}>{amenity.title}</Text>
                 </Animated.View>
               ))}
             </View>
           </View>
+        </View>
+        
+        <View style={styles.divider} />
+        
+        <Text style={[
+          styles.sectionTitle,
+          isLargeScreen && styles.sectionTitleLarge
+        ]}>Frequently Asked Questions</Text>
+        
+        <View style={[
+          styles.faqContainer,
+          isLargeScreen && styles.faqContainerLarge
+        ]}>
+          {faqs.map((faq, index) => (
+            <Animated.View 
+              key={faq.id}
+              entering={FadeInDown.delay(index * 100)}
+              style={styles.faqItem}
+            >
+              <TouchableOpacity
+                style={styles.faqQuestion}
+                onPress={() => toggleFaq(faq.id)}
+                activeOpacity={0.8}
+              >
+                <Text style={[
+                  styles.faqQuestionText,
+                  isLargeScreen && styles.faqQuestionTextLarge
+                ]}>{faq.question}</Text>
+                {expandedFaq === faq.id ? (
+                  <ChevronUp size={20} color={theme.colors.text} />
+                ) : (
+                  <ChevronDown size={20} color={theme.colors.text} />
+                )}
+              </TouchableOpacity>
+              
+              {expandedFaq === faq.id && (
+                <View style={styles.faqAnswer}>
+                  <Text style={[
+                    styles.faqAnswerText,
+                    isLargeScreen && styles.faqAnswerTextLarge
+                  ]}>{faq.answer}</Text>
+                </View>
+              )}
+            </Animated.View>
+          ))}
         </View>
       </ScrollView>
     </View>
