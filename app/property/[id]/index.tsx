@@ -196,16 +196,7 @@ export default function PropertyScreen() {
             <SectionCard
               title="Frequently Asked Questions"
               icon={<HelpCircle size={28} color={theme.colors.secondary} />}
-              onPress={() => {
-                navigateToSection('info');
-                // Add a small delay to ensure the component is mounted before scrolling
-                setTimeout(() => {
-                  const element = document.getElementById('faq-section');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }, 300);
-              }}
+              onPress={() => navigateToSection('info')}
               delay={11}
             />
           </View>
@@ -215,6 +206,9 @@ export default function PropertyScreen() {
               title="Amenities"
               icon={<Sofa size={28} color={theme.colors.secondary} />}
               route="/amenities"
+              delay={12}
+            />
+          </View>
 
           <View style={styles.row}>
             <SectionCard
