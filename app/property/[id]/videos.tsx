@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv } from 'lucide-react-native';
+import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, Washing, Building, Waves, Clock } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -173,6 +173,22 @@ export default function VideosScreen() {
           houseGuides: [
             {
               id: 1,
+              title: 'Where is the washing machine?',
+              description: 'Quick guide to finding the washing machine in your apartment',
+              thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/QMOfnHMO-Z4?feature=share',
+              icon: <Washing size={24} color={theme.colors.white} />
+            },
+            {
+              id: 2,
+              title: 'How can I access the Old Town property?',
+              description: 'Check-in and check-out information for your stay',
+              thumbnail: 'https://i.ytimg.com/vi/v0J9V--RcFw/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/v0J9V--RcFw',
+              icon: <Clock size={24} color={theme.colors.white} />
+            },
+            {
+              id: 1,
               title: 'Old Town Apartment Tour',
               description: 'Complete tour of your historic Old Town apartment',
               thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
@@ -183,19 +199,19 @@ export default function VideosScreen() {
           nearby: [
             {
               id: 1,
-              title: 'Walking to Plaza de los Naranjos',
-              description: 'Short walk to the famous Orange Square',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
-              icon: <MapPin size={24} color={theme.colors.white} />
+              title: 'From L&D Guest to Plaza Naranjos',
+              description: 'Your guide to reaching the famous Orange Square',
+              thumbnail: 'https://i.ytimg.com/vi/ImuFuD6O2jY/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/ImuFuD6O2jY',
+              icon: <Building size={24} color={theme.colors.white} />
             },
             {
               id: 2,
-              title: 'Exploring Old Town Streets',
-              description: 'Guide to the charming narrow streets and historic sites',
-              thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-              url: '#',
-              icon: <Coffee size={24} color={theme.colors.white} />
+              title: 'From L&D Guest to Playa de la Venus',
+              description: 'Your Marbella Beach Guide',
+              thumbnail: 'https://i.ytimg.com/vi/dSdARXpjDIw/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/dSdARXpjDIw',
+              icon: <Waves size={24} color={theme.colors.white} />
             }
           ]
         };

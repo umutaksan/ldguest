@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv } from 'lucide-react-native';
+import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, Washing, Building, Waves, Clock } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -12,6 +12,22 @@ export default function OldTownVideosScreen() {
 
   const videos = {
     houseGuides: [
+      {
+        id: 1,
+        title: 'Where is the washing machine?',
+        description: 'Quick guide to finding the washing machine in your apartment',
+        thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/QMOfnHMO-Z4?feature=share',
+        icon: <Washing size={24} color={theme.colors.white} />
+      },
+      {
+        id: 2,
+        title: 'How can I access the Old Town property?',
+        description: 'Check-in and check-out information for your stay',
+        thumbnail: 'https://i.ytimg.com/vi/v0J9V--RcFw/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/v0J9V--RcFw',
+        icon: <Clock size={24} color={theme.colors.white} />
+      },
       {
         id: 1,
         title: 'Old Town Apartment Tour',
@@ -24,19 +40,19 @@ export default function OldTownVideosScreen() {
     nearby: [
       {
         id: 1,
-        title: 'Walking to Plaza de los Naranjos',
-        description: 'Short walk to the famous Orange Square',
-        thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-        url: '#',
-        icon: <MapPin size={24} color={theme.colors.white} />
+        title: 'From L&D Guest to Plaza Naranjos',
+        description: 'Your guide to reaching the famous Orange Square',
+        thumbnail: 'https://i.ytimg.com/vi/ImuFuD6O2jY/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/ImuFuD6O2jY',
+        icon: <Building size={24} color={theme.colors.white} />
       },
       {
         id: 2,
-        title: 'Exploring Old Town Streets',
-        description: 'Guide to the charming narrow streets and historic sites',
-        thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
-        url: '#',
-        icon: <Coffee size={24} color={theme.colors.white} />
+        title: 'From L&D Guest to Playa de la Venus',
+        description: 'Your Marbella Beach Guide',
+        thumbnail: 'https://i.ytimg.com/vi/dSdARXpjDIw/maxresdefault.jpg',
+        url: 'https://youtube.com/shorts/dSdARXpjDIw',
+        icon: <Waves size={24} color={theme.colors.white} />
       }
     ]
   };
@@ -94,6 +110,79 @@ export default function OldTownVideosScreen() {
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
+      >
+        {renderVideoSection('House Access & Information', videos.houseGuides, <Key size={20} color={theme.colors.primary} />)}
+        {renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  content: {
+    padding: theme.spacing.m,
+  },
+  section: {
+    marginBottom: theme.spacing.xl,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.m,
+  },
+  sectionTitle: {
+    ...theme.typography.subheading,
+    marginLeft: theme.spacing.s,
+  },
+  videoCard: {
+    height: 200,
+    borderRadius: theme.borderRadius.m,
+    overflow: 'hidden',
+    marginBottom: theme.spacing.m,
+    backgroundColor: theme.colors.card,
+    ...theme.shadows.medium,
+  },
+  thumbnail: {
+    width: '100%',
+    height: '100%',
+  },
+  videoOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: theme.spacing.m,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  videoIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: theme.spacing.m,
+  },
+  videoInfo: {
+    flex: 1,
+    marginRight: theme.spacing.m,
+  },
+  videoTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.white,
+    marginBottom: theme.spacing.xs,
+  },
+  videoDescription: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.white,
+    opacity: 0.8,
+  },
+});
       >
         {renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
         {renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
