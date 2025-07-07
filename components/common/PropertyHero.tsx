@@ -140,12 +140,12 @@ export function PropertyHero({
           <View style={styles.textContainer}>
             <Text style={styles.title}>{title}</Text>
             {subtitle && (
-              <>
+              <View>
                 <Text style={styles.subtitle}>{subtitle}</Text>
                 {registrationNumber && (
                   <Text style={styles.registrationNumber}>{registrationNumber}</Text>
                 )}
-              </>
+              </View>
             )}
           </View>
         </LinearGradient>
