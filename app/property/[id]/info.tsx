@@ -411,12 +411,8 @@ export default function InfoScreen() {
             styles.amenitiesSection,
             isLargeScreen && styles.amenitiesSectionLarge
           ]}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Amenities</Text>
+            <View style={styles.divider} />
             
-        
             <Text style={[
               styles.sectionTitle,
               isLargeScreen && styles.sectionTitleLarge
