@@ -115,6 +115,7 @@ export default function PropertiesScreen() {
           <TouchableOpacity
             style={styles.adminButton}
             onPress={() => router.push('/cleaning')}
+            activeOpacity={0.8}
           >
             <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
           </TouchableOpacity>
