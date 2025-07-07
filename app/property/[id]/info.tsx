@@ -426,47 +426,6 @@ export default function InfoScreen() {
             <Text style={[
               styles.sectionTitle,
               isLargeScreen && styles.sectionTitleLarge
-            ]}>Amenities</Text>
-            
-            <View style={[
-              styles.amenitiesContainer,
-              isLargeScreen && styles.amenitiesContainerLarge,
-              isMediumScreen && styles.amenitiesContainerMedium
-            ]}>
-              {amenities.map((amenity, index) => (
-                <Animated.View 
-                  key={amenity.id}
-                  entering={FadeIn.delay(index * 100)}
-                  style={[
-                    styles.amenityItem,
-                    isLargeScreen && styles.amenityItemLarge,
-                    isMediumScreen && styles.amenityItemMedium
-                  ]}
-                >
-                  <View style={[
-                    styles.amenityIcon,
-                    isLargeScreen && { marginBottom: 0, marginRight: theme.spacing.m }
-                  ]}>
-                    {amenity.icon}
-                  </View>
-                  <Text style={[
-                    styles.amenityTitle,
-                    isLargeScreen && { textAlign: 'left' }
-                  ]}>{amenity.title}</Text>
-                </Animated.View>
-              ))}
-            </View>
-          </View>
-
-          <View style={[
-            styles.amenitiesSection,
-            isLargeScreen && styles.amenitiesSectionLarge
-          ]}>
-            <View style={styles.divider} />
-            
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
             ]}>Frequently Asked Questions</Text>
             
             <View style={[

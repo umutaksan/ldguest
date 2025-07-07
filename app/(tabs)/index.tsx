@@ -183,21 +183,6 @@ export default function HomeScreen() {
               delay={12}
             />
           </View>
-          <View style={styles.ratingContainer}>
-            <Text style={styles.ratingTitle}>Rate Your Stay</Text>
-            <Text style={styles.ratingDescription}>
-              Help other guests by sharing your experience
-            </Text>
-            
-            <View style={styles.ratingButtons}>
-              <TouchableOpacity 
-                style={[styles.ratingButton, styles.airbnbButton]}
-                onPress={handleAirbnbReview}
-                activeOpacity={0.8}
-              >
-                <Image 
-                  source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                  style={styles.platformLogo}
                   resizeMode="contain"
                 />
                 <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
