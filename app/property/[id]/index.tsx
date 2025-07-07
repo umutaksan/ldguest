@@ -51,14 +51,6 @@ export default function PropertyScreen() {
     Linking.openURL('https://www.ldguest.com/ldhome');
   };
 
-  const handleAirbnbReview = () => {
-    Linking.openURL('https://www.airbnb.com/rooms/review');
-  };
-
-  const handleBookingReview = () => {
-    Linking.openURL('https://www.booking.com/reviews');
-  };
-  
   const handleInstagramPress = () => {
     Linking.openURL('https://www.instagram.com/ldguest');
   };
