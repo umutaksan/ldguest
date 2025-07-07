@@ -30,9 +30,8 @@ export function SectionCard({ title, icon, route, style, delay = 0, onPress }: S
     ? '48%' 
     : '48%';
 
-  // Reduce height for web only
   const cardHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 120 : 110) 
+    ? (theme.layout.isDesktop ? 160 : 140) 
     : 140;
 
   return (
@@ -58,27 +57,20 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: theme.colors.card,
-    borderRadius: theme.layout.isWeb ? 8 : theme.borderRadius.m,
+    borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
-    ...(theme.layout.isWeb ? {
-      boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
-      border: '1px solid #f0f0f0',
-    } : theme.shadows.small),
+    ...theme.shadows.small,
     // Web-specific hover effects
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
       transition: 'all 0.2s ease-in-out',
-      ':hover': {
-        transform: 'translateY(-2px)',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
-      }
     }),
   },
   iconContainer: {
-    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 48 : 44) : 56,
-    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 48 : 44) : 56,
+    width: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
+    height: theme.layout.isWeb ? (theme.layout.isDesktop ? 64 : 56) : 56,
     borderRadius: theme.borderRadius.round,
     backgroundColor: theme.colors.primaryLight,
     alignItems: 'center',
@@ -88,10 +80,6 @@ const styles = StyleSheet.create({
   title: {
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
-    ...(theme.layout.isWeb && {
-      fontSize: 15,
-      fontWeight: '500',
-    }),
     textAlign: 'center',
     lineHeight: theme.layout.isWeb ? 20 : 18,
   },

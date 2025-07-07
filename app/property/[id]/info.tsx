@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
-import { Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Book, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
@@ -14,9 +13,6 @@ export default function InfoScreen() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const { width } = useWindowDimensions();
   
-
-  // Check if we're on web platform
-  const isWeb = Platform.OS === 'web';
 
   const rules = [
     { 
@@ -362,7 +358,7 @@ export default function InfoScreen() {
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Property Information" showBackButton={isWeb} />
+      <PageHeader title="Property Information" showBackButton={false} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -376,7 +372,7 @@ export default function InfoScreen() {
           isLargeScreen && styles.mainContentLarge
         ]}>
           <View style={[
-            isWeb ? styles.webRulesSection : styles.rulesSection,
+            styles.rulesSection,
             isLargeScreen && styles.rulesSectionLarge
           ]}>
             <Text style={[
@@ -384,7 +380,7 @@ export default function InfoScreen() {
               isLargeScreen && styles.sectionTitleLarge
             ]}>House Rules</Text>
             
-            {!isWeb ? <View style={[
+            <View style={[
               styles.rulesGrid,
               isLargeScreen && styles.rulesGridLarge,
               isMediumScreen && styles.rulesGridMedium
@@ -408,39 +404,11 @@ export default function InfoScreen() {
                   </View>
                 </Animated.View>
               ))}
-            </View> : 
-            // Web accordion style for rules
-            <View style={styles.webRulesAccordion}>
-              {rules.map((rule, index) => (
-                <Animated.View 
-                  key={rule.id}
-                  entering={FadeIn.delay(index * 100)}
-                  style={styles.webRuleItem}
-                >
-                  <TouchableOpacity
-                    style={styles.webRuleHeader}
-                    onPress={() => toggleFaq(rule.id + 100)} // Using offset to avoid conflict with FAQ IDs
-                  >
-                    <View style={styles.webRuleIconContainer}>
-                      {rule.icon}
-                    </View>
-                    <Text style={styles.webRuleTitle}>{rule.title}</Text>
-                    {expandedFaq === rule.id + 100 ? (
-                      <ChevronUp size={18} color="#999" />
-                    ) : (
-                      <ChevronDown size={18} color="#999" />
-                    )}
-                  </TouchableOpacity>
-                  {expandedFaq === rule.id + 100 && (
-                    <Text style={styles.webRuleDescription}>{rule.description}</Text>
-                  )}
-                </Animated.View>
-              ))}
-            </View>}
+            </View>
           </View>
 
           <View style={[
-            isWeb ? styles.webFaqSection : styles.amenitiesSection,
+            styles.amenitiesSection,
             isLargeScreen && styles.amenitiesSectionLarge
           ]}>
             <View style={styles.divider} />
@@ -451,14 +419,14 @@ export default function InfoScreen() {
             ]}>Frequently Asked Questions</Text>
             
             <View style={[
-              isWeb ? styles.webFaqContainer : styles.faqContainer,
+              styles.faqContainer,
               isLargeScreen && styles.faqContainerLarge
             ]}>
               {faqs.map((faq, index) => (
                 <Animated.View 
                   key={faq.id}
                   entering={FadeInDown.delay(index * 100)}
-                  style={isWeb ? styles.webFaqItem : styles.faqItem}
+                  style={styles.faqItem}
                 >
                   <TouchableOpacity
                     style={styles.faqQuestion}
@@ -466,7 +434,7 @@ export default function InfoScreen() {
                     activeOpacity={0.8}
                   >
                     <Text style={[
-                      isWeb ? styles.webFaqQuestionText : styles.faqQuestionText,
+                      styles.faqQuestionText,
                       isLargeScreen && styles.faqQuestionTextLarge
                     ]}>{faq.question}</Text>
                     {expandedFaq === faq.id ? (
@@ -477,9 +445,9 @@ export default function InfoScreen() {
                   </TouchableOpacity>
                   
                   {expandedFaq === faq.id && (
-                    <View style={isWeb ? styles.webFaqAnswer : styles.faqAnswer}>
+                    <View style={styles.faqAnswer}>
                       <Text style={[
-                        isWeb ? styles.webFaqAnswerText : styles.faqAnswerText,
+                        styles.faqAnswerText,
                         isLargeScreen && styles.faqAnswerTextLarge
                       ]}>{faq.answer}</Text>
                     </View>
@@ -497,7 +465,7 @@ export default function InfoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'web' ? '#f9fafb' : theme.colors.background,
+    backgroundColor: theme.colors.background,
   },
   content: {
     padding: theme.spacing.m,
@@ -510,18 +478,11 @@ const styles = StyleSheet.create({
   mainContent: {
     width: '100%',
   },
-  webRulesSection: {
-    width: '100%',
-    marginBottom: 40,
-  },
   mainContentLarge: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   rulesSection: {
-    width: '100%',
-  },
-  webFaqSection: {
     width: '100%',
   },
   rulesSectionLarge: {
@@ -534,7 +495,7 @@ const styles = StyleSheet.create({
   amenitiesSectionLarge: {
     width: '35%',
   },
-  sectionTitle: Platform.OS === 'web' ? {
+  sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
   },
@@ -542,7 +503,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: theme.spacing.l,
   },
-  divider: Platform.OS === 'web' ? {
+  divider: {
     height: 1,
     backgroundColor: theme.colors.border,
     marginVertical: theme.spacing.l,
@@ -550,7 +511,7 @@ const styles = StyleSheet.create({
   rulesGrid: {
     flexDirection: 'column',
   },
-  rulesGridLarge: Platform.OS === 'web' ? {
+  rulesGridLarge: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
@@ -560,7 +521,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  ruleCard: Platform.OS === 'web' ? {
+  ruleCard: {
     flexDirection: 'row',
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
@@ -569,7 +530,7 @@ const styles = StyleSheet.create({
     ...theme.shadows.small,
     width: '100%',
   },
-  ruleCardLarge: Platform.OS === 'web' ? {
+  ruleCardLarge: {
     width: '48%',
   },
   ruleCardMedium: {
@@ -598,7 +559,7 @@ const styles = StyleSheet.create({
   faqContainer: {
     width: '100%',
   },
-  faqContainerLarge: Platform.OS === 'web' ? {
+  faqContainerLarge: {
     maxWidth: 800,
     alignSelf: 'center',
   },
@@ -608,7 +569,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.m,
     overflow: 'hidden',
     ...theme.shadows.small,
-  }, 
+  },
   faqQuestion: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -635,71 +596,5 @@ const styles = StyleSheet.create({
   },
   faqAnswerTextLarge: {
     fontSize: 16,
-  },
-  // Web-specific styles
-  webRulesAccordion: {
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
-    overflow: 'hidden',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-  },
-  webRuleItem: {
-    borderBottom: '1px solid #f0f0f0',
-  },
-  webRuleHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    cursor: 'pointer',
-  },
-  webRuleIconContainer: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#f0f5ff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 12,
-  },
-  webRuleTitle: {
-    flex: 1,
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#333',
-  },
-  webRuleDescription: {
-    fontSize: 14,
-    color: '#666',
-    paddingLeft: 60,
-    paddingRight: 16,
-    paddingBottom: 16,
-    lineHeight: 20,
-  },
-  webFaqContainer: {
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
-    overflow: 'hidden',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-  },
-  webFaqItem: {
-    borderBottom: '1px solid #f0f0f0',
-  },
-  webFaqQuestionText: {
-    flex: 1,
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#333',
-    paddingRight: 16,
-  },
-  webFaqAnswer: {
-    padding: 16,
-    paddingTop: 0,
-    paddingLeft: 16,
-    backgroundColor: '#f9fafb',
-  },
-  webFaqAnswerText: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
   },
 });
