@@ -264,7 +264,7 @@ export default function PropertyScreen() {
           </LinearGradient>
         </TouchableOpacity>
 
-        <View>
+        <View style={styles.footerContainer}>
         <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
           <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
           <View style={styles.reviewButtonsContainer}>
@@ -364,7 +364,7 @@ export default function PropertyScreen() {
             </Text>
           </View>
         </View>
-        </View>
+       </View>
       </ScrollView>
     </View>
   );
@@ -513,6 +513,9 @@ const styles = StyleSheet.create({
   },
   promoIcon: {
     marginLeft: theme.spacing.xs,
+  },
+  footerContainer: {
+    marginTop: theme.spacing.m,
   },
   licenseContainer: {
     backgroundColor: theme.colors.surface,
