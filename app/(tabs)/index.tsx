@@ -167,6 +167,15 @@ export default function HomeScreen() {
               route="/info"
               delay={11}
             />
+          </View>
+
+          <View style={styles.row}>
+            <SectionCard
+              title="Frequently Asked Questions"
+              icon={<HelpCircle size={28} color={theme.colors.secondary} />}
+              route="/info"
+              delay={11}
+            />
             <SectionCard
               title="Amenities"
               icon={<Sofa size={28} color={theme.colors.secondary} />}
@@ -174,30 +183,6 @@ export default function HomeScreen() {
               delay={12}
             />
           </View>
-
-          <View style={styles.row}>
-            <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              route="/photos"
-              delay={13}
-            />
-          </View>
-
-          <View style={styles.ratingContainer}>
-            <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
-            <Text style={styles.ratingDescription}>
-              We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
-            </Text>
-            <View style={styles.ratingButtons}>
-              <TouchableOpacity 
-                style={[styles.ratingButton, styles.airbnbButton]}
-                onPress={handleAirbnbReview}
-                activeOpacity={0.8}
-              >
-                <Image 
-                  source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                  style={styles.platformLogo}
                   resizeMode="contain"
                 />
                 <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
