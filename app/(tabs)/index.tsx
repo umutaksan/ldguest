@@ -131,6 +131,30 @@ export default function HomeScreen() {
                 delay={10}
               />
             </View>
+
+            <View style={styles.row}>
+              <SectionCard
+                title="Frequently Asked Questions"
+                icon={<HelpCircle size={28} color={theme.colors.secondary} />}
+                route="/info"
+                delay={11}
+              />
+              <SectionCard
+                title="Amenities"
+                icon={<Sofa size={28} color={theme.colors.secondary} />}
+                route="/amenities"
+                delay={12}
+              />
+            </View>
+
+            <View style={styles.row}>
+              <SectionCard
+                title="Photo Gallery"
+                icon={<ImageIcon size={28} color={theme.colors.secondary} />}
+                route="/photos"
+                delay={13}
+              />
+            </View>
           </View>
 
           <TouchableOpacity 
@@ -144,30 +168,6 @@ export default function HomeScreen() {
               resizeMode="cover"
             />
             <LinearGradient
-
-          <View style={styles.row}>
-            <SectionCard
-              title="Frequently Asked Questions"
-              icon={<HelpCircle size={28} color={theme.colors.secondary} />}
-              route="/info"
-              delay={11}
-            />
-            <SectionCard
-              title="Amenities"
-              icon={<Sofa size={28} color={theme.colors.secondary} />}
-              route="/amenities"
-              delay={12}
-            />
-          </View>
-
-          <View style={styles.row}>
-            <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              route="/photos"
-              delay={13}
-            />
-          </View>
               colors={['transparent', 'rgba(0,0,0,0.8)']}
               style={styles.promoOverlay}
             >
