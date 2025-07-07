@@ -2,10 +2,10 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PropertyHero } from '@/components/common/PropertyHero';
-import { SectionCard } from '@/components/common/SectionCard'; 
+import { SectionCard } from '@/components/common/SectionCard';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
-import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon } from 'lucide-react-native';
+import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -143,30 +143,6 @@ export default function JardinesTropicalesHomeScreen() {
               </View>
             </LinearGradient>
           </TouchableOpacity>
-
-          <View style={styles.row}>
-            <SectionCard
-              title="Frequently Asked Questions"
-              icon={<HelpCircle size={28} color={theme.colors.secondary} />}
-              route="/info"
-              delay={11}
-            />
-            <SectionCard
-              title="Amenities"
-              icon={<Sofa size={28} color={theme.colors.secondary} />}
-              route="/amenities"
-              delay={12}
-            />
-          </View>
-
-          <View style={styles.row}>
-            <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              route="/photos"
-              delay={13}
-            />
-          </View>
 
           <View style={styles.ratingContainer}>
             <Text style={styles.ratingTitle}>Enjoying your stay?</Text>

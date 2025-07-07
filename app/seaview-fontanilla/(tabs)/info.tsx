@@ -136,7 +136,7 @@ export default function SeaviewInfoScreen() {
     { 
       id: 13,
       question: 'What is the size of the apartment?',
-      answer: 'The apartment is 85 m².'
+      answer: 'The apartment is 105 m².'
     },
     { 
       id: 14,
