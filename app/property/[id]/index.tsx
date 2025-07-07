@@ -5,7 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { theme } from '@/constants/theme';
-import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon, Instagram, Mail, Youtube, Globe } from 'lucide-react-native';
+import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon, Instagram, Mail, Youtube, Globe, Star } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -74,6 +74,22 @@ export default function PropertyScreen() {
   const handleWebsitePress = () => {
     Linking.openURL('https://www.ldguest.com');
   };
+  
+  const handleAirbnbReview = () => {
+    Linking.openURL('https://www.airbnb.com/');
+  };
+
+  const handleBookingReview = () => {
+    Linking.openURL('https://www.booking.com/');
+  };
+
+  const handleVrboReview = () => {
+    Linking.openURL('https://www.vrbo.com/es-es/');
+  };
+
+  const handleMalagaMarbellaPress = () => {
+    Linking.openURL('https://www.malagamarbella.com');
+  };
 
   const navigateToSection = (section: string) => {
     router.push(`/property/${id}/${section}`);
@@ -127,6 +143,68 @@ export default function PropertyScreen() {
             <Globe size={22} color={theme.colors.primary} />
           </TouchableOpacity>
         </View>
+
+        <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
+          <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
+          <View style={styles.reviewButtonsContainer}>
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleAirbnbReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Airbnb</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleBookingReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Booking.com</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleVrboReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vrbo_logo.svg/2560px-Vrbo_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>VRBO</Text>
+            </TouchableOpacity>
+          </View>
+        </Animated.View>
+        
+        <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
+          <TouchableOpacity 
+            style={styles.websiteBannerContent}
+            onPress={handleMalagaMarbellaPress}
+            activeOpacity={0.7}
+          >
+            <View style={styles.websiteIconContainer}>
+              <Globe size={24} color={theme.colors.white} />
+            </View>
+            <View style={styles.websiteTextContainer}>
+              <Text style={styles.websiteBannerText}>
+                Discover more properties, local tips, and exclusive offers at malagamarbella.com
+              </Text>
+            </View>
+            <ExternalLink size={20} color={theme.colors.white} />
+          </TouchableOpacity>
+        </Animated.View>
 
         <View style={styles.licenseContainer}>
           <Text style={styles.licenseTitle}>Tourist License Information</Text>
@@ -322,6 +400,67 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: theme.spacing.s,
     ...theme.shadows.small,
+  },
+  reviewBanner: {
+    backgroundColor: theme.colors.card,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  reviewBannerTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.text,
+    textAlign: 'center',
+    marginBottom: theme.spacing.m,
+  },
+  reviewButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  reviewButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing.s,
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: theme.colors.surface,
+    minWidth: 80,
+    ...theme.shadows.small,
+  },
+  reviewLogo: {
+    width: 60,
+    height: 24,
+    marginBottom: theme.spacing.xs,
+  },
+  reviewButtonText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+  },
+  websiteBanner: {
+    backgroundColor: theme.colors.primary,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    overflow: 'hidden',
+    ...theme.shadows.small,
+  },
+  websiteBannerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: theme.spacing.m,
+  },
+  websiteIconContainer: {
+    marginRight: theme.spacing.m,
+  },
+  websiteTextContainer: {
+    flex: 1,
+  },
+  websiteBannerText: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.white,
+    marginRight: theme.spacing.m,
   },
   scrollContent: {
     flexGrow: 1,
