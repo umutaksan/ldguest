@@ -10,6 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 type PropertyHeroProps = {
   title: string;
   subtitle?: string;
+  registrationNumber?: string;
   imageUrl: string;
   showBackButton?: boolean;
   showPropertySwitcher?: boolean;
@@ -18,6 +19,7 @@ type PropertyHeroProps = {
 export function PropertyHero({ 
   title, 
   subtitle, 
+  registrationNumber,
   imageUrl, 
   showBackButton = false, 
   showPropertySwitcher = true 
@@ -138,7 +140,12 @@ export function PropertyHero({
           <View style={styles.textContainer}>
             <Text style={styles.title}>{title}</Text>
             {subtitle && (
-              <Text style={styles.subtitle}>{subtitle}</Text>
+              <View>
+                <Text style={styles.subtitle}>{subtitle}</Text>
+                {registrationNumber && (
+                  <Text style={styles.registrationNumber}>{registrationNumber}</Text>
+                )}
+              </View>
             )}
           </View>
         </LinearGradient>
@@ -204,5 +211,13 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
+  },
+  registrationNumber: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.white,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+    marginTop: theme.spacing.xs,
   },
 });
