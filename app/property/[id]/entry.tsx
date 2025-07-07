@@ -370,12 +370,13 @@ const styles = StyleSheet.create({
   },
   keyImage: {
     width: '100%',
-    height: 150,
+    height: 'auto',
+    aspectRatio: 331/441,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
   },
   keyImageLarge: {
-    height: 150,
+    height: 'auto',
   },
   mainImage: {
     width: '100%',

@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
   },
   entryImage: {
     width: '100%',
-    height: 200,
+    height: 'auto',
+    aspectRatio: 331/441,
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.small,
   },
