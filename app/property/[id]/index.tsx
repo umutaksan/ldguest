@@ -264,6 +264,7 @@ export default function PropertyScreen() {
           </LinearGradient>
         </TouchableOpacity>
 
+        <View>
         <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
           <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
           <View style={styles.reviewButtonsContainer}>
@@ -362,6 +363,7 @@ export default function PropertyScreen() {
               Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation.
             </Text>
           </View>
+        </View>
         </View>
       </ScrollView>
     </View>
