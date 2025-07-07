@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv } from 'lucide-react-native';
+import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, WashingMachine } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -171,8 +171,26 @@ export default function VideosScreen() {
       case '29051504': // Old Town
         return {
           houseGuides: [
-            {
-              id: 1,
+            { 
+              id: 1, 
+              title: 'How can I access the Old Town L&D Guest property?',
+              description: 'Check-in and check-out times information',
+              thumbnail: 'https://i.ytimg.com/vi/v0J9V--RcFw/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/v0J9V--RcFw',
+              icon: <Key size={24} color={theme.colors.white} />
+            }
+          ],
+          nearby: [
+            { 
+              id: 1, 
+              title: 'Where is the washing machine?',
+              description: 'Find the washing machine in your Old Town apartment',
+              thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/QMOfnHMO-Z4',
+              icon: <WashingMachine size={24} color={theme.colors.white} />
+            },
+            { 
+              id: 2, 
               title: 'Old Town Apartment Tour',
               description: 'Complete tour of your historic Old Town apartment',
               thumbnail: 'https://images.pexels.com/photos/5834/nature-grass-leaf-green.jpg',
@@ -181,16 +199,24 @@ export default function VideosScreen() {
             }
           ],
           nearby: [
-            {
-              id: 1,
-              title: 'Walking to Plaza de los Naranjos',
-              description: 'Short walk to the famous Orange Square',
-              thumbnail: 'https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg',
-              url: '#',
+            { 
+              id: 1, 
+              title: 'From L&D Guest to Plaza de los Naranjos',
+              description: 'Guide to reaching the famous Orange Square',
+              thumbnail: 'https://i.ytimg.com/vi/ImuFuD6O2jY/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/ImuFuD6O2jY',
               icon: <MapPin size={24} color={theme.colors.white} />
             },
-            {
-              id: 3,
+            { 
+              id: 2, 
+              title: 'From L&D Guest to Playa de la Venus',
+              description: 'Your Marbella Beach Guide',
+              thumbnail: 'https://i.ytimg.com/vi/dSdARXpjDIw/maxresdefault.jpg',
+              url: 'https://youtube.com/shorts/dSdARXpjDIw',
+              icon: <MapPin size={24} color={theme.colors.white} />
+            },
+            { 
+              id: 3, 
               title: 'Exploring Old Town Streets',
               description: 'Guide to the charming narrow streets and historic sites',
               thumbnail: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
@@ -282,9 +308,10 @@ export default function VideosScreen() {
         contentContainerStyle={styles.content}
       >
         {videos.houseGuides && renderVideoSection('Educational Videos', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <MapPin size={20} color={theme.colors.primary} />)}
+        {videos.houseGuides && renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
         {videos.houseAccess && renderVideoSection('House Access', videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
         {videos.amenities && renderVideoSection('Amenities', videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
+        {videos.nearby && renderVideoSection('Nearby Places', videos.nearby, <MapPin size={20} color={theme.colors.primary} />)}
       </ScrollView>
     </View>
   );

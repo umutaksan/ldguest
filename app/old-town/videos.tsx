@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, WashingMachine as Washing } from 'lucide-react-native';
+import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, WashingMachine } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -28,7 +28,7 @@ export default function OldTownVideosScreen() {
         description: 'Find the washing machine in your Old Town apartment',
         thumbnail: 'https://i.ytimg.com/vi/QMOfnHMO-Z4/maxresdefault.jpg',
         url: 'https://youtube.com/shorts/QMOfnHMO-Z4',
-        icon: <Tv size={24} color={theme.colors.white} />
+        icon: <WashingMachine size={24} color={theme.colors.white} />
       },
       {
         id: 2,
@@ -81,7 +81,7 @@ export default function OldTownVideosScreen() {
       </View>
       {videos.map((video, index) => (
         <Animated.View 
-          key={video.id}
+          key={`${video.id}-${index}`}
           entering={FadeIn.delay(index * 100)}
         >
           <TouchableOpacity

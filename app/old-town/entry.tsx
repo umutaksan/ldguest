@@ -11,7 +11,7 @@ export default function OldTownEntryScreen() {
   const imageHeight = Platform.OS === 'web' ? 180 : width * 0.3;
 
   const handleWatchVideo = () => {
-    Linking.openURL('https://youtube.com/shorts/CqmjJsOKGSk?feature=share');
+    Linking.openURL('https://youtube.com/shorts/v0J9V--RcFw');
   };
 
   return (
@@ -61,6 +61,13 @@ export default function OldTownEntryScreen() {
             <Play size={20} color={theme.colors.white} />
             <Text style={styles.watchVideoText}>Watch Entry Video</Text>
           </TouchableOpacity>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Cleaning Closet Access</Text>
+          <Text style={styles.description}>
+            The cleaning closet card is located under the cutlery. After taking the card, please scan it at the indicated spot to open the cleaning closet.
+          </Text>
         </View>
 
         <Text style={styles.note}>
