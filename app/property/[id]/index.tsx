@@ -136,45 +136,72 @@ export default function PropertyScreen() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.licenseContainer}>
-          <Text style={styles.licenseTitle}>Tourist License Information</Text>
-          {id === '29051501' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/78324</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290410000409120000000000000000VUT/MA/783241</Text>
-            </>
-          )}
-          {id === '29051502' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/84842</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290290006252920000000000000000VUT/MA/848425</Text>
-            </>
-          )}
-          {id === '29051503' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/76801</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290410003381870000000000000000VUT/MA/768015</Text>
-            </>
-          )}
-          {id === '29051504' && (
-            <>
-              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/83102</Text>
-              <Text style={styles.licenseText}>NRA: ESFCTU0000290290006454810000000000000000VUT/MA/831025</Text>
-            </>
-          )}
-          
-          <View style={styles.idNoticeContainer}>
-            <Text style={styles.idNoticeTitle}>📌 Important Notice - ID Upload Requirement</Text>
-            <Text style={styles.idNoticeText}>
-              According to Spanish law, all guests are legally required to upload valid passport or ID documents to the system before the start of their stay.
-            </Text>
-            <Text style={styles.idNoticeText}>
-              Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation.
-            </Text>
+        <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
+          <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
+          <View style={styles.reviewButtonsContainer}>
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleAirbnbReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Airbnb</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleBookingReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Booking.com</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleVrboReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vrbo_logo.svg/2560px-Vrbo_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>VRBO</Text>
+            </TouchableOpacity>
           </View>
-        </View>
+        </Animated.View>
+
+        <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
+          <TouchableOpacity 
+            style={styles.websiteBannerContent}
+            onPress={handleMalagaMarbellaPress}
+            activeOpacity={0.7}
+          >
+            <View style={styles.websiteIconContainer}>
+              <Globe size={24} color={theme.colors.white} />
+            </View>
+            <View style={styles.websiteTextContainer}>
+              <Text style={styles.websiteBannerText}>
+                Discover more properties, local tips, and exclusive offers at malagamarbella.com
+              </Text>
+            </View>
+            <ExternalLink size={20} color={theme.colors.white} />
+          </TouchableOpacity>
+        </Animated.View>
 
         <View style={styles.quickAccess}>
+          <TouchableOpacity 
+            style={styles.socialIconButton}
+            onPress={handleInstagramPress}
           <View style={styles.row}>
             <SectionCard
               title="The Location"
@@ -302,67 +329,43 @@ export default function PropertyScreen() {
           </LinearGradient>
         </TouchableOpacity>
 
-        <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
-          <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
-          <View style={styles.reviewButtonsContainer}>
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleAirbnbReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>Airbnb</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleBookingReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>Booking.com</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleVrboReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vrbo_logo.svg/2560px-Vrbo_logo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>VRBO</Text>
-            </TouchableOpacity>
+        <View style={styles.licenseContainer}>
+          <Text style={styles.licenseTitle}>Tourist License Information</Text>
+          {id === '29051501' && (
+            <>
+              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/78324</Text>
+              <Text style={styles.licenseText}>NRA: ESFCTU0000290410000409120000000000000000VUT/MA/783241</Text>
+            </>
+          )}
+          {id === '29051502' && (
+            <>
+              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/84842</Text>
+              <Text style={styles.licenseText}>NRA: ESFCTU0000290290006252920000000000000000VUT/MA/848425</Text>
+            </>
+          )}
+          {id === '29051503' && (
+            <>
+              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/76801</Text>
+              <Text style={styles.licenseText}>NRA: ESFCTU0000290410003381870000000000000000VUT/MA/768015</Text>
+            </>
+          )}
+          {id === '29051504' && (
+            <>
+              <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/83102</Text>
+              <Text style={styles.licenseText}>NRA: ESFCTU0000290290006454810000000000000000VUT/MA/831025</Text>
+            </>
+          )}
+          
+          <View style={styles.idNoticeContainer}>
+            <Text style={styles.idNoticeTitle}>📌 Important Notice - ID Upload Requirement</Text>
+            <Text style={styles.idNoticeText}>
+              According to Spanish law, all guests are legally required to upload valid passport or ID documents to the system before the start of their stay.
+            </Text>
+            <Text style={styles.idNoticeText}>
+              Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation.
+            </Text>
           </View>
-        </Animated.View>
-        
-        <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
-          <TouchableOpacity 
-            style={styles.websiteBannerContent}
-            onPress={handleMalagaMarbellaPress}
-            activeOpacity={0.7}
-          >
-            <View style={styles.websiteIconContainer}>
-              <Globe size={24} color={theme.colors.white} />
-            </View>
-            <View style={styles.websiteTextContainer}>
-              <Text style={styles.websiteBannerText}>
-                Discover more properties, local tips, and exclusive offers at malagamarbella.com
-              </Text>
-            </View>
-            <ExternalLink size={20} color={theme.colors.white} />
-          </TouchableOpacity>
-        </Animated.View>
+        </View>
       </ScrollView>
     </View>
   );
@@ -376,11 +379,7 @@ const styles = StyleSheet.create({
   socialIconsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: theme.spacing.m,
-    backgroundColor: theme.colors.card,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
+    marginVertical: theme.spacing.m,
   },
   socialIconButton: {
     width: 40,
@@ -514,7 +513,8 @@ const styles = StyleSheet.create({
   },
   licenseContainer: {
     backgroundColor: theme.colors.surface,
-    borderRadius: theme.borderRadius.m,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.border,
     padding: theme.spacing.m,
     marginHorizontal: theme.spacing.m,
     marginBottom: theme.spacing.m,
