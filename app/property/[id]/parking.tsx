@@ -213,6 +213,13 @@ export default function ParkingScreen() {
                 style={[styles.directionsButton, { marginTop: theme.spacing.m, backgroundColor: theme.colors.secondary }]}
                 onPress={handleOpenParkingGarage}
                 activeOpacity={0.8}
+              >
+                <Car size={20} color={theme.colors.white} />
+                <Text style={styles.directionsButtonText}>Open Parking Garage</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+
           {id !== '29051503' && id !== '29051504' && (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>General Parking Tips</Text>
