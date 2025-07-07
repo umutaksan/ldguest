@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
-import { Platform } from 'react-native';
-import { Chrome as Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
+import { Platform, View, Text } from 'react-native';
+import { Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
   const tabBarHeight = theme.layout.isWeb 
@@ -43,6 +43,10 @@ export default function TabLayout() {
         tabBarItemStyle: {
           display: 'none', // Hide all tabs by default
         },
+        tabBarIconStyle: {
+          marginBottom: 0,
+        },
+        tabBarIcon: ({ focused }) => null, // Default empty icon
       }}
     >
       <Tabs.Screen
@@ -50,7 +54,9 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Home size={size} color={color} />
+            <View style={{ alignItems: 'center' }}>
+              <Home size={size} color={color} />
+            </View>
           ),
           tabBarItemStyle: {
             display: 'flex', // Show this tab
@@ -62,7 +68,9 @@ export default function TabLayout() {
         options={{
           title: 'Explore',
           tabBarIcon: ({ color, size }) => (
-            <Compass size={size} color={color} />
+            <View style={{ alignItems: 'center' }}>
+              <Compass size={size} color={color} />
+            </View>
           ),
           tabBarItemStyle: {
             display: 'flex', // Show this tab
@@ -74,7 +82,9 @@ export default function TabLayout() {
         options={{
           title: 'Guide',
           tabBarIcon: ({ color, size }) => (
-            <BookOpen size={size} color={color} />
+            <View style={{ alignItems: 'center' }}>
+              <BookOpen size={size} color={color} />
+            </View>
           ),
           tabBarItemStyle: {
             display: 'flex', // Show this tab
@@ -86,7 +96,9 @@ export default function TabLayout() {
         options={{
           title: 'Info',
           tabBarIcon: ({ color, size }) => (
-            <Info size={size} color={color} />
+            <View style={{ alignItems: 'center' }}>
+              <Info size={size} color={color} />
+            </View>
           ),
           tabBarItemStyle: {
             display: 'flex', // Show this tab
@@ -98,7 +110,9 @@ export default function TabLayout() {
         options={{
           title: 'Contact',
           tabBarIcon: ({ color, size }) => (
-            <Phone size={size} color={color} />
+            <View style={{ alignItems: 'center' }}>
+              <Phone size={size} color={color} />
+            </View>
           ),
           tabBarItemStyle: {
             display: 'flex', // Show this tab
