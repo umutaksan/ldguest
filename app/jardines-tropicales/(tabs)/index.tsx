@@ -108,6 +108,15 @@ export default function JardinesTropicalesHomeScreen() {
                 route="/car-rental"
                 delay={9}
               />
+              <SectionCard
+                title="Parking"
+                icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
+                route="/parking"
+                delay={10}
+              />
+            </View>
+          </View>
+
           <TouchableOpacity 
             style={styles.promoContainer}
             onPress={handleViewMoreProperties}
@@ -142,20 +151,11 @@ export default function JardinesTropicalesHomeScreen() {
               route="/info"
               delay={11}
             />
-          </View>
-          
-          <View style={styles.row}>
             <SectionCard
               title="Amenities"
               icon={<Sofa size={28} color={theme.colors.secondary} />}
               route="/amenities"
               delay={12}
-            />
-            <SectionCard
-              title="Photo Gallery"
-              icon={<ImageIcon size={28} color={theme.colors.secondary} />}
-              route="/photos"
-              delay={13}
             />
           </View>
 
@@ -208,8 +208,6 @@ export default function JardinesTropicalesHomeScreen() {
 }
 
 const styles = StyleSheet.create({
-                }
-  )
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,

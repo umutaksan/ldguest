@@ -5,7 +5,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Book, Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
 export default function InfoScreen() {
   const insets = useSafeAreaInsets();
@@ -13,9 +13,7 @@ export default function InfoScreen() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const { width } = useWindowDimensions();
   
-  // Get rules based on property ID
-  const getRules = () => {
-    return [
+  const rules = [
     { 
       id: 1, 
       title: 'Quiet Hours', 
@@ -64,10 +62,18 @@ export default function InfoScreen() {
       description: 'Hosting parties or large events is not allowed.',
       icon: <Music size={24} color={theme.colors.secondary} />
     }
-    ];
-  };
-
-  const rules = getRules();
+  ];
+  
+  const amenities = [
+    { id: 1, title: 'High-speed WiFi', icon: <Wifi size={24} color={theme.colors.primary} /> },
+    { id: 2, title: 'Coffee maker', icon: <Coffee size={24} color={theme.colors.primary} /> },
+    { id: 3, title: 'Bathtub & shower', icon: <Bath size={24} color={theme.colors.primary} /> },
+    { id: 4, title: 'Air conditioning', icon: <Thermometer size={24} color={theme.colors.primary} /> },
+    { id: 5, title: '2 Ceiling fans', icon: <Wind size={24} color={theme.colors.primary} /> },
+    { id: 6, title: '2 Smart TVs', icon: <Tv size={24} color={theme.colors.primary} /> },
+    { id: 7, title: 'Safe box', icon: <Safe size={24} color={theme.colors.primary} /> },
+    { id: 8, title: 'Sofa bed', icon: <Sofa size={24} color={theme.colors.primary} /> },
+  ];
   
   // Get FAQs based on property ID
   const getFaqs = () => {
@@ -200,7 +206,7 @@ export default function InfoScreen() {
           { 
             id: 13, 
             question: 'What is the size of the apartment?', 
-            answer: 'The apartment is 85 m².'
+            answer: 'The apartment is 105 m².'
           },
           { 
             id: 14, 
@@ -365,7 +371,7 @@ export default function InfoScreen() {
       <PageHeader title="Property Information" showBackButton={false} />
 
       <ScrollView 
-        showsVerticalScrollIndicator={false} 
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={[
           styles.content,
           isLargeScreen && styles.contentLarge
@@ -392,7 +398,7 @@ export default function InfoScreen() {
               {rules.map((rule, index) => (
                 <Animated.View 
                   key={rule.id}
-                  entering={FadeInDown.delay(index * 100)}
+                  entering={FadeIn.delay(index * 100)}
                   style={[
                     styles.ruleCard,
                     isLargeScreen && styles.ruleCardLarge,
@@ -415,51 +421,79 @@ export default function InfoScreen() {
             styles.amenitiesSection,
             isLargeScreen && styles.amenitiesSectionLarge
           ]}>
-            <View style={styles.divider} />
-            
             <Text style={[
               styles.sectionTitle,
               isLargeScreen && styles.sectionTitleLarge
-            ]}>Frequently Asked Questions</Text>
+            ]}>Amenities</Text>
             
             <View style={[
-              styles.faqContainer,
-              isLargeScreen && styles.faqContainerLarge
+              styles.amenitiesContainer,
+              isLargeScreen && styles.amenitiesContainerLarge,
+              isMediumScreen && styles.amenitiesContainerMedium
             ]}>
-              {faqs.map((faq, index) => (
+              {amenities.map((amenity, index) => (
                 <Animated.View 
-                  key={faq.id}
-                  entering={FadeInDown.delay(index * 100)}
-                  style={styles.faqItem}
+                  key={amenity.id}
+                  entering={FadeIn.delay(index * 100)}
+                  style={[
+                    styles.amenityItem,
+                    isLargeScreen && styles.amenityItemLarge,
+                    isMediumScreen && styles.amenityItemMedium
+                  ]}
                 >
-                  <TouchableOpacity
-                    style={styles.faqQuestion}
-                    onPress={() => toggleFaq(faq.id)}
-                    activeOpacity={0.8}
-                  >
-                    <Text style={[
-                      styles.faqQuestionText,
-                      isLargeScreen && styles.faqQuestionTextLarge
-                    ]}>{faq.question}</Text>
-                    {expandedFaq === faq.id ? (
-                      <ChevronUp size={20} color={theme.colors.text} />
-                    ) : (
-                      <ChevronDown size={20} color={theme.colors.text} />
-                    )}
-                  </TouchableOpacity>
-                  
-                  {expandedFaq === faq.id && (
-                    <View style={styles.faqAnswer}>
-                      <Text style={[
-                        styles.faqAnswerText,
-                        isLargeScreen && styles.faqAnswerTextLarge
-                      ]}>{faq.answer}</Text>
-                    </View>
-                  )}
+                  <View style={styles.amenityIcon}>
+                    {amenity.icon}
+                  </View>
+                  <Text style={styles.amenityTitle}>{amenity.title}</Text>
                 </Animated.View>
               ))}
             </View>
           </View>
+        </View>
+        
+        <View style={styles.divider} />
+        
+        <Text style={[
+          styles.sectionTitle,
+          isLargeScreen && styles.sectionTitleLarge
+        ]}>Frequently Asked Questions</Text>
+        
+        <View style={[
+          styles.faqContainer,
+          isLargeScreen && styles.faqContainerLarge
+        ]}>
+          {faqs.map((faq, index) => (
+            <Animated.View 
+              key={faq.id}
+              entering={FadeInDown.delay(index * 100)}
+              style={styles.faqItem}
+            >
+              <TouchableOpacity
+                style={styles.faqQuestion}
+                onPress={() => toggleFaq(faq.id)}
+                activeOpacity={0.8}
+              >
+                <Text style={[
+                  styles.faqQuestionText,
+                  isLargeScreen && styles.faqQuestionTextLarge
+                ]}>{faq.question}</Text>
+                {expandedFaq === faq.id ? (
+                  <ChevronUp size={20} color={theme.colors.text} />
+                ) : (
+                  <ChevronDown size={20} color={theme.colors.text} />
+                )}
+              </TouchableOpacity>
+              
+              {expandedFaq === faq.id && (
+                <View style={styles.faqAnswer}>
+                  <Text style={[
+                    styles.faqAnswerText,
+                    isLargeScreen && styles.faqAnswerTextLarge
+                  ]}>{faq.answer}</Text>
+                </View>
+              )}
+            </Animated.View>
+          ))}
         </View>
       </ScrollView>
     </View>
@@ -599,7 +633,7 @@ const styles = StyleSheet.create({
   amenityTitle: {
     ...theme.typography.bodySmall,
     textAlign: 'center',
-    color: theme.colors.text
+    color: theme.colors.text,
   },
   faqContainer: {
     width: '100%',
