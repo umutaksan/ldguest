@@ -102,6 +102,50 @@ export default function PropertyScreen() {
           imageUrl={propertyData.imageUrl}
         />
 
+        <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
+          <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
+          <View style={styles.reviewButtonsContainer}>
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleAirbnbReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Airbnb</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleBookingReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>Booking.com</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.reviewButton}
+              onPress={handleVrboReview}
+              activeOpacity={0.7}
+            >
+              <Image 
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vrbo_logo.svg/2560px-Vrbo_logo.svg.png' }}
+                style={styles.reviewLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.reviewButtonText}>VRBO</Text>
+            </TouchableOpacity>
+          </View>
+        </Animated.View>
+
         <View style={styles.socialIconsContainer}>
           <TouchableOpacity 
             style={styles.socialIconButton}
@@ -265,50 +309,6 @@ export default function PropertyScreen() {
         </TouchableOpacity>
 
         <View style={styles.footerContainer}>
-        <Animated.View entering={FadeIn.delay(300)} style={styles.reviewBanner}>
-          <Text style={styles.reviewBannerTitle}>Enjoyed your stay? Leave us a review!</Text>
-          <View style={styles.reviewButtonsContainer}>
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleAirbnbReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>Airbnb</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleBookingReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>Booking.com</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.reviewButton}
-              onPress={handleVrboReview}
-              activeOpacity={0.7}
-            >
-              <Image 
-                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vrbo_logo.svg/2560px-Vrbo_logo.svg.png' }}
-                style={styles.reviewLogo}
-                resizeMode="contain"
-              />
-              <Text style={styles.reviewButtonText}>VRBO</Text>
-            </TouchableOpacity>
-          </View>
-        </Animated.View>
-        
         <Animated.View entering={FadeIn.delay(400)} style={styles.websiteBanner}>
           <TouchableOpacity 
             style={styles.websiteBannerContent}
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
   reviewBanner: {
     backgroundColor: theme.colors.card,
     marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
+    marginVertical: theme.spacing.m,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
