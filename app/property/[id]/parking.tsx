@@ -197,30 +197,46 @@ export default function ParkingScreen() {
               />
             )}
 
-            <TouchableOpacity 
-              style={styles.directionsButton}
-              onPress={handleOpenMaps}
-              activeOpacity={0.8}
-            >
-              <Navigation size={20} color={theme.colors.white} />
-              <Text style={styles.directionsButtonText}>Get Directions to {id === '29051503' ? 'Townhouse' : 'Apartment'}</Text>
-            </TouchableOpacity>
+            {id !== '29051503' && (
+              <TouchableOpacity 
+                style={styles.directionsButton}
+                onPress={handleOpenMaps}
+                activeOpacity={0.8}
+              >
+                <Navigation size={20} color={theme.colors.white} />
+                <Text style={styles.directionsButtonText}>Get Directions to {id === '29051503' ? 'Townhouse' : 'Apartment'}</Text>
+              </TouchableOpacity>
+            )}
             
             {id === '29051504' && (
               <TouchableOpacity 
                 style={[styles.directionsButton, { marginTop: theme.spacing.m, backgroundColor: theme.colors.secondary }]}
                 onPress={handleOpenParkingGarage}
                 activeOpacity={0.8}
-              >
-                <Car size={20} color={theme.colors.white} />
-                <Text style={styles.directionsButtonText}>Get Directions to Parking Garage</Text>
-              </TouchableOpacity>
-            )}
-
-            <Text style={styles.parkingTip}>
-              You can view the {id === '29051504' ? 'parking options' : 'street parking'} by clicking on the navigation link above and using street view.
-            </Text>
-          </View>
+          {id !== '29051503' && id !== '29051504' && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>General Parking Tips</Text>
+              <View style={styles.generalTipsContainer}>
+                {id === '29051502' ? (
+                  <>
+                    <Text style={styles.tip}>• Download parking apps like EasyPark or Telpark</Text>
+                    <Text style={styles.tip}>• Blue zones require payment Monday-Friday 9:00-14:00 & 17:00-20:00</Text>
+                    <Text style={styles.tip}>• Saturday mornings also require payment in some areas</Text>
+                    <Text style={styles.tip}>• Always check parking signs for specific regulations</Text>
+                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse' : 'apartment'} includes {id === '29051501' || id === '29051503' ? 'free parking' : 'nearby paid parking options'}</Text>
+                    <Text style={styles.tip}>• The area is generally safe for parking</Text>
+                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
+                    <Text style={styles.tip}>• Lock your vehicle at all times</Text>
+                    <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
+                  </>
+                )}
+              </View>
+            </View>
+          )}
 
           {parkingInfo.options && parkingInfo.options.map((option, index) => (
             <Animated.View 
