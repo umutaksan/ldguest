@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { MapPin, Navigation, Car } from 'lucide-react-native';
-import Animated, { FadeIn } from 'react-native-reanimated'; 
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function OldTownParkingScreen() {
   const insets = useSafeAreaInsets();
@@ -50,37 +50,17 @@ export default function OldTownParkingScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Parking Near Your Apartment</Text>
             <Text style={styles.description}>
-              This property does not have private parking.
-              However, there are street parking options nearby.
-              If you are looking for a covered parking garage, you can use the one shown in the map below:
+              This property does not have private parking. However, there are street parking options nearby. 
+              If you are looking for a covered parking garage, you can use the following location on Google Maps:
             </Text>
 
-            <View style={styles.mapContainer}>
-              {Platform.OS === 'web' ? (
-                <View 
-                  style={styles.iframeContainer}
-                  dangerouslySetInnerHTML={{
-                    __html: `<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d400.86031951365055!2d-4.883279!3d36.508697!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd732786dfc1e9d9%3A0xf8635c896b0f37df!2sParking%20Parquesol!5e0!3m2!1str!2ses!4v1751890460090!5m2!1str!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
-                  }}
-                />
-              ) : (
-                <TouchableOpacity
-                  style={styles.mapPlaceholder}
-                  onPress={handleOpenMaps}
-                >
-                  <Text style={styles.mapPlaceholderText}>Open Map</Text>
-                  <MapPin size={24} color={theme.colors.primary} />
-                </TouchableOpacity>
-              )}
-            </View>
-
             <TouchableOpacity 
-              style={styles.directionsButton}
-              onPress={handleOpenMaps}
+              style={[styles.directionsButton, { marginTop: theme.spacing.m }]}
+              onPress={() => Linking.openURL('https://www.google.com/maps/place/Parking+Parquesol/@36.508697,-4.883279,17z/data=!4m14!1m7!3m6!1s0xd732786dfc1e9d9:0xf8635c896b0f37df!2sParking+Parquesol!8m2!3d36.508697!4d-4.883279!16s%2Fg%2F11c5_0_2t0!3m5!1s0xd732786dfc1e9d9:0xf8635c896b0f37df!8m2!3d36.508697!4d-4.883279!16s%2Fg%2F11c5_0_2t0?entry=ttu')}
               activeOpacity={0.8}
             >
-              <Navigation size={20} color={theme.colors.white} />
-              <Text style={styles.directionsButtonText}>Get Directions to Parking</Text>
+              <Car size={20} color={theme.colors.white} />
+              <Text style={styles.directionsButtonText}>Parking Parquesol on Google Maps</Text>
             </TouchableOpacity>
           </View>
         </Animated.View>
@@ -100,26 +80,6 @@ const styles = StyleSheet.create({
   mapContainer: {
     width: '100%',
     height: 450,
-    marginVertical: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
-    overflow: 'hidden',
-    ...theme.shadows.medium,
-  },
-  iframeContainer: {
-    width: '100%',
-    height: '100%',
-  },
-  mapPlaceholder: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: theme.colors.surface,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  mapPlaceholderText: {
-    ...theme.typography.bodyMedium,
-    marginBottom: theme.spacing.m,
-    color: theme.colors.primary,
   },
   section: {
     marginBottom: theme.spacing.xl,
