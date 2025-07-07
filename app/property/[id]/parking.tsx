@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
@@ -10,6 +10,12 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 export default function ParkingScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const [isWeb, setIsWeb] = useState(false);
+  
+  useEffect(() => {
+    // Safely determine if we're on web platform
+    setIsWeb(Platform.OS === 'web');
+  }, []);
 
   // Get parking information based on property ID
   const getParkingInfo = () => {
@@ -165,8 +171,8 @@ export default function ParkingScreen() {
             </Text>
 
             {id === '29051504' && (
-              <View style={styles.mapContainer}>
-                {Platform.OS === 'web' ? (
+              <View style={styles.mapContainer}>  
+                {isWeb ? (
                   <View 
                     style={styles.iframeContainer}
                     dangerouslySetInnerHTML={{

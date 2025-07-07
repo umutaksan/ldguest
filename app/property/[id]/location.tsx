@@ -137,23 +137,35 @@ export default function LocationScreen() {
     } else {
       return [
         {
-          id: 1,
-          title: "By Car",
-          description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
+          id: 1, 
+          title: "By Car", 
+          description: id === '29051503' 
+            ? "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Aloha Golf area. The townhouse is located on Calle del Agua in the Aloha Pueblo complex, with private parking available."
+            : id === '29051504'
+            ? "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Casco Antiguo (Old Town). Street parking is available nearby, or use Parking Parquesol garage (5-minute walk)."
+            : "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
           icon: <Car size={24} color={theme.colors.secondary} />
         },
         {
           id: 2,
           title: "By Bus",
-          description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
+          description: id === '29051503'
+            ? "From Málaga Airport, take L-75 bus to Puerto Banús (45 min). From there, it's a short taxi ride or a 20-minute walk to Aloha Pueblo. Local buses also connect from Marbella Bus Station."
+            : id === '29051504'
+            ? "From Málaga Airport, take bus to Marbella Bus Station (40 min). From there, it's a 10-minute walk to the apartment through Avenida Ricardo Soriano and into the Old Town."
+            : "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
           icon: <Bus size={24} color={theme.colors.secondary} />,
           action: handleOpenBusRoute,
           actionLabel: "View Bus Stop Location"
         },
         {
           id: 3,
-          title: "By Taxi",
-          description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
+          title: "By Taxi/Uber",
+          description: id === '29051503'
+            ? "The most convenient option from the airport (about 45-minute drive). Ask to be dropped at Calle del Agua in Aloha Pueblo, Nueva Andalucía. All taxi services know this popular residential area."
+            : id === '29051504'
+            ? "The most convenient option from the airport. Ask to be dropped at Calle Málaga in Marbella Old Town. The narrow streets may require a short walk to the exact address."
+            : "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
           icon: <Taxi size={24} color={theme.colors.secondary} />
         }
       ];

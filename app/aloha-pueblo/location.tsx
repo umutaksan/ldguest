@@ -20,22 +20,22 @@ export default function AlohaPuebloLocationScreen() {
   const transportOptions = [
     {
       id: 1,
-      title: "By Car",
-      description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Aloha Golf area.",
+      title: "By Car", 
+      description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Aloha Golf area. The townhouse is located on Calle del Agua in the Aloha Pueblo complex, with private parking available.",
       icon: <Car size={24} color={theme.colors.secondary} />
     },
     {
       id: 2,
       title: "By Bus",
-      description: "From Málaga Airport, take L-75 bus to Nueva Andalucía (45 min).",
+      description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min). From there, it's a short taxi ride or a 20-minute walk to Aloha Pueblo. Local buses also connect from Marbella Bus Station.",
       icon: <Bus size={24} color={theme.colors.secondary} />,
       action: handleOpenBusRoute,
       actionLabel: "View Bus Stop Location"
     },
     {
       id: 3,
-      title: "By Taxi",
-      description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
+      title: "By Taxi/Uber",
+      description: "The most convenient option from the airport (about 45-minute drive). Ask to be dropped at Calle del Agua in Aloha Pueblo, Nueva Andalucía. All taxi services know this popular residential area.",
       icon: <Taxi size={24} color={theme.colors.secondary} />
     }
   ];
