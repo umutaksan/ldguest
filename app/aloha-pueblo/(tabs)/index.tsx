@@ -52,6 +52,16 @@ export default function AlohaPuebloHomeScreen() {
           <Text style={styles.licenseTitle}>Tourist License Information</Text>
           <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/76801</Text>
           <Text style={styles.licenseText}>NRA: ESFCTU0000290410003381870000000000000000VUT/MA/768015</Text>
+          
+          <View style={styles.idNoticeContainer}>
+            <Text style={styles.idNoticeTitle}>📌 Important Notice - ID Upload Requirement</Text>
+            <Text style={styles.idNoticeText}>
+              According to Spanish law, all guests are legally required to upload valid passport or ID documents to the system before the start of their stay.
+            </Text>
+            <Text style={styles.idNoticeText}>
+              Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation.
+            </Text>
+          </View>
         </View>
 
         <View style={styles.quickAccess}>
@@ -345,5 +355,22 @@ const styles = StyleSheet.create({
   licenseText: {
     ...theme.typography.bodySmall,
     color: theme.colors.textTertiary,
+    marginBottom: theme.spacing.xs,
+  },
+  idNoticeContainer: {
+    marginTop: theme.spacing.m,
+    paddingTop: theme.spacing.m,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.border,
+  },
+  idNoticeTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.secondary,
+    marginBottom: theme.spacing.s,
+  },
+  idNoticeText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.s,
   },
 });
