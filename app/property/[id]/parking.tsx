@@ -17,7 +17,7 @@ export default function ParkingScreen() {
       case '29051501': // Jardines Tropicales
         return {
           title: 'Free Parking Available',
-          description: 'There is an open parking lot in front of the house where you can park your vehicle free of charge.',
+          description: 'There is street parking available in front of the house where you can park your vehicle free of charge. There is no covered parking or private parking available for the property. Street parking is free.',
           image: 'https://static.wixstatic.com/media/8bbc22_4c94e82090444532a15fb6f58cd9a47a~mv2.png/v1/fill/w_540,h_364,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.png',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Calle+Azahar+12%2C+Nueva+Andaluc%C3%ADa%2C+Marbella',
           address: 'Calle Azahar 12',
@@ -28,7 +28,7 @@ export default function ParkingScreen() {
               name: 'Property Parking',
               description: 'Free parking available in front of the property.',
               price: 'Free',
-              tips: ['Available 24/7', 'No time restrictions', 'Well-lit area']
+              tips: ['Available 24/7', 'No time restrictions', 'Well-lit area', 'Street parking only']
             }
           ]
         };
@@ -196,6 +196,10 @@ export default function ParkingScreen() {
               <Navigation size={20} color={theme.colors.white} />
               <Text style={styles.directionsButtonText}>Get Directions to {id === '29051503' ? 'Townhouse' : 'Apartment'}</Text>
             </TouchableOpacity>
+
+            <Text style={styles.parkingTip}>
+              You can view the street parking by clicking on the navigation link above and using street view.
+            </Text>
 
             {id === '29051502' && (
               <View style={styles.additionalButtonsContainer}>
@@ -388,5 +392,13 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
+  },
+  parkingTip: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginTop: theme.spacing.s,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    marginBottom: theme.spacing.m,
   },
 });
