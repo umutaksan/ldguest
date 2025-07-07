@@ -67,7 +67,10 @@ export default function OldTownCarRentalScreen() {
             
             <View style={styles.disclaimerContainer}>
               <Text style={styles.disclaimer}>
-                L&D Guest has shared this information for informational purposes only. We do not operate car rental services directly and do not accept any liability for any issues that may arise from using third-party car rental services. Customers are advised to review the terms and conditions of the car rental provider before making a reservation.
+                L&D Guest has shared this information for informational purposes only. We do not operate car rental services directly and do not accept any liability for any issues that may arise from using third-party car rental services.
+              </Text>
+              <Text style={styles.disclaimer}>
+                Customers are advised to review the terms and conditions of the car rental provider before making a reservation.
               </Text>
             </View>
           </View>
@@ -155,7 +158,8 @@ const styles = StyleSheet.create({
   disclaimer: {
     ...theme.typography.caption,
     color: theme.colors.textTertiary,
-    textAlign: 'center',
+    textAlign: 'left',
     fontStyle: 'italic',
+    marginBottom: theme.spacing.s,
   },
 });
