@@ -133,6 +133,10 @@ export default function ParkingScreen() {
 
   const parkingInfo = getParkingInfo();
 
+  // Extract conditional logic for cleaner JSX
+  const showGeneralTips = id !== '29051503' && id !== '29051504';
+  const showGeneralTipsSection = id !== '29051504';
+
   const handleOpenMaps = () => {
     Linking.openURL(parkingInfo.mapUrl);
   };
@@ -220,7 +224,7 @@ export default function ParkingScreen() {
             )}
           </View>
 
-          {id !== '29051503' && id !== '29051504' && (
+          {showGeneralTips && (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>General Parking Tips</Text>
               <View style={styles.generalTipsContainer}>
@@ -270,7 +274,7 @@ export default function ParkingScreen() {
             </Animated.View>
           ))}
 
-          {id !== '29051504' && (
+          {showGeneralTipsSection && (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>General Parking Tips</Text>
               <View style={styles.generalTipsContainer}>
