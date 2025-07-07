@@ -238,7 +238,8 @@ export default function ParkingScreen() {
                   </>
                 ) : (
                   <>
-                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse' : 'apartment'} includes {id === '29051501' || id === '29051503' ? 'free parking' : 'nearby paid parking options'}</Text>
+                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse does not have private parking' : 'apartment includes nearby paid parking options'}</Text>
+                    <Text style={styles.tip}>• Street parking is available in the area</Text>
                     <Text style={styles.tip}>• The area is generally safe for parking</Text>
                     <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
                     <Text style={styles.tip}>• Lock your vehicle at all times</Text>
@@ -249,31 +250,32 @@ export default function ParkingScreen() {
             </View>
           )}
 
-          {parkingInfo.options && id !== '29051503' && id !== '29051504' && (
+          {parkingInfo.options && id !== '29051503' && (
             parkingInfo.options.map((option, index) => (
-            <Animated.View 
-              key={option.id}
-              entering={FadeIn.delay(index * 200)}
-              style={styles.parkingCard}
-            >
-              <View style={styles.parkingHeader}>
-                <Car size={24} color={theme.colors.primary} />
-                <View style={styles.parkingInfo}>
-                  <Text style={styles.parkingName}>{option.name}</Text>
-                  <Text style={styles.parkingPrice}>{option.price}</Text>
+              <Animated.View 
+                key={option.id}
+                entering={FadeIn.delay(index * 200)}
+                style={styles.parkingCard}
+              >
+                <View style={styles.parkingHeader}>
+                  <Car size={24} color={theme.colors.primary} />
+                  <View style={styles.parkingInfo}>
+                    <Text style={styles.parkingName}>{option.name}</Text>
+                    <Text style={styles.parkingPrice}>{option.price}</Text>
+                  </View>
                 </View>
-              </View>
-              
-              <Text style={styles.parkingDescription}>{option.description}</Text>
-              
-              <View style={styles.tipsContainer}>
-                <Text style={styles.tipsTitle}>Features:</Text>
-                {option.tips.map((tip, tipIndex) => (
-                  <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
-                ))}
-              </View>
-            </Animated.View>
-          )))}
+                
+                <Text style={styles.parkingDescription}>{option.description}</Text>
+                
+                <View style={styles.tipsContainer}>
+                  <Text style={styles.tipsTitle}>Features:</Text>
+                  {option.tips.map((tip, tipIndex) => (
+                    <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
+                  ))}
+                </View>
+              </Animated.View>
+            ))
+          )}
 
           {showGeneralTipsSection && (
             <View style={styles.section}>
