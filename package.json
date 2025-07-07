@@ -2,11 +2,11 @@
   "name": "jardines-tropicales-app",
   "main": "expo-router/entry",
   "version": "1.0.0",
-  "private": true,
+  "private": true, 
   "scripts": {
-    "dev": "EXPO_NO_TELEMETRY=1 expo start --web",
-    "web": "EXPO_NO_TELEMETRY=1 expo start --web",
-    "build:web": "EXPO_NO_TELEMETRY=1 expo export --platform web",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "expo lint"
   },
   "dependencies": {
@@ -50,7 +50,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@vitejs/plugin-react": "^4.2.1",
     "@types/react": "~19.0.10",
-    "typescript": "~5.8.3"
+    "typescript": "~5.8.3",
+    "vite": "^5.0.12"
   }
 }
