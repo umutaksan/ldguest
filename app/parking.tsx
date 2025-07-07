@@ -26,7 +26,7 @@ export default function ParkingScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Free Parking Available</Text>
             <Text style={styles.description}>
-              There is an open parking lot in front of the house where you can park your vehicle free of charge.
+              There is street parking available in front of the house where you can park your vehicle free of charge. There is no covered parking or private parking available for the property. Street parking is free.
             </Text>
 
             <Image 
@@ -43,6 +43,10 @@ export default function ParkingScreen() {
               <Navigation size={20} color={theme.colors.white} />
               <Text style={styles.directionsButtonText}>Get Directions</Text>
             </TouchableOpacity>
+            
+            <Text style={styles.parkingTip}>
+              You can view the street parking by clicking on the navigation link above and using street view.
+            </Text>
           </View>
 
           <View style={styles.section}>
@@ -113,6 +117,13 @@ const styles = StyleSheet.create({
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+  },
+  parkingTip: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginTop: theme.spacing.s,
+    textAlign: 'center',
+    fontStyle: 'italic',
   },
   locationCard: {
     flexDirection: 'row',
