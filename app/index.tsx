@@ -112,6 +112,21 @@ export default function PropertiesScreen() {
           </View>
 
           <TouchableOpacity
+      
+      <View style={styles.footerLinks}>
+        <TouchableOpacity onPress={() => Linking.openURL('https://www.ldguest.com')}>
+          <Text style={styles.footerLink}>www.ldguest.com</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/ldguestmarbella')}>
+          <Text style={styles.footerLink}>www.instagram.com/ldguestmarbella</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/@ldguestmarbella')}>
+          <Text style={styles.footerLink}>www.youtube.com/@ldguestmarbella</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('mailto:hello@ldguest.com')}>
+          <Text style={styles.footerLink}>hello@ldguest.com</Text>
+        </TouchableOpacity>
+      </View>
             style={styles.adminButton}
             onPress={() => router.push('/cleaning')}
           >
@@ -217,5 +232,18 @@ const styles = StyleSheet.create({
   adminButtonText: {
     ...theme.typography.bodySmall,
     color: theme.colors.textSecondary,
+  },
+  footerLinks: {
+    padding: theme.spacing.m,
+    alignItems: 'center',
+    backgroundColor: theme.colors.surface,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.border,
+  },
+  footerLink: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.primary,
+    marginVertical: theme.spacing.xs,
+    textDecorationLine: 'underline',
   },
 });
