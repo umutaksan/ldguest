@@ -20,41 +20,26 @@ export default function PropertyScreen() {
       case '29051501':
         return {
           title: '1+1 Jardines Tropicales Puerto Banús',
-          registrationNumber: 'REGISTRO AUTONÓMICO: VUT/MA/78324',
-          nraNumber: 'NRA: ESFCTU0000290410000409120000000000000000VUT/MA/783241',
-          registrationNumber: 'REGISTRO AUTONÓMICO: NRA-MA-02369',
           imageUrl: 'https://a0.muscache.com/im/pictures/miso/Hosting-1316607383752040451/original/4009975e-0d1a-450c-9458-88acab09ef65.png?im_w=1440&im_format=avif'
         };
       case '29051502':
         return {
           title: '2+1 Seaview Playa de Fontanilla',
-          registrationNumber: 'REGISTRO AUTONÓMICO: VUT/MA/84842',
-          nraNumber: 'NRA: ESFCTU0000290290006252920000000000000000VUT/MA/848425',
-          registrationNumber: 'REGISTRO AUTONÓMICO: NRA-MA-02372',
           imageUrl: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/628787942.jpg?k=8debb78111131852bf35286c8e7e732682d6570737cf214f84c3803fce5d4806&o='
         };
       case '29051503':
         return {
           title: '1+1 Aloha Pueblo Townhouse',
-          registrationNumber: 'REGISTRO AUTONÓMICO: VUT/MA/76801',
-          nraNumber: 'NRA: ESFCTU0000290410003381870000000000000000VUT/MA/768015',
-          registrationNumber: 'REGISTRO AUTONÓMICO: NRA-MA-02370',
           imageUrl: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/681135350.jpg?k=fc73c36cd1371fe8efdc2e947ec5aa836557ffe9210d4e33aadbb0e8f237d43a&o=&hp=1'
         };
       case '29051504':
         return {
           title: '3+1 Marbella Old Town',
-          registrationNumber: 'REGISTRO AUTONÓMICO: VUT/MA/83102',
-          nraNumber: 'NRA: ESFCTU0000290290006454810000000000000000VUT/MA/831025',
-          registrationNumber: 'REGISTRO AUTONÓMICO: NRA-MA-02371',
           imageUrl: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/645431688.jpg?k=0d1af13e52daafe35fe9638dd024af7730169834024271f0cc2f0540393f7104&o='
         };
       default:
         return {
           title: 'L&D Guest Property',
-          registrationNumber: 'REGISTRO AUTONÓMICO: VUT/MA/00000',
-          nraNumber: 'NRA: ESFCTU0000000000000000000000000000000000VUT/MA/000000',
-          registrationNumber: 'REGISTRO AUTONÓMICO: NRA-MA-00000',
           imageUrl: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg'
         };
     }
@@ -90,31 +75,9 @@ export default function PropertyScreen() {
         <PropertyHero
           title={propertyData.title}
           subtitle="Thank you for your reservation!"
-          registrationNumber={propertyData.registrationNumber}
-          registrationNumber={propertyData.registrationNumber}
           imageUrl={propertyData.imageUrl}
         />
 
-        <View style={styles.alertContainer}>
-          <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
-          <Text style={styles.alertText}>
-            According to Spanish law, all guests must upload valid passport or ID documents to the system before check-in.
-          </Text>
-          <Text style={styles.alertText}>
-            Please complete this process through the ID upload link provided to you via the platform where you made your reservation.
-          </Text>
-        </View>
-        
-        <View style={styles.alertContainer}>
-          <Text style={styles.alertTitle}>📌 Important Information - ID Upload Requirement</Text>
-          <Text style={styles.alertText}>
-            According to Spanish law, all guests must upload valid passport or ID documents to the system before check-in.
-          </Text>
-          <Text style={styles.alertText}>
-            Please complete this process through the ID upload link provided to you via the platform where you made your reservation.
-          </Text>
-        </View>
-        
         <View style={styles.quickAccess}>
           <View style={styles.row}>
             <SectionCard
@@ -370,45 +333,7 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
   },
   platformLogo: {
-    width: 24, 
-    height: 24, 
-  },
-  alertContainer: {
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  alertTitle: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.s,
-    fontWeight: '600',
-  },
-  alertText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.xs,
-  },
-  alertContainer: {
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  alertTitle: {
-    ...theme.typography.bodyMedium,
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.s,
-    fontWeight: '600',
-  },
-  alertText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.xs,
+    width: 24,
+    height: 24,
   },
 });
