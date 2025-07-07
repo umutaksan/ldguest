@@ -202,6 +202,8 @@ export default function PropertyScreen() {
           <TouchableOpacity 
             style={styles.socialIconButton}
             onPress={handleInstagramPress}
+          >
+          </TouchableOpacity>
           <View style={styles.row}>
             <SectionCard
               title="The Location"
