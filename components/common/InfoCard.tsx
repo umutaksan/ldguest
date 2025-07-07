@@ -34,7 +34,7 @@ export function InfoCard({
       >
         {icon && <View style={styles.iconContainer}>{icon}</View>}
         <View style={styles.content}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={[styles.title, { marginBottom: description ? theme.spacing.xs : 0 }]}>{title}</Text>
           {description && <Text style={styles.description}>{description}</Text>}
         </View>
         {showChevron && onPress && (
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
   title: {
     ...theme.typography.bodyMedium,
     color: theme.colors.text,
-    marginBottom: description ? theme.spacing.xs : 0,
   },
   description: {
     ...theme.typography.bodySmall,
