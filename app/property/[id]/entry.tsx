@@ -89,6 +89,36 @@ export default function EntryScreen() {
           isLargeScreen && styles.contentLarge
         ]}
       >
+        {id === '29051501' && (
+          <View style={styles.mainContent}>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Step 1: Getting the Key Card</Text>
+              <Text style={styles.description}>
+                Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
+                {'\n\n'}
+                The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM. To enter the house, first you need to take the black bar of the main door and the key card for entry from the designated location.
+              </Text>
+
+              <TouchableOpacity 
+                style={styles.watchVideoButton}
+                onPress={() => handleWatchVideo('https://youtube.com/shorts/XNzqKrwDKf8')}
+                activeOpacity={0.8}
+              >
+                <Video size={20} color={theme.colors.white} />
+                <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
+              </TouchableOpacity>
+              
+              <View style={styles.imageContainer}>
+                <Image 
+                  source={{ uri: 'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/crop/x_0,y_338,w_3024,h_2754/fill/w_366,h_333,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg' }}
+                  style={styles.mainImage}
+                  resizeMode="cover"
+                />
+              </View>
+            </View>
+          </View>
+        )}
+
         <View style={[
           styles.mainContent,
           isLargeScreen && styles.mainContentLarge

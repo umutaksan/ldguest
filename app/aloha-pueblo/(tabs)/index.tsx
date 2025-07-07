@@ -32,11 +32,27 @@ export default function AlohaPuebloHomeScreen() {
           { paddingBottom: insets.bottom + theme.spacing.xl }
         ]}
       >
+        <View style={styles.importantNoticeContainer}>
+          <Text style={styles.importantNoticeTitle}>📌 Önemli Bilgilendirme – Kimlik Yükleme Zorunluluğu</Text>
+          <Text style={styles.importantNoticeText}>
+            İspanya yasaları gereği, konaklama başlamadan önce tüm misafirlerin geçerli pasaport veya kimlik (ID) belgelerini sisteme yüklemeleri yasal bir zorunluluktur.
+          </Text>
+          <Text style={styles.importantNoticeText}>
+            Rezervasyon yaptığınız platform üzerinden tarafınıza iletilen kimlik yükleme bağlantısı aracılığıyla, konaklamanız başlamadan önce bu işlemi tamamlamanızı rica ederiz.
+          </Text>
+        </View>
+
         <PropertyHero
           title="1+1 Aloha Pueblo Townhouse"
           subtitle="Thank you for your reservation!"
           imageUrl="https://cf.bstatic.com/xdata/images/hotel/max1024x768/681135350.jpg?k=fc73c36cd1371fe8efdc2e947ec5aa836557ffe9210d4e33aadbb0e8f237d43a&o=&hp=1"
         />
+
+        <View style={styles.licenseContainer}>
+          <Text style={styles.licenseTitle}>Tourist License Information</Text>
+          <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/76801</Text>
+          <Text style={styles.licenseText}>NRA: ESFCTU0000290410003381870000000000000000VUT/MA/768015</Text>
+        </View>
 
         <View style={styles.quickAccess}>
           <View style={styles.row}>
@@ -295,5 +311,39 @@ const styles = StyleSheet.create({
   platformLogo: {
     width: 24,
     height: 24,
+  },
+  importantNoticeContainer: {
+    backgroundColor: theme.colors.primaryLight,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    margin: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  importantNoticeTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.s,
+    fontWeight: '700',
+  },
+  importantNoticeText: {
+    ...theme.typography.body,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.s,
+  },
+  licenseContainer: {
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.m,
+  },
+  licenseTitle: {
+    ...theme.typography.bodyMedium,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.s,
+  },
+  licenseText: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textTertiary,
   },
 });
