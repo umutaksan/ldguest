@@ -97,26 +97,6 @@ export default function EntryScreen() {
       >
         {id === '29051501' && (
           <View style={styles.mainContent}>
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Step 1: Getting the Key Card</Text>
-              <Text style={styles.description}>
-                Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
-                {'\n\n'}
-                The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM. To enter the house, first you need to take the black bar of the main door and the key card for entry from the designated location.
-              </Text>
-
-              <TouchableOpacity 
-                style={styles.watchVideoButton}
-                onPress={() => handleWatchVideo('https://youtube.com/shorts/XNzqKrwDKf8')}
-                activeOpacity={0.8}
-              >
-                <VideoIcon size={20} color={theme.colors.white} />
-                <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
-              </TouchableOpacity>
-              
-              <View style={styles.imageContainer}>
-              </View>
-            </View>
           </View>
         )}
 
@@ -142,20 +122,7 @@ export default function EntryScreen() {
                   {'\n\n'}
                   The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
                   {'\n\n'}
-                  To enter the house, first:
-                  {'\n'}You need to take the black bar of the main door and the key card for entry from the designated location shown here.
                 </Text>
-                
-                <TouchableOpacity 
-                  style={styles.watchVideoButton}
-                  onPress={() => handleWatchVideo('https://youtube.com/shorts/XNzqKrwDKf8')}
-                  activeOpacity={0.8}
-                >
-                  <View style={styles.playIconContainer}>
-                    <Play size={20} color={theme.colors.white} />
-                  </View>
-                  <Text style={styles.watchVideoText}>Watch Entry Video</Text>
-                </TouchableOpacity>
                 
                 <Text style={[
                   styles.sectionTitle,
@@ -167,17 +134,6 @@ export default function EntryScreen() {
                 ]}>
                   After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
                 </Text>
-                
-                <TouchableOpacity 
-                  style={styles.watchVideoButton}
-                  onPress={() => handleWatchVideo('https://www.youtube.com/shorts/nWXkqDrRcyU')}
-                  activeOpacity={0.8}
-                >
-                  <View style={styles.playIconContainer}>
-                    <Play size={20} color={theme.colors.white} />
-                  </View>
-                  <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
-                </TouchableOpacity>
                 
                 <Text style={[
                   styles.sectionTitle,
@@ -264,27 +220,6 @@ export default function EntryScreen() {
         </View>
 
         {id === '29051501' && (
-          <View style={styles.section}>
-            <View style={styles.imageContainer}>
-              <Image 
-                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_89c3d72a7534442ba49e2b8b24f85759~mv2.jpg/v1/fill/w_315,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_edited.jpg' }}
-                style={styles.keyImage}
-                resizeMode="cover"
-              />
-              <View style={styles.smallImagesContainer}>
-                <Image 
-                  source={{ uri: 'https://static.wixstatic.com/media/8bbc22_160ddf38bb8444cc880f92543da1f0dd~mv2.jpg/v1/fill/w_207,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2013_43_edited.jpg' }}
-                  style={styles.smallKeyImage}
-                  resizeMode="cover"
-                />
-                <Image 
-                  source={{ uri: 'https://static.wixstatic.com/media/8bbc22_c313378eb121483a843293b0584f1f13~mv2.jpg/v1/fill/w_303,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2014_05_38_36e69ad5.jpg' }}
-                  style={styles.smallKeyImage}
-                  resizeMode="cover"
-                />
-              </View>
-            </View>
-          </View>
         )}
 
         <Text style={[
