@@ -74,33 +74,10 @@ export default function ParkingScreen() {
       case '29051503': // Aloha Pueblo
         return {
           title: 'Parking at Your Townhouse',
-          description: 'Your Aloha Pueblo townhouse includes private parking, making it convenient and secure for your vehicle during your stay.',
+          description: 'There is open street parking available nearby. The property does not have its own private parking.',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Calle+del+Agua%2C+Aloha%2C+Marbella',
           address: 'Calle del Agua',
           location: 'Aloha',
-          options: [
-            {
-              id: 1,
-              name: 'Townhouse Parking',
-              description: 'Private parking space available at the townhouse.',
-              price: 'Included',
-              tips: ['Secure private parking', 'Direct access to townhouse', 'No time restrictions']
-            },
-            {
-              id: 2,
-              name: 'Aloha Golf Club Parking',
-              description: 'Additional parking available at the nearby golf club.',
-              price: 'Free for guests',
-              tips: ['Short walk to townhouse', 'Well-lit area', 'Security cameras']
-            },
-            {
-              id: 3,
-              name: 'Street Parking',
-              description: 'Limited street parking available in the Aloha area.',
-              price: 'Free',
-              tips: ['Check local parking signs', 'Residential area parking', 'Keep valuables out of sight']
-            }
-          ]
         };
       case '29051504': // Old Town
         return {
@@ -171,8 +148,8 @@ export default function ParkingScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>{parkingInfo.title}</Text>
             <Text style={styles.description}>{parkingInfo.description}</Text>
-
-            {id === '29051504' && (
+            
+            {id === '29051504' ? (
               <View style={styles.mapContainer}>  
                 {isWeb ? (
                   <View 
@@ -191,7 +168,7 @@ export default function ParkingScreen() {
                   </TouchableOpacity>
                 )}
               </View>
-            )}
+            ) : null}
 
             {parkingInfo.image && (
               <Image 
@@ -212,7 +189,7 @@ export default function ParkingScreen() {
               </TouchableOpacity>
             )}
             
-            {id === '29051504' && (
+            {id === '29051504' ? (
               <TouchableOpacity 
                 style={[styles.directionsButton, { marginTop: theme.spacing.m, backgroundColor: theme.colors.secondary }]}
                 onPress={handleOpenParkingGarage}
@@ -221,10 +198,10 @@ export default function ParkingScreen() {
                 <Car size={20} color={theme.colors.white} />
                 <Text style={styles.directionsButtonText}>Open Parking Garage</Text>
               </TouchableOpacity>
-            )}
+            ) : null}
           </View>
 
-          {parkingInfo.options && parkingInfo.options.map((option, index) => (
+          {parkingInfo.options ? parkingInfo.options.map((option, index) => (
             <Animated.View 
               key={option.id}
               entering={FadeIn.delay(index * 200)}
@@ -247,9 +224,9 @@ export default function ParkingScreen() {
                 ))}
               </View>
             </Animated.View>
-          ))}
+          )) : null}
 
-          {showGeneralTipsSection && (
+          {showGeneralTipsSection ? (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>General Parking Tips</Text>
               <View style={styles.generalTipsContainer}>
@@ -272,7 +249,7 @@ export default function ParkingScreen() {
                 )}
               </View>
             </View>
-          )}
+          ) : null}
         </Animated.View>
       </ScrollView>
     </View>
