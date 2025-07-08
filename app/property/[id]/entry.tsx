@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Play, Video } from 'lucide-react-native';
+import { Play } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
@@ -151,7 +151,9 @@ export default function EntryScreen() {
                   onPress={() => handleWatchVideo('https://youtube.com/shorts/XNzqKrwDKf8')}
                   activeOpacity={0.8}
                 >
-                  <Play size={20} color={theme.colors.white} />
+                  <View style={styles.playIconContainer}>
+                    <Play size={20} color={theme.colors.white} />
+                  </View>
                   <Text style={styles.watchVideoText}>Watch Entry Video</Text>
                 </TouchableOpacity>
                 
@@ -171,7 +173,9 @@ export default function EntryScreen() {
                   onPress={() => handleWatchVideo('https://www.youtube.com/shorts/nWXkqDrRcyU')}
                   activeOpacity={0.8}
                 >
-                  <Play size={20} color={theme.colors.white} />
+                  <View style={styles.playIconContainer}>
+                    <Play size={20} color={theme.colors.white} />
+                  </View>
                   <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
                 </TouchableOpacity>
                 
@@ -226,7 +230,9 @@ export default function EntryScreen() {
                 onPress={() => handleWatchVideo(entryInstructions.videoUrl)}
                 activeOpacity={0.8}
               >
-                <Play size={20} color={theme.colors.white} />
+                <View style={styles.playIconContainer}>
+                  <Play size={20} color={theme.colors.white} />
+                </View>
                 <Text style={styles.watchVideoText}>Watch Entry Video</Text>
               </TouchableOpacity>
             )}
@@ -422,5 +428,11 @@ const styles = StyleSheet.create({
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+  },
+  playIconContainer: {
+    width: 24,
+    height: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
