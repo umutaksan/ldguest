@@ -160,7 +160,7 @@ export default function EntryScreen() {
                   onPress={() => handleWatchVideo('https://youtube.com/shorts/nWXkqDrRcyU')}
                   activeOpacity={0.8}
                 >
-                  <Video size={20} color={theme.colors.white} />
+                  <VideoIcon size={20} color={theme.colors.white} />
                   <Text style={styles.watchVideoText}>Watch How to Open Doors</Text>
                 </TouchableOpacity>
                 
