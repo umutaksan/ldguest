@@ -47,7 +47,10 @@ export default function EntryScreen() {
           title: 'Aloha Pueblo Entry Instructions',
           description: 'Welcome to your Aloha Pueblo townhouse! Here are the entry instructions for Calle del Agua, Apartment 168.',
           note: 'The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.',
-          hasKeyImages: false,
+          hasKeyImages: true,
+          keyImages: [
+            'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/fill/w_600,h_404,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg'
+          ],
           videoUrl: 'https://youtube.com/shorts/-rT_D7LXwag?feature=share'
         };
       case '29051504': // Old Town
