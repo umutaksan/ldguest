@@ -3,40 +3,11 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'r
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { MapPin, Navigation, Car, ExternalLink } from 'lucide-react-native';
+import { Car, ExternalLink } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function SeaviewParkingScreen() {
   const insets = useSafeAreaInsets();
-
-  const handleOpenMaps = () => {
-    const query = encodeURIComponent('Calle Camilo José Cela 7, Marbella');
-    Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${query}`);
-  };
-
-  const parkingOptions = [
-    {
-      id: 1,
-      name: 'Street Parking',
-      description: 'Limited street parking available on Calle Camilo José Cela and surrounding streets.',
-      price: 'Paid parking zones',
-      tips: ['Check parking signs for time limits', 'Use parking meters or mobile apps', 'Blue zones require payment during business hours']
-    },
-    {
-      id: 2,
-      name: 'Parking Fontanilla',
-      description: 'Public parking area near Fontanilla Beach, within walking distance.',
-      price: 'Hourly rates apply',
-      tips: ['Popular during summer months', 'Early arrival recommended', 'Short walk to the apartment']
-    },
-    {
-      id: 3,
-      name: 'El Corte Inglés Parking',
-      description: 'Underground parking at El Corte Inglés department store.',
-      price: 'Hourly/daily rates',
-      tips: ['Covered parking', 'Shopping validation available', '600m from apartment']
-    }
-  ];
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
@@ -48,7 +19,7 @@ export default function SeaviewParkingScreen() {
       >
         <Animated.View entering={FadeIn.duration(500)}>
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Parking Information</Text>
+            <Text style={styles.sectionTitle}>General Parking Tips</Text>
             <Text style={styles.description}>
               The parking spaces inside the building are for property owners only, so unfortunately you cannot use them. However, there is open street parking available nearby, and a secure covered parking garage just a short walk away.
             </Text>
@@ -60,9 +31,20 @@ export default function SeaviewParkingScreen() {
               activeOpacity={0.8}
             >
               <Car size={20} color={theme.colors.white} />
-              <Text style={styles.parkingLinkText}>Open Parking Garage Location</Text>
+              <Text style={styles.parkingLinkText}>Open Parking Garage Location (video)</Text>
               <ExternalLink size={20} color={theme.colors.white} />
             </TouchableOpacity>
+            
+            <View style={styles.tipsSection}>
+              <Text style={styles.sectionTitle}>General Parking Tips</Text>
+              <View style={styles.generalTipsContainer}>
+                <Text style={styles.tip}>• Download parking apps like EasyPark or Telpark</Text>
+                <Text style={styles.tip}>• Blue zones require payment Monday-Friday 9:00-14:00 & 17:00-20:00</Text>
+                <Text style={styles.tip}>• Saturday mornings also require payment in some areas</Text>
+                <Text style={styles.tip}>• Always check parking signs for specific regulations</Text>
+                <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
+              </View>
+            </View>
           </View>
         </Animated.View>
       </ScrollView>
@@ -81,6 +63,9 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: theme.spacing.xl,
   },
+  tipsSection: {
+    marginTop: theme.spacing.l,
+  },
   sectionTitle: {
     ...theme.typography.subheading,
     marginBottom: theme.spacing.m,
@@ -89,20 +74,6 @@ const styles = StyleSheet.create({
     ...theme.typography.body,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
-  },
-  directionsButton: {
-    flexDirection: 'row',
-    backgroundColor: theme.colors.primary,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...theme.shadows.small,
-  },
-  directionsButtonText: {
-    ...theme.typography.button,
-    color: theme.colors.white,
-    marginLeft: theme.spacing.s,
   },
   parkingLinkButton: {
     flexDirection: 'row',
@@ -119,53 +90,15 @@ const styles = StyleSheet.create({
     color: theme.colors.white,
     marginHorizontal: theme.spacing.m,
   },
-  parkingCard: {
-    backgroundColor: theme.colors.card,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  parkingHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: theme.spacing.m,
-  },
-  parkingInfo: {
-    marginLeft: theme.spacing.m,
-    flex: 1,
-  },
-  parkingName: {
-    ...theme.typography.bodyMedium,
-    marginBottom: 2,
-  },
-  parkingPrice: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.primary,
-  },
-  parkingDescription: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.m,
-  },
-  tipsContainer: {
-    backgroundColor: theme.colors.surface,
-    borderRadius: theme.borderRadius.s,
-    padding: theme.spacing.s,
-  },
-  tipsTitle: {
-    ...theme.typography.bodyMedium,
-    marginBottom: theme.spacing.xs,
-  },
-  tip: {
-    ...theme.typography.bodySmall,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.xs,
-  },
   generalTipsContainer: {
     backgroundColor: theme.colors.card,
     borderRadius: theme.borderRadius.m,
     padding: theme.spacing.m,
     ...theme.shadows.small,
+  },
+  tip: {
+    ...theme.typography.bodySmall,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
   },
 });
