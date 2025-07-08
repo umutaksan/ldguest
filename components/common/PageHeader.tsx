@@ -6,8 +6,6 @@ import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LanguageSelector } from './LanguageSelector';
 import { useTranslation } from 'react-i18next';
-import { LanguageSelector } from './LanguageSelector';
-import { useTranslation } from 'react-i18next';
 
 type PageHeaderProps = {
   title: string;
@@ -30,7 +28,6 @@ export function PageHeader({
   const pathname = usePathname();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const { t } = useTranslation();
 
   const handleBack = () => {
     if (onBackPress) {
