@@ -2,9 +2,11 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { Platform, View, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Chrome as Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
 
 export default function TabLayout() {
+  const { t } = useTranslation();
   const tabBarHeight = theme.layout.isWeb 
     ? (theme.layout.isDesktop ? 70 : 65) 
     : (Platform.OS === 'ios' ? 85 : 65);
@@ -52,7 +54,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: t('common.home'),
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
               <Home size={24} color={color} />
@@ -66,7 +68,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
+          title: t('common.explore'),
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
               <Compass size={24} color={color} />
@@ -80,7 +82,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="guide"
         options={{
-          title: 'Guide',
+          title: t('common.guide'),
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
               <BookOpen size={24} color={color} />
@@ -94,7 +96,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="info"
         options={{
-          title: 'Info',
+          title: t('common.info'),
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
               <Info size={24} color={color} />
@@ -108,7 +110,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="contact"
         options={{
-          title: 'Contact',
+          title: t('common.contact'),
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
               <Phone size={24} color={color} />

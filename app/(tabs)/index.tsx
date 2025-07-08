@@ -5,12 +5,14 @@ import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { theme } from '@/constants/theme';
+import { useTranslation } from 'react-i18next';
 import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   
   const handleViewMoreProperties = () => {
     Linking.openURL('https://www.ldguest.com/ldhome');
@@ -59,13 +61,13 @@ export default function HomeScreen() {
           <View style={styles.quickAccess}>
             <View style={styles.row}>
               <SectionCard
-                title="The Location"
+                title={t('home.location')}
                 icon={<MapPin size={28} color={theme.colors.secondary} />}
                 route="/location"
                 delay={1}
               />
               <SectionCard
-                title="Home Entry"
+                title={t('home.entry')}
                 icon={<HomeIcon size={28} color={theme.colors.secondary} />}
                 route="/entry"
                 delay={2}
@@ -74,13 +76,13 @@ export default function HomeScreen() {
             
             <View style={styles.row}>
               <SectionCard
-                title="WiFi"
+                title={t('home.wifi')}
                 icon={<Wifi size={28} color={theme.colors.secondary} />}
                 route="/wifi"
                 delay={3}
               />
               <SectionCard
-                title="House Videos"
+                title={t('home.videos')}
                 icon={<Video size={28} color={theme.colors.secondary} />}
                 route="/videos"
                 delay={4}
@@ -89,13 +91,13 @@ export default function HomeScreen() {
             
             <View style={styles.row}>
               <SectionCard
-                title="Property Rules"
+                title={t('home.rules')}
                 icon={<Book size={28} color={theme.colors.secondary} />}
                 route="/rules"
                 delay={5}
               />
               <SectionCard
-                title="Places to Eat"
+                title={t('home.dining')}
                 icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
                 route="/dining"
                 delay={6}
@@ -104,13 +106,13 @@ export default function HomeScreen() {
             
             <View style={styles.row}>
               <SectionCard
-                title="Places to Visit"
+                title={t('home.attractions')}
                 icon={<Landmark size={28} color={theme.colors.secondary} />}
                 route="/attractions"
                 delay={7}
               />
               <SectionCard
-                title="Luggage Storage"
+                title={t('home.luggage')}
                 icon={<Briefcase size={28} color={theme.colors.secondary} />}
                 route="/luggage"
                 delay={8}
@@ -119,13 +121,13 @@ export default function HomeScreen() {
 
             <View style={styles.row}>
               <SectionCard
-                title="Car Rental"
+                title={t('home.carRental')}
                 icon={<Car size={28} color={theme.colors.secondary} />}
                 route="/car-rental"
                 delay={9}
               />
               <SectionCard
-                title="Parking"
+                title={t('home.parking')}
                 icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
                 route="/parking"
                 delay={10}
@@ -148,12 +150,12 @@ export default function HomeScreen() {
               style={styles.promoOverlay}
             >
               <View style={styles.promoContent}>
-                <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
+                <Text style={styles.promoTitle}>{t('home.discoverMore')}</Text>
                 <Text style={styles.promoDescription}>
-                  Explore our collection of beautiful properties across Marbella's most desirable locations
+                  {t('home.exploreCollection')}
                 </Text>
                 <View style={styles.promoButton}>
-                  <Text style={styles.promoButtonText}>View Properties</Text>
+                  <Text style={styles.promoButtonText}>{t('home.viewProperties')}</Text>
                   <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
                 </View>
               </View>
@@ -162,13 +164,13 @@ export default function HomeScreen() {
 
           <View style={styles.row}>
             <SectionCard
-              title="Frequently Asked Questions"
+              title={t('home.faq')}
               icon={<HelpCircle size={28} color={theme.colors.secondary} />}
               route="/info"
               delay={11}
             />
             <SectionCard
-              title="Amenities"
+              title={t('home.amenities')}
               icon={<Sofa size={28} color={theme.colors.secondary} />}
               route="/amenities"
               delay={12}
@@ -177,7 +179,7 @@ export default function HomeScreen() {
 
           <View style={styles.row}>
             <SectionCard
-              title="Photo Gallery"
+              title={t('home.photos')}
               icon={<ImageIcon size={28} color={theme.colors.secondary} />}
               onPress={() => Linking.openURL('https://ldguest.com/ldhome/')}
               delay={13}
@@ -185,9 +187,9 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.ratingContainer}>
-            <Text style={styles.ratingTitle}>Enjoying your stay?</Text>
+            <Text style={styles.ratingTitle}>{t('home.enjoyingStay')}</Text>
             <Text style={styles.ratingDescription}>
-              We'd love to hear about your experience. Your feedback helps us improve our service for future guests.
+              {t('home.feedbackHelps')}
             </Text>
             <View style={styles.ratingButtons}>
               <TouchableOpacity 
@@ -200,7 +202,7 @@ export default function HomeScreen() {
                   style={styles.platformLogo}
                   resizeMode="contain"
                 />
-                <Text style={styles.ratingButtonText}>Review on Airbnb</Text>
+                <Text style={styles.ratingButtonText}>{t('home.reviewOn')} Airbnb</Text>
               </TouchableOpacity>
               
               <TouchableOpacity 
@@ -213,7 +215,7 @@ export default function HomeScreen() {
                   style={styles.platformLogo}
                   resizeMode="contain"
                 />
-                <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>Review on Booking</Text>
+                <Text style={[styles.ratingButtonText, styles.bookingButtonText]}>{t('home.reviewOn')} Booking</Text>
               </TouchableOpacity>
             </View>
           </View>

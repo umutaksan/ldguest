@@ -4,6 +4,8 @@ import { useRouter, usePathname } from 'expo-router';
 import { ChevronLeft } from 'lucide-react-native';
 import { theme } from '@/constants/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LanguageSelector } from './LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 type PageHeaderProps = {
   title: string;
@@ -24,6 +26,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
   const handleBack = () => {
@@ -61,9 +64,10 @@ export function PageHeader({
         <View style={styles.titleContainer}>
           <Text style={styles.title} numberOfLines={1}>{title}</Text>
           {isHost && <Text style={styles.hostBadge}>Host</Text>}
+          
         </View>
         <View style={styles.rightContainer}>
-          {rightComponent}
+          {rightComponent || <LanguageSelector />}
         </View>
       </View>
     </View>

@@ -1,0 +1,85 @@
+{
+  "common": {
+    "home": "Inicio",
+    "explore": "Explorar",
+    "guide": "Guía",
+    "info": "Info",
+    "contact": "Contacto",
+    "back": "Atrás"
+  },
+  "home": {
+    "welcome": "Bienvenido a L&D Guest",
+    "thankYou": "¡Gracias por su reserva!",
+    "location": "La Ubicación",
+    "entry": "Entrada a la Casa",
+    "wifi": "WiFi",
+    "videos": "Videos de la Casa",
+    "rules": "Normas de la Propiedad",
+    "dining": "Lugares para Comer",
+    "attractions": "Lugares para Visitar",
+    "luggage": "Almacenamiento de Equipaje",
+    "carRental": "Alquiler de Coches",
+    "parking": "Aparcamiento",
+    "faq": "Preguntas Frecuentes",
+    "amenities": "Comodidades",
+    "photos": "Galería de Fotos",
+    "discoverMore": "Descubra Más Casas de L&D Guest",
+    "exploreCollection": "Explore nuestra colección de hermosas propiedades en las ubicaciones más deseables de Marbella",
+    "viewProperties": "Ver Propiedades",
+    "enjoyingStay": "¿Disfrutando de su estancia?",
+    "feedbackHelps": "Nos encantaría conocer su experiencia. Sus comentarios nos ayudan a mejorar nuestro servicio para futuros huéspedes.",
+    "reviewOn": "Reseña en",
+    "licenseInfo": "Información de Licencia Turística",
+    "idNotice": "Aviso Importante - Requisito de Carga de ID",
+    "idRequirement": "Según la ley española, todos los huéspedes están legalmente obligados a cargar documentos de pasaporte o identificación válidos en el sistema antes del inicio de su estancia.",
+    "idComplete": "Complete este proceso antes de su estancia a través del enlace de carga de ID proporcionado a través de la plataforma donde realizó su reserva."
+  },
+  "wifi": {
+    "title": "Detalles de WiFi",
+    "connect": "Conectar a WiFi",
+    "useCredentials": "Use estas credenciales para conectarse a la red WiFi en el apartamento.",
+    "networkName": "Nombre de Red (SSID)",
+    "password": "Contraseña",
+    "tips": "Consejos de Conexión",
+    "tip1": "Asegúrese de que el WiFi esté habilitado en su dispositivo",
+    "tip2": "Seleccione el nombre de red mostrado arriba",
+    "tip3": "Introduzca la contraseña exactamente como se muestra",
+    "tip4": "Si no puede conectarse, intente olvidar la red primero",
+    "trouble": "¿Problemas para conectarse? Contacte a nuestro equipo de soporte para asistencia."
+  },
+  "location": {
+    "title": "Ubicación",
+    "getDirections": "Obtener Direcciones",
+    "howToGetHere": "Cómo Llegar Aquí",
+    "byCar": "En Coche",
+    "byBus": "En Autobús",
+    "byTaxi": "En Taxi/Uber",
+    "nearbyPOI": "Puntos de Interés Cercanos"
+  },
+  "explore": {
+    "title": "Explorar La Zona",
+    "discoverAndalusia": "Descubra Andalucía",
+    "exploreBeautiful": "Explore hermosas ciudades y pueblos históricos alrededor de Marbella",
+    "cities": "Ciudades",
+    "kmRadius": "km de Radio",
+    "attractions": "Atracciones",
+    "nearbyDestinations": "Destinos Cercanos",
+    "getDirections": "Obtener Direcciones"
+  },
+  "contact": {
+    "title": "L&D Guest Marbella",
+    "whatsappOnly": "Solo WhatsApp",
+    "messageOnWhatsApp": "Mensaje en WhatsApp",
+    "emergencyNumbers": "Números de Emergencia",
+    "emergencyNote": "En caso de emergencia, no dude en contactar al servicio apropiado."
+  },
+  "language": {
+    "title": "Idioma",
+    "selectLanguage": "Seleccionar Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "german": "Alemán",
+    "italian": "Italiano",
+    "turkish": "Turco"
+  }
+}

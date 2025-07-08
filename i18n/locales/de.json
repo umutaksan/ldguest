@@ -1,0 +1,85 @@
+{
+  "common": {
+    "home": "Startseite",
+    "explore": "Erkunden",
+    "guide": "Führer",
+    "info": "Info",
+    "contact": "Kontakt",
+    "back": "Zurück"
+  },
+  "home": {
+    "welcome": "Willkommen bei L&D Guest",
+    "thankYou": "Vielen Dank für Ihre Reservierung!",
+    "location": "Der Standort",
+    "entry": "Hauszugang",
+    "wifi": "WLAN",
+    "videos": "Hausvideos",
+    "rules": "Hausregeln",
+    "dining": "Restaurants",
+    "attractions": "Sehenswürdigkeiten",
+    "luggage": "Gepäckaufbewahrung",
+    "carRental": "Autovermietung",
+    "parking": "Parken",
+    "faq": "Häufig gestellte Fragen",
+    "amenities": "Annehmlichkeiten",
+    "photos": "Fotogalerie",
+    "discoverMore": "Entdecken Sie mehr L&D Guest Häuser",
+    "exploreCollection": "Entdecken Sie unsere Sammlung schöner Immobilien an den begehrtesten Orten in Marbella",
+    "viewProperties": "Immobilien anzeigen",
+    "enjoyingStay": "Genießen Sie Ihren Aufenthalt?",
+    "feedbackHelps": "Wir würden gerne von Ihrer Erfahrung hören. Ihr Feedback hilft uns, unseren Service für zukünftige Gäste zu verbessern.",
+    "reviewOn": "Bewertung auf",
+    "licenseInfo": "Informationen zur Touristenlizenz",
+    "idNotice": "Wichtiger Hinweis - Anforderung zum Hochladen von Ausweisdokumenten",
+    "idRequirement": "Nach spanischem Recht sind alle Gäste gesetzlich verpflichtet, vor Beginn ihres Aufenthalts gültige Reisepass- oder Ausweisdokumente in das System hochzuladen.",
+    "idComplete": "Bitte schließen Sie diesen Vorgang vor Ihrem Aufenthalt über den ID-Upload-Link ab, der Ihnen über die Plattform, auf der Sie Ihre Reservierung vorgenommen haben, zur Verfügung gestellt wird."
+  },
+  "wifi": {
+    "title": "WLAN-Details",
+    "connect": "Mit WLAN verbinden",
+    "useCredentials": "Verwenden Sie diese Zugangsdaten, um eine Verbindung zum WLAN-Netzwerk in der Wohnung herzustellen.",
+    "networkName": "Netzwerkname (SSID)",
+    "password": "Passwort",
+    "tips": "Verbindungstipps",
+    "tip1": "Stellen Sie sicher, dass WLAN auf Ihrem Gerät aktiviert ist",
+    "tip2": "Wählen Sie den oben angezeigten Netzwerknamen",
+    "tip3": "Geben Sie das Passwort genau wie angezeigt ein",
+    "tip4": "Wenn Sie keine Verbindung herstellen können, versuchen Sie zuerst, das Netzwerk zu vergessen",
+    "trouble": "Probleme bei der Verbindung? Kontaktieren Sie unser Support-Team für Hilfe."
+  },
+  "location": {
+    "title": "Standort",
+    "getDirections": "Route anzeigen",
+    "howToGetHere": "Wie Sie hierher kommen",
+    "byCar": "Mit dem Auto",
+    "byBus": "Mit dem Bus",
+    "byTaxi": "Mit Taxi/Uber",
+    "nearbyPOI": "Sehenswürdigkeiten in der Nähe"
+  },
+  "explore": {
+    "title": "Die Gegend erkunden",
+    "discoverAndalusia": "Entdecken Sie Andalusien",
+    "exploreBeautiful": "Erkunden Sie schöne Städte und historische Orte rund um Marbella",
+    "cities": "Städte",
+    "kmRadius": "km Radius",
+    "attractions": "Attraktionen",
+    "nearbyDestinations": "Nahe gelegene Ziele",
+    "getDirections": "Route anzeigen"
+  },
+  "contact": {
+    "title": "L&D Guest Marbella",
+    "whatsappOnly": "Nur WhatsApp",
+    "messageOnWhatsApp": "Nachricht auf WhatsApp",
+    "emergencyNumbers": "Notfallnummern",
+    "emergencyNote": "Im Notfall zögern Sie bitte nicht, den entsprechenden Dienst zu kontaktieren."
+  },
+  "language": {
+    "title": "Sprache",
+    "selectLanguage": "Sprache auswählen",
+    "english": "Englisch",
+    "spanish": "Spanisch",
+    "german": "Deutsch",
+    "italian": "Italienisch",
+    "turkish": "Türkisch"
+  }
+}

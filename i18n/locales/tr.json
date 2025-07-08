@@ -1,0 +1,85 @@
+{
+  "common": {
+    "home": "Ana Sayfa",
+    "explore": "Keşfet",
+    "guide": "Rehber",
+    "info": "Bilgi",
+    "contact": "İletişim",
+    "back": "Geri"
+  },
+  "home": {
+    "welcome": "L&D Guest'e Hoş Geldiniz",
+    "thankYou": "Rezervasyonunuz için teşekkür ederiz!",
+    "location": "Konum",
+    "entry": "Eve Giriş",
+    "wifi": "WiFi",
+    "videos": "Ev Videoları",
+    "rules": "Mülk Kuralları",
+    "dining": "Yemek Yerleri",
+    "attractions": "Gezilecek Yerler",
+    "luggage": "Bagaj Depolama",
+    "carRental": "Araç Kiralama",
+    "parking": "Otopark",
+    "faq": "Sık Sorulan Sorular",
+    "amenities": "Olanaklar",
+    "photos": "Fotoğraf Galerisi",
+    "discoverMore": "Daha Fazla L&D Guest Evi Keşfedin",
+    "exploreCollection": "Marbella'nın en çok arzu edilen konumlarındaki güzel mülklerimizi keşfedin",
+    "viewProperties": "Mülkleri Görüntüle",
+    "enjoyingStay": "Konaklamanızdan memnun musunuz?",
+    "feedbackHelps": "Deneyiminizi duymak isteriz. Geri bildiriminiz, gelecekteki misafirlerimiz için hizmetimizi geliştirmemize yardımcı olur.",
+    "reviewOn": "Değerlendirme yap",
+    "licenseInfo": "Turizm Lisans Bilgileri",
+    "idNotice": "Önemli Bildirim - Kimlik Yükleme Gerekliliği",
+    "idRequirement": "İspanyol yasalarına göre, tüm misafirlerin konaklamaları başlamadan önce sisteme geçerli pasaport veya kimlik belgelerini yüklemeleri yasal bir zorunluluktur.",
+    "idComplete": "Lütfen bu işlemi, rezervasyonunuzu yaptığınız platform aracılığıyla size sağlanan kimlik yükleme bağlantısı üzerinden konaklamanızdan önce tamamlayın."
+  },
+  "wifi": {
+    "title": "WiFi Detayları",
+    "connect": "WiFi'ye Bağlan",
+    "useCredentials": "Dairede WiFi ağına bağlanmak için bu bilgileri kullanın.",
+    "networkName": "Ağ Adı (SSID)",
+    "password": "Şifre",
+    "tips": "Bağlantı İpuçları",
+    "tip1": "Cihazınızda WiFi'nin etkin olduğundan emin olun",
+    "tip2": "Yukarıda gösterilen ağ adını seçin",
+    "tip3": "Şifreyi gösterildiği gibi tam olarak girin",
+    "tip4": "Bağlanamazsanız, önce ağı unutmayı deneyin",
+    "trouble": "Bağlanmakta sorun mu yaşıyorsunuz? Yardım için destek ekibimizle iletişime geçin."
+  },
+  "location": {
+    "title": "Konum",
+    "getDirections": "Yol Tarifi Al",
+    "howToGetHere": "Buraya Nasıl Gelinir",
+    "byCar": "Arabayla",
+    "byBus": "Otobüsle",
+    "byTaxi": "Taksi/Uber ile",
+    "nearbyPOI": "Yakındaki İlgi Çekici Yerler"
+  },
+  "explore": {
+    "title": "Bölgeyi Keşfedin",
+    "discoverAndalusia": "Endülüs'ü Keşfedin",
+    "exploreBeautiful": "Marbella çevresindeki güzel şehirleri ve tarihi kasabaları keşfedin",
+    "cities": "Şehirler",
+    "kmRadius": "km Yarıçap",
+    "attractions": "Cazibe Merkezleri",
+    "nearbyDestinations": "Yakın Destinasyonlar",
+    "getDirections": "Yol Tarifi Al"
+  },
+  "contact": {
+    "title": "L&D Guest Marbella",
+    "whatsappOnly": "Sadece WhatsApp",
+    "messageOnWhatsApp": "WhatsApp'ta Mesaj Gönder",
+    "emergencyNumbers": "Acil Durum Numaraları",
+    "emergencyNote": "Acil durumda, lütfen ilgili hizmeti aramaktan çekinmeyin."
+  },
+  "language": {
+    "title": "Dil",
+    "selectLanguage": "Dil Seçin",
+    "english": "İngilizce",
+    "spanish": "İspanyolca",
+    "german": "Almanca",
+    "italian": "İtalyanca",
+    "turkish": "Türkçe"
+  }
+}
