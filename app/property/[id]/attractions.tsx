@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { MapPin, ExternalLink } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function AttractionsScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
 
   // Get attractions based on property ID
   const getAttractions = () => {
@@ -375,14 +377,14 @@ export default function AttractionsScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Places to Visit" />
+      <PageHeader title={t('home.attractions')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
         <Text style={styles.description}>
-          {getDescription()}
+          {t(`attractions.description.${id}`, { defaultValue: getDescription() })}
         </Text>
 
         {attractions.map((attraction, index) => (
@@ -404,7 +406,7 @@ export default function AttractionsScreen() {
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.attractionDescription}>{attraction.description}</Text>
+            <Text style={styles.attractionDescription}>{t(`attractions.items.${id}.${attraction.id}.description`, { defaultValue: attraction.description })}</Text>
             
             <View style={styles.distanceContainer}>
               <MapPin size={16} color={theme.colors.textTertiary} />

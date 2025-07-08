@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Book, ChevronDown, ChevronUp, Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music } from 'lucide-react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function InfoScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const { width } = useWindowDimensions();
   
@@ -358,7 +360,7 @@ export default function InfoScreen() {
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Property Information" showBackButton={false} />
+      <PageHeader title={t('info.title')} showBackButton={false} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -378,7 +380,7 @@ export default function InfoScreen() {
             <Text style={[
               styles.sectionTitle,
               isLargeScreen && styles.sectionTitleLarge
-            ]}>House Rules</Text>
+            ]}>{t('rules.title')}</Text>
             
             <View style={[
               styles.rulesGrid,
@@ -399,8 +401,8 @@ export default function InfoScreen() {
                     {rule.icon}
                   </View>
                   <View style={styles.ruleContent}>
-                    <Text style={styles.ruleTitle}>{rule.title}</Text>
-                    <Text style={styles.ruleDescription}>{rule.description}</Text>
+                    <Text style={styles.ruleTitle}>{t(`rules.house.${rule.id}.title`, { defaultValue: rule.title })}</Text>
+                    <Text style={styles.ruleDescription}>{t(`rules.house.${rule.id}.description`, { defaultValue: rule.description })}</Text>
                   </View>
                 </Animated.View>
               ))}
@@ -416,7 +418,7 @@ export default function InfoScreen() {
             <Text style={[
               styles.sectionTitle,
               isLargeScreen && styles.sectionTitleLarge
-            ]}>Frequently Asked Questions</Text>
+            ]}>{t('info.faq')}</Text>
             
             <View style={[
               styles.faqContainer,
@@ -433,13 +435,11 @@ export default function InfoScreen() {
                     onPress={() => toggleFaq(faq.id)}
                     activeOpacity={0.8}
                   >
-                    <Text style={[
-                      styles.faqQuestionText,
-                      isLargeScreen && styles.faqQuestionTextLarge
-                    ]}>{faq.question}</Text>
-                    {expandedFaq === faq.id ? (
-                      <ChevronUp size={20} color={theme.colors.text} />
-                    ) : (
+                    <Text style={[styles.faqQuestionText, isLargeScreen && styles.faqQuestionTextLarge]}>
+                      {t(`faq.${id}.${faq.id}.question`, { defaultValue: faq.question })}
+                        <Text style={[styles.faqAnswerText, isLargeScreen && styles.faqAnswerTextLarge]}>
+                          {t(`faq.${id}.${faq.id}.answer`, { defaultValue: faq.answer })}
+                        </Text>
                       <ChevronDown size={20} color={theme.colors.text} />
                     )}
                   </TouchableOpacity>

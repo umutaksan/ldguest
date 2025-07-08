@@ -5,10 +5,12 @@ import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Play, Video as VideoIcon, Key } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   const { width } = useWindowDimensions();
 
   // Get entry instructions based on property ID
@@ -89,7 +91,7 @@ export default function EntryScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Home Entry Instructions" />
+      <PageHeader title={t('entry.title')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -110,33 +112,26 @@ export default function EntryScreen() {
           <View style={[
             styles.section,
             isLargeScreen && styles.sectionLarge
-          ]}> 
+          ]}>
             {id === '29051501' && (
               <>
                 <Text style={[
                   styles.sectionTitle,
                   isLargeScreen && styles.sectionTitleLarge
-                ]}>Entry Instructions</Text>
+                ]}>{t('entry.instructions')}</Text>
                 <Text style={[
                   styles.description,
                   isLargeScreen && styles.descriptionLarge
-                ]}>
-                  Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
-                  {'\n\n'}
-                  The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM. To enter the house, first you need to take the black bar of the main door and the key card for entry from the designated location.
-                  {'\n\n'}
-                </Text>
+                ]}>{t('entry.jardinesTropicalesWelcome')}</Text>
                 
                 <Text style={[
                   styles.sectionTitle,
                   isLargeScreen && styles.sectionTitleLarge
-                ]}>Step 1: Getting the Key Card</Text>
+                ]}>{t('entry.step1')}</Text>
                 <Text style={[
                   styles.description,
                   isLargeScreen && styles.descriptionLarge
-                ]}>
-                  First, you need to get the key card and black bar from the key box. Watch the video below for instructions on how to get the key card.
-                </Text>
+                ]}>{t('entry.step1Description')}</Text>
                 
                 <TouchableOpacity 
                   style={styles.watchVideoButton}
@@ -144,19 +139,17 @@ export default function EntryScreen() {
                   activeOpacity={0.8}
                 >
                   <Key size={20} color={theme.colors.white} />
-                  <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
+                  <Text style={styles.watchVideoText}>{t('entry.watchKeyPickup')}</Text>
                 </TouchableOpacity>
                 
                 <Text style={[
                   styles.sectionTitle,
                   isLargeScreen && styles.sectionTitleLarge
-                ]}>Step 2: Entering the Building</Text>
+                ]}>{t('entry.step2')}</Text>
                 <Text style={[
                   styles.description,
                   isLargeScreen && styles.descriptionLarge
-                ]}>
-                  After taking the black bar and the key card, use the black bar to open the main door. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
-                </Text>
+                ]}>{t('entry.step2Description')}</Text>
                 
                 <TouchableOpacity 
                   style={styles.watchVideoButton}
@@ -164,19 +157,17 @@ export default function EntryScreen() {
                   activeOpacity={0.8}
                 >
                   <VideoIcon size={20} color={theme.colors.white} />
-                  <Text style={styles.watchVideoText}>Watch How to Open Doors</Text>
+                  <Text style={styles.watchVideoText}>{t('entry.watchOpenDoors')}</Text>
                 </TouchableOpacity>
                 
                 <Text style={[
                   styles.sectionTitle,
                   isLargeScreen && styles.sectionTitleLarge
-                ]}>Location Details</Text>
+                ]}>{t('entry.locationDetails')}</Text>
                 <Text style={[
                   styles.description,
                   isLargeScreen && styles.descriptionLarge
-                ]}>
-                  The apartment is located in Nueva Andalucía, close to Puerto Banús.
-                </Text>
+                ]}>{t('entry.jardinesTropicalesLocation')}</Text>
               </>
             )}
             
@@ -185,30 +176,25 @@ export default function EntryScreen() {
                 <Text style={[
                   styles.sectionTitle,
                   isLargeScreen && styles.sectionTitleLarge
-                ]}>Entry Instructions</Text>
+                ]}>{t('entry.instructions')}</Text>
                 <Text style={[
                   styles.description,
                   isLargeScreen && styles.descriptionLarge
-                ]}>
-                  {entryInstructions.description}
-                  {'\n\n'}
-                  {entryInstructions.note}
-                  {entryInstructions.note2 && '\n\n' + entryInstructions.note2}
-                </Text>
+                ]}>{t(`entry.description.${id}`, { defaultValue: `${entryInstructions.description}\n\n${entryInstructions.note}${entryInstructions.note2 ? '\n\n' + entryInstructions.note2 : ''}` })}</Text>
               </>
             )}
 
             {entryInstructions.keyboxCode && (
               <View style={styles.codeSection}>
-                <Text style={styles.codeTitle}>Building Access Codes:</Text>
-                <Text style={styles.codeText}>• Main Door: {entryInstructions.keyboxCode}</Text>
+                <Text style={styles.codeTitle}>{t('entry.buildingAccessCodes')}</Text>
+                <Text style={styles.codeText}>• {t('entry.mainDoor')}: {entryInstructions.keyboxCode}</Text>
               </View>
             )}
 
             {entryInstructions.importantNote && (
               <View style={styles.codeSection}>
-                <Text style={styles.codeTitle}>Important Note:</Text>
-                <Text style={styles.codeText}>{entryInstructions.importantNote}</Text>
+                <Text style={styles.codeTitle}>{t('entry.importantNote')}</Text>
+                <Text style={styles.codeText}>{t(`entry.importantNoteText.${id}`, { defaultValue: entryInstructions.importantNote })}</Text>
               </View>
             )}
 
@@ -221,9 +207,7 @@ export default function EntryScreen() {
                 <View style={styles.playIconContainer}>
                   <Play size={20} color={theme.colors.white} />
                 </View>
-                <Text style={styles.watchVideoText}>
-                  Watch Video
-                </Text>
+                <Text style={styles.watchVideoText}>{t('entry.watchVideo')}</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -256,9 +240,7 @@ export default function EntryScreen() {
         <Text style={[
           styles.note,
           isLargeScreen && styles.noteLarge
-        ]}>
-          We wish you a pleasant stay.
-        </Text>
+        ]}>{t('entry.pleasantStayWish')}</Text>
       </ScrollView>
     </View>
   );

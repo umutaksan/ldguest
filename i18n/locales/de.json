@@ -103,5 +103,191 @@
   },
   "videos": {
     "propertyGuides": "Unterkunftsführer"
+  },
+  "rules": {
+    "title": "Hausregeln",
+    "communityRules": "Gemeinschaftsregeln",
+    "houseRules": "Hausregeln",
+    "community": {
+      "1": {
+        "title": "Ruhezeiten",
+        "description": "Ruhezeiten sind von 23:00 Uhr bis 8:00 Uhr. Bitte vermeiden Sie während dieser Zeiten Lärm."
+      },
+      "2": {
+        "title": "Gemeinschaftsbereiche",
+        "description": "Bei der Nutzung von Pool, Garten oder anderen gemeinsam genutzten Bereichen halten Sie diese bitte sauber und ordentlich. Seien Sie rücksichtsvoll gegenüber anderen in der Gemeinschaft."
+      }
+    },
+    "house": {
+      "1": {
+        "title": "Check-in und Check-out Zeiten",
+        "description": "• Check-in: Nach 15:00 Uhr\n• Check-out: Vor 10:00 Uhr"
+      },
+      "2": {
+        "title": "Haustiere",
+        "description": "Sie können gerne Ihre Haustiere mitbringen, informieren Sie uns bitte im Voraus."
+      },
+      "3": {
+        "title": "Rauchen",
+        "description": "Rauchen ist im Haus nicht gestattet. Sie können auf dem Balkon oder in Außenbereichen rauchen."
+      },
+      "4": {
+        "title": "Sorgfältige Behandlung",
+        "description": "Bitte behandeln Sie das Haus mit Sorgfalt und Respekt. Wenn Schäden auftreten oder Probleme entstehen, informieren Sie uns bitte so schnell wie möglich."
+      },
+      "5": {
+        "title": "Handtücher und Bettwäsche",
+        "description": "Die bereitgestellten Handtücher sind nur für den Innenbereich bestimmt. Bitte bringen Sie Ihre eigenen Handtücher für den Strand mit."
+      },
+      "6": {
+        "title": "Partys und Veranstaltungen",
+        "description": "Das Veranstalten von Partys oder größeren Veranstaltungen ist nicht gestattet."
+      },
+      "7": {
+        "title": "Check-out Anweisungen",
+        "description": "• Stellen Sie beim Verlassen sicher, dass Sie die Schlüssel am vorgesehenen Ort zurückgeben\n• Überprüfen Sie, dass Sie keine persönlichen Gegenstände zurückgelassen haben"
+      },
+      "8": {
+        "title": "Genießen Sie Ihren Aufenthalt",
+        "description": "Wir freuen uns, Sie als Gast zu haben! Wir hoffen, dass Sie einen erholsamen und unvergesslichen Urlaub verbringen. Wenn Sie Hilfe benötigen, zögern Sie nicht, uns zu kontaktieren."
+      }
+    }
+  },
+  "info": {
+    "title": "Immobilieninformationen",
+    "faq": "Häufig gestellte Fragen"
+  },
+  "amenities": {
+    "description": "{{property}} ist mit allem ausgestattet, was Sie für einen komfortablen Aufenthalt benötigen. Hier sind die Annehmlichkeiten, die Ihnen zur Verfügung stehen:",
+    "additionalFeatures": "Zusätzliche Funktionen",
+    "features": {
+      "29051501": {
+        "0": "• Voll ausgestattete Küche mit modernen Geräten",
+        "1": "• Hochwertige Bettwäsche und Handtücher werden bereitgestellt",
+        "2": "• Waschmaschine und Wäscheständer",
+        "3": "• Bügeleisen und Bügelbrett",
+        "4": "• Haartrockner",
+        "5": "• Grundlegende Toilettenartikel",
+        "6": "• Willkommenspaket bei Ankunft"
+      },
+      "29051502": {
+        "0": "• Voll ausgestattete Küche mit modernen Geräten",
+        "1": "• Hochwertige Bettwäsche und Handtücher werden bereitgestellt",
+        "2": "• Waschmaschine und Wäscheständer",
+        "3": "• Bügeleisen und Bügelbrett",
+        "4": "• Haartrockner",
+        "5": "• Grundlegende Toilettenartikel",
+        "6": "• Willkommenspaket bei Ankunft",
+        "7": "• Direkter Strandzugang",
+        "8": "• Meerblick",
+        "9": "• Etagenbett im zweiten Schlafzimmer"
+      },
+      "29051503": {
+        "0": "• Voll ausgestattete Küche mit modernen Geräten",
+        "1": "• Hochwertige Bettwäsche und Handtücher werden bereitgestellt",
+        "2": "• Waschmaschine und Wäscheständer",
+        "3": "• Bügeleisen und Bügelbrett",
+        "4": "• Haartrockner",
+        "5": "• Grundlegende Toilettenartikel",
+        "6": "• Willkommenspaket bei Ankunft",
+        "7": "• Zugang zum Gemeinschaftsgarten",
+        "8": "• Terrassenbereich",
+        "9": "• Nähe zum Golfplatz"
+      },
+      "29051504": {
+        "0": "• Voll ausgestattete Küche mit modernen Geräten",
+        "1": "• Hochwertige Bettwäsche und Handtücher werden bereitgestellt",
+        "2": "• Waschmaschine und Wäscheständer",
+        "3": "• Bügeleisen und Bügelbrett",
+        "4": "• Haartrockner",
+        "5": "• Grundlegende Toilettenartikel",
+        "6": "• Willkommenspaket bei Ankunft",
+        "7": "• Drei separate Schlafzimmer",
+        "8": "• Geräumiger Wohnbereich",
+        "9": "• Stadtblick von den Balkonen"
+      }
+    }
+  },
+  "luggage": {
+    "description": {
+      "29051501": "Müssen Sie Ihr Gepäck vor dem Check-in oder nach dem Check-out aufbewahren? Hier sind einige zuverlässige Aufbewahrungsmöglichkeiten in Marbella:",
+      "29051502": "Müssen Sie Ihr Gepäck vor dem Check-in oder nach dem Check-out aufbewahren? Hier sind zuverlässige Aufbewahrungsmöglichkeiten in der Nähe Ihres Seaview-Apartments in Marbella:",
+      "29051503": "Müssen Sie Ihr Gepäck vor dem Check-in oder nach dem Check-out aufbewahren? Hier sind zuverlässige Aufbewahrungsmöglichkeiten in der Nähe Ihres Aloha Pueblo Reihenhauses:",
+      "29051504": "Müssen Sie Ihr Gepäck vor dem Check-in oder nach dem Check-out aufbewahren? Hier sind zuverlässige Aufbewahrungsmöglichkeiten in der Nähe Ihres Apartments in der Altstadt von Marbella:"
+    },
+    "bookStorage": "Speicher buchen",
+    "disclaimer": "*L&D Guest bietet keine Gepäckaufbewahrungsdienste nach dem Check-out an und übernimmt daher keine Verantwortung für aufbewahrte Gegenstände"
+  },
+  "carRental": {
+    "title": {
+      "29051501": "Erkunden Sie Marbella in Ihrem eigenen Tempo",
+      "29051502": "Erkunden Sie die Costa del Sol in Ihrem eigenen Tempo",
+      "29051503": "Erkunden Sie das Golf Valley und darüber hinaus",
+      "29051504": "Erkunden Sie Andalusien von der Altstadt aus"
+    },
+    "description": {
+      "29051501": "Entdecken Sie die Freiheit, die Costa del Sol mit Ihrem eigenen Mietwagen zu erkunden. Von malerischen Küstenfahrten bis hin zu Bergabenteuern - machen Sie das Beste aus Ihrem Aufenthalt mit einem zuverlässigen Fahrzeug von unserem vertrauenswürdigen Partner.",
+      "29051502": "Entdecken Sie die Freiheit, die wunderschöne Costa del Sol mit Ihrem eigenen Mietwagen zu erkunden. Von malerischen Küstenfahrten bis hin zu Bergabenteuern - machen Sie das Beste aus Ihrem Aufenthalt in Seaview Fontanilla mit einem zuverlässigen Fahrzeug von unserem vertrauenswürdigen Partner.",
+      "29051503": "Entdecken Sie die Freiheit, die Costa del Sol mit Ihrem eigenen Mietwagen zu erkunden. Vom Besuch mehrerer Golfplätze bis hin zu malerischen Küstenfahrten - machen Sie das Beste aus Ihrem Aufenthalt in Aloha Pueblo mit einem zuverlässigen Fahrzeug von unserem vertrauenswürdigen Partner.",
+      "29051504": "Entdecken Sie die Freiheit, die Costa del Sol und darüber hinaus mit Ihrem eigenen Mietwagen zu erkunden. Von Ihrem Standort in der Altstadt aus können Sie wunderschöne Küstenstädte, Bergdörfer und kulturelle Schätze mit einem zuverlässigen Fahrzeug von unserem vertrauenswürdigen Partner entdecken."
+    },
+    "whyChoosePartner": "Warum unseren Partner wählen?",
+    "benefits": {
+      "0": "Bestpreisgarantie",
+      "1": "Vollständige Versicherungsdeckung",
+      "2": "Keine versteckten Gebühren",
+      "3": "Kostenlose Stornierung",
+      "4": "24/7 Kundensupport",
+      "5": "Mehrere Abholstellen",
+      "6": "Große Auswahl an Fahrzeugen",
+      "7": "Einfacher Buchungsprozess"
+    },
+    "findPerfectCar": "Finden Sie Ihr perfektes Auto",
+    "pricesNote": "*Preise und Verfügbarkeit können je nach Saison und Nachfrage variieren",
+    "disclaimer1": "L&D Guest hat diese Informationen nur zu Informationszwecken geteilt. Wir betreiben keine Autovermietungsdienste direkt und übernehmen keine Haftung für Probleme, die bei der Nutzung von Autovermietungsdiensten Dritter entstehen können.",
+    "disclaimer2": "Kunden wird empfohlen, die Allgemeinen Geschäftsbedingungen des Autovermieters vor der Buchung zu überprüfen."
+  },
+  "videos": {
+    "houseGuides": "Hausführer",
+    "houseAccess": "Hauszugang",
+    "propertyGuides": "Unterkunftsführer",
+    "watchVideo": "Video ansehen"
+  },
+  "entry": {
+    "title": "Anweisungen zum Hauszugang",
+    "instructions": "Zugangsanweisungen",
+    "jardinesTropicalesWelcome": "Willkommen in Ihrem Jardines Tropicales Apartment! Hier sind die Zugangsanweisungen für Calle Azahar 12.\n\nDie Zugangscodes werden über die Plattform, auf der Sie Ihre Reservierung vorgenommen haben, am Tag Ihres Aufenthalts um 12:00 Uhr gesendet. Um das Haus zu betreten, müssen Sie zuerst die schwarze Stange der Haupttür und die Schlüsselkarte für den Eingang vom angegebenen Ort nehmen.\n\n",
+    "step1": "Schritt 1: Die Schlüsselkarte erhalten",
+    "step1Description": "Zuerst müssen Sie die Schlüsselkarte und die schwarze Stange aus dem Schlüsselkasten holen. Sehen Sie sich das Video unten an, um Anweisungen zum Erhalt der Schlüsselkarte zu erhalten.",
+    "watchKeyPickup": "Video zur Schlüsselabholung ansehen",
+    "step2": "Schritt 2: Das Gebäude betreten",
+    "step2Description": "Nachdem Sie die schwarze Stange und die Schlüsselkarte genommen haben, verwenden Sie die schwarze Stange, um die Haupttür zu öffnen. Wenn Sie die Tür A im 1. Stock erreichen, können Sie entweder die Karte antippen oder den Code im nummerierten Bereich des Tastensystems eingeben.",
+    "watchOpenDoors": "Sehen Sie, wie man Türen öffnet",
+    "locationDetails": "Standortdetails",
+    "jardinesTropicalesLocation": "Das Apartment befindet sich in Nueva Andalucía, in der Nähe von Puerto Banús.",
+    "buildingAccessCodes": "Gebäudezugangscodes:",
+    "mainDoor": "Haupttür",
+    "importantNote": "Wichtiger Hinweis:",
+    "watchVideo": "Video ansehen",
+    "pleasantStayWish": "Wir wünschen Ihnen einen angenehmen Aufenthalt."
+  },
+  "parking": {
+    "title": "Parkinformationen",
+    "nearYourApartment": "Parken in der Nähe Ihres Apartments",
+    "description": {
+      "29051501": "Vor dem Haus gibt es Straßenparkplätze, auf denen Sie Ihr Fahrzeug kostenlos parken können. Es gibt keinen überdachten oder privaten Parkplatz für die Immobilie. Das Parken auf der Straße ist kostenlos.",
+      "29051502": "Ihr Seaview-Apartment befindet sich im Zentrum von Marbella, wo Parkplätze begrenzt sein können. Hier sind die besten Parkmöglichkeiten in der Nähe von Calle Camilo José Cela, 7.",
+      "29051503": "In der Nähe gibt es öffentliche Straßenparkplätze. Die Unterkunft verfügt nicht über eigene private Parkplätze.",
+      "29051504": "Diese Immobilie verfügt über keinen privaten Parkplatz. Es gibt jedoch Straßenparkplätze in der Nähe. Wenn Sie nach einer überdachten Parkgarage suchen, können Sie die unten auf der Karte gezeigte nutzen:"
+    },
+    "openParkingGarage": "Parkgarage öffnen",
+    "viewClosedParking": "Geschlossenen Parkplatz anzeigen",
+    "locationDetails": "Standortdetails",
+    "parkingTips": "Parktipps",
+    "tip1": "Der Parkbereich ist gut beleuchtet und sicher",
+    "tip2": "Rund um die Uhr verfügbar",
+    "tip3": "Keine Zeitbeschränkungen",
+    "tip4": "Wertgegenstände außer Sichtweite aufbewahren",
+    "tip5": "Fahrzeug immer abschließen"
   }
 }

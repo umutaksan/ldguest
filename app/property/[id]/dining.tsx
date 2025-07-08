@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { UtensilsCrossed, MapPin, ExternalLink } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function DiningScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
 
   // Get restaurants based on property ID
   const getRestaurants = () => {
@@ -340,14 +342,14 @@ export default function DiningScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Places to Eat" />
+      <PageHeader title={t('home.dining')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
         <Text style={styles.description}>
-          {getDescription()}
+          {t(`dining.description.${id}`, { defaultValue: getDescription() })}
         </Text>
 
         {restaurants.map((restaurant, index) => (
@@ -369,8 +371,8 @@ export default function DiningScreen() {
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.category}>{restaurant.category}</Text>
-            <Text style={styles.restaurantDescription}>{restaurant.description}</Text>
+            <Text style={styles.category}>{t(`dining.categories.${restaurant.category}`, { defaultValue: restaurant.category })}</Text>
+            <Text style={styles.restaurantDescription}>{t(`dining.restaurants.${id}.${restaurant.id}.description`, { defaultValue: restaurant.description })}</Text>
             
             <View style={styles.distanceContainer}>
               <MapPin size={16} color={theme.colors.textTertiary} />

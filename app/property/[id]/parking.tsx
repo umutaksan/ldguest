@@ -155,7 +155,7 @@ export default function ParkingScreen() {
         <Animated.View entering={FadeIn.duration(500)}>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>{parkingInfo.title}</Text>
-            <Text style={styles.description}>{parkingInfo.description}</Text>
+            <Text style={styles.description}>{t(`parking.description.${id}`, { defaultValue: parkingInfo.description })}</Text>
             
             {id === '29051504' ? (
               <View style={styles.mapContainer}>  
@@ -204,7 +204,7 @@ export default function ParkingScreen() {
                 activeOpacity={0.8}
               >
                 <Car size={20} color={theme.colors.white} />
-                <Text style={styles.directionsButtonText}>Open Parking Garage</Text>
+                <Text style={styles.directionsButtonText}>{t('parking.openParkingGarage')}</Text>
               </TouchableOpacity>
             ) : id === '29051502' ? (
               <TouchableOpacity 

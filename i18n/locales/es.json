@@ -103,5 +103,191 @@
   },
   "videos": {
     "propertyGuides": "Guías de la Propiedad"
+  },
+  "rules": {
+    "title": "Normas de la Casa",
+    "communityRules": "Normas de la Comunidad",
+    "houseRules": "Normas de la Casa",
+    "community": {
+      "1": {
+        "title": "Horas de Silencio",
+        "description": "Las horas de silencio son de 11:00 PM a 8:00 AM. Por favor, evite hacer ruido durante estas horas."
+      },
+      "2": {
+        "title": "Áreas Comunes",
+        "description": "Al usar la piscina, jardín u otros espacios compartidos, manténgalos limpios y ordenados. Sea considerado con los demás en la comunidad."
+      }
+    },
+    "house": {
+      "1": {
+        "title": "Horarios de Entrada y Salida",
+        "description": "• Entrada: Después de las 3:00 PM\n• Salida: Antes de las 10:00 AM"
+      },
+      "2": {
+        "title": "Mascotas",
+        "description": "Puede traer sus mascotas, pero por favor infórmenos con anticipación."
+      },
+      "3": {
+        "title": "Fumar",
+        "description": "No está permitido fumar dentro de la casa. Puede fumar en el balcón o en áreas exteriores."
+      },
+      "4": {
+        "title": "Tratar con Cuidado",
+        "description": "Por favor, trate la casa con cuidado y respeto. Si ocurre algún daño o surgen problemas, háganoslo saber lo antes posible."
+      },
+      "5": {
+        "title": "Toallas y Ropa de Cama",
+        "description": "Las toallas proporcionadas son solo para uso interior. Por favor, traiga sus propias toallas para la playa."
+      },
+      "6": {
+        "title": "Fiestas y Eventos",
+        "description": "No está permitido organizar fiestas o eventos grandes."
+      },
+      "7": {
+        "title": "Instrucciones de Salida",
+        "description": "• Al salir, asegúrese de devolver las llaves al lugar designado\n• Verifique que no haya dejado pertenencias personales"
+      },
+      "8": {
+        "title": "Disfrute su Estancia",
+        "description": "¡Estamos encantados de recibirle! Esperamos que tenga unas vacaciones relajantes y memorables. Si necesita ayuda, no dude en contactarnos."
+      }
+    }
+  },
+  "info": {
+    "title": "Información de la Propiedad",
+    "faq": "Preguntas Frecuentes"
+  },
+  "amenities": {
+    "description": "{{property}} está equipado con todo lo que necesita para una estancia cómoda. Aquí están las comodidades disponibles para usted:",
+    "additionalFeatures": "Características Adicionales",
+    "features": {
+      "29051501": {
+        "0": "• Cocina totalmente equipada con electrodomésticos modernos",
+        "1": "• Ropa de cama y toallas de calidad proporcionadas",
+        "2": "• Lavadora y tendedero",
+        "3": "• Plancha y tabla de planchar",
+        "4": "• Secador de pelo",
+        "5": "• Artículos de aseo básicos",
+        "6": "• Kit de bienvenida a la llegada"
+      },
+      "29051502": {
+        "0": "• Cocina totalmente equipada con electrodomésticos modernos",
+        "1": "• Ropa de cama y toallas de calidad proporcionadas",
+        "2": "• Lavadora y tendedero",
+        "3": "• Plancha y tabla de planchar",
+        "4": "• Secador de pelo",
+        "5": "• Artículos de aseo básicos",
+        "6": "• Kit de bienvenida a la llegada",
+        "7": "• Acceso directo a la playa",
+        "8": "• Vistas al mar",
+        "9": "• Litera en el segundo dormitorio"
+      },
+      "29051503": {
+        "0": "• Cocina totalmente equipada con electrodomésticos modernos",
+        "1": "• Ropa de cama y toallas de calidad proporcionadas",
+        "2": "• Lavadora y tendedero",
+        "3": "• Plancha y tabla de planchar",
+        "4": "• Secador de pelo",
+        "5": "• Artículos de aseo básicos",
+        "6": "• Kit de bienvenida a la llegada",
+        "7": "• Acceso al jardín comunitario",
+        "8": "• Espacio de terraza",
+        "9": "• Proximidad al campo de golf"
+      },
+      "29051504": {
+        "0": "• Cocina totalmente equipada con electrodomésticos modernos",
+        "1": "• Ropa de cama y toallas de calidad proporcionadas",
+        "2": "• Lavadora y tendedero",
+        "3": "• Plancha y tabla de planchar",
+        "4": "• Secador de pelo",
+        "5": "• Artículos de aseo básicos",
+        "6": "• Kit de bienvenida a la llegada",
+        "7": "• Tres dormitorios separados",
+        "8": "• Amplia zona de estar",
+        "9": "• Vistas a la ciudad desde los balcones"
+      }
+    }
+  },
+  "luggage": {
+    "description": {
+      "29051501": "¿Necesita guardar su equipaje antes del check-in o después del check-out? Aquí hay algunas opciones de almacenamiento confiables en Marbella:",
+      "29051502": "¿Necesita guardar su equipaje antes del check-in o después del check-out? Aquí hay opciones de almacenamiento confiables cerca de su apartamento Seaview en Marbella:",
+      "29051503": "¿Necesita guardar su equipaje antes del check-in o después del check-out? Aquí hay opciones de almacenamiento confiables cerca de su casa adosada Aloha Pueblo:",
+      "29051504": "¿Necesita guardar su equipaje antes del check-in o después del check-out? Aquí hay opciones de almacenamiento confiables cerca de su apartamento en el Casco Antiguo de Marbella:"
+    },
+    "bookStorage": "Reservar Almacenamiento",
+    "disclaimer": "*L&D Guest no proporciona servicios de almacenamiento de equipaje después del check-out y, por lo tanto, no acepta ninguna responsabilidad por los artículos almacenados"
+  },
+  "carRental": {
+    "title": {
+      "29051501": "Explore Marbella a Su Propio Ritmo",
+      "29051502": "Explore la Costa del Sol a Su Propio Ritmo",
+      "29051503": "Explore el Valle del Golf y Más Allá",
+      "29051504": "Explore Andalucía desde el Casco Antiguo"
+    },
+    "description": {
+      "29051501": "Descubra la libertad de explorar la Costa del Sol con su propio coche de alquiler. Desde paseos costeros escénicos hasta aventuras montañosas, aproveche al máximo su estancia con un vehículo confiable de nuestro socio de confianza.",
+      "29051502": "Descubra la libertad de explorar la hermosa Costa del Sol con su propio coche de alquiler. Desde paseos costeros escénicos hasta aventuras montañosas, aproveche al máximo su estancia en Seaview Fontanilla con un vehículo confiable de nuestro socio de confianza.",
+      "29051503": "Descubra la libertad de explorar la Costa del Sol con su propio coche de alquiler. Desde visitar múltiples campos de golf hasta paseos costeros escénicos, aproveche al máximo su estancia en Aloha Pueblo con un vehículo confiable de nuestro socio de confianza.",
+      "29051504": "Descubra la libertad de explorar la Costa del Sol y más allá con su propio coche de alquiler. Desde su ubicación en el Casco Antiguo, aventúrese a descubrir hermosas ciudades costeras, pueblos de montaña y tesoros culturales con un vehículo confiable de nuestro socio de confianza."
+    },
+    "whyChoosePartner": "¿Por Qué Elegir a Nuestro Socio?",
+    "benefits": {
+      "0": "Garantía de mejor precio",
+      "1": "Cobertura de seguro completa",
+      "2": "Sin cargos ocultos",
+      "3": "Cancelación gratuita",
+      "4": "Soporte al cliente 24/7",
+      "5": "Múltiples ubicaciones de recogida",
+      "6": "Amplia gama de vehículos",
+      "7": "Proceso de reserva sencillo"
+    },
+    "findPerfectCar": "Encuentre Su Coche Perfecto",
+    "pricesNote": "*Los precios y la disponibilidad pueden variar según la temporada y la demanda",
+    "disclaimer1": "L&D Guest ha compartido esta información solo con fines informativos. No operamos servicios de alquiler de coches directamente y no aceptamos ninguna responsabilidad por cualquier problema que pueda surgir al utilizar servicios de alquiler de coches de terceros.",
+    "disclaimer2": "Se aconseja a los clientes que revisen los términos y condiciones del proveedor de alquiler de coches antes de hacer una reserva."
+  },
+  "videos": {
+    "houseGuides": "Guías de la Casa",
+    "houseAccess": "Acceso a la Casa",
+    "propertyGuides": "Guías de la Propiedad",
+    "watchVideo": "Ver Video"
+  },
+  "entry": {
+    "title": "Instrucciones de Entrada a la Casa",
+    "instructions": "Instrucciones de Entrada",
+    "jardinesTropicalesWelcome": "¡Bienvenido a su apartamento Jardines Tropicales! Aquí están las instrucciones de entrada para Calle Azahar 12.\n\nLos códigos de acceso se enviarán a través de la plataforma en la que realizó su reserva el día de su estancia a las 12:00 PM. Para entrar en la casa, primero debe tomar la barra negra de la puerta principal y la tarjeta llave para la entrada desde la ubicación designada.\n\n",
+    "step1": "Paso 1: Obtener la Tarjeta Llave",
+    "step1Description": "Primero, debe obtener la tarjeta llave y la barra negra de la caja de llaves. Vea el video a continuación para obtener instrucciones sobre cómo obtener la tarjeta llave.",
+    "watchKeyPickup": "Ver Video de Recogida de Llaves",
+    "step2": "Paso 2: Entrar al Edificio",
+    "step2Description": "Después de tomar la barra negra y la tarjeta llave, use la barra negra para abrir la puerta principal. Cuando llegue a la puerta A en el 1er piso, puede tocar la tarjeta o ingresar el código en la sección numerada del sistema de teclado.",
+    "watchOpenDoors": "Ver Cómo Abrir Puertas",
+    "locationDetails": "Detalles de Ubicación",
+    "jardinesTropicalesLocation": "El apartamento está ubicado en Nueva Andalucía, cerca de Puerto Banús.",
+    "buildingAccessCodes": "Códigos de Acceso al Edificio:",
+    "mainDoor": "Puerta Principal",
+    "importantNote": "Nota Importante:",
+    "watchVideo": "Ver Video",
+    "pleasantStayWish": "Le deseamos una agradable estancia."
+  },
+  "parking": {
+    "title": "Información de Aparcamiento",
+    "nearYourApartment": "Aparcamiento Cerca de Su Apartamento",
+    "description": {
+      "29051501": "Hay aparcamiento en la calle disponible frente a la casa donde puede estacionar su vehículo de forma gratuita. No hay aparcamiento cubierto o privado disponible para la propiedad. El aparcamiento en la calle es gratuito.",
+      "29051502": "Su apartamento Seaview está ubicado en el centro de Marbella donde el aparcamiento puede ser limitado. Aquí están las mejores opciones de aparcamiento disponibles cerca de Calle Camilo José Cela, 7.",
+      "29051503": "Hay aparcamiento en la calle disponible cerca. La propiedad no tiene su propio aparcamiento privado.",
+      "29051504": "Esta propiedad no tiene aparcamiento privado. Sin embargo, hay opciones de aparcamiento en la calle cerca. Si está buscando un garaje de aparcamiento cubierto, puede usar el que se muestra en el mapa a continuación:"
+    },
+    "openParkingGarage": "Abrir Garaje de Aparcamiento",
+    "viewClosedParking": "Ver Ubicación de Aparcamiento Cubierto",
+    "locationDetails": "Detalles de Ubicación",
+    "parkingTips": "Consejos de Aparcamiento",
+    "tip1": "El área de aparcamiento está bien iluminada y es segura",
+    "tip2": "Disponible 24/7",
+    "tip3": "Sin restricciones de tiempo",
+    "tip4": "Mantenga objetos de valor fuera de la vista",
+    "tip5": "Cierre su vehículo en todo momento"
   }
 }

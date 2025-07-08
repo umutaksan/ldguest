@@ -103,5 +103,191 @@
   },
   "videos": {
     "propertyGuides": "Mülk Rehberleri"
+  },
+  "rules": {
+    "title": "Ev Kuralları",
+    "communityRules": "Topluluk Kuralları",
+    "houseRules": "Ev Kuralları",
+    "community": {
+      "1": {
+        "title": "Sessiz Saatler",
+        "description": "Sessiz saatler 23:00 ile 08:00 arasındadır. Lütfen bu saatlerde gürültü yapmaktan kaçının."
+      },
+      "2": {
+        "title": "Ortak Alanlar",
+        "description": "Havuz, bahçe veya diğer ortak alanları kullanırken, lütfen temiz ve düzenli tutun. Topluluktaki diğer kişilere karşı düşünceli olun."
+      }
+    },
+    "house": {
+      "1": {
+        "title": "Giriş ve Çıkış Saatleri",
+        "description": "• Giriş: 15:00'ten sonra\n• Çıkış: 10:00'dan önce"
+      },
+      "2": {
+        "title": "Evcil Hayvanlar",
+        "description": "Evcil hayvanlarınızı getirebilirsiniz, ancak lütfen önceden bizi bilgilendirin."
+      },
+      "3": {
+        "title": "Sigara İçme",
+        "description": "Evin içinde sigara içmek yasaktır. Balkonda veya dış alanlarda sigara içebilirsiniz."
+      },
+      "4": {
+        "title": "Özenle Kullanın",
+        "description": "Lütfen evi özen ve saygıyla kullanın. Herhangi bir hasar oluşursa veya sorun çıkarsa, bize en kısa sürede bildirin."
+      },
+      "5": {
+        "title": "Havlular ve Çarşaflar",
+        "description": "Sağlanan havlular sadece iç mekan kullanımı içindir. Lütfen plaj için kendi havlularınızı getirin."
+      },
+      "6": {
+        "title": "Partiler ve Etkinlikler",
+        "description": "Parti veya büyük etkinlikler düzenlemek yasaktır."
+      },
+      "7": {
+        "title": "Çıkış Talimatları",
+        "description": "• Ayrılırken, anahtarları belirtilen yere iade ettiğinizden emin olun\n• Kişisel eşyalarınızı geride bırakmadığınızı kontrol edin"
+      },
+      "8": {
+        "title": "Konaklamanızın Tadını Çıkarın",
+        "description": "Sizi ağırlamaktan memnuniyet duyuyoruz! Rahatlatıcı ve unutulmaz bir tatil geçirmenizi umuyoruz. Herhangi bir yardıma ihtiyacınız olursa, lütfen bizimle iletişime geçmekten çekinmeyin."
+      }
+    }
+  },
+  "info": {
+    "title": "Mülk Bilgileri",
+    "faq": "Sık Sorulan Sorular"
+  },
+  "amenities": {
+    "description": "{{property}}, konforlu bir konaklama için ihtiyacınız olan her şeyle donatılmıştır. İşte size sunulan olanaklar:",
+    "additionalFeatures": "Ek Özellikler",
+    "features": {
+      "29051501": {
+        "0": "• Modern cihazlarla tam donanımlı mutfak",
+        "1": "• Kaliteli çarşaflar ve havlular sağlanmaktadır",
+        "2": "• Çamaşır makinesi ve kurutma rafı",
+        "3": "• Ütü ve ütü masası",
+        "4": "• Saç kurutma makinesi",
+        "5": "• Temel tuvalet malzemeleri",
+        "6": "• Varışta hoş geldin kiti"
+      },
+      "29051502": {
+        "0": "• Modern cihazlarla tam donanımlı mutfak",
+        "1": "• Kaliteli çarşaflar ve havlular sağlanmaktadır",
+        "2": "• Çamaşır makinesi ve kurutma rafı",
+        "3": "• Ütü ve ütü masası",
+        "4": "• Saç kurutma makinesi",
+        "5": "• Temel tuvalet malzemeleri",
+        "6": "• Varışta hoş geldin kiti",
+        "7": "• Doğrudan plaj erişimi",
+        "8": "• Deniz manzarası",
+        "9": "• İkinci yatak odasında ranza"
+      },
+      "29051503": {
+        "0": "• Modern cihazlarla tam donanımlı mutfak",
+        "1": "• Kaliteli çarşaflar ve havlular sağlanmaktadır",
+        "2": "• Çamaşır makinesi ve kurutma rafı",
+        "3": "• Ütü ve ütü masası",
+        "4": "• Saç kurutma makinesi",
+        "5": "• Temel tuvalet malzemeleri",
+        "6": "• Varışta hoş geldin kiti",
+        "7": "• Topluluk bahçesine erişim",
+        "8": "• Teras alanı",
+        "9": "• Golf sahasına yakınlık"
+      },
+      "29051504": {
+        "0": "• Modern cihazlarla tam donanımlı mutfak",
+        "1": "• Kaliteli çarşaflar ve havlular sağlanmaktadır",
+        "2": "• Çamaşır makinesi ve kurutma rafı",
+        "3": "• Ütü ve ütü masası",
+        "4": "• Saç kurutma makinesi",
+        "5": "• Temel tuvalet malzemeleri",
+        "6": "• Varışta hoş geldin kiti",
+        "7": "• Üç ayrı yatak odası",
+        "8": "• Geniş oturma alanı",
+        "9": "• Balkonlardan şehir manzarası"
+      }
+    }
+  },
+  "luggage": {
+    "description": {
+      "29051501": "Giriş yapmadan önce veya çıkış yaptıktan sonra bagajınızı saklamanız mı gerekiyor? İşte Marbella'daki bazı güvenilir depolama seçenekleri:",
+      "29051502": "Giriş yapmadan önce veya çıkış yaptıktan sonra bagajınızı saklamanız mı gerekiyor? İşte Marbella'daki Seaview dairenizin yakınındaki güvenilir depolama seçenekleri:",
+      "29051503": "Giriş yapmadan önce veya çıkış yaptıktan sonra bagajınızı saklamanız mı gerekiyor? İşte Aloha Pueblo sıra evinizin yakınındaki güvenilir depolama seçenekleri:",
+      "29051504": "Giriş yapmadan önce veya çıkış yaptıktan sonra bagajınızı saklamanız mı gerekiyor? İşte Marbella Eski Şehir'deki dairenizin yakınındaki güvenilir depolama seçenekleri:"
+    },
+    "bookStorage": "Depolama Rezervasyonu Yap",
+    "disclaimer": "*L&D Guest, çıkış sonrası bagaj depolama hizmeti sağlamaz ve bu nedenle depolanan eşyalar için hiçbir sorumluluk kabul etmez"
+  },
+  "carRental": {
+    "title": {
+      "29051501": "Marbella'yı Kendi Temponuzda Keşfedin",
+      "29051502": "Costa del Sol'u Kendi Temponuzda Keşfedin",
+      "29051503": "Golf Vadisi ve Ötesini Keşfedin",
+      "29051504": "Eski Şehirden Endülüs'ü Keşfedin"
+    },
+    "description": {
+      "29051501": "Kendi kiralık aracınızla Costa del Sol'u keşfetme özgürlüğünü keşfedin. Manzaralı sahil sürüşlerinden dağ maceralarına kadar, güvenilir iş ortağımızdan temin edeceğiniz güvenilir bir araçla konaklamanızın tadını çıkarın.",
+      "29051502": "Kendi kiralık aracınızla güzel Costa del Sol'u keşfetme özgürlüğünü keşfedin. Manzaralı sahil sürüşlerinden dağ maceralarına kadar, güvenilir iş ortağımızdan temin edeceğiniz güvenilir bir araçla Seaview Fontanilla'daki konaklamanızın tadını çıkarın.",
+      "29051503": "Kendi kiralık aracınızla Costa del Sol'u keşfetme özgürlüğünü keşfedin. Birden fazla golf sahasını ziyaret etmekten manzaralı sahil sürüşlerine kadar, güvenilir iş ortağımızdan temin edeceğiniz güvenilir bir araçla Aloha Pueblo'daki konaklamanızın tadını çıkarın.",
+      "29051504": "Kendi kiralık aracınızla Costa del Sol ve ötesini keşfetme özgürlüğünü keşfedin. Eski Şehir'deki konumunuzdan, güvenilir iş ortağımızdan temin edeceğiniz güvenilir bir araçla güzel sahil kasabalarını, dağ köylerini ve kültürel hazineleri keşfetmeye çıkın."
+    },
+    "whyChoosePartner": "Neden Ortağımızı Seçmelisiniz?",
+    "benefits": {
+      "0": "En iyi fiyat garantisi",
+      "1": "Tam sigorta kapsamı",
+      "2": "Gizli ücret yok",
+      "3": "Ücretsiz iptal",
+      "4": "7/24 müşteri desteği",
+      "5": "Birden fazla teslim alma noktası",
+      "6": "Geniş araç yelpazesi",
+      "7": "Kolay rezervasyon süreci"
+    },
+    "findPerfectCar": "Mükemmel Aracınızı Bulun",
+    "pricesNote": "*Fiyatlar ve müsaitlik mevsime ve talebe göre değişebilir",
+    "disclaimer1": "L&D Guest bu bilgileri yalnızca bilgilendirme amaçlı paylaşmıştır. Araç kiralama hizmetlerini doğrudan işletmiyoruz ve üçüncü taraf araç kiralama hizmetlerini kullanmaktan kaynaklanabilecek herhangi bir sorun için sorumluluk kabul etmiyoruz.",
+    "disclaimer2": "Müşterilere, rezervasyon yapmadan önce araç kiralama sağlayıcısının şartlarını ve koşullarını gözden geçirmeleri tavsiye edilir."
+  },
+  "videos": {
+    "houseGuides": "Ev Rehberleri",
+    "houseAccess": "Eve Giriş",
+    "propertyGuides": "Mülk Rehberleri",
+    "watchVideo": "Video İzle"
+  },
+  "entry": {
+    "title": "Eve Giriş Talimatları",
+    "instructions": "Giriş Talimatları",
+    "jardinesTropicalesWelcome": "Jardines Tropicales dairenize hoş geldiniz! İşte Calle Azahar 12 için giriş talimatları.\n\nErişim kodları, konaklamanızın günü saat 12:00'de rezervasyonunuzu yaptığınız platform üzerinden gönderilecektir. Eve girmek için önce ana kapının siyah çubuğunu ve belirtilen yerden giriş için anahtar kartını almanız gerekir.\n\n",
+    "step1": "Adım 1: Anahtar Kartını Almak",
+    "step1Description": "İlk olarak, anahtar kutusundan anahtar kartını ve siyah çubuğu almanız gerekir. Anahtar kartını nasıl alacağınıza dair talimatlar için aşağıdaki videoyu izleyin.",
+    "watchKeyPickup": "Anahtar Alma Videosunu İzle",
+    "step2": "Adım 2: Binaya Girmek",
+    "step2Description": "Siyah çubuğu ve anahtar kartını aldıktan sonra, ana kapıyı açmak için siyah çubuğu kullanın. 1. kattaki A kapısına ulaştığınızda, kartı dokundurabilir veya tuş takımı sisteminin numaralı bölümüne kodu girebilirsiniz.",
+    "watchOpenDoors": "Kapıların Nasıl Açılacağını İzle",
+    "locationDetails": "Konum Detayları",
+    "jardinesTropicalesLocation": "Daire, Puerto Banús'a yakın Nueva Andalucía'da bulunmaktadır.",
+    "buildingAccessCodes": "Bina Erişim Kodları:",
+    "mainDoor": "Ana Kapı",
+    "importantNote": "Önemli Not:",
+    "watchVideo": "Video İzle",
+    "pleasantStayWish": "Keyifli bir konaklama dileriz."
+  },
+  "parking": {
+    "title": "Otopark Bilgileri",
+    "nearYourApartment": "Dairenizin Yakınında Otopark",
+    "description": {
+      "29051501": "Evin önünde aracınızı ücretsiz park edebileceğiniz sokak otoparkı mevcuttur. Mülk için kapalı veya özel otopark bulunmamaktadır. Sokak otoparkı ücretsizdir.",
+      "29051502": "Seaview daireniz, otoparkın sınırlı olabileceği Marbella merkezinde yer almaktadır. İşte Calle Camilo José Cela, 7 yakınındaki en iyi otopark seçenekleri.",
+      "29051503": "Yakınlarda açık sokak otoparkı mevcuttur. Mülkün kendine ait özel otoparkı yoktur.",
+      "29051504": "Bu mülkün özel otoparkı yoktur. Ancak, yakınlarda sokak otoparkı seçenekleri vardır. Kapalı bir otopark arıyorsanız, aşağıdaki haritada gösterileni kullanabilirsiniz:"
+    },
+    "openParkingGarage": "Otopark Garajını Aç",
+    "viewClosedParking": "Kapalı Otopark Konumunu Görüntüle",
+    "locationDetails": "Konum Detayları",
+    "parkingTips": "Otopark İpuçları",
+    "tip1": "Otopark alanı iyi aydınlatılmış ve güvenlidir",
+    "tip2": "7/24 kullanılabilir",
+    "tip3": "Zaman kısıtlaması yok",
+    "tip4": "Değerli eşyaları görünür yerde bırakmayın",
+    "tip5": "Aracınızı her zaman kilitleyin"
   }
 }

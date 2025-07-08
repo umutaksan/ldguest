@@ -103,5 +103,191 @@
   },
   "videos": {
     "propertyGuides": "Guide della Proprietà"
+  },
+  "rules": {
+    "title": "Regole della Casa",
+    "communityRules": "Regole della Comunità",
+    "houseRules": "Regole della Casa",
+    "community": {
+      "1": {
+        "title": "Ore di Silenzio",
+        "description": "Le ore di silenzio sono dalle 23:00 alle 8:00. Si prega di evitare di fare rumore durante queste ore."
+      },
+      "2": {
+        "title": "Aree Comuni",
+        "description": "Quando si utilizza la piscina, il giardino o altri spazi condivisi, si prega di mantenerli puliti e ordinati. Siate considerati verso gli altri nella comunità."
+      }
+    },
+    "house": {
+      "1": {
+        "title": "Orari di Check-In e Check-Out",
+        "description": "• Check-in: Dopo le 15:00\n• Check-out: Prima delle 10:00"
+      },
+      "2": {
+        "title": "Animali Domestici",
+        "description": "Sei il benvenuto a portare i tuoi animali domestici, ma ti preghiamo di informarci in anticipo."
+      },
+      "3": {
+        "title": "Fumo",
+        "description": "Non è consentito fumare all'interno della casa. Puoi fumare sul balcone o nelle aree esterne."
+      },
+      "4": {
+        "title": "Maneggiare con Cura",
+        "description": "Si prega di trattare la casa con cura e rispetto. Se si verificano danni o problemi, faccelo sapere il prima possibile."
+      },
+      "5": {
+        "title": "Asciugamani e Biancheria",
+        "description": "Gli asciugamani forniti sono solo per uso interno. Si prega di portare i propri asciugamani per la spiaggia."
+      },
+      "6": {
+        "title": "Feste ed Eventi",
+        "description": "Non è consentito ospitare feste o grandi eventi."
+      },
+      "7": {
+        "title": "Istruzioni per il Check-Out",
+        "description": "• Quando esci, assicurati di restituire le chiavi nel luogo designato\n• Controlla di non aver lasciato oggetti personali"
+      },
+      "8": {
+        "title": "Goditi il tuo Soggiorno",
+        "description": "Siamo lieti di ospitarti! Speriamo che tu abbia una vacanza rilassante e memorabile. Se hai bisogno di assistenza, non esitare a contattarci."
+      }
+    }
+  },
+  "info": {
+    "title": "Informazioni sulla Proprietà",
+    "faq": "Domande Frequenti"
+  },
+  "amenities": {
+    "description": "{{property}} è dotato di tutto ciò di cui hai bisogno per un soggiorno confortevole. Ecco i servizi disponibili per te:",
+    "additionalFeatures": "Funzionalità Aggiuntive",
+    "features": {
+      "29051501": {
+        "0": "• Cucina completamente attrezzata con elettrodomestici moderni",
+        "1": "• Biancheria e asciugamani di qualità forniti",
+        "2": "• Lavatrice e stendibiancheria",
+        "3": "• Ferro e asse da stiro",
+        "4": "• Asciugacapelli",
+        "5": "• Articoli da toeletta di base",
+        "6": "• Kit di benvenuto all'arrivo"
+      },
+      "29051502": {
+        "0": "• Cucina completamente attrezzata con elettrodomestici moderni",
+        "1": "• Biancheria e asciugamani di qualità forniti",
+        "2": "• Lavatrice e stendibiancheria",
+        "3": "• Ferro e asse da stiro",
+        "4": "• Asciugacapelli",
+        "5": "• Articoli da toeletta di base",
+        "6": "• Kit di benvenuto all'arrivo",
+        "7": "• Accesso diretto alla spiaggia",
+        "8": "• Vista mare",
+        "9": "• Letto a castello nella seconda camera da letto"
+      },
+      "29051503": {
+        "0": "• Cucina completamente attrezzata con elettrodomestici moderni",
+        "1": "• Biancheria e asciugamani di qualità forniti",
+        "2": "• Lavatrice e stendibiancheria",
+        "3": "• Ferro e asse da stiro",
+        "4": "• Asciugacapelli",
+        "5": "• Articoli da toeletta di base",
+        "6": "• Kit di benvenuto all'arrivo",
+        "7": "• Accesso al giardino della comunità",
+        "8": "• Spazio terrazza",
+        "9": "• Vicinanza al campo da golf"
+      },
+      "29051504": {
+        "0": "• Cucina completamente attrezzata con elettrodomestici moderni",
+        "1": "• Biancheria e asciugamani di qualità forniti",
+        "2": "• Lavatrice e stendibiancheria",
+        "3": "• Ferro e asse da stiro",
+        "4": "• Asciugacapelli",
+        "5": "• Articoli da toeletta di base",
+        "6": "• Kit di benvenuto all'arrivo",
+        "7": "• Tre camere da letto separate",
+        "8": "• Ampio soggiorno",
+        "9": "• Vista città dai balconi"
+      }
+    }
+  },
+  "luggage": {
+    "description": {
+      "29051501": "Hai bisogno di depositare i tuoi bagagli prima del check-in o dopo il check-out? Ecco alcune opzioni di deposito affidabili a Marbella:",
+      "29051502": "Hai bisogno di depositare i tuoi bagagli prima del check-in o dopo il check-out? Ecco opzioni di deposito affidabili vicino al tuo appartamento Seaview a Marbella:",
+      "29051503": "Hai bisogno di depositare i tuoi bagagli prima del check-in o dopo il check-out? Ecco opzioni di deposito affidabili vicino alla tua casa a schiera Aloha Pueblo:",
+      "29051504": "Hai bisogno di depositare i tuoi bagagli prima del check-in o dopo il check-out? Ecco opzioni di deposito affidabili vicino al tuo appartamento nel centro storico di Marbella:"
+    },
+    "bookStorage": "Prenota Deposito",
+    "disclaimer": "*L&D Guest non fornisce servizi di deposito bagagli dopo il check-out e pertanto non si assume alcuna responsabilità per gli oggetti depositati"
+  },
+  "carRental": {
+    "title": {
+      "29051501": "Esplora Marbella al Tuo Ritmo",
+      "29051502": "Esplora la Costa del Sol al Tuo Ritmo",
+      "29051503": "Esplora la Valle del Golf e Oltre",
+      "29051504": "Esplora l'Andalusia dal Centro Storico"
+    },
+    "description": {
+      "29051501": "Scopri la libertà di esplorare la Costa del Sol con la tua auto a noleggio. Da pittoreschi percorsi costieri ad avventure montane, sfrutta al massimo il tuo soggiorno con un veicolo affidabile dal nostro partner di fiducia.",
+      "29051502": "Scopri la libertà di esplorare la bellissima Costa del Sol con la tua auto a noleggio. Da pittoreschi percorsi costieri ad avventure montane, sfrutta al massimo il tuo soggiorno a Seaview Fontanilla con un veicolo affidabile dal nostro partner di fiducia.",
+      "29051503": "Scopri la libertà di esplorare la Costa del Sol con la tua auto a noleggio. Dalla visita di numerosi campi da golf a pittoreschi percorsi costieri, sfrutta al massimo il tuo soggiorno ad Aloha Pueblo con un veicolo affidabile dal nostro partner di fiducia.",
+      "29051504": "Scopri la libertà di esplorare la Costa del Sol e oltre con la tua auto a noleggio. Dalla tua posizione nel centro storico, avventurati alla scoperta di bellissime città costiere, villaggi di montagna e tesori culturali con un veicolo affidabile dal nostro partner di fiducia."
+    },
+    "whyChoosePartner": "Perché Scegliere il Nostro Partner?",
+    "benefits": {
+      "0": "Garanzia del miglior prezzo",
+      "1": "Copertura assicurativa completa",
+      "2": "Nessun costo nascosto",
+      "3": "Cancellazione gratuita",
+      "4": "Supporto clienti 24/7",
+      "5": "Molteplici punti di ritiro",
+      "6": "Ampia gamma di veicoli",
+      "7": "Processo di prenotazione semplice"
+    },
+    "findPerfectCar": "Trova la Tua Auto Perfetta",
+    "pricesNote": "*Prezzi e disponibilità possono variare a seconda della stagione e della domanda",
+    "disclaimer1": "L&D Guest ha condiviso queste informazioni solo a scopo informativo. Non gestiamo direttamente servizi di noleggio auto e non ci assumiamo alcuna responsabilità per eventuali problemi che potrebbero sorgere utilizzando servizi di noleggio auto di terze parti.",
+    "disclaimer2": "Si consiglia ai clienti di rivedere i termini e le condizioni del fornitore di noleggio auto prima di effettuare una prenotazione."
+  },
+  "videos": {
+    "houseGuides": "Guide della Casa",
+    "houseAccess": "Accesso alla Casa",
+    "propertyGuides": "Guide della Proprietà",
+    "watchVideo": "Guarda Video"
+  },
+  "entry": {
+    "title": "Istruzioni per l'Ingresso",
+    "instructions": "Istruzioni per l'Ingresso",
+    "jardinesTropicalesWelcome": "Benvenuto nel tuo appartamento Jardines Tropicales! Ecco le istruzioni per l'ingresso per Calle Azahar 12.\n\nI codici di accesso saranno inviati tramite la piattaforma su cui hai effettuato la prenotazione il giorno del tuo soggiorno alle 12:00. Per entrare in casa, devi prima prendere la barra nera della porta principale e la scheda chiave per l'ingresso dalla posizione designata.\n\n",
+    "step1": "Passo 1: Ottenere la Scheda Chiave",
+    "step1Description": "Prima, devi ottenere la scheda chiave e la barra nera dalla cassetta delle chiavi. Guarda il video qui sotto per istruzioni su come ottenere la scheda chiave.",
+    "watchKeyPickup": "Guarda il Video di Ritiro Chiavi",
+    "step2": "Passo 2: Entrare nell'Edificio",
+    "step2Description": "Dopo aver preso la barra nera e la scheda chiave, usa la barra nera per aprire la porta principale. Quando raggiungi la porta A al 1° piano, puoi toccare la scheda o inserire il codice nella sezione numerata del sistema di tastiera.",
+    "watchOpenDoors": "Guarda Come Aprire le Porte",
+    "locationDetails": "Dettagli sulla Posizione",
+    "jardinesTropicalesLocation": "L'appartamento si trova a Nueva Andalucía, vicino a Puerto Banús.",
+    "buildingAccessCodes": "Codici di Accesso all'Edificio:",
+    "mainDoor": "Porta Principale",
+    "importantNote": "Nota Importante:",
+    "watchVideo": "Guarda Video",
+    "pleasantStayWish": "Ti auguriamo un piacevole soggiorno."
+  },
+  "parking": {
+    "title": "Informazioni sul Parcheggio",
+    "nearYourApartment": "Parcheggio Vicino al Tuo Appartamento",
+    "description": {
+      "29051501": "C'è un parcheggio su strada disponibile di fronte alla casa dove puoi parcheggiare il tuo veicolo gratuitamente. Non c'è parcheggio coperto o privato disponibile per la proprietà. Il parcheggio su strada è gratuito.",
+      "29051502": "Il tuo appartamento Seaview si trova nel centro di Marbella dove il parcheggio può essere limitato. Ecco le migliori opzioni di parcheggio disponibili vicino a Calle Camilo José Cela, 7.",
+      "29051503": "C'è un parcheggio su strada aperto disponibile nelle vicinanze. La proprietà non ha un proprio parcheggio privato.",
+      "29051504": "Questa proprietà non ha un parcheggio privato. Tuttavia, ci sono opzioni di parcheggio su strada nelle vicinanze. Se stai cercando un garage coperto, puoi utilizzare quello mostrato nella mappa qui sotto:"
+    },
+    "openParkingGarage": "Apri Garage Parcheggio",
+    "viewClosedParking": "Visualizza Posizione Parcheggio Coperto",
+    "locationDetails": "Dettagli sulla Posizione",
+    "parkingTips": "Consigli per il Parcheggio",
+    "tip1": "L'area di parcheggio è ben illuminata e sicura",
+    "tip2": "Disponibile 24/7",
+    "tip3": "Nessuna restrizione di tempo",
+    "tip4": "Tieni gli oggetti di valore fuori dalla vista",
+    "tip5": "Chiudi sempre il tuo veicolo"
   }
 }

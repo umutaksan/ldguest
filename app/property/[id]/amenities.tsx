@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Wifi, Coffee, Bath, Thermometer, Wind, Tv, Leaf as Safe, Sofa, Utensils, Hash as Washer, Droplets, Shirt } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function AmenitiesScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   
   // Get amenities based on property ID
   const getAmenities = () => {
@@ -128,14 +130,14 @@ export default function AmenitiesScreen() {
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Amenities" />
+      <PageHeader title={t('home.amenities')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
         <Text style={styles.description}>
-          {getPropertyTitle()} is equipped with everything you need for a comfortable stay. Here are the amenities available to you:
+          {t('amenities.description', { property: getPropertyTitle() })}
         </Text>
         
         <View style={styles.amenitiesContainer}>
@@ -154,9 +156,9 @@ export default function AmenitiesScreen() {
         </View>
         
         <View style={styles.additionalInfo}>
-          <Text style={styles.sectionTitle}>Additional Features</Text>
+          <Text style={styles.sectionTitle}>{t('amenities.additionalFeatures')}</Text>
           {additionalFeatures.map((feature, index) => (
-            <Text key={index} style={styles.featureText}>{feature}</Text>
+            <Text key={index} style={styles.featureText}>{t(`amenities.features.${id}.${index}`, { defaultValue: feature })}</Text>
           ))}
         </View>
       </ScrollView>

@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Car, Shield, CreditCard, CircleCheck as CheckCircle2, ExternalLink } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function CarRentalScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
 
   const handleRentCar = () => {
     Linking.openURL('https://www.doyouspain.com/');
@@ -61,7 +63,7 @@ export default function CarRentalScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Car Rental" />
+      <PageHeader title={t('home.carRental')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -69,18 +71,18 @@ export default function CarRentalScreen() {
       >
         <Animated.View entering={FadeIn.duration(500)}>
           <View style={styles.mainContent}>
-            <Text style={styles.title}>{content.title}</Text>
+            <Text style={styles.title}>{t(`carRental.title.${id}`, { defaultValue: content.title })}</Text>
             <Text style={styles.description}>
-              {content.description}
+              {t(`carRental.description.${id}`, { defaultValue: content.description })}
             </Text>
 
             <View style={styles.benefitsContainer}>
-              <Text style={styles.benefitsTitle}>Why Choose Our Partner?</Text>
+              <Text style={styles.benefitsTitle}>{t('carRental.whyChoosePartner')}</Text>
               <View style={styles.benefitsList}>
                 {benefits.map((benefit, index) => (
                   <View key={index} style={styles.benefitItem}>
                     <CheckCircle2 size={16} color={theme.colors.success} />
-                    <Text style={styles.benefitText}>{benefit}</Text>
+                    <Text style={styles.benefitText}>{t(`carRental.benefits.${index}`, { defaultValue: benefit })}</Text>
                   </View>
                 ))}
               </View>
@@ -92,20 +94,20 @@ export default function CarRentalScreen() {
               activeOpacity={0.8}
             >
               <Car size={20} color={theme.colors.white} />
-              <Text style={styles.rentButtonText}>Find Your Perfect Car</Text>
+              <Text style={styles.rentButtonText}>{t('carRental.findPerfectCar')}</Text>
               <ExternalLink size={20} color={theme.colors.white} />
             </TouchableOpacity>
 
             <Text style={styles.note}>
-              *Prices and availability may vary depending on season and demand
+              {t('carRental.pricesNote')}
             </Text>
             
             <View style={styles.disclaimerContainer}>
               <Text style={styles.disclaimer}>
-                L&D Guest has shared this information for informational purposes only. We do not operate car rental services directly and do not accept any liability for any issues that may arise from using third-party car rental services.
+                {t('carRental.disclaimer1')}
               </Text>
               <Text style={styles.disclaimer}>
-                Customers are advised to review the terms and conditions of the car rental provider before making a reservation.
+                {t('carRental.disclaimer2')}
               </Text>
             </View>
           </View>

@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Moon, Users, Clock, Dog, CookingPot as Smoking, Heart, Bed, Music, LogOut, Chrome as Home } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function RulesScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
 
   // Get community rules based on property ID
   const getCommunityRules = () => {
@@ -102,7 +104,7 @@ export default function RulesScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="House Rules" />
+      <PageHeader title={t('rules.title')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -110,7 +112,7 @@ export default function RulesScreen() {
       >
         <Animated.View entering={FadeIn.duration(500)}>
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Community Rules</Text>
+            <Text style={styles.sectionTitle}>{t('rules.communityRules')}</Text>
             {communityRules.map((rule, index) => (
               <Animated.View 
                 key={rule.id}
@@ -121,8 +123,8 @@ export default function RulesScreen() {
                   {rule.icon}
                 </View>
                 <View style={styles.ruleContent}>
-                  <Text style={styles.ruleTitle}>{rule.title}</Text>
-                  <Text style={styles.ruleDescription}>{rule.description}</Text>
+                  <Text style={styles.ruleTitle}>{t(`rules.community.${rule.id}.title`, { defaultValue: rule.title })}</Text>
+                  <Text style={styles.ruleDescription}>{t(`rules.community.${rule.id}.description`, { defaultValue: rule.description })}</Text>
                 </View>
               </Animated.View>
             ))}
@@ -131,7 +133,7 @@ export default function RulesScreen() {
           <View style={styles.divider} />
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>House Rules</Text>
+            <Text style={styles.sectionTitle}>{t('rules.houseRules')}</Text>
             {houseRules.map((rule, index) => (
               <Animated.View 
                 key={rule.id}
@@ -142,8 +144,8 @@ export default function RulesScreen() {
                   {rule.icon}
                 </View>
                 <View style={styles.ruleContent}>
-                  <Text style={styles.ruleTitle}>{rule.title}</Text>
-                  <Text style={styles.ruleDescription}>{rule.description}</Text>
+                  <Text style={styles.ruleTitle}>{t(`rules.house.${rule.id}.title`, { defaultValue: rule.title })}</Text>
+                  <Text style={styles.ruleDescription}>{t(`rules.house.${rule.id}.description`, { defaultValue: rule.description })}</Text>
                 </View>
               </Animated.View>
             ))}

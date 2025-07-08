@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Briefcase, MapPin, Clock, Shield, CreditCard, CircleCheck as CheckCircle2 } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function LuggageScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
 
   // Get storage options based on property ID
   const getStorageOptions = () => {
@@ -185,14 +187,14 @@ export default function LuggageScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Luggage Storage" />
+      <PageHeader title={t('home.luggage')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
         <Text style={styles.description}>
-          {getDescription()}
+          {t(`luggage.description.${id}`, { defaultValue: getDescription() })}
         </Text>
 
         {storageOptions.map((option, index) => (
@@ -211,12 +213,12 @@ export default function LuggageScreen() {
             </View>
             
             <Text style={styles.optionDescription}>{option.description}</Text>
-
+            
             <View style={styles.featuresList}>
               {option.features.map((feature, featureIndex) => (
                 <View key={featureIndex} style={styles.featureItem}>
                   <CheckCircle2 size={16} color={theme.colors.success} />
-                  <Text style={styles.featureText}>{feature}</Text>
+                  <Text style={styles.featureText}>{t(`luggage.features.${option.id}.${featureIndex}`, { defaultValue: feature })}</Text>
                 </View>
               ))}
             </View>
@@ -226,14 +228,14 @@ export default function LuggageScreen() {
               onPress={() => handleOpenLink(option.link)}
               activeOpacity={0.8}
             >
-              <Text style={styles.bookButtonText}>Book Storage</Text>
+              <Text style={styles.bookButtonText}>{t('luggage.bookStorage')}</Text>
             </TouchableOpacity>
           </Animated.View>
         ))}
 
         <View style={styles.disclaimerContainer}>
           <Text style={styles.disclaimer}>
-            *L&D Guest does not provide luggage storage services after check-out and therefore accepts no responsibility for stored items
+            {t('luggage.disclaimer')}
           </Text>
         </View>
       </ScrollView>

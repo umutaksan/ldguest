@@ -7,10 +7,12 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv, WashingMachine } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTranslation } from 'react-i18next';
 
 export default function VideosScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
 
   // Get videos based on property ID
   const getVideos = () => {
@@ -281,16 +283,16 @@ export default function VideosScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="House Videos" />
+      <PageHeader title={t('home.videos')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        {videos.houseGuides && renderVideoSection('House Guides', videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
-        {videos.houseAccess && renderVideoSection('House Access', videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
-        {videos.amenities && renderVideoSection('Amenities', videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
-        {videos.propertyGuides && renderVideoSection('Property Guides', videos.propertyGuides, <MapPin size={20} color={theme.colors.primary} />)}
+        {videos.houseGuides && renderVideoSection(t('videos.houseGuides'), videos.houseGuides, <Tv size={20} color={theme.colors.primary} />)}
+        {videos.houseAccess && renderVideoSection(t('videos.houseAccess'), videos.houseAccess, <Key size={20} color={theme.colors.primary} />)}
+        {videos.amenities && renderVideoSection(t('home.amenities'), videos.amenities, <Palmtree size={20} color={theme.colors.primary} />)}
+        {videos.propertyGuides && renderVideoSection(t('videos.propertyGuides'), videos.propertyGuides, <MapPin size={20} color={theme.colors.primary} />)}
       </ScrollView>
     </View>
   );
