@@ -437,9 +437,10 @@ export default function InfoScreen() {
                   >
                     <Text style={[styles.faqQuestionText, isLargeScreen && styles.faqQuestionTextLarge]}>
                       {t(`faq.${id}.${faq.id}.question`, { defaultValue: faq.question })}
-                        <Text style={[styles.faqAnswerText, isLargeScreen && styles.faqAnswerTextLarge]}>
-                          {t(`faq.${id}.${faq.id}.answer`, { defaultValue: faq.answer })}
-                        </Text>
+                    </Text>
+                    {expandedFaq === faq.id ? (
+                      <ChevronUp size={20} color={theme.colors.text} />
+                    ) : (
                       <ChevronDown size={20} color={theme.colors.text} />
                     )}
                   </TouchableOpacity>
@@ -449,7 +450,7 @@ export default function InfoScreen() {
                       <Text style={[
                         styles.faqAnswerText,
                         isLargeScreen && styles.faqAnswerTextLarge
-                      ]}>{faq.answer}</Text>
+                      ]}>{t(`faq.${id}.${faq.id}.answer`, { defaultValue: faq.answer })}</Text>
                     </View>
                   )}
                 </Animated.View>
