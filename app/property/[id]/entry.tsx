@@ -120,20 +120,49 @@ export default function EntryScreen() {
                 ]}>
                   Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
                   {'\n\n'}
-                  The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
+                  The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM. To enter the house, first you need to take the black bar of the main door and the key card for entry from the designated location.
                   {'\n\n'}
                 </Text>
                 
                 <Text style={[
                   styles.sectionTitle,
                   isLargeScreen && styles.sectionTitleLarge
-                ]}>Entering the Building</Text>
+                ]}>Step 1: Getting the Key Card</Text>
+                <Text style={[
+                  styles.description,
+                  isLargeScreen && styles.descriptionLarge
+                ]}>
+                  First, you need to get the key card and black bar from the key box. Watch the video below for instructions on how to get the key card.
+                </Text>
+                
+                <TouchableOpacity 
+                  style={styles.watchVideoButton}
+                  onPress={() => handleWatchVideo('https://youtube.com/shorts/XNzqKrwDKf8')}
+                  activeOpacity={0.8}
+                >
+                  <Key size={20} color={theme.colors.white} />
+                  <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
+                </TouchableOpacity>
+                
+                <Text style={[
+                  styles.sectionTitle,
+                  isLargeScreen && styles.sectionTitleLarge
+                ]}>Step 2: Entering the Building</Text>
                 <Text style={[
                   styles.description,
                   isLargeScreen && styles.descriptionLarge
                 ]}>
                   After taking the black bar and the key card, use the black bar to open the main door. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
                 </Text>
+                
+                <TouchableOpacity 
+                  style={styles.watchVideoButton}
+                  onPress={() => handleWatchVideo('https://youtube.com/shorts/nWXkqDrRcyU')}
+                  activeOpacity={0.8}
+                >
+                  <Video size={20} color={theme.colors.white} />
+                  <Text style={styles.watchVideoText}>Watch How to Open Doors</Text>
+                </TouchableOpacity>
                 
                 <Text style={[
                   styles.sectionTitle,
@@ -183,14 +212,14 @@ export default function EntryScreen() {
             {entryInstructions.videoUrl && id !== '29051503' && (
               <TouchableOpacity 
                 style={styles.watchVideoButton}
-                onPress={() => handleWatchVideo(id === '29051501' ? 'https://youtube.com/shorts/nWXkqDrRcyU' : entryInstructions.videoUrl)}
+                onPress={() => handleWatchVideo(entryInstructions.videoUrl)}
                 activeOpacity={0.8}
               >
                 <View style={styles.playIconContainer}>
                   <Play size={20} color={theme.colors.white} />
                 </View>
                 <Text style={styles.watchVideoText}>
-                  {id === '29051501' ? 'Watch How to Open Doors' : 'Watch Video'}
+                  Watch Video
                 </Text>
               </TouchableOpacity>
             )}
@@ -361,6 +390,7 @@ const styles = StyleSheet.create({
   watchVideoText: {
     ...theme.typography.button,
     color: theme.colors.white,
+    marginLeft: theme.spacing.s,
     marginLeft: theme.spacing.s,
   },
   playIconContainer: {
