@@ -7,11 +7,13 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { MapPin, ExternalLink, Navigation } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTranslation } from 'react-i18next';
 
 export default function ExploreScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { width } = useWindowDimensions();
+  const { t } = useTranslation();
 
   const nearbyCities = [
     { 
@@ -111,7 +113,7 @@ export default function ExploreScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Explore The Area" showBackButton={false} />
+      <PageHeader title={t('explore.title')} showBackButton={false} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -132,14 +134,12 @@ export default function ExploreScreen() {
             colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.7)']}
             style={styles.heroOverlay}
           >
-            <Text style={[
-              styles.heroTitle,
-              isLargeScreen && styles.heroTitleLarge
-            ]}>Discover Andalusia</Text>
-            <Text style={[
-              styles.heroSubtitle,
-              isLargeScreen && styles.heroSubtitleLarge
-            ]}>Explore beautiful cities and historic towns around Marbella</Text>
+            <Text style={[styles.heroTitle, isLargeScreen && styles.heroTitleLarge]}>
+              {t('explore.discoverAndalusia')}
+            </Text>
+            <Text style={[styles.heroSubtitle, isLargeScreen && styles.heroSubtitleLarge]}>
+              {t('explore.exploreBeautiful')}
+            </Text>
           </LinearGradient>
         </ImageBackground>
 
@@ -152,7 +152,7 @@ export default function ExploreScreen() {
               styles.statNumber,
               isLargeScreen && styles.statNumberLarge
             ]}>21</Text>
-            <Text style={styles.statLabel}>Cities</Text>
+            <Text style={styles.statLabel}>{t('explore.cities')}</Text>
           </View>
           <View style={styles.statDivider} />
           <View style={styles.statItem}>
@@ -160,7 +160,7 @@ export default function ExploreScreen() {
               styles.statNumber,
               isLargeScreen && styles.statNumberLarge
             ]}>300</Text>
-            <Text style={styles.statLabel}>km Radius</Text>
+            <Text style={styles.statLabel}>{t('explore.kmRadius')}</Text>
           </View>
           <View style={styles.statDivider} />
           <View style={styles.statItem}>
@@ -168,14 +168,13 @@ export default function ExploreScreen() {
               styles.statNumber,
               isLargeScreen && styles.statNumberLarge
             ]}>100+</Text>
-            <Text style={styles.statLabel}>Attractions</Text>
+            <Text style={styles.statLabel}>{t('explore.attractions')}</Text>
           </View>
         </View>
 
-        <Text style={[
-          styles.sectionTitle,
-          isLargeScreen && styles.sectionTitleLarge
-        ]}>Nearby Destinations</Text>
+        <Text style={[styles.sectionTitle, isLargeScreen && styles.sectionTitleLarge]}>
+          {t('explore.nearbyDestinations')}
+        </Text>
 
         <View style={[
           styles.citiesGrid,
@@ -220,7 +219,7 @@ export default function ExploreScreen() {
                   onPress={() => handleOpenMaps(city.name)}
                 >
                   <Navigation size={16} color={theme.colors.primary} />
-                  <Text style={styles.directionsText}>Get Directions</Text>
+                  <Text style={styles.directionsText}>{t('explore.getDirections')}</Text>
                 </TouchableOpacity>
               </View>
             </Animated.View>
