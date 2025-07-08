@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, Play } from 'lucide-react-native';
+import { Play } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
@@ -142,41 +142,6 @@ export default function EntryScreen() {
               {entryInstructions.note2 && '\n\n' + entryInstructions.note2}
             </Text>
 
-            {id === '29051503' && (
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>How do I reach the Aloha Pueblo house and how do I open the door?</Text>
-                
-                <TouchableOpacity 
-                  style={styles.watchVideoButton}
-                  onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
-                  activeOpacity={0.8}
-                >
-                  <Video size={20} color={theme.colors.white} />
-                  <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
-                </TouchableOpacity>
-
-                <View style={styles.imageContainer}>
-                  <Image 
-                    source={{ uri: 'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/crop/x_0,y_338,w_3024,h_2754/fill/w_366,h_333,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg' }}
-                    style={styles.mainImage}
-                    resizeMode="cover"
-                  />
-                </View>
-
-                <Text style={styles.description}>
-                  The pool entrance keys are in the house where you will be staying.
-                </Text>
-
-                <View style={styles.imageContainer}>
-                  <Image 
-                    source={{ uri: 'https://static.wixstatic.com/media/8bbc22_6dc1f4494ca4479b83079814d5d6fc16~mv2.jpeg/v1/crop/x_0,y_892,w_1152,h_683/fill/w_334,h_198,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-09%20at%2002_03_20.jpeg' }}
-                    style={styles.poolImage}
-                    resizeMode="cover"
-                  />
-                </View>
-              </View>
-            )}
-
             {entryInstructions.keyboxCode && (
               <View style={styles.codeSection}>
                 <Text style={styles.codeTitle}>Building Access Codes:</Text>
@@ -228,6 +193,41 @@ export default function EntryScreen() {
           )}
         </View>
 
+        {id === '29051503' && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>How do I reach the Aloha Pueblo house and how do I open the door?</Text>
+            
+            <TouchableOpacity 
+              style={styles.watchVideoButton}
+              onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
+              activeOpacity={0.8}
+            >
+              <Play size={20} color={theme.colors.white} />
+              <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
+            </TouchableOpacity>
+
+            <View style={styles.imageContainer}>
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/crop/x_0,y_338,w_3024,h_2754/fill/w_366,h_333,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg' }}
+                style={styles.mainImage}
+                resizeMode="cover"
+              />
+            </View>
+
+            <Text style={styles.description}>
+              The pool entrance keys are in the house where you will be staying.
+            </Text>
+
+            <View style={styles.imageContainer}>
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_6dc1f4494ca4479b83079814d5d6fc16~mv2.jpeg/v1/crop/x_0,y_892,w_1152,h_683/fill/w_334,h_198,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-09%20at%2002_03_20.jpeg' }}
+                style={styles.poolImage}
+                resizeMode="cover"
+              />
+            </View>
+          </View>
+        )}
+
         {entryInstructions.entryVideoUrl && (
           <View style={styles.section}>
             <Text style={[
@@ -244,7 +244,7 @@ export default function EntryScreen() {
             <TouchableOpacity 
               style={styles.watchVideoButton}
               onPress={() => handleWatchVideo(entryInstructions.videoUrl)}
-              activeOpacity={0.8}
+              activeOpacity={0.8} 
             >
               <Play size={20} color={theme.colors.white} />
               <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>

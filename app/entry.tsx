@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Video, Key } from 'lucide-react-native';
+import { Video } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
@@ -27,18 +27,6 @@ export default function EntryScreen() {
             {'\n\n'}
             The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM. To enter the house, first you need to take the black bar of the main door and the key card for entry from the designated location.
           </Text>
-
-          <TouchableOpacity 
-            style={styles.watchVideoButton}
-            onPress={handleWatchVideo}
-            activeOpacity={0.8}
-          >
-            <Video size={20} color={theme.colors.white} />
-            <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
-          </TouchableOpacity>
-          
-          <View style={styles.imageContainer}>
-          </View>
         </View>
 
         <View style={styles.section}>
@@ -88,6 +76,28 @@ export default function EntryScreen() {
           </Text>
         </View>
 
+        <View style={styles.section}>
+          <View style={styles.imageContainer}>
+            <Image 
+              source={{ uri: 'https://static.wixstatic.com/media/8bbc22_89c3d72a7534442ba49e2b8b24f85759~mv2.jpg/v1/fill/w_315,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_edited.jpg' }}
+              style={styles.keyImage}
+              resizeMode="cover"
+            />
+            <View style={styles.smallImagesContainer}>
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_160ddf38bb8444cc880f92543da1f0dd~mv2.jpg/v1/fill/w_207,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2013_43_edited.jpg' }}
+                style={styles.smallKeyImage}
+                resizeMode="cover"
+              />
+              <Image 
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_c313378eb121483a843293b0584f1f13~mv2.jpg/v1/fill/w_303,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2014_05_38_36e69ad5.jpg' }}
+                style={styles.smallKeyImage}
+                resizeMode="cover"
+              />
+            </View>
+          </View>
+        </View>
+
         <Text style={styles.note}>
           We wish you a pleasant stay.
         </Text>
@@ -116,11 +126,6 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.m,
   },
-  imageContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: theme.spacing.m,
-  },
   keyImage: {
     width: '48%',
     height: 220,
@@ -137,6 +142,11 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     marginBottom: theme.spacing.s,
     ...theme.shadows.small,
+  },
+  imageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: theme.spacing.m,
   },
   videoContainer: {
     borderRadius: theme.borderRadius.m,
