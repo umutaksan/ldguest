@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'r
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { MapPin, Navigation, Car } from 'lucide-react-native';
+import { MapPin, Navigation, Car, ExternalLink } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function SeaviewParkingScreen() {
@@ -48,54 +48,21 @@ export default function SeaviewParkingScreen() {
       >
         <Animated.View entering={FadeIn.duration(500)}>
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Parking Near Your Apartment</Text>
+            <Text style={styles.sectionTitle}>Parking Information</Text>
             <Text style={styles.description}>
-              Your Seaview apartment is located in Marbella center where parking can be limited. Here are the best parking options available near Calle Camilo José Cela, 7.
+              The parking spaces inside the building are for property owners only, so unfortunately you cannot use them. However, there is open street parking available nearby, and a secure covered parking garage just a short walk away.
             </Text>
 
+            <Text style={styles.sectionTitle}>Covered Parking Location:</Text>
             <TouchableOpacity 
-              style={styles.directionsButton}
-              onPress={handleOpenMaps}
+              style={styles.parkingLinkButton}
+              onPress={() => Linking.openURL('https://maps.app.goo.gl/tYCfj9GDWmo8A5hv9')}
               activeOpacity={0.8}
             >
-              <Navigation size={20} color={theme.colors.white} />
-              <Text style={styles.directionsButtonText}>Get Directions to Apartment</Text>
+              <Car size={20} color={theme.colors.white} />
+              <Text style={styles.parkingLinkText}>Open Parking Garage Location</Text>
+              <ExternalLink size={20} color={theme.colors.white} />
             </TouchableOpacity>
-          </View>
-
-          {parkingOptions.map((option, index) => (
-            <Animated.View 
-              key={option.id}
-              entering={FadeIn.delay(index * 200)}
-              style={styles.parkingCard}
-            >
-              <View style={styles.parkingHeader}>
-                <Car size={24} color={theme.colors.primary} />
-                <View style={styles.parkingInfo}>
-                  <Text style={styles.parkingName}>{option.name}</Text>
-                  <Text style={styles.parkingPrice}>{option.price}</Text>
-                </View>
-              </View>
-              
-              <Text style={styles.parkingDescription}>{option.description}</Text>
-              
-              <View style={styles.tipsContainer}>
-                <Text style={styles.tipsTitle}>Tips:</Text>
-                {option.tips.map((tip, tipIndex) => (
-                  <Text key={tipIndex} style={styles.tip}>• {tip}</Text>
-                ))}
-              </View>
-            </Animated.View>
-          ))}
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>General Parking Tips</Text>
-            <View style={styles.generalTipsContainer}>
-              <Text style={styles.tip}>• Download parking apps like EasyPark or Telpark</Text>
-              <Text style={styles.tip}>• Blue zones require payment Monday-Friday 9:00-14:00 & 17:00-20:00</Text>
-              <Text style={styles.tip}>• Saturday mornings also require payment in some areas</Text>
-              <Text style={styles.tip}>• Always check parking signs for specific regulations</Text>
-              <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
             </View>
           </View>
         </Animated.View>
@@ -137,6 +104,21 @@ const styles = StyleSheet.create({
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
+  },
+  parkingLinkButton: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.m,
+    padding: theme.spacing.m,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: theme.spacing.m,
+    ...theme.shadows.small,
+  },
+  parkingLinkText: {
+    ...theme.typography.button,
+    color: theme.colors.white,
+    marginHorizontal: theme.spacing.m,
   },
   parkingCard: {
     backgroundColor: theme.colors.card,
