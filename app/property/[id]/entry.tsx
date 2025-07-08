@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Play, Video } from 'lucide-react-native';
+import { Play, Video as VideoIcon } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
@@ -110,7 +110,7 @@ export default function EntryScreen() {
                 onPress={() => handleWatchVideo('https://youtube.com/shorts/XNzqKrwDKf8')}
                 activeOpacity={0.8}
               >
-                <Video size={20} color={theme.colors.white} />
+                <VideoIcon size={20} color={theme.colors.white} />
                 <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
               </TouchableOpacity>
               
@@ -233,7 +233,7 @@ export default function EntryScreen() {
                 <View style={styles.playIconContainer}>
                   <Play size={20} color={theme.colors.white} />
                 </View>
-                <Text style={styles.watchVideoText}>Watch Entry Video</Text>
+                <VideoIcon size={24} color={theme.colors.white} />
               </TouchableOpacity>
             )}
           </View>
