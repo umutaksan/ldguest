@@ -9,7 +9,7 @@ export default function EntryScreen() {
   const insets = useSafeAreaInsets();
 
   const handleWatchVideo = () => {
-    Linking.openURL('https://youtube.com/shorts/nWXkqDrRcyU');
+    Linking.openURL('https://youtube.com/shorts/XNzqKrwDKf8');
   };
 
   return (
@@ -57,11 +57,11 @@ export default function EntryScreen() {
           
           <TouchableOpacity 
             style={styles.watchVideoButton}
-            onPress={() => Linking.openURL('https://youtube.com/shorts/XNzqKrwDKf8')}
+            onPress={handleWatchVideo}
             activeOpacity={0.8}
           >
-            <Key size={20} color={theme.colors.white} />
-            <Text style={styles.watchVideoText}>Watch Key Pickup Video</Text>
+            <Video size={20} color={theme.colors.white} />
+            <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
           </TouchableOpacity>
         </View>
 
@@ -96,6 +96,15 @@ export default function EntryScreen() {
               />
             </View>
           </View>
+          
+          <TouchableOpacity 
+            style={[styles.watchVideoButton, { marginTop: theme.spacing.m, backgroundColor: theme.colors.secondary }]}
+            onPress={() => Linking.openURL('https://youtube.com/shorts/nWXkqDrRcyU')}
+            activeOpacity={0.8}
+          >
+            <Video size={20} color={theme.colors.white} />
+            <Text style={styles.watchVideoText}>Watch How to Open Doors</Text>
+          </TouchableOpacity>
         </View>
 
         <Text style={styles.note}>
