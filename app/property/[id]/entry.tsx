@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { Play, Video } from 'lucide-react-native';
+import { Play } from 'lucide-react-native';
 
 export default function EntryScreen() {
   const insets = useSafeAreaInsets();
@@ -127,20 +127,84 @@ export default function EntryScreen() {
           <View style={[
             styles.section,
             isLargeScreen && styles.sectionLarge
-          ]}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Entry Instructions</Text>
-            <Text style={[
-              styles.description,
-              isLargeScreen && styles.descriptionLarge
-            ]}>
-              {entryInstructions.description}
-              {'\n\n'}
-              {entryInstructions.note}
-              {entryInstructions.note2 && '\n\n' + entryInstructions.note2}
-            </Text>
+          ]}> 
+            {id === '29051501' && (
+              <>
+                <Text style={[
+                  styles.sectionTitle,
+                  isLargeScreen && styles.sectionTitleLarge
+                ]}>Entry Instructions</Text>
+                <Text style={[
+                  styles.description,
+                  isLargeScreen && styles.descriptionLarge
+                ]}>
+                  Welcome to your Jardines Tropicales apartment! Here are the entry instructions for Calle Azahar 12.
+                  {'\n\n'}
+                  The access codes will be sent via the platform on which you made your reservation on the day of your stay at 12:00 PM.
+                  {'\n\n'}
+                  To enter the house, first:
+                  {'\n'}You need to take the black bar of the main door and the key card for entry from the designated location shown here.
+                </Text>
+                
+                <TouchableOpacity 
+                  style={styles.watchVideoButton}
+                  onPress={() => handleWatchVideo('https://youtube.com/shorts/XNzqKrwDKf8')}
+                  activeOpacity={0.8}
+                >
+                  <Play size={20} color={theme.colors.white} />
+                  <Text style={styles.watchVideoText}>Watch Entry Video</Text>
+                </TouchableOpacity>
+                
+                <Text style={[
+                  styles.sectionTitle,
+                  isLargeScreen && styles.sectionTitleLarge
+                ]}>Entering the Building</Text>
+                <Text style={[
+                  styles.description,
+                  isLargeScreen && styles.descriptionLarge
+                ]}>
+                  After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
+                </Text>
+                
+                <TouchableOpacity 
+                  style={styles.watchVideoButton}
+                  onPress={() => handleWatchVideo('https://www.youtube.com/shorts/nWXkqDrRcyU')}
+                  activeOpacity={0.8}
+                >
+                  <Play size={20} color={theme.colors.white} />
+                  <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
+                </TouchableOpacity>
+                
+                <Text style={[
+                  styles.sectionTitle,
+                  isLargeScreen && styles.sectionTitleLarge
+                ]}>Location Details</Text>
+                <Text style={[
+                  styles.description,
+                  isLargeScreen && styles.descriptionLarge
+                ]}>
+                  The apartment is located in Nueva Andalucía, close to Puerto Banús.
+                </Text>
+              </>
+            )}
+            
+            {id !== '29051501' && (
+              <>
+                <Text style={[
+                  styles.sectionTitle,
+                  isLargeScreen && styles.sectionTitleLarge
+                ]}>Entry Instructions</Text>
+                <Text style={[
+                  styles.description,
+                  isLargeScreen && styles.descriptionLarge
+                ]}>
+                  {entryInstructions.description}
+                  {'\n\n'}
+                  {entryInstructions.note}
+                  {entryInstructions.note2 && '\n\n' + entryInstructions.note2}
+                </Text>
+              </>
+            )}
 
             {entryInstructions.keyboxCode && (
               <View style={styles.codeSection}>
@@ -193,95 +257,29 @@ export default function EntryScreen() {
           )}
         </View>
 
-        {id === '29051503' && (
+        {id === '29051501' && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>How do I reach the Aloha Pueblo house and how do I open the door?</Text>
-            
-            <TouchableOpacity 
-              style={styles.watchVideoButton}
-              onPress={() => handleWatchVideo(entryInstructions.videoUrl!)}
-              activeOpacity={0.8}
-            >
-              <Play size={20} color={theme.colors.white} />
-              <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
-            </TouchableOpacity>
-
             <View style={styles.imageContainer}>
               <Image 
-                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_03bed3f72ceb40f2b584e81099b3eac4~mv2.jpeg/v1/crop/x_0,y_338,w_3024,h_2754/fill/w_366,h_333,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-06%20at%2016_26_12.jpeg' }}
-                style={styles.mainImage}
+                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_89c3d72a7534442ba49e2b8b24f85759~mv2.jpg/v1/fill/w_315,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-01-12%20saat%2017_05_edited.jpg' }}
+                style={styles.keyImage}
                 resizeMode="cover"
               />
-            </View>
-
-            <Text style={styles.description}>
-              The pool entrance keys are in the house where you will be staying.
-            </Text>
-
-            <View style={styles.imageContainer}>
-              <Image 
-                source={{ uri: 'https://static.wixstatic.com/media/8bbc22_6dc1f4494ca4479b83079814d5d6fc16~mv2.jpeg/v1/crop/x_0,y_892,w_1152,h_683/fill/w_334,h_198,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-05-09%20at%2002_03_20.jpeg' }}
-                style={styles.poolImage}
-                resizeMode="cover"
-              />
+              <View style={styles.smallImagesContainer}>
+                <Image 
+                  source={{ uri: 'https://static.wixstatic.com/media/8bbc22_160ddf38bb8444cc880f92543da1f0dd~mv2.jpg/v1/fill/w_207,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2013_43_edited.jpg' }}
+                  style={styles.smallKeyImage}
+                  resizeMode="cover"
+                />
+                <Image 
+                  source={{ uri: 'https://static.wixstatic.com/media/8bbc22_c313378eb121483a843293b0584f1f13~mv2.jpg/v1/fill/w_303,h_269,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20G%C3%B6rsel%202025-02-23%20saat%2014_05_38_36e69ad5.jpg' }}
+                  style={styles.smallKeyImage}
+                  resizeMode="cover"
+                />
+              </View>
             </View>
           </View>
         )}
-
-        {entryInstructions.entryVideoUrl && (
-          <View style={styles.section}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Entering the Building</Text>
-            <Text style={[
-              styles.description,
-              isLargeScreen && styles.descriptionLarge
-            ]}>
-              After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
-            </Text>
-            
-            <TouchableOpacity 
-              style={styles.watchVideoButton}
-              onPress={() => handleWatchVideo(entryInstructions.videoUrl)}
-              activeOpacity={0.8} 
-            >
-              <Play size={20} color={theme.colors.white} />
-              <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {entryInstructions.cleaningCloset && (
-          <View style={styles.section}>
-            <Text style={[
-              styles.sectionTitle,
-              isLargeScreen && styles.sectionTitleLarge
-            ]}>Cleaning Closet Access</Text>
-            <Text style={[
-              styles.description,
-              isLargeScreen && styles.descriptionLarge
-            ]}>
-              {entryInstructions.cleaningCloset}
-            </Text>
-          </View>
-        )}
-
-        <View style={styles.section}>
-          <Text style={[
-            styles.sectionTitle,
-            isLargeScreen && styles.sectionTitleLarge
-          ]}>Location Details</Text>
-          <Text style={[
-            styles.description,
-            isLargeScreen && styles.descriptionLarge
-          ]}>
-            The apartment is located in {id === '29051502' ? 'Marbella Center, close to the beach.' : 
-                                        id === '29051503' ? 'the Aloha area, close to golf courses and Nueva Andalucía center.' : 
-                                        id === '29051504' ? 'the heart of Marbella\'s historic Old Town.' : 
-                                        'Nueva Andalucía, close to Puerto Banús.'}
-          </Text>
-        </View>
 
         <Text style={[
           styles.note,
@@ -362,8 +360,11 @@ const styles = StyleSheet.create({
   imageContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: theme.spacing.m,
-    marginTop: theme.spacing.m,
+    marginVertical: theme.spacing.m,
+  },
+  smallImagesContainer: {
+    width: '48%',
+    justifyContent: 'space-between',
   },
   imageContainerLarge: {
     marginTop: theme.spacing.xl,
@@ -377,6 +378,13 @@ const styles = StyleSheet.create({
   },
   keyImageLarge: {
     height: 'auto',
+  },
+  smallKeyImage: {
+    width: '100%',
+    height: 105,
+    borderRadius: theme.borderRadius.m,
+    marginBottom: theme.spacing.s,
+    ...theme.shadows.small,
   },
   mainImage: {
     width: '100%',
