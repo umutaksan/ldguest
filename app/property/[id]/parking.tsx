@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { MapPin, Navigation, Car } from 'lucide-react-native';
+import { MapPin, Navigation, Car, ExternalLink } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function ParkingScreen() {
@@ -226,25 +226,27 @@ export default function ParkingScreen() {
             </Animated.View>
           )) : null}
 
-          {showGeneralTipsSection ? (
-                <Text style={styles.sectionTitle}>Parking Information</Text>
+          {showGeneralTipsSection && (
+            <View>
+              <Text style={styles.sectionTitle}>Parking Information</Text>
               <Text style={styles.sectionTitle}>General Parking Tips</Text>
-                  The parking spaces inside the building are for property owners only, so unfortunately you cannot use them. However, there is open street parking available nearby, and a secure covered parking garage just a short walk away.
-                {id === '29051502' ? (
-                
-                <Text style={styles.sectionTitle}>Covered Parking Location:</Text>
-                <TouchableOpacity 
-                  style={styles.parkingLinkButton}
-                  onPress={handleOpenParkingArea}
-                  activeOpacity={0.8}
-                >
-                  <Car size={20} color={theme.colors.white} />
-                  <Text style={styles.parkingLinkText}>Open Parking Garage Location</Text>
-                  <ExternalLink size={20} color={theme.colors.white} />
-                </TouchableOpacity>
-              </View>
+              <Text>The parking spaces inside the building are for property owners only, so unfortunately you cannot use them. However, there is open street parking available nearby, and a secure covered parking garage just a short walk away.</Text>
+              {id === '29051502' && (
+                <View>
+                  <Text style={styles.sectionTitle}>Covered Parking Location:</Text>
+                  <TouchableOpacity 
+                    style={styles.parkingLinkButton}
+                    onPress={handleOpenParkingArea}
+                    activeOpacity={0.8}
+                  >
+                    <Car size={20} color={theme.colors.white} />
+                    <Text style={styles.parkingLinkText}>Open Parking Garage Location</Text>
+                    <ExternalLink size={20} color={theme.colors.white} />
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
-          ) : null}
+          )}
         </Animated.View>
       </ScrollView>
     </View>
