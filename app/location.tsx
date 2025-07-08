@@ -5,9 +5,11 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { InfoCard } from '@/components/common/InfoCard';
 import { MapPin, Navigation, Car, Bus, CarTaxiFront as Taxi, Video } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function LocationScreen() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   
   const handleOpenMaps = () => {
     // Get the current route to determine which location to open
@@ -51,13 +53,13 @@ export default function LocationScreen() {
       return [
         {
           id: 1,
-          title: "By Car",
+          title: t('location.byCar'),
           description: "Take the AP-7 highway, exit at Marbella Centro. Follow signs to Playa de Fontanilla.",
           icon: <Car size={24} color={theme.colors.secondary} />
         },
         {
           id: 2,
-          title: "By Bus",
+          title: t('location.byBus'),
           description: "From Málaga Airport, take bus to Marbella Centro (40 min). Local buses available to Fontanilla Beach.",
           icon: <Bus size={24} color={theme.colors.secondary} />,
           action: handleOpenBusRoute,
@@ -65,7 +67,7 @@ export default function LocationScreen() {
         },
         {
           id: 3,
-          title: "By Taxi",
+          title: t('location.byTaxi'),
           description: "Book your ride with Uber or Bolt for convenient transportation. Available 24/7 from Málaga Airport or anywhere in Marbella.",
           icon: <Taxi size={24} color={theme.colors.secondary} />
         }
@@ -74,13 +76,13 @@ export default function LocationScreen() {
       return [
         {
           id: 1,
-          title: "By Car",
+          title: t('location.byCar'),
           description: "Take the AP-7 highway, exit at Nueva Andalucía. Follow signs to Puerto Banús.",
           icon: <Car size={24} color={theme.colors.secondary} />
         },
         {
           id: 2,
-          title: "By Bus",
+          title: t('location.byBus'),
           description: "From Málaga Airport, take L-75 bus to Puerto Banús (45 min).",
           icon: <Bus size={24} color={theme.colors.secondary} />,
           action: handleOpenBusRoute,
@@ -88,7 +90,7 @@ export default function LocationScreen() {
         },
         {
           id: 3,
-          title: "By Taxi",
+          title: t('location.byTaxi'),
           description: "Book your ride with Uber or Bolt for convenient and reliable transportation. Available 24/7 from Málaga Airport or Marbella center.",
           icon: <Taxi size={24} color={theme.colors.secondary} />
         }
@@ -234,7 +236,7 @@ export default function LocationScreen() {
   
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Location" />
+      <PageHeader title={t('location.title')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -273,10 +275,10 @@ export default function LocationScreen() {
           activeOpacity={0.8}
         >
           <Navigation size={20} color={theme.colors.white} />
-          <Text style={styles.directionsButtonText}>Get Directions</Text>
+          <Text style={styles.directionsButtonText}>{t('location.getDirections')}</Text>
         </TouchableOpacity>
         
-        <Text style={styles.sectionTitle}>How to Get Here</Text>
+        <Text style={styles.sectionTitle}>{t('location.howToGetHere')}</Text>
         
         {getTransportOptions().map((option) => (
           <InfoCard
@@ -289,7 +291,7 @@ export default function LocationScreen() {
           />
         ))}
         
-        <Text style={styles.sectionTitle}>Nearby Points of Interest</Text>
+        <Text style={styles.sectionTitle}>{t('location.nearbyPOI')}</Text>
         
         <View style={styles.poiContainer}>
           {nearbyPOIs.map((poi, index) => (

@@ -7,10 +7,12 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { Wifi, Copy, Check } from 'lucide-react-native';
 import { useState } from 'react';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function WifiScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   const [copiedSSID, setCopiedSSID] = useState(false);
   const [copiedPassword, setCopiedPassword] = useState(false);
 
@@ -66,7 +68,7 @@ export default function WifiScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="WiFi Details" />
+      <PageHeader title={t('wifi.title')} />
 
       <Animated.View 
         entering={FadeIn.duration(500)}
@@ -76,14 +78,14 @@ export default function WifiScreen() {
           <Wifi size={48} color={theme.colors.primary} />
         </View>
 
-        <Text style={styles.title}>Connect to WiFi</Text>
+        <Text style={styles.title}>{t('wifi.connect')}</Text>
         <Text style={styles.description}>
-          Use these credentials to connect to the WiFi network in the apartment.
+          {t('wifi.useCredentials')}
         </Text>
 
         <View style={styles.detailsContainer}>
           <View style={styles.detailCard}>
-            <Text style={styles.label}>Network Name (SSID)</Text>
+            <Text style={styles.label}>{t('wifi.networkName')}</Text>
             <View style={styles.valueContainer}>
               <Text style={styles.value}>{wifiDetails.ssid}</Text>
               <TouchableOpacity
@@ -100,7 +102,7 @@ export default function WifiScreen() {
           </View>
 
           <View style={styles.detailCard}>
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>{t('wifi.password')}</Text>
             <View style={styles.valueContainer}>
               <Text style={styles.value}>{wifiDetails.password}</Text>
               <TouchableOpacity
@@ -118,15 +120,15 @@ export default function WifiScreen() {
         </View>
 
         <View style={styles.tipsContainer}>
-          <Text style={styles.tipsTitle}>Connection Tips</Text>
-          <Text style={styles.tipText}>• Make sure WiFi is enabled on your device</Text>
-          <Text style={styles.tipText}>• Select the network name shown above</Text>
-          <Text style={styles.tipText}>• Enter the password exactly as shown</Text>
-          <Text style={styles.tipText}>• If you can't connect, try forgetting the network first</Text>
+          <Text style={styles.tipsTitle}>{t('wifi.tips')}</Text>
+          <Text style={styles.tipText}>• {t('wifi.tip1')}</Text>
+          <Text style={styles.tipText}>• {t('wifi.tip2')}</Text>
+          <Text style={styles.tipText}>• {t('wifi.tip3')}</Text>
+          <Text style={styles.tipText}>• {t('wifi.tip4')}</Text>
         </View>
 
         <Text style={styles.supportText}>
-          Having trouble connecting? Contact our support team for assistance.
+          {t('wifi.trouble')}
         </Text>
       </Animated.View>
     </View>

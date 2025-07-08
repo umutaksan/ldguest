@@ -6,12 +6,14 @@ import { PropertyHero } from '@/components/common/PropertyHero';
 import { SectionCard } from '@/components/common/SectionCard';
 import { theme } from '@/constants/theme';
 import { MapPin, Chrome as HomeIcon, Wifi, Video, Book, UtensilsCrossed, Landmark, Briefcase, ExternalLink, Car, AArrowDown as ParkingIcon, CircleHelp as HelpCircle, Sofa, Image as ImageIcon, Instagram, Mail, Youtube, Globe, Star } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function PropertyScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   const router = useRouter();
   
   // Property data based on ID
@@ -183,13 +185,13 @@ export default function PropertyScreen() {
         <View style={styles.quickAccess}>
           <View style={styles.row}>
             <SectionCard
-              title="The Location"
+              title={t('home.location')}
               icon={<MapPin size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('location')}
               delay={1}
             />
             <SectionCard
-              title="Home Entry"
+              title={t('home.entry')}
               icon={<HomeIcon size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('entry')}
               delay={2}
@@ -198,13 +200,13 @@ export default function PropertyScreen() {
           
           <View style={styles.row}>
             <SectionCard
-              title="WiFi"
+              title={t('home.wifi')}
               icon={<Wifi size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('wifi')}
               delay={3}
             />
             <SectionCard
-              title="House Videos"
+              title={t('home.videos')}
               icon={<Video size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('videos')}
               delay={4}
@@ -213,13 +215,13 @@ export default function PropertyScreen() {
           
           <View style={styles.row}>
             <SectionCard
-              title="Property Rules"
+              title={t('home.rules')}
               icon={<Book size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('rules')}
               delay={5}
             />
             <SectionCard
-              title="Places to Eat"
+              title={t('home.dining')}
               icon={<UtensilsCrossed size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('dining')}
               delay={6}
@@ -228,13 +230,13 @@ export default function PropertyScreen() {
           
           <View style={styles.row}>
             <SectionCard
-              title="Places to Visit"
+              title={t('home.attractions')}
               icon={<Landmark size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('attractions')}
               delay={7}
             />
             <SectionCard
-              title="Luggage Storage"
+              title={t('home.luggage')}
               icon={<Briefcase size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('luggage')}
               delay={8}
@@ -243,13 +245,13 @@ export default function PropertyScreen() {
 
           <View style={styles.row}>
             <SectionCard
-              title="Car Rental"
+              title={t('home.carRental')}
               icon={<Car size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('car-rental')}
               delay={9}
             />
             <SectionCard
-              title="Parking"
+              title={t('home.parking')}
               icon={<ParkingIcon size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('parking')}
               delay={10}
@@ -258,13 +260,13 @@ export default function PropertyScreen() {
           
           <View style={styles.row}>
             <SectionCard
-              title="Frequently Asked Questions"
+              title={t('home.faq')}
               icon={<HelpCircle size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('info')}
               delay={11}
             />
             <SectionCard
-              title="Amenities"
+              title={t('home.amenities')}
               icon={<Sofa size={28} color={theme.colors.secondary} />}
               onPress={() => navigateToSection('amenities')}
               delay={12}
@@ -273,7 +275,7 @@ export default function PropertyScreen() {
 
           <View style={styles.row}>
             <SectionCard
-              title="Photo Gallery"
+              title={t('home.photos')}
               icon={<ImageIcon size={28} color={theme.colors.secondary} />}
               onPress={() => Linking.openURL('https://ldguest.com/ldhome/')}
               delay={13}
@@ -296,12 +298,12 @@ export default function PropertyScreen() {
             style={styles.promoOverlay}
           >
             <View style={styles.promoContent}>
-              <Text style={styles.promoTitle}>Discover More L&D Guest Homes</Text>
+              <Text style={styles.promoTitle}>{t('home.discoverMore')}</Text>
               <Text style={styles.promoDescription}>
-                Explore our collection of beautiful properties across Marbella's most desirable locations
+                {t('home.exploreCollection')}
               </Text>
               <View style={styles.promoButton}>
-                <Text style={styles.promoButtonText}>View Properties</Text>
+                <Text style={styles.promoButtonText}>{t('home.viewProperties')}</Text>
                 <ExternalLink size={16} color={theme.colors.white} style={styles.promoIcon} />
               </View>
             </View>
@@ -328,7 +330,7 @@ export default function PropertyScreen() {
         </Animated.View>
 
         <View style={styles.licenseContainer}>
-          <Text style={styles.licenseTitle}>Tourist License Information</Text>
+          <Text style={styles.licenseTitle}>{t('home.licenseInfo')}</Text>
           {id === '29051501' && (
             <>
               <Text style={styles.licenseText}>REGISTRO AUTONÓMICO: VUT/MA/78324</Text>
@@ -355,12 +357,12 @@ export default function PropertyScreen() {
           )}
           
           <View style={styles.idNoticeContainer}>
-            <Text style={styles.idNoticeTitle}>📌 Important Notice - ID Upload Requirement</Text>
+            <Text style={styles.idNoticeTitle}>📌 {t('home.idNotice')}</Text>
             <Text style={styles.idNoticeText}>
-              According to Spanish law, all guests are legally required to upload valid passport or ID documents to the system before the start of their stay.
+              {t('home.idRequirement')}
             </Text>
             <Text style={styles.idNoticeText}>
-              Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation.
+              {t('home.idComplete')}
             </Text>
           </View>
         </View>

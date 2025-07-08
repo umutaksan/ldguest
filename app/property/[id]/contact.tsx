@@ -6,10 +6,12 @@ import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Phone, Mail, MessageCircle, TriangleAlert as AlertTriangle, UserRound, Heart, Clock, MessageSquare } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function ContactScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
 
   const whatsappNumber = '+34606767052';
 
@@ -42,7 +44,7 @@ export default function ContactScreen() {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <PageHeader 
-        title="L&D Guest Marbella" 
+        title={t('contact.title')} 
         showBackButton={false}
         isHost={true}
       />
@@ -56,8 +58,8 @@ export default function ContactScreen() {
           style={styles.ldGuestCard}
         >
           <View style={styles.ldGuestHeader}>
-            <Text style={styles.ldGuestTitle}>L&D Guest Marbella</Text>
-            <Text style={styles.whatsappOnly}>WhatsApp Only</Text>
+            <Text style={styles.ldGuestTitle}>{t('contact.title')}</Text>
+            <Text style={styles.whatsappOnly}>{t('contact.whatsappOnly')}</Text>
           </View>
           
           <TouchableOpacity 
@@ -66,13 +68,13 @@ export default function ContactScreen() {
             activeOpacity={0.8}
           >
             <MessageSquare size={20} color={theme.colors.white} />
-            <Text style={styles.whatsappButtonText}>Message on WhatsApp</Text>
+            <Text style={styles.whatsappButtonText}>{t('contact.messageOnWhatsApp')}</Text>
           </TouchableOpacity>
         </Animated.View>
 
         <View style={styles.divider} />
 
-        <Text style={styles.sectionTitle}>Emergency Numbers</Text>
+        <Text style={styles.sectionTitle}>{t('contact.emergencyNumbers')}</Text>
         
         {emergencyNumbers.map((contact, index) => (
           <Animated.View 
@@ -106,7 +108,7 @@ export default function ContactScreen() {
         ))}
 
         <Text style={styles.note}>
-          In case of emergency, please don't hesitate to contact the appropriate service.
+          {t('contact.emergencyNote')}
         </Text>
       </ScrollView>
     </View>

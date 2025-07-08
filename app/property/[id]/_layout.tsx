@@ -4,9 +4,11 @@ import { theme } from '@/constants/theme';
 import { Platform, View, Text } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Chrome as Home, Compass, BookOpen, Info, Phone } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function TabLayout() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   
   const tabBarHeight = theme.layout.isWeb 
     ? (theme.layout.isDesktop ? 70 : 65) 
@@ -55,7 +57,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: t('common.home'),
           tabBarTestID: 'tab-001',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
@@ -70,7 +72,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
+          title: t('common.explore'),
           tabBarTestID: 'tab-002',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
@@ -85,7 +87,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="guide"
         options={{
-          title: 'Guide',
+          title: t('common.guide'),
           tabBarTestID: 'tab-003',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
@@ -100,7 +102,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="info"
         options={{
-          title: 'Info',
+          title: t('common.info'),
           tabBarTestID: 'tab-004',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
@@ -115,7 +117,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="contact"
         options={{
-          title: 'Contact',
+          title: t('common.contact'),
           tabBarTestID: 'tab-005',
           tabBarIcon: ({ color, size }) => (
             <View style={{ alignItems: 'center' }}>
