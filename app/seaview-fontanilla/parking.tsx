@@ -63,7 +63,6 @@ export default function SeaviewParkingScreen() {
               <Text style={styles.parkingLinkText}>Open Parking Garage Location</Text>
               <ExternalLink size={20} color={theme.colors.white} />
             </TouchableOpacity>
-            </View>
           </View>
         </Animated.View>
       </ScrollView>
