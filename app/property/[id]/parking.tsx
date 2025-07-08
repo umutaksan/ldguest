@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { MapPin, Navigation, Car } from 'lucide-react-native';
+import { MapPin, Navigation, Car, Building } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function ParkingScreen() {
@@ -135,6 +135,12 @@ export default function ParkingScreen() {
       Linking.openURL(parkingInfo.parkingGarageUrl);
     }
   };
+  
+  const handleOpenClosedParking = () => {
+    if (id === '29051502') { // Seaview Fontanilla
+      Linking.openURL('https://maps.app.goo.gl/tYCfj9GDWmo8A5hv9');
+    }
+  };
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
@@ -197,6 +203,15 @@ export default function ParkingScreen() {
               >
                 <Car size={20} color={theme.colors.white} />
                 <Text style={styles.directionsButtonText}>Open Parking Garage</Text>
+              </TouchableOpacity>
+            ) : id === '29051502' ? (
+              <TouchableOpacity 
+                style={[styles.directionsButton, { marginTop: theme.spacing.m, backgroundColor: theme.colors.secondary }]}
+                onPress={handleOpenClosedParking}
+                activeOpacity={0.8}
+              >
+                <Building size={20} color={theme.colors.white} />
+                <Text style={styles.directionsButtonText}>View Closed Parking Location</Text>
               </TouchableOpacity>
             ) : null}
           </View>

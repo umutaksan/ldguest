@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'r
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { MapPin, Navigation, Car } from 'lucide-react-native';
+import { MapPin, Navigation, Car, Building } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function SeaviewParkingScreen() {
@@ -12,6 +12,10 @@ export default function SeaviewParkingScreen() {
   const handleOpenMaps = () => {
     const query = encodeURIComponent('Calle Camilo José Cela 7, Marbella');
     Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${query}`);
+  };
+  
+  const handleOpenParkingLocation = () => {
+    Linking.openURL('https://maps.app.goo.gl/tYCfj9GDWmo8A5hv9');
   };
 
   const parkingOptions = [
@@ -61,6 +65,15 @@ export default function SeaviewParkingScreen() {
               <Navigation size={20} color={theme.colors.white} />
               <Text style={styles.directionsButtonText}>Get Directions to Apartment</Text>
             </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={[styles.directionsButton, { marginTop: theme.spacing.m, backgroundColor: theme.colors.secondary }]}
+            onPress={handleOpenParkingLocation}
+            activeOpacity={0.8}
+          >
+            <Building size={20} color={theme.colors.white} />
+            <Text style={styles.directionsButtonText}>View Closed Parking Location</Text>
+          </TouchableOpacity>
           </View>
 
           {parkingOptions.map((option, index) => (
