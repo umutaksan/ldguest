@@ -81,5 +81,21 @@
     "german": "German",
     "italian": "Italian",
     "turkish": "Turkish"
+  },
+  "entry": {
+    "title": "Home Entry Instructions",
+    "alohaPuebloQuestion": "How do I reach the Aloha Pueblo house and how do I open the door?",
+    "watchInstructions": "Watch Entry Instructions",
+    "poolKeysInfo": "The pool entrance keys are in the house where you will be staying.",
+    "locationDetails": "Location Details",
+    "alohaPuebloLocation": "The townhouse is located in the Aloha area, close to golf courses and Nueva Andalucía center.",
+    "pleasantStayWish": "We wish you a pleasant stay at Aloha Pueblo Townhouse."
+  },
+  "parking": {
+    "title": "Parking Information",
+    "alohaPuebloDescription": "There is open street parking available nearby. The property does not have its own private parking."
+  },
+  "videos": {
+    "propertyGuides": "Property Guides"
   }
 }

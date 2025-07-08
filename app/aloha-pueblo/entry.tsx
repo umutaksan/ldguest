@@ -4,11 +4,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Video } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function AlohaPuebloEntryScreen() {
   const insets = useSafeAreaInsets();
   const { width } = Dimensions.get('window');
   const imageHeight = Platform.OS === 'web' ? 180 : width * 0.3;
+  const { t } = useTranslation();
 
   const handleWatchVideo = () => {
     Linking.openURL('https://youtube.com/shorts/-rT_D7LXwag?feature=share');
@@ -16,14 +18,14 @@ export default function AlohaPuebloEntryScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Home Entry Instructions" />
+      <PageHeader title={t('entry.title')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>How do I reach the Aloha Pueblo house and how do I open the door?</Text>
+          <Text style={styles.sectionTitle}>{t('entry.alohaPuebloQuestion')}</Text>
           
           <TouchableOpacity 
             style={styles.watchVideoButton}
@@ -31,7 +33,7 @@ export default function AlohaPuebloEntryScreen() {
             activeOpacity={0.8}
           >
             <Video size={20} color={theme.colors.white} />
-            <Text style={styles.watchVideoText}>Watch Entry Instructions</Text>
+            <Text style={styles.watchVideoText}>{t('entry.watchInstructions')}</Text>
           </TouchableOpacity>
 
           <View style={styles.imageContainer}>
@@ -43,7 +45,7 @@ export default function AlohaPuebloEntryScreen() {
           </View>
 
           <Text style={styles.description}>
-            The pool entrance keys are in the house where you will be staying.
+            {t('entry.poolKeysInfo')}
           </Text>
 
           <View style={styles.imageContainer}>
@@ -56,14 +58,14 @@ export default function AlohaPuebloEntryScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Location Details</Text>
+          <Text style={styles.sectionTitle}>{t('entry.locationDetails')}</Text>
           <Text style={styles.description}>
-            The townhouse is located in the Aloha area, close to golf courses and Nueva Andalucía center.
+            {t('entry.alohaPuebloLocation')}
           </Text>
         </View>
 
         <Text style={styles.note}>
-          We wish you a pleasant stay at Aloha Pueblo Townhouse.
+          {t('entry.pleasantStayWish')}
         </Text>
       </ScrollView>
     </View>

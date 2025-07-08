@@ -6,14 +6,16 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { Video, MapPin, Key, TreePalm as Palmtree, Coffee, Tv } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTranslation } from 'react-i18next';
 
 export default function AlohaPuebloVideosScreen() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
 
   const videos = {
     propertyGuides: [
       {
-        id: 1,
+        id: 1, 
         title: 'How do I get to the pool?',
         description: 'Guide to finding and accessing the swimming pool',
         thumbnail: 'https://i.ytimg.com/vi/SSvp84GEJMA/maxresdefault.jpg',
@@ -87,13 +89,13 @@ export default function AlohaPuebloVideosScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="House Videos" />
+      <PageHeader title={t('home.videos')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       > 
-        {renderVideoSection('Property Guides', videos.propertyGuides, <MapPin size={20} color={theme.colors.primary} />)}
+        {renderVideoSection(t('videos.propertyGuides'), videos.propertyGuides, <MapPin size={20} color={theme.colors.primary} />)}
       </ScrollView>
     </View>
   );

@@ -4,42 +4,21 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { MapPin, Navigation, Car } from 'lucide-react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
 export default function AlohaPuebloParkingScreen() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
 
   const handleOpenMaps = () => {
     const query = encodeURIComponent('Calle del Agua, Marbella Old Town');
     Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${query}`);
   };
 
-  const parkingOptions = [
-    {
-      id: 1,
-      name: 'Townhouse Parking',
-      description: 'Private parking space available at the townhouse.',
-      price: 'Included',
-      tips: ['Secure private parking', 'Direct access to townhouse', 'No time restrictions']
-    },
-    {
-      id: 2,
-      name: 'Aloha Golf Club Parking',
-      description: 'Additional parking available at the nearby golf club.',
-      price: 'Free for guests',
-      tips: ['Short walk to townhouse', 'Well-lit area', 'Security cameras']
-    },
-    {
-      id: 3,
-      name: 'Street Parking',
-      description: 'Limited street parking available in the Aloha area.',
-      price: 'Free',
-      tips: ['Check local parking signs', 'Residential area parking', 'Keep valuables out of sight']
-    }
-  ];
-
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Parking Information" />
+      <PageHeader title={t('home.parking')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -47,7 +26,7 @@ export default function AlohaPuebloParkingScreen() {
       >
         <View style={styles.section}>
           <Text style={styles.description}>
-            There is open street parking available nearby. The property does not have its own private parking.
+            {t('parking.alohaPuebloDescription')}
           </Text>
         </View>
       </ScrollView>

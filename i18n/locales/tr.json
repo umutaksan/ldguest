@@ -81,5 +81,21 @@
     "german": "Almanca",
     "italian": "İtalyanca",
     "turkish": "Türkçe"
+  },
+  "entry": {
+    "title": "Eve Giriş Talimatları",
+    "alohaPuebloQuestion": "Aloha Pueblo evine nasıl ulaşırım ve kapıyı nasıl açarım?",
+    "watchInstructions": "Giriş Talimatlarını İzle",
+    "poolKeysInfo": "Havuz giriş anahtarları, kalacağınız evdedir.",
+    "locationDetails": "Konum Detayları",
+    "alohaPuebloLocation": "Sıra ev, Aloha bölgesinde, golf sahalarına ve Nueva Andalucía merkezine yakın bir konumda bulunmaktadır.",
+    "pleasantStayWish": "Aloha Pueblo Townhouse'da keyifli bir konaklama dileriz."
+  },
+  "parking": {
+    "title": "Otopark Bilgileri",
+    "alohaPuebloDescription": "Yakınlarda açık sokak otoparkı mevcuttur. Mülkün kendine ait özel otoparkı yoktur."
+  },
+  "videos": {
+    "propertyGuides": "Mülk Rehberleri"
   }
 }

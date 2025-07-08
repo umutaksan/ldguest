@@ -81,5 +81,21 @@
     "german": "Tedesco",
     "italian": "Italiano",
     "turkish": "Turco"
+  },
+  "entry": {
+    "title": "Istruzioni per l'Ingresso",
+    "alohaPuebloQuestion": "Come raggiungo la casa di Aloha Pueblo e come apro la porta?",
+    "watchInstructions": "Guarda le Istruzioni di Ingresso",
+    "poolKeysInfo": "Le chiavi di ingresso alla piscina si trovano nella casa dove soggiornerai.",
+    "locationDetails": "Dettagli sulla Posizione",
+    "alohaPuebloLocation": "La casa a schiera si trova nella zona di Aloha, vicino ai campi da golf e al centro di Nueva Andalucía.",
+    "pleasantStayWish": "Ti auguriamo un piacevole soggiorno ad Aloha Pueblo Townhouse."
+  },
+  "parking": {
+    "title": "Informazioni sul Parcheggio",
+    "alohaPuebloDescription": "Nelle vicinanze è disponibile un parcheggio pubblico su strada. La proprietà non dispone di un proprio parcheggio privato."
+  },
+  "videos": {
+    "propertyGuides": "Guide della Proprietà"
   }
 }

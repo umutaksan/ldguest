@@ -81,5 +81,21 @@
     "german": "Alemán",
     "italian": "Italiano",
     "turkish": "Turco"
+  },
+  "entry": {
+    "title": "Instrucciones de Entrada a la Casa",
+    "alohaPuebloQuestion": "¿Cómo llego a la casa de Aloha Pueblo y cómo abro la puerta?",
+    "watchInstructions": "Ver Instrucciones de Entrada",
+    "poolKeysInfo": "Las llaves de entrada a la piscina están en la casa donde se alojará.",
+    "locationDetails": "Detalles de Ubicación",
+    "alohaPuebloLocation": "La casa adosada está ubicada en la zona de Aloha, cerca de campos de golf y del centro de Nueva Andalucía.",
+    "pleasantStayWish": "Le deseamos una agradable estancia en Aloha Pueblo Townhouse."
+  },
+  "parking": {
+    "title": "Información de Aparcamiento",
+    "alohaPuebloDescription": "Hay aparcamiento en la calle disponible cerca. La propiedad no tiene su propio aparcamiento privado."
+  },
+  "videos": {
+    "propertyGuides": "Guías de la Propiedad"
   }
 }

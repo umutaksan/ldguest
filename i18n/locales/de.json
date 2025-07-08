@@ -81,5 +81,21 @@
     "german": "Deutsch",
     "italian": "Italienisch",
     "turkish": "Türkisch"
+  },
+  "entry": {
+    "title": "Anweisungen zum Hauszugang",
+    "alohaPuebloQuestion": "Wie erreiche ich das Aloha Pueblo Haus und wie öffne ich die Tür?",
+    "watchInstructions": "Zugangsanweisungen ansehen",
+    "poolKeysInfo": "Die Schlüssel für den Poolzugang befinden sich im Haus, in dem Sie übernachten werden.",
+    "locationDetails": "Standortdetails",
+    "alohaPuebloLocation": "Das Reihenhaus befindet sich im Aloha-Gebiet, in der Nähe von Golfplätzen und dem Zentrum von Nueva Andalucía.",
+    "pleasantStayWish": "Wir wünschen Ihnen einen angenehmen Aufenthalt im Aloha Pueblo Townhouse."
+  },
+  "parking": {
+    "title": "Parkinformationen",
+    "alohaPuebloDescription": "In der Nähe gibt es öffentliche Straßenparkplätze. Die Unterkunft verfügt nicht über eigene private Parkplätze."
+  },
+  "videos": {
+    "propertyGuides": "Unterkunftsführer"
   }
 }
