@@ -2,16 +2,19 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { ResponsiveContainer } from '@/components/common/ResponsiveContainer';
 import { MapPin, Instagram, Mail, Youtube, Globe, ExternalLink } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { LanguageSelector } from '@/components/common/LanguageSelector';
 
 export default function PropertiesScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleInstagramPress = () => {
     Linking.openURL('https://www.instagram.com/ldguest');
@@ -69,6 +72,10 @@ export default function PropertiesScreen() {
           entering={FadeIn.duration(400)}
           style={styles.header}
         >
+          <View style={styles.languageSelectorContainer}>
+            <LanguageSelector />
+          </View>
+          
           <Image 
             source={{ uri: 'https://ldguest.com/wp-content/uploads/2024/11/1-e1730659164604.png?w=145&h=62' }}
             style={styles.logo}
@@ -76,8 +83,8 @@ export default function PropertiesScreen() {
           />
           
           <View style={styles.headerTextContainer}>
-            <Text style={styles.welcomeText}>Welcome to L&D Guest</Text>
-            <Text style={styles.subtitle}>Thank you for choosing us. Please select your reservation property below.</Text>
+            <Text style={styles.welcomeText}>{t('home.welcome')}</Text>
+            <Text style={styles.subtitle}>{t('index.selectProperty')}</Text>
             
             <View style={styles.socialIconsContainer}>
               <TouchableOpacity 
@@ -172,7 +179,7 @@ export default function PropertiesScreen() {
             onPress={() => router.push('/cleaning')}
             activeOpacity={0.8}
           >
-            <Text style={styles.adminButtonText}>Cleaning Staff Access</Text>
+            <Text style={styles.adminButtonText}>{t('index.cleaningStaffAccess')}</Text>
           </TouchableOpacity>          
         </ScrollView>
       </ResponsiveContainer>
@@ -188,8 +195,15 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     padding: theme.spacing.l,
+    width: '100%',
     backgroundColor: theme.colors.background,
     marginBottom: theme.spacing.m,
+  },
+  languageSelectorContainer: {
+    position: 'absolute',
+    top: theme.spacing.m,
+    right: theme.spacing.m,
+    zIndex: 10,
   },
   logo: {
     width: theme.layout.isWeb ? (theme.layout.isDesktop ? 180 : 145) : 145,

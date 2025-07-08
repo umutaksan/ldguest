@@ -34,6 +34,10 @@
     "idRequirement": "According to Spanish law, all guests are legally required to upload valid passport or ID documents to the system before the start of their stay.",
     "idComplete": "Please complete this process before your stay through the ID upload link provided to you via the platform where you made your reservation."
   },
+  "index": {
+    "selectProperty": "Thank you for choosing us. Please select your reservation property below.",
+    "cleaningStaffAccess": "Cleaning Staff Access"
+  },
   "wifi": {
     "title": "WiFi Details",
     "connect": "Connect to WiFi",
@@ -93,7 +97,9 @@
   },
   "parking": {
     "title": "Parking Information",
-    "alohaPuebloDescription": "There is open street parking available nearby. The property does not have its own private parking."
+    "alohaPuebloDescription": "There is open street parking available nearby. The property does not have its own private parking.",
+    "viewClosedParking": "View Closed Parking Location",
+    "getDirectionsToApartment": "Get Directions to Apartment"
   },
   "videos": {
     "propertyGuides": "Property Guides"

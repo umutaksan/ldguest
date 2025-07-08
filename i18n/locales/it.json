@@ -34,6 +34,10 @@
     "idRequirement": "Secondo la legge spagnola, tutti gli ospiti sono legalmente tenuti a caricare documenti di passaporto o ID validi nel sistema prima dell'inizio del loro soggiorno.",
     "idComplete": "Si prega di completare questo processo prima del soggiorno tramite il link di caricamento ID fornito tramite la piattaforma dove hai effettuato la prenotazione."
   },
+  "index": {
+    "selectProperty": "Grazie per averci scelto. Si prega di selezionare la proprietà della prenotazione qui sotto.",
+    "cleaningStaffAccess": "Accesso Personale di Pulizia"
+  },
   "wifi": {
     "title": "Dettagli WiFi",
     "connect": "Connetti al WiFi",
@@ -93,7 +97,9 @@
   },
   "parking": {
     "title": "Informazioni sul Parcheggio",
-    "alohaPuebloDescription": "Nelle vicinanze è disponibile un parcheggio pubblico su strada. La proprietà non dispone di un proprio parcheggio privato."
+    "alohaPuebloDescription": "Nelle vicinanze è disponibile un parcheggio pubblico su strada. La proprietà non dispone di un proprio parcheggio privato.",
+    "viewClosedParking": "Visualizza Posizione Parcheggio Coperto",
+    "getDirectionsToApartment": "Ottieni Indicazioni per l'Appartamento"
   },
   "videos": {
     "propertyGuides": "Guide della Proprietà"

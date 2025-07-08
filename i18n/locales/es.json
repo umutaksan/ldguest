@@ -34,6 +34,10 @@
     "idRequirement": "Según la ley española, todos los huéspedes están legalmente obligados a cargar documentos de pasaporte o identificación válidos en el sistema antes del inicio de su estancia.",
     "idComplete": "Complete este proceso antes de su estancia a través del enlace de carga de ID proporcionado a través de la plataforma donde realizó su reserva."
   },
+  "index": {
+    "selectProperty": "Gracias por elegirnos. Por favor, seleccione su propiedad de reserva a continuación.",
+    "cleaningStaffAccess": "Acceso del Personal de Limpieza"
+  },
   "wifi": {
     "title": "Detalles de WiFi",
     "connect": "Conectar a WiFi",
@@ -93,7 +97,9 @@
   },
   "parking": {
     "title": "Información de Aparcamiento",
-    "alohaPuebloDescription": "Hay aparcamiento en la calle disponible cerca. La propiedad no tiene su propio aparcamiento privado."
+    "alohaPuebloDescription": "Hay aparcamiento en la calle disponible cerca. La propiedad no tiene su propio aparcamiento privado.",
+    "viewClosedParking": "Ver Ubicación de Aparcamiento Cubierto",
+    "getDirectionsToApartment": "Obtener Direcciones al Apartamento"
   },
   "videos": {
     "propertyGuides": "Guías de la Propiedad"

@@ -5,11 +5,13 @@ import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { MapPin, Navigation, Car, Building } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function ParkingScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   const [isWeb, setIsWeb] = useState(false);
   
   useEffect(() => {
@@ -144,7 +146,7 @@ export default function ParkingScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Parking Information" />
+      <PageHeader title={t('parking.title')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -211,7 +213,7 @@ export default function ParkingScreen() {
                 activeOpacity={0.8}
               >
                 <Building size={20} color={theme.colors.white} />
-                <Text style={styles.directionsButtonText}>View Closed Parking Location</Text>
+                <Text style={styles.directionsButtonText}>{t('parking.viewClosedParking')}</Text>
               </TouchableOpacity>
             ) : null}
           </View>

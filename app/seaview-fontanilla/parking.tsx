@@ -4,10 +4,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
 import { MapPin, Navigation, Car, Building } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function SeaviewParkingScreen() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
 
   const handleOpenMaps = () => {
     const query = encodeURIComponent('Calle Camilo José Cela 7, Marbella');
@@ -44,7 +46,7 @@ export default function SeaviewParkingScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <PageHeader title="Parking Information" />
+      <PageHeader title={t('parking.title')} />
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -72,7 +74,7 @@ export default function SeaviewParkingScreen() {
             activeOpacity={0.8}
           >
             <Building size={20} color={theme.colors.white} />
-            <Text style={styles.directionsButtonText}>View Closed Parking Location</Text>
+            <Text style={styles.directionsButtonText}>{t('parking.viewClosedParking')}</Text>
           </TouchableOpacity>
           </View>
 

@@ -34,6 +34,10 @@
     "idRequirement": "İspanyol yasalarına göre, tüm misafirlerin konaklamaları başlamadan önce sisteme geçerli pasaport veya kimlik belgelerini yüklemeleri yasal bir zorunluluktur.",
     "idComplete": "Lütfen bu işlemi, rezervasyonunuzu yaptığınız platform aracılığıyla size sağlanan kimlik yükleme bağlantısı üzerinden konaklamanızdan önce tamamlayın."
   },
+  "index": {
+    "selectProperty": "Bizi seçtiğiniz için teşekkür ederiz. Lütfen aşağıdan rezervasyon mülkünüzü seçin.",
+    "cleaningStaffAccess": "Temizlik Personeli Erişimi"
+  },
   "wifi": {
     "title": "WiFi Detayları",
     "connect": "WiFi'ye Bağlan",
@@ -93,7 +97,9 @@
   },
   "parking": {
     "title": "Otopark Bilgileri",
-    "alohaPuebloDescription": "Yakınlarda açık sokak otoparkı mevcuttur. Mülkün kendine ait özel otoparkı yoktur."
+    "alohaPuebloDescription": "Yakınlarda açık sokak otoparkı mevcuttur. Mülkün kendine ait özel otoparkı yoktur.",
+    "viewClosedParking": "Kapalı Otopark Konumunu Görüntüle",
+    "getDirectionsToApartment": "Daireye Yol Tarifi Al"
   },
   "videos": {
     "propertyGuides": "Mülk Rehberleri"

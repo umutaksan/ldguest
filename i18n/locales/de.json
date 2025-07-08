@@ -34,6 +34,10 @@
     "idRequirement": "Nach spanischem Recht sind alle Gäste gesetzlich verpflichtet, vor Beginn ihres Aufenthalts gültige Reisepass- oder Ausweisdokumente in das System hochzuladen.",
     "idComplete": "Bitte schließen Sie diesen Vorgang vor Ihrem Aufenthalt über den ID-Upload-Link ab, der Ihnen über die Plattform, auf der Sie Ihre Reservierung vorgenommen haben, zur Verfügung gestellt wird."
   },
+  "index": {
+    "selectProperty": "Vielen Dank, dass Sie sich für uns entschieden haben. Bitte wählen Sie unten Ihre Reservierungsimmobilie aus.",
+    "cleaningStaffAccess": "Zugang für Reinigungspersonal"
+  },
   "wifi": {
     "title": "WLAN-Details",
     "connect": "Mit WLAN verbinden",
@@ -93,7 +97,9 @@
   },
   "parking": {
     "title": "Parkinformationen",
-    "alohaPuebloDescription": "In der Nähe gibt es öffentliche Straßenparkplätze. Die Unterkunft verfügt nicht über eigene private Parkplätze."
+    "alohaPuebloDescription": "In der Nähe gibt es öffentliche Straßenparkplätze. Die Unterkunft verfügt nicht über eigene private Parkplätze.",
+    "viewClosedParking": "Geschlossenen Parkplatz anzeigen",
+    "getDirectionsToApartment": "Wegbeschreibung zur Wohnung"
   },
   "videos": {
     "propertyGuides": "Unterkunftsführer"
