@@ -219,9 +219,6 @@ export default function EntryScreen() {
           )}
         </View>
 
-        {id === '29051501' && (
-        )}
-
         <Text style={[
           styles.note,
           isLargeScreen && styles.noteLarge
