@@ -132,7 +132,7 @@ export default function EntryScreen() {
                   styles.description,
                   isLargeScreen && styles.descriptionLarge
                 ]}>
-                  After taking the black bar and the key card, use the black bar to open the main door as shown. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
+                  After taking the black bar and the key card, use the black bar to open the main door. When you reach door A on the 1st floor, you can either tap the card or enter the code on the numbered section of the keypad system.
                 </Text>
                 
                 <Text style={[
@@ -183,13 +183,15 @@ export default function EntryScreen() {
             {entryInstructions.videoUrl && id !== '29051503' && (
               <TouchableOpacity 
                 style={styles.watchVideoButton}
-                onPress={() => handleWatchVideo(entryInstructions.videoUrl)}
+                onPress={() => handleWatchVideo(id === '29051501' ? 'https://youtube.com/shorts/nWXkqDrRcyU' : entryInstructions.videoUrl)}
                 activeOpacity={0.8}
               >
                 <View style={styles.playIconContainer}>
                   <Play size={20} color={theme.colors.white} />
                 </View>
-                <VideoIcon size={24} color={theme.colors.white} />
+                <Text style={styles.watchVideoText}>
+                  {id === '29051501' ? 'Watch How to Open Doors' : 'Watch Video'}
+                </Text>
               </TouchableOpacity>
             )}
           </View>
