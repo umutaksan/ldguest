@@ -5,7 +5,23 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
+    },
+    {
+      "source": "/cibeles",
+      "destination": "/"
+    },
+    {
+      "source": "/jardinestropicales",
+      "destination": "/"
+    },
+    {
+      "source": "/aloha",
+      "destination": "/"
+    },
+    {
+      "source": "/oldtown",
+      "destination": "/"
     }
   ],
   "headers": [

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { Stack } from 'expo-router';
+import { Stack, usePathname, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { SplashScreen } from 'expo-router';
-import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Platform, useWindowDimensions } from 'react-native';
 import { theme } from '@/constants/theme';
 
 // Prevent splash screen from auto-hiding
@@ -13,6 +13,22 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   useFrameworkReady();
+  const pathname = usePathname();
+  const router = useRouter();
+  const { width } = useWindowDimensions();
+  
+  // Handle redirects for specific domains
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      const hostname = window.location.hostname;
+      const redirectPaths = ['/cibeles', '/jardinestropicales', '/aloha', '/oldtown'];
+      
+      // Check if we're on one of the specific domains and at a redirect path
+      if (hostname.includes('ldguest.online') && redirectPaths.some(path => pathname.includes(path))) {
+        router.replace('/');
+      }
+    }
+  }, [pathname, router]);
   
   const [fontsLoaded, fontError] = useFonts({
     Inter_400Regular,
