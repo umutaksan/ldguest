@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { PageHeader } from '@/components/common/PageHeader';
-import { MapPin, Navigation, Car, ExternalLink } from 'lucide-react-native';
+import { MapPin, Navigation, Car } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export default function ParkingScreen() {
@@ -41,12 +41,12 @@ export default function ParkingScreen() {
       case '29051502': // Seaview Fontanilla
         return {
           title: 'Parking Near Your Apartment',
-          description: 'The parking spaces inside the building are for property owners only, so unfortunately you cannot use them. However, there is open street parking available nearby, and a secure covered parking garage just a short walk away.',
+          description: 'The nearest street parking and covered parking are listed below. The property\'s parking is reserved for property owners and is not available for use.',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Calle+Camilo+Jos%C3%A9+Cela+7%2C+Marbella',
           address: 'Calle Camilo José Cela, 7',
           location: 'Marbella Center',
           streetParkingUrl: 'https://www.google.com/maps/@36.5082219,-4.8948736,0a,90y,28.93h,76.63t/data=!3m4!1e1!3m2!1sYLKBmzpfU8LDiamKYv_stQ!2e0?source=apiv3',
-          parkingAreaUrl: 'https://maps.app.goo.gl/tYCfj9GDWmo8A5hv9',
+          parkingAreaUrl: 'https://www.google.com/maps/dir//Parking+Arias+Maldonado+Av.+Arias+Maldonado,+s%2Fn+29602+Marbella+M%C3%A1laga/@36.508397,-4.892995,18z/data=!4m5!4m4!1m0!1m2!1m1!1s0xd7327ffe274dfab:0xa4d59c515e701776',
           options: [
             {
               id: 1,
@@ -226,27 +226,30 @@ export default function ParkingScreen() {
             </Animated.View>
           )) : null}
 
-          {showGeneralTipsSection && (
-            <View>
-              <Text style={styles.sectionTitle}>Parking Information</Text>
+          {showGeneralTipsSection ? (
+            <View style={styles.section}>
               <Text style={styles.sectionTitle}>General Parking Tips</Text>
-              <Text>The parking spaces inside the building are for property owners only, so unfortunately you cannot use them. However, there is open street parking available nearby, and a secure covered parking garage just a short walk away.</Text>
-              {id === '29051502' && (
-                <View>
-                  <Text style={styles.sectionTitle}>Covered Parking Location:</Text>
-                  <TouchableOpacity 
-                    style={styles.parkingLinkButton}
-                    onPress={handleOpenParkingArea}
-                    activeOpacity={0.8}
-                  >
-                    <Car size={20} color={theme.colors.white} />
-                    <Text style={styles.parkingLinkText}>Open Parking Garage Location</Text>
-                    <ExternalLink size={20} color={theme.colors.white} />
-                  </TouchableOpacity>
-                </View>
-              )}
+              <View style={styles.generalTipsContainer}>
+                {id === '29051502' ? (
+                  <>
+                    <Text style={styles.tip}>• Download parking apps like EasyPark or Telpark</Text>
+                    <Text style={styles.tip}>• Blue zones require payment Monday-Friday 9:00-14:00 & 17:00-20:00</Text>
+                    <Text style={styles.tip}>• Saturday mornings also require payment in some areas</Text>
+                    <Text style={styles.tip}>• Always check parking signs for specific regulations</Text>
+                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.tip}>• Your {id === '29051503' ? 'townhouse' : 'apartment'} includes {id === '29051501' || id === '29051503' ? 'free parking' : 'nearby paid parking options'}</Text>
+                    <Text style={styles.tip}>• The area is generally safe for parking</Text>
+                    <Text style={styles.tip}>• Keep valuables out of sight in your vehicle</Text>
+                    <Text style={styles.tip}>• Lock your vehicle at all times</Text>
+                    <Text style={styles.tip}>• Check local parking signs for any restrictions</Text>
+                  </>
+                )}
+              </View>
             </View>
-          )}
+          ) : null}
         </Animated.View>
       </ScrollView>
     </View>
@@ -317,21 +320,6 @@ const styles = StyleSheet.create({
     ...theme.typography.button,
     color: theme.colors.white,
     marginLeft: theme.spacing.s,
-  },
-  parkingLinkButton: {
-    flexDirection: 'row',
-    backgroundColor: theme.colors.primary,
-    borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: theme.spacing.m,
-    ...theme.shadows.small,
-  },
-  parkingLinkText: {
-    ...theme.typography.button,
-    color: theme.colors.white,
-    marginHorizontal: theme.spacing.m,
   },
   parkingTip: {
     ...theme.typography.bodySmall,
