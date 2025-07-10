@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { Stack, usePathname, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import '../i18n';
+import { Analytics } from '@vercel/analytics/react';
 import '../i18n';
 import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { SplashScreen } from 'expo-router';
-import { View, ActivityIndicator, StyleSheet, Platform, useWindowDimensions } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
 
 // Prevent splash screen from auto-hiding
