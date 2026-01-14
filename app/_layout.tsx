@@ -7,34 +7,31 @@ import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { SplashScreen } from 'expo-router';
-import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Platform, useWindowDimensions } from 'react-native';
 import { theme } from '@/constants/theme';
 
 // Prevent splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
 
-function RedirectHandler() {
+export default function RootLayout() {
+  useFrameworkReady();
   const pathname = usePathname();
   const router = useRouter();
-
+  const { width } = useWindowDimensions();
+  
+  // Handle redirects for specific domains
   useEffect(() => {
     if (Platform.OS === 'web') {
       const hostname = window.location.hostname;
       const redirectPaths = ['/cibeles', '/jardinestropicales', '/aloha', '/oldtown'];
-
+      
       // Check if we're on one of the specific domains and at a redirect path
       if (hostname.includes('ldguest.online') && redirectPaths.some(path => pathname.includes(path))) {
         router.replace('/');
       }
     }
   }, [pathname, router]);
-
-  return null;
-}
-
-export default function RootLayout() {
-  useFrameworkReady();
-
+  
   const [fontsLoaded, fontError] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -61,7 +58,6 @@ export default function RootLayout() {
 
   return (
     <>
-      <RedirectHandler />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -76,11 +72,11 @@ export default function RootLayout() {
         <Stack.Screen name="property/[id]/luggage" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/car-rental" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/parking" options={{ headerShown: false }} />
-
+        
         <Stack.Screen name="cleaning" options={{ headerShown: false }} />
         <Stack.Screen name="sql-editor" options={{ headerShown: false }} />
         <Stack.Screen name="wifi-passwords" options={{ headerShown: false }} />
-
+        
         <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
       </Stack>
       <StatusBar style="auto" />
