@@ -3,7 +3,7 @@
     "name": "L&D Guest Marbella",
     "slug": "ld-guest-marbella",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "ldguest",
     "userInterfaceStyle": "automatic",
@@ -13,6 +13,15 @@
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png",
+      "name": "L&D Guest Marbella",
+      "shortName": "L&D Guest",
+      "lang": "en",
+      "scope": "/",
+      "themeColor": "#E9B872",
+      "backgroundColor": "#FFFFFF",
+      "display": "standalone",
+      "startUrl": "/",
+      "orientation": "any",
       "build": {
         "babel": {
           "include": [

@@ -9,6 +9,11 @@ import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { SplashScreen } from 'expo-router';
 import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
+import Head from 'expo-router/head';
+
+if (Platform.OS === 'web') {
+  require('../styles/global.css');
+}
 
 // Prevent splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
@@ -61,6 +66,17 @@ export default function RootLayout() {
 
   return (
     <>
+      {Platform.OS === 'web' && (
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+          <meta name="description" content="L&D Guest Marbella - Premium vacation rentals in Marbella, Spain" />
+          <meta name="theme-color" content="#E9B872" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+          <meta name="format-detection" content="telephone=no" />
+          <link rel="manifest" href="/manifest.json" />
+        </Head>
+      )}
       <RedirectHandler />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

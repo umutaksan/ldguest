@@ -5,16 +5,21 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 // Responsive breakpoints
 const breakpoints = {
   mobile: 480,
+  mobileLandscape: 640,
   tablet: 768,
-  desktop: 1024,
-  largeDesktop: 1440,
+  tabletLandscape: 1024,
+  desktop: 1280,
+  largeDesktop: 1920,
 };
 
 // Check if current screen is mobile, tablet, or desktop
-const isMobile = screenWidth < breakpoints.mobile;
-const isTablet = screenWidth >= breakpoints.mobile && screenWidth < breakpoints.desktop;
+const isMobile = screenWidth < breakpoints.tablet;
+const isTablet = screenWidth >= breakpoints.tablet && screenWidth < breakpoints.desktop;
 const isDesktop = screenWidth >= breakpoints.desktop;
 const isWeb = Platform.OS === 'web';
+const isSmallMobile = screenWidth < breakpoints.mobile;
+const isLargeMobile = screenWidth >= breakpoints.mobile && screenWidth < breakpoints.tablet;
+const isiPad = isWeb && screenWidth >= 768 && screenWidth <= 1024;
 
 const palette = {
   primary: '#E9B872', // Warm sand
@@ -145,6 +150,8 @@ export const theme = {
     iconActive: palette.primary,
     iconInactive: palette.lightGray,
     transparent: 'transparent',
+    white: palette.white,
+    black: palette.black,
   },
   spacing: getResponsiveSpacing(),
   borderRadius: {
@@ -184,9 +191,14 @@ export const theme = {
     isMobile,
     isTablet,
     isDesktop,
+    isSmallMobile,
+    isLargeMobile,
+    isiPad,
     screenWidth,
     screenHeight,
-    maxWidth: isWeb ? (isDesktop ? 1200 : isTablet ? 768 : 480) : screenWidth,
-    containerPadding: isWeb ? (isDesktop ? 40 : isTablet ? 24 : 16) : 16,
+    breakpoints,
+    maxWidth: isWeb ? (isDesktop ? 1280 : isTablet ? 960 : 640) : screenWidth,
+    containerPadding: isWeb ? (isDesktop ? 48 : isTablet ? 32 : 20) : 16,
+    contentWidth: isWeb ? (isDesktop ? 1200 : isTablet ? 900 : 600) : screenWidth - 32,
   },
 };

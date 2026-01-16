@@ -28,13 +28,7 @@ export default function TabLayout() {
           paddingTop: 8,
           backgroundColor: theme.colors.white,
           ...theme.shadows.small,
-          // Web-specific optimizations
-          ...(theme.layout.isWeb && {
-            position: 'sticky',
-            bottom: 0,
-            zIndex: 1000,
-          }),
-        },
+        } as any,
         tabBarLabelStyle: {
           ...theme.typography.caption,
           marginTop: 4,

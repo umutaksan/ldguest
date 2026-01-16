@@ -63,11 +63,13 @@ export default function PropertiesScreen() {
     }
   ];
 
-  const cardHeight = theme.layout.isWeb 
-    ? (theme.layout.isDesktop ? 280 : 240) 
+  const cardHeight = theme.layout.isWeb
+    ? (theme.layout.isDesktop ? 320 : theme.layout.isTablet ? 280 : 240)
     : 200;
 
-  const gridColumns = theme.layout.isWeb && theme.layout.isDesktop ? 2 : 1;
+  const gridColumns = theme.layout.isWeb
+    ? (theme.layout.isDesktop ? 2 : theme.layout.isiPad ? 2 : 1)
+    : 1;
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -262,11 +264,10 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.border,
     position: 'relative',
     ...theme.shadows.medium,
-    // Web-specific styles
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
-      transition: 'all 0.3s ease-in-out',
-    }),
+      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    } as any),
   },
   propertyImage: {
     width: '100%',
@@ -308,11 +309,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: theme.spacing.m,
     marginBottom: theme.spacing.m,
-    // Web-specific styles
     ...(theme.layout.isWeb && {
       cursor: 'pointer',
-      transition: 'all 0.2s ease-in-out',
-    }),
+      transition: 'background-color 0.2s ease-in-out, transform 0.2s ease-in-out',
+    } as any),
   },
   adminButtonText: {
     ...theme.typography.bodySmall,
