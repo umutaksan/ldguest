@@ -28,10 +28,6 @@ export default function PropertiesScreen() {
     Linking.openURL('https://www.youtube.com/@ldguest');
   };
   
-  const handleCleaningStaffAccess = () => {
-    Linking.openURL('http://ldguestclean.com/');
-  };
-  
   const handleWebsitePress = () => {
     Linking.openURL('https://www.ldguest.com');
   };
@@ -180,7 +176,7 @@ export default function PropertiesScreen() {
 
           <TouchableOpacity
             style={styles.adminButton}
-            onPress={handleCleaningStaffAccess}
+            onPress={() => router.push('/cleaning')}
             activeOpacity={0.8}
           >
             <Text style={styles.adminButtonText}>{t('index.cleaningStaffAccess')}</Text>
