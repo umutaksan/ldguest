@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle, Platform } from 'react-native';
+import { View, StyleSheet, ViewStyle } from 'react-native';
 import { theme } from '@/constants/theme';
 
 interface ResponsiveContainerProps {
@@ -7,15 +7,13 @@ interface ResponsiveContainerProps {
   style?: ViewStyle;
   maxWidth?: number;
   centerContent?: boolean;
-  noPadding?: boolean;
 }
 
-export function ResponsiveContainer({
-  children,
-  style,
+export function ResponsiveContainer({ 
+  children, 
+  style, 
   maxWidth = theme.layout.maxWidth,
-  centerContent = true,
-  noPadding = false
+  centerContent = true 
 }: ResponsiveContainerProps) {
   return (
     <View style={[
@@ -23,9 +21,8 @@ export function ResponsiveContainer({
       {
         maxWidth,
         alignSelf: centerContent ? 'center' : 'stretch',
-        paddingHorizontal: noPadding ? 0 : theme.layout.containerPadding,
+        paddingHorizontal: theme.layout.containerPadding,
       },
-      Platform.OS === 'web' && styles.webContainer,
       style
     ]}>
       {children}
@@ -37,8 +34,5 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     flex: 1,
-  },
-  webContainer: {
-    overflow: 'hidden',
   },
 });

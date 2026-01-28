@@ -12,6 +12,7 @@ import tr from './locales/tr.json';
 i18n
   .use(initReactI18next)
   .init({
+    compatibilityJSON: 'v3',
     resources: {
       en: { translation: en },
       es: { translation: es },
@@ -19,7 +20,7 @@ i18n
       it: { translation: it },
       tr: { translation: tr },
     },
-    lng: 'en',
+    lng: 'en', // Default language
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,

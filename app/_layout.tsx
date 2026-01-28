@@ -9,11 +9,6 @@ import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { SplashScreen } from 'expo-router';
 import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { theme } from '@/constants/theme';
-import Head from 'expo-router/head';
-
-if (Platform.OS === 'web') {
-  require('../styles/global.css');
-}
 
 // Prevent splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
@@ -66,33 +61,29 @@ export default function RootLayout() {
 
   return (
     <>
-      {Platform.OS === 'web' && (
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-          <meta name="description" content="L&D Guest Marbella - Premium vacation rentals in Marbella, Spain" />
-          <meta name="theme-color" content="#E9B872" />
-          <link rel="manifest" href="/manifest.json" />
-        </Head>
-      )}
       <RedirectHandler />
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="explore" />
-        <Stack.Screen name="guide" />
-        <Stack.Screen name="info" />
-        <Stack.Screen name="contact" />
-        <Stack.Screen name="properties/aloha-pueblo" />
-        <Stack.Screen name="properties/jardines-tropicales" />
-        <Stack.Screen name="properties/old-town" />
-        <Stack.Screen name="properties/seaview-fontanilla" />
-        <Stack.Screen name="property/[id]" />
-        <Stack.Screen name="cleaning" />
-        <Stack.Screen name="sql-editor" />
-        <Stack.Screen name="wifi-passwords" />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/location" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/entry" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/wifi" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/videos" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/rules" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/dining" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/attractions" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/luggage" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/car-rental" options={{ headerShown: false }} />
+        <Stack.Screen name="property/[id]/parking" options={{ headerShown: false }} />
+
+        <Stack.Screen name="cleaning" options={{ headerShown: false }} />
+        <Stack.Screen name="sql-editor" options={{ headerShown: false }} />
+        <Stack.Screen name="wifi-passwords" options={{ headerShown: false }} />
+
         <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
       </Stack>
       <StatusBar style="auto" />
-      {Platform.OS === 'web' && <Analytics />}
     </>
   );
 }
