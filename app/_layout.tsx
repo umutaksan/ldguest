@@ -71,16 +71,17 @@ export default function RootLayout() {
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
           <meta name="description" content="L&D Guest Marbella - Premium vacation rentals in Marbella, Spain" />
           <meta name="theme-color" content="#E9B872" />
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-          <meta name="format-detection" content="telephone=no" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
       )}
       <RedirectHandler />
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="explore" options={{ headerShown: false }} />
+        <Stack.Screen name="guide" options={{ headerShown: false }} />
+        <Stack.Screen name="info" options={{ headerShown: false }} />
+        <Stack.Screen name="contact" options={{ headerShown: false }} />
+
         <Stack.Screen name="property/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/location" options={{ headerShown: false }} />
         <Stack.Screen name="property/[id]/entry" options={{ headerShown: false }} />
@@ -100,6 +101,7 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
       </Stack>
       <StatusBar style="auto" />
+      {Platform.OS === 'web' && <Analytics />}
     </>
   );
 }
